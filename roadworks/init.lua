@@ -3,6 +3,8 @@
 	which "override" the white ones.
 	Construction area fence.
 ]]
+local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
+
 minetest.register_node(":streets:rw_asphalt_solid",{
 	description = "Solid line (yellow)",
 	tiles = {"streets_rw_solid_line.png","streets_rw_solid_line_curve.png","streets_rw_solid_line_tjunction.png","streets_rw_solid_line_crossing.png"},
@@ -12,7 +14,6 @@ minetest.register_node(":streets:rw_asphalt_solid",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_solid_line.png",
 	wield_image = "streets_rw_solid_line.png",
 	selection_box = {
@@ -30,7 +31,6 @@ minetest.register_node(":streets:rw_asphalt_dashed",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_dashed_line.png",
 	wield_image = "streets_rw_dashed_line.png",
 	selection_box = {
@@ -48,7 +48,6 @@ minetest.register_node(":streets:rw_cross",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_cross.png",
 	wield_image = "streets_rw_cross.png",
 	selection_box = {
@@ -65,12 +64,11 @@ minetest.register_node(":streets:rw_outer_edge",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_outer_edge.png",
 	wield_image = "streets_rw_outer_edge.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -87,12 +85,11 @@ minetest.register_node(":streets:rw_parking",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_parking.png",
 	wield_image = "streets_rw_parking.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -109,12 +106,11 @@ minetest.register_node(":streets:rw_alldirs",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_arrow_alldirs.png",
 	wield_image = "streets_rw_arrow_alldirs.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -131,12 +127,11 @@ minetest.register_node(":streets:rw_left",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_arrow_left.png",
 	wield_image = "streets_rw_arrow_left.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -153,12 +148,11 @@ minetest.register_node(":streets:rw_right",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_arrow_right.png",
 	wield_image = "streets_rw_arrow_right.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -175,12 +169,11 @@ minetest.register_node(":streets:rw_straight_right",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_arrow_straight_right.png",
 	wield_image = "streets_rw_arrow_straight_right.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -197,12 +190,11 @@ minetest.register_node(":streets:rw_straight_left",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_arrow_straight_left.png",
 	wield_image = "streets_rw_arrow_straight_left.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -219,12 +211,11 @@ minetest.register_node(":streets:rw_straight",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_arrow_straight.png",
 	wield_image = "streets_rw_arrow_straight.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
@@ -241,12 +232,11 @@ minetest.register_node(":streets:rw_sideline",{
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	buildable_to = true,
 	inventory_image = "streets_rw_asphalt_side.png",
 	wield_image = "streets_rw_asphalt_side.png",
 	node_box = {
 		type = "fixed",
-		fixed = {-1/2, -1/2, -1/2, 1/2, -0.495, 1/2}
+		fixed = box
 	},
 	selection_box = {
 		type = "fixed",
