@@ -1,0 +1,1 @@
+This file indicates that the current folder is a modpack. Please also read readme.txt for more information.
