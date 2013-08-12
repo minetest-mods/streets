@@ -29,13 +29,31 @@ minetest.register_node(":streets:trafficlight_bottom",{
 			minetest.chat_send_player(placer:get_player_name(),"Not enough vertical space! The traffic light has a height of 3 blocks.")
 			minetest.remove_node(pos)
 		end
+		--
+		pos.y = pos.y - 2
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		pos.y = pos.y + 1
 		minetest.remove_node(pos)
 		pos.y = pos.y + 1
 		minetest.remove_node(pos)
-	end
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		minetest.env:get_meta(pos):set_string("channel", fields.channel)
+	end,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos,node,channel,msg)
+				local setchannel = minetest.get_meta(pos):get_string("channel")
+				if channel == setchannel then
+					-- Trafficlight code goes here
+				end
+			end
+		}
+	}
 })
 
 minetest.register_node(":streets:trafficlight_middle",{
