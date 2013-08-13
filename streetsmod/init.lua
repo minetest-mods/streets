@@ -8,7 +8,7 @@
 -- Create variables and tables
 	print("Streets: Creating variables and tables...")
 	streets	= {}
-	streets.version	= 1.3
+	streets.version	= "1.3 indev"
 	streets.modpath = minetest.get_modpath("streets")
 	streets.extendedBy	= {}
 	
