@@ -63,25 +63,25 @@ minetest.register_node(":streets:trafficlight_bottom",{
 						-- Modify <pos> to the top node of the trafficlight
 						pos.y = pos.y + 2
 						--
-						if msg == "red" then
+						if msg == "red" and state ~= "red" then
 							minetest.set_node(pos,{name = "streets:trafficlight_top_yellow",param2=facedir})
 							minetest.after(3,function(param)
 								minetest.set_node(pos,{name = "streets:trafficlight_top_red",param2=facedir})
 							end)
 						end
 						--
-						if msg == "green" then
+						if msg == "green" and state ~= "green" then
 							minetest.set_node(pos,{name = "streets:trafficlight_top_redyellow",param2=facedir})
 							minetest.after(3,function(param)
 								minetest.set_node(pos,{name = "streets:trafficlight_top_green",param2=facedir})
 							end)
 						end
 						--
-						if msg == "off" then
+						if msg == "off" and state ~= "off" then
 							minetest.set_node(pos,{name = "streets:trafficlight_top_off",param2=facedir})
 						end
 						--
-						if msg == "warn" then
+						if msg == "warn" and state ~= "warn" then
 							minetest.set_node(pos,{name = "streets:trafficlight_top_warn",param2=facedir})
 						end
 					end
