@@ -29,11 +29,11 @@
 		streets.extendedBy.technic = false
 	end
 	if minetest.get_modpath("stairs") then
-		print("'Stairs' is installed \n\t => There will be stairs and slabs'")
-		streets.extendedBy.stairs = true
+		print("'Moreblocks' is installed \n\t => There will be stairs and slabs'")
+		streets.extendedBy.moreblocks = true
 	else
-		print("'Stairs' not installed \n\t => There won't be stairs and slabs'")
-		streets.extendedBy.stairs = false
+		print("'Moreblocks' not installed \n\t => There won't be stairs and slabs'")
+		streets.extendedBy.moreblocks = false
 	end
 	if minetest.get_modpath("bucket") then
 		print("'Bucket' is installed \n\t => All signs are available")
