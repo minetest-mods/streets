@@ -42,6 +42,20 @@
 		print("'Bucket' not installed \n\t => No signs available")
 		streets.extendedBy.bucket = false
 	end
+	if minetest.get_modpath("mesecons") then
+		print("'Mesecons' is installed \n\t => Trafficlights might be available. Checking for digilines.")
+		streets.extendedBy.mesecons = true
+	else
+		print("'Mesecons' not installed \n\t => No trafficlight, sorry.")
+		streets.extendedBy.mesecons = false
+	end
+	if minetest.get_modpath("digilines") then
+		print("'Digilines' is installed \n\t => Trafficlights might be available")
+		streets.extendedBy.digilines = true
+	else
+		print("'Digilines' not installed \n\t => No trafficlight, sorry.")
+		streets.extendedBy.digilines = false
+	end
 	
 -- Done	
 	print("Streets: Setup completed, have fun with StreetsMod ".. streets.version .."!")
