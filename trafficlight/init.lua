@@ -139,6 +139,7 @@ minetest.register_node(":streets:trafficlight_top_red",{
 		}
 	},
 	pointable = false,
+	light_source = 6,
 })
 
 minetest.register_node(":streets:trafficlight_top_yellow",{
@@ -156,6 +157,7 @@ minetest.register_node(":streets:trafficlight_top_yellow",{
 		}
 	},
 	pointable = false,
+	light_source = 6,
 })
 
 minetest.register_node(":streets:trafficlight_top_redyellow",{
@@ -173,6 +175,7 @@ minetest.register_node(":streets:trafficlight_top_redyellow",{
 		}
 	},
 	pointable = false,
+	light_source = 6,
 })
 
 minetest.register_node(":streets:trafficlight_top_green",{
@@ -190,6 +193,7 @@ minetest.register_node(":streets:trafficlight_top_green",{
 		}
 	},
 	pointable = false,
+	light_source = 6,
 })
 
 minetest.register_node(":streets:trafficlight_top_warn",{
@@ -210,4 +214,5 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 		}
 	},
 	pointable = false,
+	light_source = 6,
 })
