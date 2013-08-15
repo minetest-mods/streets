@@ -1,8 +1,8 @@
 --[[
 	StreetsMod: Concrete, Concrete wall (flat), Concrete wall (full)
 ]]
-minetest.register_alias("streets:concrete","technic:concrete")
 if streets.extendedBy.technic == true then 
+	minetest.register_alias("streets:concrete","technic:concrete")
 	-- Use technic's concrete block for the seperating wall
 	minetest.register_node(":streets:concrete_wall",{
 		description = "Conrete wall",
@@ -20,7 +20,7 @@ if streets.extendedBy.technic == true then
 		}
 	})
 	minetest.register_craft({
-		output = "streets:concrete_wall",
+		output = "streets:concrete_wall 3",
 		recipe = {
 			{"","technic:conrete",""},
 			{"","technic:concrete",""},
@@ -49,9 +49,56 @@ if streets.extendedBy.technic == true then
 			{"","",""}
 		}
 	})
+elseif streets.extendedBy.prefab then
+	minetest.register_alias("streets:concrete","prefab:concrete")
+	minetest.register_node(":streets:concrete_wall",{
+		description = "Conrete wall",
+		tiles = {"prefab_concrete.png"},
+		groups = {cracky=2},
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.4, -0.5, -0.5, 0.4, -0.4, 0.5},
+				{-0.1, -0.4, -0.5, 0.1, 0.5, 0.5}
+			}
+		}
+	})
+	minetest.register_craft({
+		output = "streets:concrete_wall 3",
+		recipe = {
+			{"","streets:concrete",""},
+			{"","streets:concrete",""},
+			{"streets:concrete","streets:concrete","streets:concrete"}
+		}
+	})
+	minetest.register_node(":streets:concrete_wall_flat",{
+		description = "Conrete wall",
+		tiles = {"prefab_concrete.png"},
+		groups = {cracky=2},
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.1, -0.5, -0.5, 0.1, 0.5, 0.5}
+			}
+		}
+	})
+	minetest.register_craft({
+		output = "streets:concrete_wall_flat 3",
+		recipe = {
+			{"","streets:concrete",""},
+			{"","streets:concrete",""},
+			{"","",""}
+		}
+	})
 else
-	-- Register technic's concrete block with streets's texture and then the seperating wall
-	minetest.register_node(":technic:concrete",{
+	-- Register concrete block with streets' texture and then the seperating wall
+	minetest.register_node(":streets:concrete",{
 		description = "Concrete",
 		tiles = {"streets_concrete.png"},
 		groups = {cracky=2}
@@ -72,11 +119,11 @@ else
 		}
 	})
 	minetest.register_craft({
-		output = "streets:concrete_wall 5",
+		output = "streets:concrete_wall 3",
 		recipe = {
-			{"","technic:concrete",""},
-			{"","technic:concrete",""},
-			{"technic:concrete","technic:concrete","technic:concrete"}
+			{"","streets:concrete",""},
+			{"","streets:concrete",""},
+			{"streets:concrete","streets:concrete","streets:concrete"}
 		}
 	})
 	minetest.register_node(":streets:concrete_wall_flat",{
@@ -96,14 +143,14 @@ else
 	minetest.register_craft({
 		output = "streets:concrete_wall_flat 3",
 		recipe = {
-			{"","technic:concrete",""},
-			{"","technic:concrete",""},
+			{"","streets:concrete",""},
+			{"","streets:concrete",""},
 			{"","",""}
 		}
 	})
 	minetest.register_craft({
 		type = "shapeless",
-		output = "technic:concrete",
+		output = "streets:concrete",
 		recipe = {"default:stone"}
 	})
 end

@@ -56,6 +56,13 @@
 		print("'Digilines' not installed \n\t => No trafficlight, sorry.")
 		streets.extendedBy.digilines = false
 	end
+	if minetest.get_modpath("prefab") then
+		print("'Prefab concrete' is installed \n\t => Use its concrete block for streets' crafting recipes.")
+		streets.extendedBy.prefab = true
+	else
+		print("'Prefab concrete' not installed \n\t => Streets will register its own concrete block.")
+		streets.extendedBy.prefab = false
+	end
 	
 -- Done	
 	print("Streets: Setup completed, have fun with StreetsMod ".. streets.version .."!")
