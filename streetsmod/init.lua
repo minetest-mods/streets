@@ -43,10 +43,10 @@
 		streets.extendedBy.bucket = false
 	end
 	if minetest.get_modpath("mesecons") then
-		print("'Mesecons' is installed \n\t => Trafficlights might be available. Checking for digilines.")
+		print("'Mesecons' is installed \n\t => Trafficlights might be available. Checking for digilines. Streetlamps available")
 		streets.extendedBy.mesecons = true
 	else
-		print("'Mesecons' not installed \n\t => No trafficlight, sorry.")
+		print("'Mesecons' not installed \n\t => No trafficlight and streetlamps, sorry.")
 		streets.extendedBy.mesecons = false
 	end
 	if minetest.get_modpath("digilines") then
