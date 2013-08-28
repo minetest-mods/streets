@@ -4,6 +4,8 @@
 if streets.extendedBy.moreblocks then
 	-- Asphalt
 	register_stair_slab_panel_micro("streets", "asphalt", "streets:asphalt", {cracky=3}, {"streets_asphalt.png"}, "Asphalt", "asphalt", nil)
+	minetest.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
+	minetest.register_alias("streets:asphalt_slab","stairs:slab_asphalt")
 	table.insert(circular_saw.known_stairs,"streets:asphalt")
 	-- Asphalt solid line
 		-- Stair
