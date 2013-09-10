@@ -15,7 +15,7 @@ minetest.register_craft({
 	recipe = {
 		{"wool:white","streets:asphalt","streets:asphalt"},
 		{"wool:white","streets:asphalt","streets:asphalt"},
-		{"wool:shite","streets:asphalt","streets:asphalt"}
+		{"wool:white","streets:asphalt","streets:asphalt"}
 	}
 })
 
