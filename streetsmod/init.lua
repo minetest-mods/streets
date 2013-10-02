@@ -28,7 +28,7 @@
 		print("'Technic' not installed \n\t => StreetsMod will register its own concrete block")
 		streets.extendedBy.technic = false
 	end
-	if minetest.get_modpath("stairs") then
+	if minetest.get_modpath("moreblocks") then
 		print("'Moreblocks' is installed \n\t => There will be stairs and slabs'")
 		streets.extendedBy.moreblocks = true
 	else
