@@ -17,12 +17,6 @@ minetest.register_node(":streets:trafficlight_bottom",{
 			{-0.1,0.25,-0.1,0.1,0.5,0.1}
 		}
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.25,-0.5,-0.25,0.25,2.5,0.25},
-		}
-	}
 })
 
 minetest.register_node(":streets:trafficlight_middle",{
@@ -52,6 +46,13 @@ minetest.register_node(":streets:trafficlight_controller",{
 		fixed = {
 			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
 			{-0.05,0.5,-0.05,0.05,1.6,0.05}
+		}
+	},
+	selection_box = 	{
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
+			{-0.5,1.5,-0.5,0.5,4.5,0.5}
 		}
 	},
 	on_receive_fields = function(pos, formname, fields, sender)
