@@ -7,9 +7,21 @@ minetest.register_node(":streets:asphalt",{
 	groups	= {cracky=3}
 })
 
-minetest.register_craft({
-	type = "cooking",
-	output	= "streets:asphalt",
-	recipe 	= "default:gravel",
-	cooktime = 2
-})
+if minetest.get_modpath("building_blocks") then
+	minetest.register_craft({
+		type = "shapeless",
+	    output = "streets:asphalt 3",
+	    recipe = {
+			"default:sand",
+			"default:gravel",
+			"building_blocks:Tar"
+	    },
+	})
+else
+	minetest.register_craft({
+		type = "cooking",
+		output	= "streets:asphalt",
+		recipe 	= "default:gravel",
+		cooktime = 2
+	})
+end
