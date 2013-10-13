@@ -5,7 +5,13 @@ if streets.extendedBy.bucket == true and streets.extendedBy.wool then
 		inventory_image = "streets_sign_lava.png",
 		wield_image = "streets_sign_lava.png",
 		groups = {snappy = 1,attached_node = 1},
-		drawtype = "signlike",
+		drawtype = "nodebox",
+		node_box = {
+			type = "wallmounted",
+			fixed = {
+				{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
+			}
+		},
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		walkable = false,
@@ -33,7 +39,13 @@ if streets.extendedBy.bucket == true and streets.extendedBy.wool then
 		inventory_image = "streets_sign_water.png",
 		wield_image = "streets_sign_water.png",
 		groups = {snappy = 1,attached_node = 1},
-		drawtype = "signlike",
+		drawtype = "nodebox",
+		node_box = {
+			type = "wallmounted",
+			fixed = {
+				{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
+			}
+		},
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		walkable = false,
@@ -61,7 +73,13 @@ if streets.extendedBy.bucket == true and streets.extendedBy.wool then
 		inventory_image = "streets_sign_construction.png",
 		wield_image = "streets_sign_construction.png",
 		groups = {snappy = 1,attached_node = 1},
-		drawtype = "signlike",
+		drawtype = "nodebox",
+		node_box = {
+			type = "wallmounted",
+			fixed = {
+				{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
+			}
+		},
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		walkable = false,
