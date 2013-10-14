@@ -87,4 +87,3 @@
 	print("Streets: Setup completed, have fun with StreetsMod ".. streets.version .."!")
 	print("Streets: Special thanks to everyone who contributed to this mod (except myself): Immanuel_Kant and philipbenr!")
 	streets.load.fin = os.clock()
-print(os.clock())
