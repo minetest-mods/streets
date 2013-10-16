@@ -11,9 +11,9 @@ minetest.register_alias("streets:asphalt_side","streets:asphalt_sideline")
 minetest.register_craft({
 	output = "streets:asphalt_side 6",
 	recipe = {
-		{"wool:white","streets:asphalt","streets:asphalt"},
-		{"wool:white","streets:asphalt","streets:asphalt"},
-		{"wool:white","streets:asphalt","streets:asphalt"}
+		{"dye:white","streets:asphalt","streets:asphalt"},
+		{"dye:white","streets:asphalt","streets:asphalt"},
+		{"dye:white","streets:asphalt","streets:asphalt"}
 	}
 })
 
@@ -27,9 +27,9 @@ minetest.register_alias("streets:asphalt_middle","streets:asphalt_solid_line")
 minetest.register_craft({
 	output = "streets:asphalt_solid_line 6",
 	recipe = {
-		{"streets:asphalt","wool:white","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -43,9 +43,9 @@ minetest.register_alias("streets:asphalt_middle_dashed","streets:asphalt_dashed_
 minetest.register_craft({
 	output = "streets:asphalt_dashed_line 6",
 	recipe = {
-		{"streets:asphalt","wool:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","streets:asphalt"},
 		{"streets:asphalt","streets:asphalt","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -59,9 +59,9 @@ minetest.register_node(":streets:asphalt_outer_edge",{
 minetest.register_craft({
 	output = "streets:asphalt_outer_edge 4",
 	recipe = {
-		{"wool:white","wool:white","wool:white"},
-		{"wool:white","streets:asphalt","streets:asphalt"},
-		{"wool:white","streets:asphalt","streets:asphalt"}
+		{"dye:white","dye:white","dye:white"},
+		{"dye:white","streets:asphalt","streets:asphalt"},
+		{"dye:white","streets:asphalt","streets:asphalt"}
 	}
 })
 
@@ -75,9 +75,9 @@ minetest.register_node(":streets:asphalt_parking",{
 minetest.register_craft({
 	output = "streets:asphalt_outer_edge 4",
 	recipe = {
-		{"streets:asphalt","wool:white","wool:white"},
-		{"streets:asphalt","wool:white","wool:white"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","dye:white"},
+		{"streets:asphalt","dye:white","dye:white"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -92,8 +92,8 @@ minetest.register_craft({
 	output = "streets:asphalt_arrow_straight 4",
 	recipe = {
 		{"streets:asphalt","streets:asphalt","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -108,8 +108,8 @@ minetest.register_craft({
 	output = "streets:asphalt_arrow_left 4",
 	recipe = {
 		{"streets:asphalt","streets:asphalt","streets:asphalt"},
-		{"wool:white","wool:white","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"dye:white","dye:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -124,8 +124,8 @@ minetest.register_craft({
 	output = "streets:asphalt_arrow_right 4",
 	recipe = {
 		{"streets:asphalt","streets:asphalt","streets:asphalt"},
-		{"streets:asphalt","wool:white","wool:white"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","dye:white"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -139,9 +139,9 @@ minetest.register_node(":streets:asphalt_arrow_straight_left",{
 minetest.register_craft({
 	output = "streets:asphalt_arrow_straight_left 4",
 	recipe = {
-		{"streets:asphalt","wool:white","streets:asphalt"},
-		{"wool:white","wool:white","streets:asphalt"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","streets:asphalt"},
+		{"dye:white","dye:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -155,9 +155,9 @@ minetest.register_node(":streets:asphalt_arrow_straight_right",{
 minetest.register_craft({
 	output = "streets:asphalt_arrow_straight_right 4",
 	recipe = {
-		{"streets:asphalt","wool:white","streets:asphalt"},
-		{"streets:asphalt","wool:white","wool:white"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","streets:asphalt"},
+		{"streets:asphalt","dye:white","dye:white"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
 
@@ -171,8 +171,8 @@ minetest.register_node(":streets:asphalt_arrow_alldirs",{
 minetest.register_craft({
 	output = "streets:asphalt_arrow_alldirs 4",
 	recipe = {
-		{"streets:asphalt","wool:white","streets:asphalt"},
-		{"wool:white","wool:white","wool:white"},
-		{"streets:asphalt","wool:white","streets:asphalt"}
+		{"streets:asphalt","dye:white","streets:asphalt"},
+		{"dye:white","dye:white","dye:white"},
+		{"streets:asphalt","dye:white","streets:asphalt"}
 	}
 })
