@@ -31,14 +31,15 @@ local forms = {
 		"list[context;streets:signworkshop_select;6,1;1,1]",
 		"label[5.8,2.5;Output:]",
 		"list[context;streets:signworkshop_output;6,3;1,1]",
-		"list[current_player;main;2,6;8,4]",
-		"label[8,4;Please wait...]",
+		"list[current_player;main;2,6;8,4]"
+		-- 
 	}
 }
 minetest.register_node(":streets:signworkshop",{
 	description = "Sign workshop",
-	tiles = {},
+	tiles = {"streets_signworkshop_top.png","streets_signworkshop_bottom.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_front.png"},
 	groups = {cracky = 1, level = 2},
+	paramtype2 = "facedir",
 	after_place_node = function(pos)
 		minetest.get_meta(pos):set_string("formspec",table.concat(forms.inactive))
 		local meta = minetest.get_meta(pos)
@@ -120,7 +121,7 @@ minetest.register_node(":streets:signworkshop",{
 			if need[1].name == has[1].name and need[2].name == has[2].name and need[3].name == has[3].name and need[4].name == has[4].name then
 				meta:set_string("infotext","Sign workshop working")
 				meta:set_string("idle","n")
-				meta:set_string("formspec",table.concat(forms.active))
+				meta:set_string("formspec",table.concat(forms.active) .. "label[8,4;Please wait " .. def.time .. " seconds...]")
 				-- Clear input
 				inv:set_list("streets:signworkshop_input",{"","","",""})
 				minetest.after(def.time,function()

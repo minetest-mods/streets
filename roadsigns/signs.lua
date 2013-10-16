@@ -21,7 +21,7 @@ minetest.register_node(":streets:sign_blank",{
 	streets = {
 		signworkshop = {
 			recipe = {"default:steel_ingot","","",""},
-			time = 5
+			time = 3
 		}
 	}
 })
@@ -48,7 +48,7 @@ minetest.register_node(":streets:sign_lava",{
 	streets = {
 		signworkshop = {
 			recipe = {"streets:sign_blank","bucket:bucket_lava","",""},
-			time = 7
+			time = 5
 		}
 	}
 })
@@ -72,6 +72,12 @@ minetest.register_node(":streets:sign_water",{
 	sunlight_propagates = true,
 	selection_box = {
 		type = "wallmounted"
+	},
+	streets = {
+		signworkshop = {
+			recipe = {"streets:sign_blank","bucket:bucket_water","",""},
+			time = 5
+		}
 	}
 })
 
@@ -94,5 +100,11 @@ minetest.register_node(":streets:sign_construction",{
 	sunlight_propagates = true,
 	selection_box = {
 		type = "wallmounted"
+	},
+	streets = {
+		signworkshop = {
+			recipe = {"streets:sign_blank","default:dirt","",""},
+			time = 5
+		}
 	}
 })
