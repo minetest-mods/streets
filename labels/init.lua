@@ -1,8 +1,6 @@
 --[[
 	StreetsMod: All kinds of asphalt with labels
 ]]
-if streets.extendedBy.wool == false then return end
---
 minetest.register_node(":streets:asphalt_sideline",{
 	description = "Asphalt with sideline",
 	groups = {cracky=3},

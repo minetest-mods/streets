@@ -1,7 +1,7 @@
 --[[
 	StreetsMod: Asphalt stairs
 ]]
-if streets.extendedBy.moreblocks == true then
+if type(register_stair_slab_panel_micro) ~= "function" then return end
 	-- Asphalt
 	register_stair_slab_panel_micro("streets", "asphalt", "streets:asphalt", {cracky=3}, {"streets_asphalt.png"}, "Asphalt", "asphalt", nil)
 	minetest.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
@@ -225,4 +225,3 @@ if streets.extendedBy.moreblocks == true then
 			output = "streets:asphalt_side_l",
 			recipe = {"streets:asphalt_side_r"}
 		})
-end

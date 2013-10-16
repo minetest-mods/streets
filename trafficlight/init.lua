@@ -1,7 +1,6 @@
 --[[
 	StreetsMod: inDev Trafficlights
 ]]
-if streets.extendedBy.mesecons and streets.extendedBy.digilines then
 minetest.register_node(":streets:trafficlight_bottom",{
 	description = "Cheater",
 	groups = {not_in_creative_inventory = 1},
@@ -225,5 +224,3 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 	pointable = false,
 	light_source = 6,
 })
-
-end
