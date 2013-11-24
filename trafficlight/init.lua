@@ -54,7 +54,7 @@ minetest.register_node(":streets:trafficlight_controller",{
 		type = "fixed",
 		fixed = {
 			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
-			{-0.5,1.5,-0.5,0.5,4.5,0.5}
+			{-0.3,1.5,-0.3,0.3,4.5,0.3}
 		}
 	},
 	on_receive_fields = function(pos, formname, fields, sender)
