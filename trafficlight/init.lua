@@ -38,6 +38,7 @@ minetest.register_node(":streets:trafficlight_middle",{
 
 minetest.register_node(":streets:trafficlight_controller",{
 	description = "Trafficlight",
+	inventory_image = "streets_trafficlight_inv.png",
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
 	drawtype = "nodebox",

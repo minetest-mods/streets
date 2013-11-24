@@ -43,6 +43,7 @@ minetest.register_node(":streets:streetlamp_basic_bottom",{
 	drop = "",
 	description = "Street lamp",
 	tiles = {"streets_lamps_basic_bottom.png"},
+	inventory_image = "streets_lamps_basi_inv.png",
 	groups = {cracky = 1},
 	paramtype = "light",
 	drawtype = "nodebox",

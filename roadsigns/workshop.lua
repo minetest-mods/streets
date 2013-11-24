@@ -136,3 +136,12 @@ minetest.register_node(":streets:signworkshop",{
 		end
 	end
 })
+
+minetest.register_craft({
+	output = "streets:signworkshop",
+	recipe = {
+		{"default:steel_ingot","default:glass","default:steel_ingot"},
+		{"default:steel_ingot","default:diamond","default:steel_ingot"},
+		{"default:cobble","default:cobble","default:cobble"}
+	}
+})
