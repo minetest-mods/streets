@@ -1,9 +1,9 @@
 --[[
 	StreetsMod: inDev Trafficlights
 ]]
-if streets.extendedBy.mesecons and streets.extendedBy.digilines then
 minetest.register_node(":streets:trafficlight_bottom",{
 	description = "Cheater",
+	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -17,16 +17,11 @@ minetest.register_node(":streets:trafficlight_bottom",{
 			{-0.1,0.25,-0.1,0.1,0.5,0.1}
 		}
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.25,-0.5,-0.25,0.25,2.5,0.25},
-		}
-	}
 })
 
 minetest.register_node(":streets:trafficlight_middle",{
 	description = "Cheater!",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -43,6 +38,7 @@ minetest.register_node(":streets:trafficlight_middle",{
 
 minetest.register_node(":streets:trafficlight_controller",{
 	description = "Trafficlight",
+	inventory_image = "streets_trafficlight_inv.png",
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
 	drawtype = "nodebox",
@@ -52,6 +48,13 @@ minetest.register_node(":streets:trafficlight_controller",{
 		fixed = {
 			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
 			{-0.05,0.5,-0.05,0.05,1.6,0.05}
+		}
+	},
+	selection_box = 	{
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
+			{-0.3,1.5,-0.3,0.3,4.5,0.3}
 		}
 	},
 	on_receive_fields = function(pos, formname, fields, sender)
@@ -117,6 +120,7 @@ minetest.register_node(":streets:trafficlight_controller",{
 
 minetest.register_node(":streets:trafficlight_top_off",{
 	description = "U cheater U",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -134,6 +138,7 @@ minetest.register_node(":streets:trafficlight_top_off",{
 
 minetest.register_node(":streets:trafficlight_top_red",{
 	description = "U cheater U",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -152,6 +157,7 @@ minetest.register_node(":streets:trafficlight_top_red",{
 
 minetest.register_node(":streets:trafficlight_top_yellow",{
 	description = "U cheater U",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -170,6 +176,7 @@ minetest.register_node(":streets:trafficlight_top_yellow",{
 
 minetest.register_node(":streets:trafficlight_top_redyellow",{
 	description = "U cheater U",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -188,6 +195,7 @@ minetest.register_node(":streets:trafficlight_top_redyellow",{
 
 minetest.register_node(":streets:trafficlight_top_green",{
 	description = "U cheater U",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -206,6 +214,7 @@ minetest.register_node(":streets:trafficlight_top_green",{
 
 minetest.register_node(":streets:trafficlight_top_warn",{
 	description = "U cheater U",
+	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -225,4 +234,11 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 	light_source = 6,
 })
 
-end
+minetest.register_craft({
+	output = "streets:trafficlight_controller",
+	recipe = {
+		{"dye:red","",""},
+		{"dye:yellow","",""},
+		{"dye:green","",""}
+	}
+})
