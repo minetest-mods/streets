@@ -116,3 +116,12 @@ minetest.register_node(":streets:streetlamp_basic_top_on",{
 		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z})
 	end
 })
+
+minetest.register_craft({
+	output = "streets:streetlamp_basic_bottom",
+	recipe = {
+		{"","default:torch",""},
+		{"","default:stick",""},
+		{"","default:stick",""}
+	}
+})
