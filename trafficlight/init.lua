@@ -232,3 +232,12 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 	pointable = false,
 	light_source = 6,
 })
+
+minetest.register_craft({
+	output = "streets:trafficlight_controller",
+	recipe = {
+		{"dye:red","",""},
+		{"dye:yellow","",""},
+		{"dye:green","",""}
+	}
+})
