@@ -247,63 +247,63 @@ minetest.register_node(":streets:rw_sideline",{
 minetest.register_craft({
 	output = "streets:rw_asphalt_solid 3",
 	recipe = {
-		{"","wool:yellow",""},
-		{"","wool:yellow",""},
-		{"","wool:yellow",""}
+		{"","dye:yellow",""},
+		{"","dye:yellow",""},
+		{"","dye:yellow",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_sideline 3",
 	recipe = {
-		{"wool:yellow","wool:yellow",""},
-		{"wool:yellow","wool:yellow",""},
-		{"wool:yellow","wool:yellow",""}
+		{"dye:yellow","dye:yellow",""},
+		{"dye:yellow","dye:yellow",""},
+		{"dye:yellow","dye:yellow",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_asphalt_dashed 3",
 	recipe = {
-		{"","wool:yellow",""},
+		{"","dye:yellow",""},
 		{"","",""},
-		{"","wool:yellow",""}
+		{"","dye:yellow",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_cross 3",
 	recipe = {
-		{"wool:yellow","","wool:yellow"},
-		{"","wool:yellow",""},
-		{"wool:yellow","","wool:yellow"}
+		{"dye:yellow","","dye:yellow"},
+		{"","dye:yellow",""},
+		{"dye:yellow","","dye:yellow"}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_outer_edge 3",
 	recipe = {
-		{"wool:yellow","wool:yellow","wool:yellow"},
-		{"wool:yellow","",""},
-		{"wool:yellow","",""}
+		{"dye:yellow","dye:yellow","dye:yellow"},
+		{"dye:yellow","",""},
+		{"dye:yellow","",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_parking 3",
 	recipe = {
-		{"","wool:yellow","wool:yellow"},
-		{"","wool:yellow","wool:yellow"},
-		{"","wool:yellow",""}
+		{"","dye:yellow","dye:yellow"},
+		{"","dye:yellow","dye:yellow"},
+		{"","dye:yellow",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_alldirs 3",
 	recipe = {
-		{"","wool:yellow",""},
-		{"wool:yellow","wool:yellow","wool:yellow"},
-		{"","wool:yellow",""}
+		{"","dye:yellow",""},
+		{"dye:yellow","dye:yellow","dye:yellow"},
+		{"","dye:yellow",""}
 	}
 })
 
@@ -311,8 +311,8 @@ minetest.register_craft({
 	output = "streets:rw_left 3",
 	recipe = {
 		{"","",""},
-		{"wool:yellow","wool:yellow",""},
-		{"","wool:yellow",""}
+		{"dye:yellow","dye:yellow",""},
+		{"","dye:yellow",""}
 	}
 })
 
@@ -320,26 +320,26 @@ minetest.register_craft({
 	output = "streets:rw_right 3",
 	recipe = {
 		{"","",""},
-		{"","wool:yellow","wool:yellow"},
-		{"","wool:yellow",""}
+		{"","dye:yellow","dye:yellow"},
+		{"","dye:yellow",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_straight_left 3",
 	recipe = {
-		{"","wool:yellow",""},
-		{"wool:yellow","wool:yellow",""},
-		{"","wool:yellow",""}
+		{"","dye:yellow",""},
+		{"dye:yellow","dye:yellow",""},
+		{"","dye:yellow",""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:rw_straight_right 3",
 	recipe = {
-		{"","wool:yellow",""},
-		{"","wool:yellow","wool:yellow"},
-		{"","wool:yellow",""}
+		{"","dye:yellow",""},
+		{"","dye:yellow","dye:yellow"},
+		{"","dye:yellow",""}
 	}
 })
 
@@ -347,7 +347,7 @@ minetest.register_craft({
 	output = "streets:rw_straight 3",
 	recipe = {
 		{"","",""},
-		{"","wool:yellow",""},
-		{"","wool:yellow",""}
+		{"","dye:yellow",""},
+		{"","dye:yellow",""}
 	}
 })

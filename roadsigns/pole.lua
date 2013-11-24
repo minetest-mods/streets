@@ -48,7 +48,8 @@ minetest.register_node(":streets:pole_top",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
-	can_dig = function(pos,player)
+	drop = "",
+	can_dig = function()
 		return false
 	end,
 	node_box = {

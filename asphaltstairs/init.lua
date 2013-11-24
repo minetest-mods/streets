@@ -1,7 +1,7 @@
 --[[
 	StreetsMod: Asphalt stairs
 ]]
-if streets.extendedBy.moreblocks == true then
+if type(register_stair_slab_panel_micro) ~= "function" then return end
 	-- Asphalt
 	register_stair_slab_panel_micro("streets", "asphalt", "streets:asphalt", {cracky=3}, {"streets_asphalt.png"}, "Asphalt", "asphalt", nil)
 	minetest.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
@@ -25,7 +25,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_solid_line_stair",
+			output = "streets:asphalt_solid_line_stair 6",
 			recipe = {
 				{"","","streets:asphalt_solid_line"},
 				{"","streets:asphalt_solid_line","streets:asphalt_solid_line"},
@@ -33,7 +33,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_solid_line_stair",
+			output = "streets:asphalt_solid_line_stair 6",
 			recipe = {
 				{"streets:asphalt_solid_line","",""},
 				{"streets:asphalt_solid_line","streets:asphalt_solid_line",""},
@@ -56,7 +56,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_solid_line_slab",
+			output = "streets:asphalt_solid_line_slab 3",
 			recipe = {
 				{"","",""},
 				{"","",""},
@@ -82,7 +82,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_dashed_line_stair",
+			output = "streets:asphalt_dashed_line_stair 6",
 			recipe = {
 				{"","","streets:asphalt_dashed_line"},
 				{"","streets:asphalt_dashed_line","streets:asphalt_dashed_line"},
@@ -90,7 +90,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_dashed_line_stair",
+			output = "streets:asphalt_dashed_line_stair 6",
 			recipe = {
 				{"streets:asphalt_dashed_line","",""},
 				{"streets:asphalt_dashed_line","streets:asphalt_dashed_line",""},
@@ -113,7 +113,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_dashed_line_slab",
+			output = "streets:asphalt_dashed_line_slab 3",
 			recipe = {
 				{"","",""},
 				{"","",""},
@@ -153,7 +153,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_side_stair_l",
+			output = "streets:asphalt_side_stair_l 6",
 			recipe = {
 				{"","","streets:asphalt_side"},
 				{"","streets:asphalt_side","streets:asphalt_side"},
@@ -161,7 +161,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_side_stair_l",
+			output = "streets:asphalt_side_stair_l 6",
 			recipe = {
 				{"streets:asphalt_side","",""},
 				{"streets:asphalt_side","streets:asphalt_side",""},
@@ -208,7 +208,7 @@ if streets.extendedBy.moreblocks == true then
 			}
 		})
 		minetest.register_craft({
-			output = "streets:asphalt_side_slab_l",
+			output = "streets:asphalt_side_slab_l 3",
 			recipe = {
 				{"","",""},
 				{"","",""},
@@ -225,4 +225,3 @@ if streets.extendedBy.moreblocks == true then
 			output = "streets:asphalt_side_l",
 			recipe = {"streets:asphalt_side_r"}
 		})
-end
