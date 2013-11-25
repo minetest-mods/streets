@@ -73,7 +73,7 @@ minetest.register_node(":streets:asphalt_parking",{
 })
 -- no minetest.register_alias() needed
 minetest.register_craft({
-	output = "streets:asphalt_outer_edge 4",
+	output = "streets:asphalt_parking 4",
 	recipe = {
 		{"streets:asphalt","dye:white","dye:white"},
 		{"streets:asphalt","dye:white","dye:white"},
