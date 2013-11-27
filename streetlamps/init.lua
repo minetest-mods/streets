@@ -92,7 +92,7 @@ minetest.register_node(":streets:streetlamp_basic_middle",{
 	}
 })]]
 minetest.register_node(":streets:streetlamp_basic_top_on",{
-	drop = "",
+	drop = "streets:streetlamp_basic_bottom",
 	description = "U cheater U",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	tiles = {"streets_lamps_basic_top_top.png","streets_lamps_basic_top_top.png","streets_lamps_basic_top.png","streets_lamps_basic_top.png","streets_lamps_basic_top.png","streets_lamps_basic_top.png"},
