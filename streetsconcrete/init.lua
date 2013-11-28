@@ -22,7 +22,7 @@ if streets.extendedBy.technic == true then
 	minetest.register_craft({
 		output = "streets:concrete_wall 3",
 		recipe = {
-			{"","technic:conrete",""},
+			{"","technic:concrete",""},
 			{"","technic:concrete",""},
 			{"technic:concrete","technic:concrete","technic:concrete"}
 		}
