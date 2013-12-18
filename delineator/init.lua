@@ -20,8 +20,8 @@ minetest.register_node(":streets:delineator", {
 minetest.register_craft({
 	output = "streets:delineator 4",
 	recipe = {
+		{"","",""},
 		{"","default:torch",""},
-		{"","default:stick",""},
-		{"","default:stick",""}
+		{"","default:fence_wood",""}
 	}
 })
