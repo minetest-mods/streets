@@ -1,6 +1,6 @@
 --[[
 	StreetsMod 1.1 by webdesigner97:
-		License : CC-BY-NC (see license.txt)
+		License : CC-BY-SA 3.0 Unported (see license.txt)
 		Readme	: see readme.txt
 		Forum	: http://bit.ly/12cPMeo
 		Depends	: default
@@ -8,7 +8,7 @@
 -- Create variables and tables
 	print("Streets: Creating variables and tables...")
 	streets	= {}
-	streets.version	= "1.4"
+	streets.version	= "1.4.3"
 	streets.modpath = minetest.get_modpath("streets")
 	streets.extendedBy	= {}
 	streets.load = {
