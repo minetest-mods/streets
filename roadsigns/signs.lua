@@ -23,7 +23,12 @@ minetest.register_node(":streets:sign_blank",{
 			recipe = {"default:steel_ingot","","",""},
 			time = 3
 		}
-	}
+	},
+	after_place_node = function(pos)
+		local meta = minetest.get_meta(pos)
+		
+		meta:set_string("infotext", "Empty Sign")
+	end
 })
 minetest.register_node(":streets:sign_lava",{
 	description = "Warning sign (lava)",
@@ -50,7 +55,12 @@ minetest.register_node(":streets:sign_lava",{
 			recipe = {"streets:sign_blank","bucket:bucket_lava","",""},
 			time = 5
 		}
-	}
+	},
+	after_place_node = function(pos)
+		local meta = minetest.get_meta(pos)
+		
+		meta:set_string("infotext", "Warning: Carefull of lava")
+	end
 })
 	
 minetest.register_node(":streets:sign_water",{
@@ -78,7 +88,12 @@ minetest.register_node(":streets:sign_water",{
 			recipe = {"streets:sign_blank","bucket:bucket_water","",""},
 			time = 5
 		}
-	}
+	},
+	after_place_node = function(pos)
+		local meta = minetest.get_meta(pos)
+		
+		meta:set_string("infotext", "Warning: Water Nearby")
+	end
 })
 
 minetest.register_node(":streets:sign_construction",{
@@ -106,5 +121,10 @@ minetest.register_node(":streets:sign_construction",{
 			recipe = {"streets:sign_blank","default:dirt","",""},
 			time = 5
 		}
-	}
+	},
+	after_place_node = function(pos)
+		local meta = minetest.get_meta(pos)
+		
+		meta:set_string("infotext", "Warning: Construction area, possible deep excavations")
+	end
 })
