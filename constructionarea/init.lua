@@ -29,7 +29,7 @@ minetest.register_node(":streets:constructionfence_bottom",{
 		if minetest.get_node(pos).name == "air" then
 			minetest.add_node(pos,{name = "streets:constructionfence_top", param2 = minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.chat_send_player(placer:get_player_name("Not enough free space! A construction fence has a height of 2 blocks!"))
+			minetest.chat_send_player(placer:get_player_name(),"Not enough free space! A construction fence has a height of 2 blocks!")
 		end
 	end
 })
