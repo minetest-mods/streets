@@ -1,0 +1,3 @@
+# Translation file GERMAN
+Setup completed, have fun with StreetsMod=Laden abgeschlossen, viel Spass mit StreetsMod
+Creating variables and tables...=Erstelle Variablen und Tabellen...

@@ -1,0 +1,3 @@
+# Translation file for StreetsMod might not be up-to-date.
+Setup completed, have fun with StreetsMod=
+ Creating variables and tables...=
