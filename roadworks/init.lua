@@ -6,7 +6,7 @@
 local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
 
 minetest.register_node(":streets:rw_asphalt_solid",{
-	description = "Solid line (yellow)",
+	description = S("Solid line (yellow)"),
 	tiles = {"streets_rw_solid_line.png","streets_rw_solid_line_curve.png","streets_rw_solid_line_tjunction.png","streets_rw_solid_line_crossing.png"},
 	drawtype = "raillike",
 	paramtype = "light",
@@ -23,7 +23,7 @@ minetest.register_node(":streets:rw_asphalt_solid",{
 })
 
 minetest.register_node(":streets:rw_asphalt_dashed",{
-	description = "Dashed line (yellow)",
+	description = S("Dashed line (yellow)"),
 	tiles = {"streets_rw_dashed_line.png","streets_rw_dashed_line_curve.png","streets_rw_dashed_line_tjunction.png","streets_rw_dashed_line_crossing.png"},
 	drawtype = "raillike",
 	paramtype = "light",
@@ -40,7 +40,7 @@ minetest.register_node(":streets:rw_asphalt_dashed",{
 })
 
 minetest.register_node(":streets:rw_cross",{
-	description = "Cross (yellow)",
+	description = S("Cross (yellow)"),
 	tiles = {"streets_rw_cross.png"},
 	drawtype = "signlike",
 	paramtype = "light",
@@ -56,7 +56,7 @@ minetest.register_node(":streets:rw_cross",{
 })
 
 minetest.register_node(":streets:rw_outer_edge",{
-	description = "Outer edge (yellow)",
+	description = S("Outer edge (yellow)"),
 	tiles = {"streets_rw_outer_edge.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -77,7 +77,7 @@ minetest.register_node(":streets:rw_outer_edge",{
 })
 
 minetest.register_node(":streets:rw_parking",{
-	description = "Parking (yellow)",
+	description = S("Parking (yellow)"),
 	tiles = {"streets_rw_parking.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -98,7 +98,7 @@ minetest.register_node(":streets:rw_parking",{
 })
 
 minetest.register_node(":streets:rw_alldirs",{
-	description = "Arrow (yellow)",
+	description = S("Arrow (yellow)"),
 	tiles = {"streets_rw_arrow_alldirs.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -119,7 +119,7 @@ minetest.register_node(":streets:rw_alldirs",{
 })
 
 minetest.register_node(":streets:rw_left",{
-	description = "Arrow (yellow)",
+	description = S("Arrow (yellow)"),
 	tiles = {"streets_rw_arrow_left.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -140,7 +140,7 @@ minetest.register_node(":streets:rw_left",{
 })
 
 minetest.register_node(":streets:rw_right",{
-	description = "Arrow (yellow)",
+	description = S("Arrow (yellow)"),
 	tiles = {"streets_rw_arrow_right.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -161,7 +161,7 @@ minetest.register_node(":streets:rw_right",{
 })
 
 minetest.register_node(":streets:rw_straight_right",{
-	description = "Arrow (yellow)",
+	description = S("Arrow (yellow)"),
 	tiles = {"streets_rw_arrow_straight_right.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -182,7 +182,7 @@ minetest.register_node(":streets:rw_straight_right",{
 })
 
 minetest.register_node(":streets:rw_straight_left",{
-	description = "Arrow (yellow)",
+	description = S("Arrow (yellow)"),
 	tiles = {"streets_rw_arrow_straight_left.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -203,7 +203,7 @@ minetest.register_node(":streets:rw_straight_left",{
 })
 
 minetest.register_node(":streets:rw_straight",{
-	description = "Arrow (yellow)",
+	description = S("Arrow (yellow)"),
 	tiles = {"streets_rw_arrow_straight.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -224,7 +224,7 @@ minetest.register_node(":streets:rw_straight",{
 })
 
 minetest.register_node(":streets:rw_sideline",{
-	description = "Sideline (yellow)",
+	description = S("Sideline (yellow)"),
 	tiles = {"streets_rw_asphalt_side.png","streets_rw_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",

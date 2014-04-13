@@ -64,7 +64,7 @@
 		return math.floor(num * mult + 0.5) / mult
 	end
 	minetest.register_chatcommand("streets",{
-		description = "Check version of your installed StreetsMod and find information",
+		description = S("Check version of your installed StreetsMod and find information"),
 		func = function(name,param)
 			minetest.show_formspec(name, "streets:streetsform", table.concat({
 				"size[10,6]",

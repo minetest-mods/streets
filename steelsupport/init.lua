@@ -2,7 +2,7 @@
 	StreetsMod: Steel support for hanging signs on highways etc.
 ]]
 minetest.register_node(":streets:steel_support",{
-	description = "Steel support",
+	description = S("Steel support"),
 	tiles = {"streets_support.png"},
 	groups = {cracky = 1},
 	drawtype = "glasslike_framed",

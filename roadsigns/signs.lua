@@ -1,5 +1,5 @@
 minetest.register_node(":streets:sign_blank",{
-	description = "Emtpy sign",
+	description = S("Emtpy sign"),
 	tiles = {"streets_sign_back.png"},
 	inventory_image = "streets_sign_back.png",
 	wield_image = "streets_sign_back.png",
@@ -31,7 +31,7 @@ minetest.register_node(":streets:sign_blank",{
 	end
 })
 minetest.register_node(":streets:sign_lava",{
-	description = "Warning sign (lava)",
+	description = S("Warning sign (lava)"),
 	tiles = {"streets_sign_lava.png"},
 	inventory_image = "streets_sign_lava.png",
 	wield_image = "streets_sign_lava.png",
@@ -64,7 +64,7 @@ minetest.register_node(":streets:sign_lava",{
 })
 	
 minetest.register_node(":streets:sign_water",{
-	description = "Warning sign (water)",
+	description = S("Warning sign (water)"),
 	tiles = {"streets_sign_water.png"},
 	inventory_image = "streets_sign_water.png",
 	wield_image = "streets_sign_water.png",
@@ -97,7 +97,7 @@ minetest.register_node(":streets:sign_water",{
 })
 
 minetest.register_node(":streets:sign_construction",{
-	description = "Warning sign (Construction area)",
+	description = S("Warning sign (Construction area)"),
 	tiles = {"streets_sign_construction.png"},
 	inventory_image = "streets_sign_construction.png",
 	wield_image = "streets_sign_construction.png",

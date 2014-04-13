@@ -2,7 +2,7 @@
 	StreetsMod: Poles and signs
 ]]
 minetest.register_node(":streets:pole_bottom",{
-	description = "Pole",
+	description = S("Pole"),
 	tiles = {"streets_pole.png"},
 	groups = {cracky=2},
 	inventory_image = "streets_pole_inv.png",
@@ -42,7 +42,7 @@ minetest.register_node(":streets:pole_bottom",{
 })
 
 minetest.register_node(":streets:pole_top",{
-	description = "Y u no play minetest without cheating?",
+	description = S("Y u no play minetest without cheating?"),
 	tiles = {"streets_pole.png"},
 	groups = {cracky=2,not_in_creative_inventory=1},
 	paramtype = "light",

@@ -2,7 +2,7 @@
 	StreetsMod: inDev Trafficlights
 ]]
 minetest.register_node(":streets:trafficlight_bottom",{
-	description = "Cheater",
+	description = S("Cheater"),
 	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -20,7 +20,7 @@ minetest.register_node(":streets:trafficlight_bottom",{
 })
 
 minetest.register_node(":streets:trafficlight_middle",{
-	description = "Cheater!",
+	description = S("Cheater!"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -37,7 +37,7 @@ minetest.register_node(":streets:trafficlight_middle",{
 })
 
 minetest.register_node(":streets:trafficlight_controller",{
-	description = "Trafficlight",
+	description = S("Trafficlight"),
 	inventory_image = "streets_trafficlight_inv.png",
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
@@ -119,7 +119,7 @@ minetest.register_node(":streets:trafficlight_controller",{
 })
 
 minetest.register_node(":streets:trafficlight_top_off",{
-	description = "U cheater U",
+	description = S("U cheater U"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -137,7 +137,7 @@ minetest.register_node(":streets:trafficlight_top_off",{
 })
 
 minetest.register_node(":streets:trafficlight_top_red",{
-	description = "U cheater U",
+	description = S("U cheater U"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -156,7 +156,7 @@ minetest.register_node(":streets:trafficlight_top_red",{
 })
 
 minetest.register_node(":streets:trafficlight_top_yellow",{
-	description = "U cheater U",
+	description = S("U cheater U"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -175,7 +175,7 @@ minetest.register_node(":streets:trafficlight_top_yellow",{
 })
 
 minetest.register_node(":streets:trafficlight_top_redyellow",{
-	description = "U cheater U",
+	description = S("U cheater U"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -194,7 +194,7 @@ minetest.register_node(":streets:trafficlight_top_redyellow",{
 })
 
 minetest.register_node(":streets:trafficlight_top_green",{
-	description = "U cheater U",
+	description = S("U cheater U"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
@@ -213,7 +213,7 @@ minetest.register_node(":streets:trafficlight_top_green",{
 })
 
 minetest.register_node(":streets:trafficlight_top_warn",{
-	description = "U cheater U",
+	description = S("U cheater U"),
 	drop = "",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
