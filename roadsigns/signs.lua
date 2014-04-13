@@ -59,7 +59,7 @@ minetest.register_node(":streets:sign_lava",{
 	after_place_node = function(pos)
 		local meta = minetest.get_meta(pos)
 		
-		meta:set_string("infotext", "Warning: Carefull of lava")
+		meta:set_string("infotext", "Warning: Careful of lava")
 	end
 })
 	
