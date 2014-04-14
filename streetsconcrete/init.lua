@@ -5,7 +5,7 @@ if streets.extendedBy.technic == true then
 	minetest.register_alias("streets:concrete","technic:concrete")
 	-- Use technic's concrete block for the seperating wall
 	minetest.register_node(":streets:concrete_wall",{
-		description = S("Conrete wall"),
+		description = S("Concrete wall"),
 		tiles = {"technic_concrete_block.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
