@@ -1,7 +1,7 @@
 # Translation file GERMAN
-Setup completed, have fun with StreetsMod=Setup abgeschlossen, viel Spaß mit StreetsMod
+Setup completed, have fun with StreetsMod=Setup abgeschlossen, viel Spass mit StreetsMod
 Creating variables and tables...=Erstelle Variablen und Tabellen...
-Checking installed mods...=Ueberpruefe installierte Mods
+Checking installed mods...=Ueberpruefe installierte Mods...
 Check version of your installed StreetsMod and find information=Ueberpruefe die installierte StreetsMod Version und weitere Infos
 Asphalt=Asphalt
 Asphalt stair=Asphalt Treppe
@@ -10,7 +10,7 @@ Construction fence=Bauzaun
 Delineator=Leitpfosten
 Emergency Phone=Notrufsaeule
 Asphalt with sideline=Asphalt mit Seitenlinie
-Asphalt with solid line=Asphalt with durchgezogener Linie
+Asphalt with solid line=Asphalt mit durchgezogener Linie
 Asphalt with dashed line=Asphalt mit unterbrochener Linie
 Asphalt with sideline (edge)=Asphalt mit Seitenlinie (Ecke)
 Asphalt with parking label=Asphalt mit Parkplatzsymbol
@@ -40,6 +40,7 @@ Cross (yellow)=Kreuz (gelb)
 Outer edge (yellow)=Ecklinie (gelb)
 Parking (yellow)=Parkplatzsymbol (gelb)
 Arrow (yellow)=Pfeil (gelb)
+Sideline (yellow)=Seitenlinie (gelb)
 Steel support=Stahlrahmen
 Street lamp=Strassenlampe
 Concrete wall=Betonwand
