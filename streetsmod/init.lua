@@ -57,6 +57,11 @@
 	else
 		streets.extendedBy.prefab = false
 	end
+	if minetest.get_modpath("awards") then
+		streets.extendedBy.awards = true
+	else
+		streets.extendedBy.awards = false
+	end
 	
 -- Streets chatcommand
 	local function round(num, idp)
@@ -74,8 +79,9 @@
 				"label[0,2.5;Mesecons installed: " .. tostring(streets.extendedBy.mesecons) .. "]",
 				"label[0,3;Digilines installed: " .. tostring(streets.extendedBy.digilines) .. "]",
 				"label[0,3.5;Prefab installed: " .. tostring(streets.extendedBy.prefab) .. "]",
-				"label[0,4.5;Running version: " .. streets.version .. "]",
-				"label[0,5;Load time: " .. round(streets.load.fin - streets.load.start,4) .. "s]"
+				"label[0,4;Awards installed: " .. tostring(streets.extendedBy.awards) .. "]",
+				"label[0,5;Running version: " .. streets.version .. "]",
+				"label[0,5.5;Load time: " .. round(streets.load.fin - streets.load.start,4) .. "s]"
 			}))
 		end
 	})
