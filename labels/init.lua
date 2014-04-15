@@ -2,7 +2,7 @@
 	StreetsMod: All kinds of asphalt with labels
 ]]
 minetest.register_node(":streets:asphalt_sideline",{
-	description = "Asphalt with sideline",
+	description = S("Asphalt with sideline"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -18,7 +18,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_solid_line",{
-	description = "Asphalt with solid line",
+	description = S("Asphalt with solid line"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -34,7 +34,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_dashed_line",{
-	description = "Asphalt with dashed line",
+	description = S("Asphalt with dashed line"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -50,7 +50,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_outer_edge",{
-	description = "Asphalt with sideline (edge)",
+	description = S("Asphalt with sideline (edge)"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_asphalt_outer_edge.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -66,7 +66,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_parking",{
-	description = "Asphalt with parking label",
+	description = S("Asphalt with parking label"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_parking.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -82,7 +82,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_arrow_straight",{
-	description = "Asphalt with arrow",
+	description = S("Asphalt with arrow"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_arrow_straight.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -98,7 +98,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_arrow_left",{
-	description = "Asphalt with arrow",
+	description = S("Asphalt with arrow"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_arrow_left.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -114,7 +114,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_arrow_right",{
-	description = "Asphalt with arrow",
+	description = S("Asphalt with arrow"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_arrow_right.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -130,7 +130,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_arrow_straight_left",{
-	description = "Asphalt with arrow",
+	description = S("Asphalt with arrow"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_arrow_straight_left.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -146,7 +146,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_arrow_straight_right",{
-	description = "Asphalt with arrow",
+	description = S("Asphalt with arrow"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_arrow_straight_right.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
@@ -162,7 +162,7 @@ minetest.register_craft({
 })
 
 minetest.register_node(":streets:asphalt_arrow_alldirs",{
-	description = "Asphalt with arrow",
+	description = S("Asphalt with arrow"),
 	groups = {cracky=3},
 	tiles = {"streets_asphalt.png^streets_arrow_alldirs.png","streets_asphalt.png"},
 	paramtype2 = "facedir"

@@ -1,5 +1,5 @@
 minetest.register_node(":streets:constructionfence_bottom",{
-	description = "Construction fence",
+	description = S("Construction fence"),
 	tiles = {"streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_bottom.png","streets_fence_bottom.png"},
 	groups = {cracky = 2,},
 	paramtype = "light",
@@ -29,13 +29,13 @@ minetest.register_node(":streets:constructionfence_bottom",{
 		if minetest.get_node(pos).name == "air" then
 			minetest.add_node(pos,{name = "streets:constructionfence_top", param2 = minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.chat_send_player(placer:get_player_name("Not enough free space! A construction fence has a height of 2 blocks!"))
+			minetest.chat_send_player(placer:get_player_name(),"Not enough free space! A construction fence has a height of 2 blocks!")
 		end
 	end
 })
 
 minetest.register_node(":streets:constructionfence_top",{
-	description = "Construction fence",
+	description = S("Construction fence"),
 	tiles = {"streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_top.png","streets_fence_top.png"},
 	groups = {cracky = 2, not_in_creative_inventory = 1},
 	paramtype = "light",

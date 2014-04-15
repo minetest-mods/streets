@@ -36,7 +36,7 @@ local forms = {
 	}
 }
 minetest.register_node(":streets:signworkshop",{
-	description = "Sign workshop",
+	description = S("Sign workshop"),
 	tiles = {"streets_signworkshop_top.png","streets_signworkshop_bottom.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_front.png"},
 	groups = {cracky = 1, level = 2},
 	paramtype2 = "facedir",

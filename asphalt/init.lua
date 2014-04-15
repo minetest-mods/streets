@@ -2,7 +2,7 @@
 	Streets Mod: All kinds of asphalt
 ]]
 minetest.register_node(":streets:asphalt",{
-	description	= "Asphalt",
+	description = S(S("Asphalt")),
 	tiles	= {"streets_asphalt.png"},
 	groups	= {cracky=3}
 })

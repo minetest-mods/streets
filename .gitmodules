@@ -1,0 +1,3 @@
+[submodule "streetsmod/libs/smartfs"]
+	path = streetsmod/libs/smartfs
+	url = https://github.com/rubenwardy/smartfs.git
