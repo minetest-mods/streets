@@ -67,8 +67,8 @@ minetest.register_node(":streets:trafficlight_controller",{
 		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "streets:trafficlight_top_off",param2 = minetest.dir_to_facedir(placer:get_look_dir())})
 		local meta = minetest.get_meta({x = pos.x, y = pos.y - 2, z = pos.z})
 		meta:set_string("channel","")
-		meta:set_string("infotext","Off")
-		meta:set_string("formspec","field[channel;Channel;${channel}]")
+		meta:set_string("infotext",S("Off"))
+		meta:set_string("formspec","field[channel;"..S("Channel")..";${channel}]")
 	end,
 	after_dig_node = function(pos)
 		minetest.remove_node({x = pos.x, y = pos.y + 2, z = pos.z})
@@ -85,7 +85,7 @@ minetest.register_node(":streets:trafficlight_controller",{
 					local meta = minetest.get_meta(pos)
 					local state = meta:get_string("infotext")
 					if msg == "green" or msg == "red" or msg == "warn" or msg == "off" then
-						meta:set_string("infotext",msg)
+						meta:set_string("infotext",S(msg))
 						local facedir = minetest.get_node({x = pos.x, y = pos.y + 4, z = pos.z}).param2
 						-- Modify <pos> to the top node of the trafficlight
 						pos.y = pos.y + 4
