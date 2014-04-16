@@ -1,139 +1,28 @@
 --[[
 	StreetsMod: inDev Trafficlights
 ]]
-minetest.register_node(":streets:trafficlight_bottom",{
-	description = S("Cheater"),
-	drop = "",
-	groups = {not_in_creative_inventory = 1},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	drawtype = "nodebox",
-	sunlight_propagates = true,
-	tiles = {"streets_pole.png"},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.15,-0.5,-0.15,0.15,0.25,0.15},
-			{-0.1,0.25,-0.1,0.1,0.5,0.1}
-		}
-	},
-})
-
-minetest.register_node(":streets:trafficlight_middle",{
-	description = S("Cheater!"),
-	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	sunlight_propagates = true,
-	tiles = {"streets_pole.png"},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.1,-0.5,-0.1,0.1,0.5,0.1},
-		}
-	},
-	pointable = false,
-})
-
-minetest.register_node(":streets:trafficlight_controller",{
-	description = S("Trafficlight"),
-	inventory_image = "streets_trafficlight_inv.png",
-	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
-	groups = {cracky = 1},
-	drawtype = "nodebox",
-	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
-			{-0.05,0.5,-0.05,0.05,1.6,0.05}
-		}
-	},
-	selection_box = 	{
-		type = "fixed",
-		fixed = {
-			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
-			{-0.3,1.5,-0.3,0.3,4.5,0.3}
-		}
-	},
-	on_receive_fields = function(pos, formname, fields, sender)
-		minetest.get_meta(pos):set_string("channel", fields.channel)
-	end,
-	after_place_node = function(pos,placer,itemstack)
-		minetest.set_node({x = pos.x, y = pos.y - 2, z = pos.z},{name = "streets:trafficlight_controller"})
-		minetest.set_node({x = pos.x, y = pos.y + 0, z = pos.z},{name = "streets:trafficlight_bottom"})
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "streets:trafficlight_middle"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "streets:trafficlight_top_off",param2 = minetest.dir_to_facedir(placer:get_look_dir())})
-		local meta = minetest.get_meta({x = pos.x, y = pos.y - 2, z = pos.z})
-		meta:set_string("channel","")
-		meta:set_string("infotext","Off")
-		meta:set_string("formspec","field[channel;Channel;${channel}]")
-	end,
-	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 2, z = pos.z})
-		minetest.remove_node({x = pos.x, y = pos.y + 3, z = pos.z})
-		minetest.remove_node({x = pos.x, y = pos.y + 4, z = pos.z})
-	end,
-	digiline = {
-		receptor = {},
-		effector = {
-			action = function(pos,node,channel,msg)
-				local setchannel = minetest.get_meta(pos):get_string("channel")
-				if channel == setchannel then
-					-- Set a meta entry for the trafficlight's state
-					local meta = minetest.get_meta(pos)
-					local state = meta:get_string("infotext")
-					if msg == "green" or msg == "red" or msg == "warn" or msg == "off" then
-						meta:set_string("infotext",msg)
-						local facedir = minetest.get_node({x = pos.x, y = pos.y + 4, z = pos.z}).param2
-						-- Modify <pos> to the top node of the trafficlight
-						pos.y = pos.y + 4
-						--
-						if msg == "red" and state ~= "red" then
-							minetest.set_node(pos,{name = "streets:trafficlight_top_yellow",param2=facedir})
-							minetest.after(3,function(param)
-								minetest.set_node(pos,{name = "streets:trafficlight_top_red",param2=facedir})
-							end)
-						end
-						--
-						if msg == "green" and state ~= "green" then
-							minetest.set_node(pos,{name = "streets:trafficlight_top_redyellow",param2=facedir})
-							minetest.after(3,function(param)
-								minetest.set_node(pos,{name = "streets:trafficlight_top_green",param2=facedir})
-							end)
-						end
-						--
-						if msg == "off" and state ~= "off" then
-							minetest.set_node(pos,{name = "streets:trafficlight_top_off",param2=facedir})
-						end
-						--
-						if msg == "warn" and state ~= "warn" then
-							minetest.set_node(pos,{name = "streets:trafficlight_top_warn",param2=facedir})
-						end
-					end
-				end
-			end
-		}
-	}
-})
-
 minetest.register_node(":streets:trafficlight_top_off",{
-	description = S("U cheater U"),
-	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	description = S("Trafficlight"),
+	drawtype="nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	sunlight_propagates = true,
-	drawtype = "nodebox",
-	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_off.png"},
+	groups = {cracky = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.25,-0.5,-0.25,0.25,0.5,0.25}
+			{-0.1875,-0.5,0.5,0.1875,0.5,0.75}, --nodebox1
+			{-0.05,0.375,0.32,0.05,0.429368,0.51}, --nodebox2
+			{-0.05,0.0625,0.32,0.05,0.125,0.51}, --nodebox3
+			{-0.05,-0.25,0.32,0.05,-0.1875,0.51}, --nodebox4
+			{0.05,0.32,0.32,0.1,0.38,0.5}, --nodebox5
+			{-0.1,0.32,0.32,-0.05,0.38,0.5}, --nodebox6
+			{0.05,0.001,0.32,0.1,0.06,0.5}, --nodebox7
+			{-0.1,0.001,0.32,-0.05,0.06,0.5}, --nodebox8
+			{0.05,-0.31,0.32,0.1,-0.25,0.5}, --nodebox9
+			{-0.1,-0.31,0.32,-0.05,-0.25,0.5}, --nodebox10
 		}
 	},
-	pointable = false,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_trafficlight_template.png"},
 })
 
 minetest.register_node(":streets:trafficlight_top_red",{
