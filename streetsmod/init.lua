@@ -26,7 +26,7 @@
 	}
 	
 -- Check for mods which change this mod's beahaviour
-	print("Streets: Checking installed mods...")
+	print("Streets: " .. S("Checking installed mods..."))
 	if minetest.get_modpath("wool")	 then
 		streets.extendedBy.wool = true
 	else
