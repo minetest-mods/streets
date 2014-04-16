@@ -14,6 +14,10 @@
 	else
 	  S = function ( s ) return s end
 	end
+	
+-- rubenwardy: smartfs
+	dofile(minetest.get_modpath("streetsmod").."/libs/smartfs/smartfs.lua")
+
 -- Create variables and tables
 	print("Streets: " .. S("Creating variables and tables..."))
 	streets	= {}
@@ -24,6 +28,7 @@
 		start = os.clock(),
 		fin = 0
 	}
+	streets.forms = {}
 	
 -- Check for mods which change this mod's beahaviour
 	print("Streets: Checking installed mods...")
@@ -68,6 +73,10 @@
 		local mult = 10^(idp or 0)
 		return math.floor(num * mult + 0.5) / mult
 	end
+	streets.forms.chatcmd = smartfs.create("streets:chatcmd", function(state)
+		state:size(10,6)
+		
+	end)
 	minetest.register_chatcommand("streets",{
 		description = S("Check version of your installed StreetsMod and find information"),
 		func = function(name,param)
