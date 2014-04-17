@@ -75,23 +75,18 @@
 	end
 	streets.forms.chatcmd = smartfs.create("streets:chatcmd", function(state)
 		state:size(10,6)
-		
+		local tlist = state:element("list", { pos={x=0,y=1}, size={w=6,h=5}, name = "streets:chatcmd_modlist" } )
+		tlist:removeItem()
+		for k, v in pairs(streets.extendedBy) do
+			tlist:addItem(tostring(k) .. " " .. S("installed") .. ": " .. tostring(v))
+		end
+		state:label(6.5, 1, "streets:chatcmd_version", S("Running version") .. ": " .. streets.version)
+		state:label(6.5, 1.5, "streets:chatcmd_loadtime", S("Load time") .. ": " .. round(streets.load.fin - streets.load.start,4) .. "s")
 	end)
 	minetest.register_chatcommand("streets",{
 		description = S("Check version of your installed StreetsMod and find information"),
 		func = function(name,param)
-			minetest.show_formspec(name, "streets:streetsform", table.concat({
-				"size[10,6]",
-				"label[0,1;Wool installed: " .. tostring(streets.extendedBy.wool) .. "]",
-				"label[0,1.5;Technic installed: " .. tostring(streets.extendedBy.technic) .. "]",
-				"label[0,2;Moreblocks installed: " .. tostring(streets.extendedBy.moreblocks) .. "]",
-				"label[0,2.5;Mesecons installed: " .. tostring(streets.extendedBy.mesecons) .. "]",
-				"label[0,3;Digilines installed: " .. tostring(streets.extendedBy.digilines) .. "]",
-				"label[0,3.5;Prefab installed: " .. tostring(streets.extendedBy.prefab) .. "]",
-				"label[0,4;Awards installed: " .. tostring(streets.extendedBy.awards) .. "]",
-				"label[0,5;Running version: " .. streets.version .. "]",
-				"label[0,5.5;Load time: " .. round(streets.load.fin - streets.load.start,4) .. "s]"
-			}))
+			streets.forms.chatcmd:show(name);
 		end
 	})
 	

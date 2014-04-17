@@ -47,3 +47,5 @@ Street lamp=Strassenlampe
 Concrete wall=Betonwand
 Concrete=Beton
 Trafficlight=Ampel
+Running version=Version
+Load time=Ladezeit

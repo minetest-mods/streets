@@ -47,3 +47,5 @@ Street lamp=
 Concrete wall=
 Concrete=
 Trafficlight=
+Running version=
+Load time=
