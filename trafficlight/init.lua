@@ -6,7 +6,8 @@ minetest.register_node(":streets:trafficlight_top_off",{
 	drawtype="nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1},
+	groups = {cracky = 1, level = 2},
+	inventory_image = "streets_trafficlight_inv.png",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -16,8 +17,8 @@ minetest.register_node(":streets:trafficlight_top_off",{
 			{-0.03125,-0.25,0.3125,0.03125,-0.1875,0.5}, --nodebox4
 			{0.03125,0.3125,0.3125,0.09375,0.38,0.5}, --nodebox5
 			{-0.09375,0.3125,0.3125,-0.03125,0.375,0.5}, --nodebox6
-			{0.03125,0.001,0.3125,0.09375,0.06,0.5}, --nodebox7
-			{-0.09375,0.001,0.3125,-0.03125,0.0625,0.5}, --nodebox8
+			{0.03125,0.00,0.3125,0.09375,0.0625,0.5}, --nodebox7
+			{-0.09375,0.00,0.3125,-0.03125,0.0625,0.5}, --nodebox8
 			{0.03125,-0.3125,0.3125,0.09375,-0.25,0.5}, --nodebox9
 			{-0.09375,-0.3125,0.3125,-0.03125,-0.25,0.5}, --nodebox10
 		}
