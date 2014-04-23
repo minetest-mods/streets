@@ -16,7 +16,12 @@ local forms = {
 		"list[context;streets:signworkshop_select;6,1;1,1]",
 		"label[5.8,2.5;"..S("Output:").."]",
 		"list[context;streets:signworkshop_output;6,3;1,1]",
-		"list[current_player;main;2,6;8,4]",
+		"list[current_player;main;2,6;8,1]",
+		"list[current_player;main;2,7.25;8,3;8]",
+		gui_bg,
+		gui_bg_img,
+		gui_slots,
+		default.get_hotbar_bg(2, 6)
 	},
 	active = {
 		"size[12,10]",
@@ -31,8 +36,13 @@ local forms = {
 		"list[context;streets:signworkshop_select;6,1;1,1]",
 		"label[5.8,2.5;"..S("Output:").."]",
 		"list[context;streets:signworkshop_output;6,3;1,1]",
-		"list[current_player;main;2,6;8,4]"
-		-- 
+		"list[current_player;main;2,6;8,1]",
+		"list[current_player;main;2,7.25;8,3;8]",
+		gui_bg,
+		gui_bg_img,
+		gui_slots,
+		default.get_hotbar_bg(2, 6),
+		--
 	}
 }
 minetest.register_node(":streets:signworkshop",{

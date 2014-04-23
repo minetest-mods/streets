@@ -5,7 +5,17 @@
 		Forum	: http://bit.ly/12cPMeo
 		Depends	: default
 ]]
--- Create variables and tables
+-- kaeza: intllib
+	-- Boilerplate to support localized strings if intllib mod is installed.
+	--local S
+	if (minetest.get_modpath("intllib")) then
+		dofile(minetest.get_modpath("intllib").."/intllib.lua")
+		S = intllib.Getter(minetest.get_current_modname())
+	else
+		S = function ( s ) return s end
+	end
+	
+-- Create variable and tables
 	print("Streets: " .. S("Creating variables and tables..."))
 	streets	= {}
 	streets.version	= "1.4.4dev"
@@ -16,15 +26,16 @@
 		fin = 0
 	}
 	streets.forms = {}
-	
--- kaeza: intllib
-	-- Boilerplate to support localized strings if intllib mod is installed.
-	-- local S
-	if (minetest.get_modpath("intllib")) then
-	  dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	  S = intllib.Getter(minetest.get_current_modname())
+
+-- Support for mimnetest_next's fancy inventories
+	if gui_bg and gui_bg_img and gui_slots and type(default.get_hotbar_bg) == "function" then
+		-- Everything fine :)
+		-- minetest_next rules! :P
 	else
-	  S = function ( s ) return s end
+		gui_bg = ""
+		gui_bg_img = ""
+		gui_slots = ""
+		default.get_hotbar_bg = function() return "" end
 	end
 	
 -- rubenwardy: smartfs
