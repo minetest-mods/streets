@@ -5,6 +5,18 @@
 		Forum	: http://bit.ly/12cPMeo
 		Depends	: default
 ]]
+-- Create variables and tables
+	print("Streets: " .. S("Creating variables and tables..."))
+	streets	= {}
+	streets.version	= "1.4.4dev"
+	streets.modpath = minetest.get_modpath("streetsmod")
+	streets.extendedBy	= {}
+	streets.load = {
+		start = os.clock(),
+		fin = 0
+	}
+	streets.forms = {}
+	
 -- kaeza: intllib
 	-- Boilerplate to support localized strings if intllib mod is installed.
 	-- local S
@@ -16,19 +28,12 @@
 	end
 	
 -- rubenwardy: smartfs
-	dofile(minetest.get_modpath("streetsmod").."/libs/smartfs/smartfs.lua")
-
--- Create variables and tables
-	print("Streets: " .. S("Creating variables and tables..."))
-	streets	= {}
-	streets.version	= "1.4.4dev"
-	streets.modpath = minetest.get_modpath("streets")
-	streets.extendedBy	= {}
-	streets.load = {
-		start = os.clock(),
-		fin = 0
-	}
-	streets.forms = {}
+	if not minetest.get_modpath("smartfs") then
+		dofile(streets.modpath .. "/libs/smartfs/smartfs.lua")
+	end
+	
+-- Load forms
+	dofile(streets.modpath .. "/forms.lua")
 	
 -- Check for mods which change this mod's beahaviour
 	print("Streets: " .. S("Checking installed mods..."))
@@ -73,16 +78,6 @@
 		local mult = 10^(idp or 0)
 		return math.floor(num * mult + 0.5) / mult
 	end
-	streets.forms.chatcmd = smartfs.create("streets:chatcmd", function(state)
-		state:size(10,6)
-		local tlist = state:element("list", { pos={x=0,y=1}, size={w=6,h=5}, name = "streets:chatcmd_modlist" } )
-		tlist:removeItem()
-		for k, v in pairs(streets.extendedBy) do
-			tlist:addItem(tostring(k) .. " " .. S("installed") .. ": " .. tostring(v))
-		end
-		state:label(6.5, 1, "streets:chatcmd_version", S("Running version") .. ": " .. streets.version)
-		state:label(6.5, 1.5, "streets:chatcmd_loadtime", S("Load time") .. ": " .. round(streets.load.fin - streets.load.start,4) .. "s")
-	end)
 	minetest.register_chatcommand("streets",{
 		description = S("Check version of your installed StreetsMod and find information"),
 		func = function(name,param)
