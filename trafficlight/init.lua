@@ -18,6 +18,54 @@ streets.tlBox =	{
 	{-0.125,-0.3125,0.3125,-0.0625,-0.25,0.5}, --nodebox10
 }
 
+streets.rules_pole =
+{
+    {x= 0, y= 0, z=-1},
+    {x= 1, y= 0, z= 0},
+    {x=-1, y= 0, z= 0},
+    {x= 0, y= 0, z= 1},
+    {x= 1, y= 1, z= 0},
+    {x= 1, y=-1, z= 0},
+    {x=-1, y= 1, z= 0},
+    {x=-1, y=-1, z= 0},
+    {x= 0, y= 1, z= 1},
+    {x= 0, y=-1, z= 1},
+    {x= 0, y= 1, z=-1},
+    {x= 0, y=-1, z=-1},
+    {x= 0, y=-1, z= 0},
+    {x= 0, y= 1, z= 0}
+}
+
+streets.on_digiline_receive = function(pos, node, channel, msg)
+	local setchan = minetest.get_meta(pos):get_string("channel")
+	if setchan ~= channel then
+		return
+	end
+	-- Tl states
+	if msg == "OFF" then
+	
+	elseif msg == "GREEN" then
+	
+	elseif msg == "RED" then
+		local fd = minetest.get_node(pos).param2
+		minetest.set_node(pos, {name = "streets:trafficlight_top_red", param2 = fd})
+	elseif msg == "WARN" then
+	
+	end
+end
+
+minetest.register_node(":streets:digiline_distributor",{
+	description = S("Digiline distributor"),
+	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
+	groups = {cracky = 1},
+	digiline = {
+		receptor = {},
+		effector = {},
+		wire = {
+			rules = streets.rules_pole
+		}
+	}
+})
 
 minetest.register_node(":streets:trafficlight_top_off",{
 	description = S("Trafficlight"),
@@ -33,6 +81,23 @@ minetest.register_node(":streets:trafficlight_top_off",{
 		fixed = streets.tlBox
 	},
 	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_off.png"},
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec", "field[channel;Channel;${channel}]")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		if (fields.channel) then
+			minetest.get_meta(pos):set_string("channel", fields.channel)
+		end
+	end,
 })
 
 minetest.register_node(":streets:trafficlight_top_red",{
@@ -48,7 +113,6 @@ minetest.register_node(":streets:trafficlight_top_red",{
 		type = "fixed",
 		fixed = streets.tlBox
 	},
-	pointable = false,
 	light_source = 6,
 })
 
@@ -65,7 +129,6 @@ minetest.register_node(":streets:trafficlight_top_yellow",{
 		type = "fixed",
 		fixed = streets.tlBox
 	},
-	pointable = false,
 	light_source = 6,
 })
 
@@ -82,7 +145,6 @@ minetest.register_node(":streets:trafficlight_top_redyellow",{
 		type = "fixed",
 		fixed = streets.tlBox
 	},
-	pointable = false,
 	light_source = 6,
 })
 
@@ -99,7 +161,6 @@ minetest.register_node(":streets:trafficlight_top_green",{
 		type = "fixed",
 		fixed = streets.tlBox
 	},
-	pointable = false,
 	light_source = 6,
 })
 
@@ -119,6 +180,5 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 		type = "fixed",
 		fixed = streets.tlBox
 	},
-	pointable = false,
 	light_source = 6,
 })
