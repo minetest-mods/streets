@@ -57,8 +57,14 @@ streets.tlSwitch = function(def)
 	if not def.pos or not def.to or not streets.tlRythm[def.to] then
 		return
 	end
+	local meta = minetest.get_meta(def.pos)
+	-- Only switch if new state ~= current state
+	if "to" .. meta:get_string("state") == def.to then
+		return
+	end
 	-- Switch the trafficlight
 	for k, v in pairs(streets.tlRythm[def.to]) do
+		minetest.get_meta(def.pos):set_string("state", def.to:gsub("to", ""))
 		minetest.after(v.pauseBefore, function()
 			minetest.swap_node(def.pos, {name = v.name, param2 = minetest.get_node(def.pos).param2})
 		end)
