@@ -18,8 +18,7 @@ streets.tlBox =	{
 	{-0.125,-0.3125,0.3125,-0.0625,-0.25,0.5}, --nodebox10
 }
 
-streets.rules_pole =
-{
+streets.rules_pole = {
     {x= 0, y= 0, z=-1},
     {x= 1, y= 0, z= 0},
     {x=-1, y= 0, z= 0},
@@ -36,6 +35,36 @@ streets.rules_pole =
     {x= 0, y= 1, z= 0}
 }
 
+streets.tlRythm = {
+	toRed = {
+		{name = "streets:trafficlight_top_yellow", pauseBefore = 0},
+		{name = "streets:trafficlight_top_red", pauseBefore = 3}
+	},
+	toGreen = {
+		{name = "streets:trafficlight_top_redyellow", pauseBefore = 0},
+		{name = "streets:trafficlight_top_green", pauseBefore = 1.5}
+	},
+	toOff = {
+		{name = "streets:trafficlight_top_warn", pauseBefore = 0},
+		{name = "streets:trafficlight_top_off", pauseBefore = 5}
+	},
+	toWarn = {
+		{name = "streets:trafficlight_top_warn", pauseBefore = 0}
+	}
+}
+
+streets.tlSwitch = function(def)
+	if not def.pos or not def.to or not streets.tlRythm[def.to] then
+		return
+	end
+	-- Switch the trafficlight
+	for k, v in pairs(streets.tlRythm[def.to]) do
+		minetest.after(v.pauseBefore, function()
+			minetest.swap_node(def.pos, {name = v.name, param2 = minetest.get_node(def.pos).param2})
+		end)
+	end
+end
+
 streets.on_digiline_receive = function(pos, node, channel, msg)
 	local setchan = minetest.get_meta(pos):get_string("channel")
 	if setchan ~= channel then
@@ -43,14 +72,25 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 	end
 	-- Tl states
 	if msg == "OFF" then
-	
+		streets.tlSwitch({
+			pos = pos,
+			to = "toOff"
+		})
 	elseif msg == "GREEN" then
-	
+		streets.tlSwitch({
+			pos = pos,
+			to = "toGreen"
+		})
 	elseif msg == "RED" then
-		local fd = minetest.get_node(pos).param2
-		minetest.set_node(pos, {name = "streets:trafficlight_top_red", param2 = fd})
+		streets.tlSwitch({
+			pos = pos,
+			to = "toRed"
+		})
 	elseif msg == "WARN" then
-	
+		streets.tlSwitch({
+			pos = pos,
+			to = "toWarn"
+		})
 	end
 end
 
@@ -101,9 +141,8 @@ minetest.register_node(":streets:trafficlight_top_off",{
 })
 
 minetest.register_node(":streets:trafficlight_top_red",{
-	description = S("U cheater U"),
-	drop = "",
-	groups = {cracky = 1},
+	drop = "streets:trafficlight_top_off",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -114,12 +153,19 @@ minetest.register_node(":streets:trafficlight_top_red",{
 		fixed = streets.tlBox
 	},
 	light_source = 6,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
 })
 
 minetest.register_node(":streets:trafficlight_top_yellow",{
-	description = S("U cheater U"),
-	drop = "",
-	groups = {cracky = 1},
+	drop = "streets:trafficlight_top_off",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -130,12 +176,19 @@ minetest.register_node(":streets:trafficlight_top_yellow",{
 		fixed = streets.tlBox
 	},
 	light_source = 6,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
 })
 
 minetest.register_node(":streets:trafficlight_top_redyellow",{
-	description = S("U cheater U"),
-	drop = "",
-	groups = {cracky = 1},
+	drop = "streets:trafficlight_top_off",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -146,12 +199,19 @@ minetest.register_node(":streets:trafficlight_top_redyellow",{
 		fixed = streets.tlBox
 	},
 	light_source = 6,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
 })
 
 minetest.register_node(":streets:trafficlight_top_green",{
-	description = S("U cheater U"),
-	drop = "",
-	groups = {cracky = 1},
+	drop = "streets:trafficlight_top_off",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -162,12 +222,19 @@ minetest.register_node(":streets:trafficlight_top_green",{
 		fixed = streets.tlBox
 	},
 	light_source = 6,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
 })
 
 minetest.register_node(":streets:trafficlight_top_warn",{
-	description = S("U cheater U"),
-	drop = "",
-	groups = {cracky = 1},
+	drop = "streets:trafficlight_top_off",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -181,4 +248,12 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 		fixed = streets.tlBox
 	},
 	light_source = 6,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
 })
