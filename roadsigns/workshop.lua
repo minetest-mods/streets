@@ -4,17 +4,17 @@
 local forms = {
 	inactive = {
 		"size[12,10]",
-		"label[3.5,0;"..S("Sign workshop - Create signs for your roads!").."]",
-		"label[0,0.5;"..S("Available signs:").."]",
+		"label[3.5,0;"..streets.S("Sign workshop - Create signs for your roads!").."]",
+		"label[0,0.5;"..streets.S("Available signs:").."]",
 		"list[context;streets:signworkshop_list;0,1;5,4]",
-		"label[9,0.5;"..S("Needed stuff:").."]",
+		"label[9,0.5;"..streets.S("Needed stuff:").."]",
 		"list[context;streets:signworkshop_recipe;8,1;4,1]",
-		"label[9,2;"..S("Put it here:").."]",
+		"label[9,2;"..streets.S("Put it here:").."]",
 		"list[context;streets:signworkshop_input;8,3;4,1]",
-		"button[8,4;2,1;streets:signworkshop_send;"..S("Start!").."]",
-		"label[5.8,0.5;"..S("Selected:").."]",
+		"button[8,4;2,1;streets:signworkshop_send;"..streets.S("Start!").."]",
+		"label[5.8,0.5;"..streets.S("Selected:").."]",
 		"list[context;streets:signworkshop_select;6,1;1,1]",
-		"label[5.8,2.5;"..S("Output:").."]",
+		"label[5.8,2.5;"..streets.S("Output:").."]",
 		"list[context;streets:signworkshop_output;6,3;1,1]",
 		"list[current_player;main;2,6;8,1]",
 		"list[current_player;main;2,7.25;8,3;8]",
@@ -25,16 +25,16 @@ local forms = {
 	},
 	active = {
 		"size[12,10]",
-		"label[3.5,0;"..S("Sign workshop - Create signs for your roads!").."]",
-		"label[0,0.5;"..S("Available signs:").."]",
+		"label[3.5,0;"..streets.S("Sign workshop - Create signs for your roads!").."]",
+		"label[0,0.5;"..streets.S("Available signs:").."]",
 		"list[context;streets:signworkshop_list;0,1;5,4]",
-		"label[9,0.5;"..S("Needed stuff:").."]",
+		"label[9,0.5;"..streets.S("Needed stuff:").."]",
 		"list[context;streets:signworkshop_recipe;8,1;4,1]",
-		"label[9,2;"..S("Put it here:").."]",
+		"label[9,2;"..streets.S("Put it here:").."]",
 		"list[context;streets:signworkshop_input;8,3;4,1]",
-		"label[5.8,0.5;"..S("Selected:").."]",
+		"label[5.8,0.5;"..streets.S("Selected:").."]",
 		"list[context;streets:signworkshop_select;6,1;1,1]",
-		"label[5.8,2.5;"..S("Output:").."]",
+		"label[5.8,2.5;"..streets.S("Output:").."]",
 		"list[context;streets:signworkshop_output;6,3;1,1]",
 		"list[current_player;main;2,6;8,1]",
 		"list[current_player;main;2,7.25;8,3;8]",
@@ -46,7 +46,7 @@ local forms = {
 	}
 }
 minetest.register_node(":streets:signworkshop",{
-	description = S("Sign workshop"),
+	description = streets.S("Sign workshop"),
 	tiles = {"streets_signworkshop_top.png","streets_signworkshop_bottom.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_front.png"},
 	groups = {cracky = 1, level = 2},
 	paramtype2 = "facedir",
@@ -65,7 +65,7 @@ minetest.register_node(":streets:signworkshop",{
 		inv:add_item("streets:signworkshop_list","streets:sign_water")
 		inv:add_item("streets:signworkshop_list","streets:sign_construction")
 		-- Meta
-		meta:set_string("infotext",S("Sign workshop idle"))
+		meta:set_string("infotext",streets.S("Sign workshop idle"))
 		meta:set_string("idle","y")
 	end,
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
@@ -129,14 +129,14 @@ minetest.register_node(":streets:signworkshop",{
 			if has[3] == nil then has[3] = { name = "" } end
 			if has[4] == nil then has[4] = { name = "" } end
 			if need[1].name == has[1].name and need[2].name == has[2].name and need[3].name == has[3].name and need[4].name == has[4].name then
-				meta:set_string("infotext",S("Sign workshop working"))
+				meta:set_string("infotext",streets.S("Sign workshop working"))
 				meta:set_string("idle","n")
-				meta:set_string("formspec",table.concat(forms.active) .. "label[8,4;"..S("Please wait %s seconds..."):format(def.time).."]")
+				meta:set_string("formspec",table.concat(forms.active) .. "label[8,4;"..streets.S("Please wait %s seconds..."):format(def.time).."]")
 				-- Clear input
 				inv:set_list("streets:signworkshop_input",{"","","",""})
 				minetest.after(def.time,function()
 					-- Reset infotext and meta
-					meta:set_string("infotext",S("Sign workshop idle"))
+					meta:set_string("infotext",streets.S("Sign workshop idle"))
 					meta:set_string("idle","y")
 					meta:set_string("formspec",table.concat(forms.inactive))
 					-- Fill output

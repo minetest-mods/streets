@@ -1,5 +1,5 @@
 minetest.register_node(":streets:sign_blank",{
-	description = S("Empty sign"),
+	description = streets.S("Empty sign"),
 	tiles = {"streets_sign_back.png"},
 	inventory_image = "streets_sign_back.png",
 	wield_image = "streets_sign_back.png",
@@ -27,11 +27,11 @@ minetest.register_node(":streets:sign_blank",{
 	after_place_node = function(pos)
 		local meta = minetest.get_meta(pos)
 		
-		meta:set_string("infotext", S("Empty Sign"))
+		meta:set_string("infotext", streets.S("Empty Sign"))
 	end
 })
 minetest.register_node(":streets:sign_lava",{
-	description = S("Warning sign (lava)"),
+	description = streets.S("Warning sign (lava)"),
 	tiles = {"streets_sign_lava.png"},
 	inventory_image = "streets_sign_lava.png",
 	wield_image = "streets_sign_lava.png",
@@ -59,12 +59,12 @@ minetest.register_node(":streets:sign_lava",{
 	after_place_node = function(pos)
 		local meta = minetest.get_meta(pos)
 		
-		meta:set_string("infotext", S("Warning: Careful of lava"))
+		meta:set_string("infotext", streets.S("Warning: Careful of lava"))
 	end
 })
 	
 minetest.register_node(":streets:sign_water",{
-	description = S("Warning sign (water)"),
+	description = streets.S("Warning sign (water)"),
 	tiles = {"streets_sign_water.png"},
 	inventory_image = "streets_sign_water.png",
 	wield_image = "streets_sign_water.png",
@@ -92,12 +92,12 @@ minetest.register_node(":streets:sign_water",{
 	after_place_node = function(pos)
 		local meta = minetest.get_meta(pos)
 		
-		meta:set_string("infotext", S("Warning: Water nearby"))
+		meta:set_string("infotext", streets.S("Warning: Water nearby"))
 	end
 })
 
 minetest.register_node(":streets:sign_construction",{
-	description = S("Warning sign (Construction area)"),
+	description = streets.S("Warning sign (Construction area)"),
 	tiles = {"streets_sign_construction.png"},
 	inventory_image = "streets_sign_construction.png",
 	wield_image = "streets_sign_construction.png",
@@ -125,6 +125,6 @@ minetest.register_node(":streets:sign_construction",{
 	after_place_node = function(pos)
 		local meta = minetest.get_meta(pos)
 		
-		meta:set_string("infotext", S("Warning: Construction area, possible deep excavations"))
+		meta:set_string("infotext", streets.S("Warning: Construction area, possible deep excavations"))
 	end
 })

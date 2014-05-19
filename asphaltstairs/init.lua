@@ -10,7 +10,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 	-- Asphalt solid line
 		-- Stair
 		minetest.register_node(":streets:asphalt_solid_line_stair",{
-			description = S("Asphalt stair"),
+			description = streets.S("Asphalt stair"),
 			tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_solid_line.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -42,7 +42,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 		})
 		-- Slab
 		minetest.register_node(":streets:asphalt_solid_line_slab",{
-			description = S("Asphalt slab"),
+			description = streets.S("Asphalt slab"),
 			tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_solid_line.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -67,7 +67,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 	-- Asphalt dashed line
 		-- Stair
 		minetest.register_node(":streets:asphalt_dashed_line_stair",{
-			description = S("Asphalt stair"),
+			description = streets.S("Asphalt stair"),
 			tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_dashed_line.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -99,7 +99,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 		})
 		-- Slab
 		minetest.register_node(":streets:asphalt_dashed_line_slab",{
-			description = S("Asphalt slab"),
+			description = streets.S("Asphalt slab"),
 			tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_dashed_line.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -122,7 +122,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 		})
 	-- Asphalt outer line
 		minetest.register_node(":streets:asphalt_side_stair_l",{
-			description = S("Asphalt stair"),
+			description = streets.S("Asphalt stair"),
 			tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -137,7 +137,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 			}
 		})
 		minetest.register_node(":streets:asphalt_side_stair_r",{
-			description = S(S("Asphalt stair")),
+			description = streets.S(streets.S("Asphalt stair")),
 			tiles = {"streets_asphalt.png^streets_asphalt_side_r.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side_r.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -180,7 +180,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 		})
 		---------------------------------------------------------------------
 		minetest.register_node(":streets:asphalt_side_slab_l",{
-			description = S(S("Asphalt slab")),
+			description = streets.S(streets.S("Asphalt slab")),
 			tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side.png"},
 			groups = {cracky = 3},
 			paramtype = "light",
@@ -194,7 +194,7 @@ if type(register_stair_slab_panel_micro) ~= "function" then return end
 			}
 		})
 		minetest.register_node(":streets:asphalt_side_slab_r",{
-			description = S(S("Asphalt slab")),
+			description = streets.S(streets.S("Asphalt slab")),
 			tiles = {"streets_asphalt.png^streets_asphalt_side_r.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side_r.png"},
 			groups = {cracky = 3},
 			paramtype = "light",

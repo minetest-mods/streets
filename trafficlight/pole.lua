@@ -1,20 +1,23 @@
 --[[
 	StreetsMod: inDev Trafficlights
 ]]
-minetest.register_node(":digiline_vertical:wire", {
-    description = "Vertical digiline",
-    tiles = {"default_brick.png"},
-    wield_image = "digiline_std_inv.png",
-    paramtype = "light",
-    digiline = 
-    {
-        wire = 
-        {
-            rules = streets.rules_pole
-        }
-    },
-    groups = {dig_immediate = 3}
-})
+local rules_pole = {
+    {x= 0, y= 0, z=-1},
+    {x= 1, y= 0, z= 0},
+    {x=-1, y= 0, z= 0},
+    {x= 0, y= 0, z= 1},
+    {x= 1, y= 1, z= 0},
+    {x= 1, y=-1, z= 0},
+    {x=-1, y= 1, z= 0},
+    {x=-1, y=-1, z= 0},
+    {x= 0, y= 1, z= 1},
+    {x= 0, y=-1, z= 1},
+    {x= 0, y= 1, z=-1},
+    {x= 0, y=-1, z=-1},
+    {x= 0, y=-1, z= 0},
+    {x= 0, y= 1, z= 0}
+}
+
 minetest.register_node(":streets:bigpole", {
 	description = "Pole",
 	paramtype = "light",
@@ -31,7 +34,7 @@ minetest.register_node(":streets:bigpole", {
 	on_place = minetest.rotate_node,
 	digiline = {
 		wire = {
-			rules = streets.rules_pole
+			rules = rules_pole
 		}
 	}
 })

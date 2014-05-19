@@ -5,19 +5,18 @@
 		Forum	: http://bit.ly/12cPMeo
 		Depends	: default
 ]]
--- kaeza: intllib
+streets	= {}
+
+-- Kaeza intllib
 	-- Boilerplate to support localized strings if intllib mod is installed.
-	--local S
-	if (minetest.get_modpath("intllib")) then
-		dofile(minetest.get_modpath("intllib").."/intllib.lua")
-		S = intllib.Getter(minetest.get_current_modname())
+	if minetest.get_modpath("intllib") then
+		streets.S = intllib.Getter()
 	else
-		S = function ( s ) return s end
+		streets.S = function(s) return s end
 	end
 	
 -- Create variable and tables
-	print("Streets: " .. S("Creating variables and tables..."))
-	streets	= {}
+	print("Streets: " .. streets.S("Creating variables and tables..."))
 	streets.version	= "1.4.4dev"
 	streets.modpath = minetest.get_modpath("streetsmod")
 	streets.extendedBy	= {}
@@ -27,6 +26,8 @@
 	}
 	streets.forms = {}
 
+
+	
 -- Support for mimnetest_next's fancy inventories
 	if gui_bg and gui_bg_img and gui_slots and type(default.get_hotbar_bg) == "function" then
 		-- Everything fine :)
@@ -47,7 +48,7 @@
 	dofile(streets.modpath .. "/forms.lua")
 	
 -- Check for mods which change this mod's beahaviour
-	print("Streets: " .. S("Checking installed mods..."))
+	print("Streets: " .. streets.S("Checking installed mods..."))
 	if minetest.get_modpath("wool")	 then
 		streets.extendedBy.wool = true
 	else
@@ -90,12 +91,12 @@
 		return math.floor(num * mult + 0.5) / mult
 	end
 	minetest.register_chatcommand("streets",{
-		description = S("Check version of your installed StreetsMod and find information"),
+		description = streets.S("Check version of your installed StreetsMod and find information"),
 		func = function(name,param)
 			streets.forms.chatcmd:show(name);
 		end
 	})
 	
 -- Done	
-	print("Streets: " .. S("Setup completed, have fun with StreetsMod") .. " " .. streets.version .. "!")
+	print("Streets: " .. streets.S("Setup completed, have fun with StreetsMod") .. " " .. streets.version .. "!")
 	streets.load.fin = os.clock()

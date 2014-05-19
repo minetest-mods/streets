@@ -2,13 +2,13 @@
 	StreetsMod: Manholes in asphalt
 ]]
 minetest.register_node(":streets:manhole",{
-	description = S("Simple manhole"),
+	description = streets.S("Simple manhole"),
 	tiles = {"streets_asphalt.png^streets_manhole.png","streets_asphalt.png"},
 	groups	= {cracky=3}
 })
 
 minetest.register_node(":streets:manhole_adv_closed",{
-	description = S("Advanced manhole"),
+	description = streets.S("Advanced manhole"),
 	tiles = {"streets_asphalt.png^streets_manhole_advanced.png","streets_asphalt.png"},
 	groups = {cracky=3},
 	drawtype = "nodebox",
@@ -36,7 +36,7 @@ minetest.register_node(":streets:manhole_adv_closed",{
 	end
 })
 minetest.register_node(":streets:manhole_adv_open",{
-	description = S("Advanced manhole"),
+	description = streets.S("Advanced manhole"),
 	tiles = {"streets_asphalt.png^streets_manhole_advanced.png","streets_asphalt.png"},
 	groups = {cracky=3,not_in_creative_inventory=1},
 	drawtype = "nodebox",

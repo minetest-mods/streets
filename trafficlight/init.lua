@@ -18,23 +18,6 @@ streets.tlBox =	{
 	{-0.125,-0.3125,0.3125,-0.0625,-0.25,0.5}, --nodebox10
 }
 
-streets.rules_pole = {
-    {x= 0, y= 0, z=-1},
-    {x= 1, y= 0, z= 0},
-    {x=-1, y= 0, z= 0},
-    {x= 0, y= 0, z= 1},
-    {x= 1, y= 1, z= 0},
-    {x= 1, y=-1, z= 0},
-    {x=-1, y= 1, z= 0},
-    {x=-1, y=-1, z= 0},
-    {x= 0, y= 1, z= 1},
-    {x= 0, y=-1, z= 1},
-    {x= 0, y= 1, z=-1},
-    {x= 0, y=-1, z=-1},
-    {x= 0, y=-1, z= 0},
-    {x= 0, y= 1, z= 0}
-}
-
 streets.tlRythm = {
 	toRed = {
 		{name = "streets:trafficlight_top_yellow", pauseBefore = 0},
@@ -101,7 +84,7 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 end
 
 minetest.register_node(":streets:digiline_distributor",{
-	description = S("Digiline distributor"),
+	description = streets.S("Digiline distributor"),
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
 	digiline = {
@@ -114,7 +97,7 @@ minetest.register_node(":streets:digiline_distributor",{
 })
 
 minetest.register_node(":streets:trafficlight_top_off",{
-	description = S("Trafficlight"),
+	description = streets.S("Trafficlight"),
 	drawtype="nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

@@ -2,7 +2,7 @@
 	StreetsMod: Streetlamps
 ]]
 --[[minetest.register_node(":streets:streetlamp_basic_controller",{
-	description = S("Trafficlight"),
+	description = streets.S("Trafficlight"),
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	drawtype = "nodebox",
@@ -41,7 +41,7 @@
 
 minetest.register_node(":streets:streetlamp_basic_bottom",{
 	drop = "",
-	description = S("Street lamp"),
+	description = streets.S("Street lamp"),
 	tiles = {"streets_lamps_basic_bottom.png"},
 	inventory_image = "streets_lamps_basi_inv.png",
 	groups = {cracky = 1},
@@ -63,7 +63,7 @@ minetest.register_node(":streets:streetlamp_basic_bottom",{
 })
 minetest.register_node(":streets:streetlamp_basic_middle",{
 	drop = "",
-	description = S("U cheater U"),
+	description = streets.S("U cheater U"),
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	tiles = {"streets_lamps_basic_middle.png"},
 	paramtype = "light",
@@ -78,7 +78,7 @@ minetest.register_node(":streets:streetlamp_basic_middle",{
 })
 --[[minetest.register_node(":streets:streetlamp_basic_top_off",{
 	drop = "",
-	description = S("U cheater U"),
+	description = streets.S("U cheater U"),
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -93,7 +93,7 @@ minetest.register_node(":streets:streetlamp_basic_middle",{
 })]]
 minetest.register_node(":streets:streetlamp_basic_top_on",{
 	drop = "streets:streetlamp_basic_bottom",
-	description = S("U cheater U"),
+	description = streets.S("U cheater U"),
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	tiles = {"streets_lamps_basic_top_top.png","streets_lamps_basic_top_top.png","streets_lamps_basic_top.png","streets_lamps_basic_top.png","streets_lamps_basic_top.png","streets_lamps_basic_top.png"},
 	paramtype = "light",

@@ -2,7 +2,7 @@
 	StreetsMod: Delineator
 ]]
 minetest.register_node(":streets:delineator", {
-	description = S("Delineator"),
+	description = streets.S("Delineator"),
 	tiles = {"streets_delineator_top.png","streets_delineator.png"},
 	drawtype = "nodebox",
 	paramtype = "light",

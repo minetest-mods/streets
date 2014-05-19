@@ -2,7 +2,7 @@
 	StreetsMod: Emergency Phone
 ]]
 minetest.register_node(":streets:emergencyphone",{
-	description = S("Emergency Phone"),
+	description = streets.S("Emergency Phone"),
 	tiles = {"streets_sos_top.png","streets_sos_bottom.png","streets_sos_side.png","streets_sos_side.png","streets_sos_side.png","streets_sos_front.png"},
 	groups = {cracky = 3},
 	paramtype2 = "facedir",

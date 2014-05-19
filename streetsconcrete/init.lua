@@ -5,7 +5,7 @@ if streets.extendedBy.technic == true then
 	minetest.register_alias("streets:concrete","technic:concrete")
 	-- Use technic's concrete block for the seperating wall
 	minetest.register_node(":streets:concrete_wall",{
-		description = S("Concrete wall"),
+		description = streets.S("Concrete wall"),
 		tiles = {"technic_concrete_block.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
@@ -28,7 +28,7 @@ if streets.extendedBy.technic == true then
 		}
 	})
 	minetest.register_node(":streets:concrete_wall_flat",{
-		description = S("Concrete wall"),
+		description = streets.S("Concrete wall"),
 		tiles = {"technic_concrete_block.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
@@ -52,7 +52,7 @@ if streets.extendedBy.technic == true then
 elseif streets.extendedBy.prefab then
 	minetest.register_alias("streets:concrete","prefab:concrete")
 	minetest.register_node(":streets:concrete_wall",{
-		description = S("Concrete wall"),
+		description = streets.S("Concrete wall"),
 		tiles = {"prefab_concrete.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
@@ -75,7 +75,7 @@ elseif streets.extendedBy.prefab then
 		}
 	})
 	minetest.register_node(":streets:concrete_wall_flat",{
-		description = S("Concrete wall"),
+		description = streets.S("Concrete wall"),
 		tiles = {"prefab_concrete.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
@@ -99,12 +99,12 @@ elseif streets.extendedBy.prefab then
 else
 	-- Register concrete block with streets' texture and then the seperating wall
 	minetest.register_node(":streets:concrete",{
-		description = S("Concrete"),
+		description = streets.S("Concrete"),
 		tiles = {"streets_concrete.png"},
 		groups = {cracky=2}
 	})
 	minetest.register_node(":streets:concrete_wall",{
-		description = S("Concrete wall"),
+		description = streets.S("Concrete wall"),
 		tiles = {"streets_concrete.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
@@ -127,7 +127,7 @@ else
 		}
 	})
 	minetest.register_node(":streets:concrete_wall_flat",{
-		description = S("Concrete wall"),
+		description = streets.S("Concrete wall"),
 		tiles = {"streets_concrete.png"},
 		groups = {cracky=2},
 		drawtype = "nodebox",
