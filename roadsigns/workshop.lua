@@ -112,22 +112,14 @@ minetest.register_node(":streets:signworkshop",{
 			local def = minetest.registered_nodes[selection].streets.signworkshop
 			local need = inv:get_list("streets:signworkshop_recipe")
 			local has = inv:get_list("streets:signworkshop_input")
-			need[1] = need[1]:to_table()
-			need[2] = need[2]:to_table()
-			need[3] = need[3]:to_table()
-			need[4] = need[4]:to_table()
-			has[1] = has[1]:to_table()
-			has[2] = has[2]:to_table()
-			has[3] = has[3]:to_table()
-			has[4] = has[4]:to_table()
-			if need[1] == nil then need[1] = { name = "" } end
-			if need[2] == nil then need[2] = { name = "" } end
-			if need[3] == nil then need[3] = { name = "" } end
-			if need[4] == nil then need[4] = { name = "" } end
-			if has[1] == nil then has[1] = { name = "" } end
-			if has[2] == nil then has[2] = { name = "" } end
-			if has[3] == nil then has[3] = { name = "" } end
-			if has[4] == nil then has[4] = { name = "" } end
+			for k, v in pairs(need) do
+				need[k] = need[k]:to_table()
+				if need[k] == nil then need[k] = { name = "" } end
+			end
+			for k, v in pairs(has) do
+				has[k] = has[k]:to_table()
+				if has[k] == nil then has[k] = { name = "" } end
+			end
 			if need[1].name == has[1].name and need[2].name == has[2].name and need[3].name == has[3].name and need[4].name == has[4].name then
 				meta:set_string("infotext",streets.S("Sign workshop working"))
 				meta:set_string("idle","n")
