@@ -45,6 +45,16 @@ local forms = {
 		--
 	}
 }
+
+streets.workshop.signs = {}
+minetest.after(0, function()
+	for k, v in pairs(minetest.registered_nodes) do
+		if v.streets and v.streets.signworkshop then
+			table.insert(streets.workshop.signs, k)
+		end
+	end
+end)
+
 minetest.register_node(":streets:signworkshop",{
 	description = streets.S("Sign workshop"),
 	tiles = {"streets_signworkshop_top.png","streets_signworkshop_bottom.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_front.png"},
@@ -60,10 +70,9 @@ minetest.register_node(":streets:signworkshop",{
 		inv:set_size("streets:signworkshop_select",1*1)
 		inv:set_size("streets:signworkshop_output",1*1)
 		-- Fill
-		inv:add_item("streets:signworkshop_list","streets:sign_blank")
-		inv:add_item("streets:signworkshop_list","streets:sign_lava")
-		inv:add_item("streets:signworkshop_list","streets:sign_water")
-		inv:add_item("streets:signworkshop_list","streets:sign_construction")
+		for k, v in pairs(streets.workshop.signs) do
+			inv:add_item("streets:signworkshop_list", v)
+		end
 		-- Meta
 		meta:set_string("infotext",streets.S("Sign workshop idle"))
 		meta:set_string("idle","y")
