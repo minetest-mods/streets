@@ -46,14 +46,12 @@ minetest.register_node(":streets:pole_bottom",{
 minetest.register_node(":streets:pole_top",{
 	description = streets.S("Y u no play minetest without cheating?"),
 	tiles = {"streets_pole.png"},
-	groups = {cracky=2,not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	drop = "",
-	can_dig = function()
-		return false
-	end,
+	diggable = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
