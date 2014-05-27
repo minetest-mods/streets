@@ -10,7 +10,7 @@ minetest.register_node(":streets:emergencyphone",{
 	on_rightclick = function(pos,node,clicker)
 		if clicker:is_player() and clicker:get_hp() < 6 then
 			clicker:set_hp(6)
-			minetest.log("action",clicker:get_player_name() .. " healed by emergency phone at pos (" .. pos.x .. "," .. pos.y .. "," .. pos.z .. ")")
+			minetest.log("action",clicker:get_player_name() .. " healed by emergency phone at pos " .. minetest.pos_to_string(pos) .. "")
 		end
 	end
  })
