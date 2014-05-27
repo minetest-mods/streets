@@ -2,8 +2,6 @@
 	StreetsMod: inDev Trafficlights
 ]]
 
-dofile(streets.modpath .. "/../trafficlight/pole.lua")
-
 streets.tlBox =	{
 	--[[ Thank you, rubenwardy, for your awesome NodeboxEditor! Not perfect, but still great! ]]
 	{-0.1875,-0.5,0.5,0.1875,0.5,0.75}, --nodebox1
