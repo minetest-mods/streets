@@ -80,6 +80,12 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 			pos = pos,
 			to = "toWarn"
 		})
+	elseif msg == "GET" then
+		local state = minetest.get_meta(pos):get_string("state")
+		if not state or state == "" then
+			state = "UNDEFINED"
+		end
+		digiline:receptor_send(pos, digiline.rules.default, channel, state)
 	end
 end
 
@@ -125,6 +131,7 @@ minetest.register_node(":streets:trafficlight_top_off",{
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
+			minetest.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
