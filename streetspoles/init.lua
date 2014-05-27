@@ -104,6 +104,9 @@ minetest.register_node(":streets:bigpole", {
 		}
 	},
 	on_place = minetest.rotate_node,
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		minetest.chat_send_all(pointed_thing.name)
+	end,
 	digiline = {
 		wire = {
 			rules = rules_pole
@@ -124,4 +127,12 @@ minetest.register_node(":streets:bigpole_edge", {
 			{-0.15,-0.15,-0.125,0.15,0.15,-0.5}
 		}
 	},
+})
+minetest.register_craft({
+	output = "streets:bigpole 3",
+	recipe = {
+		{"","",""},
+		{"","default:steel_ingot",""},
+		{"","default:steel_ingot",""}
+	}
 })
