@@ -94,6 +94,7 @@ minetest.register_node(":streets:bigpole", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	tiles = {"streets_pole.png"},
+	sunlight_propagates = true,
 	groups = {cracky = 1, level = 2, bigpole = 1},
 	node_box = {
 		type = "fixed",
@@ -102,9 +103,6 @@ minetest.register_node(":streets:bigpole", {
 		}
 	},
 	on_place = minetest.rotate_node,
-	after_place_node = function(pos, placer, itemstack, pointed_thing)
-		minetest.chat_send_all(pointed_thing.name)
-	end,
 	digiline = {
 		wire = {
 			rules = rules_pole
@@ -112,17 +110,19 @@ minetest.register_node(":streets:bigpole", {
 	}
 })
 minetest.register_node(":streets:bigpole_edge", {
+	description = "Pole",
 	drop = "streets:bigpole",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	tiles = {"streets_pole.png"},
-	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1, bigpole = 1},
+	sunlight_propagates = true,
+	groups = {cracky = 1, level = 2, bigpole = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
 			{-0.15,-0.5,-0.15,0.15,0.15,0.15},
-			{-0.15,-0.15,-0.125,0.15,0.15,-0.5}
+			{-0.15,-0.15,-0.15,0.15,0.15,-0.5}
 		}
 	},
 })
@@ -132,5 +132,13 @@ minetest.register_craft({
 		{"","",""},
 		{"","default:steel_ingot",""},
 		{"","default:steel_ingot",""}
+	}
+})
+minetest.register_craft({
+	output = "streets:bigpole_edge 3",
+	recipe = {
+		{"","",""},
+		{"streets:bigpole","streets:bigpole",""},
+		{"streets:bigpole","",""}
 	}
 })
