@@ -142,3 +142,11 @@ minetest.register_craft({
 		{"streets:bigpole","",""}
 	}
 })
+minetest.register_craft({
+	output = "streets:bigpole_edge 3",
+	recipe = {
+		{"","",""},
+		{"streets:bigpole","streets:bigpole",""},
+		{"","streets:bigpole",""}
+	}
+})
