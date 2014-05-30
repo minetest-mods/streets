@@ -1,6 +1,7 @@
 --[[
 	StreetsMod: inDev Trafficlights
 ]]
+dofile(streets.modpath .. "/../trafficlight/old2new.lua")
 
 streets.tlBox =	{
 	--[[ Thank you, rubenwardy, for your awesome NodeboxEditor! Not perfect, but still great! ]]
