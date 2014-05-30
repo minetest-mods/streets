@@ -71,23 +71,6 @@ minetest.register_craft({
 
 -- Big pole
 
-local rules_pole = {
-    {x= 0, y= 0, z=-1},
-    {x= 1, y= 0, z= 0},
-    {x=-1, y= 0, z= 0},
-    {x= 0, y= 0, z= 1},
-    {x= 1, y= 1, z= 0},
-    {x= 1, y=-1, z= 0},
-    {x=-1, y= 1, z= 0},
-    {x=-1, y=-1, z= 0},
-    {x= 0, y= 1, z= 1},
-    {x= 0, y=-1, z= 1},
-    {x= 0, y= 1, z=-1},
-    {x= 0, y=-1, z=-1},
-    {x= 0, y=-1, z= 0},
-    {x= 0, y= 1, z= 0}
-}
-
 minetest.register_node(":streets:bigpole", {
 	description = "Pole",
 	paramtype = "light",
@@ -105,7 +88,15 @@ minetest.register_node(":streets:bigpole", {
 	on_place = minetest.rotate_node,
 	digiline = {
 		wire = {
-			rules = rules_pole
+			rules = {
+				{x= 0, y= 0, z=-1},
+				{x= 0, y= 0, z= 1},
+				{x= 1, y= 0, z= 0},
+				{x=-1, y= 0, z= 0},
+				{x= 0, y=-1, z= 0},
+				{x= 0, y= 1, z= 0},
+				{x= 0, y=-2, z= 0}
+			}
 		}
 	}
 })
@@ -125,6 +116,18 @@ minetest.register_node(":streets:bigpole_edge", {
 			{-0.15,-0.15,-0.15,0.15,0.15,-0.5}
 		}
 	},
+	digiline = {
+		wire = {
+			rules = {
+				{x= 0, y= 0, z=-1},
+				{x= 0, y= 0, z= 1},
+				{x= 1, y= 0, z= 0},
+				{x=-1, y= 0, z= 0},
+				{x= 0, y=-1, z= 0},
+				{x= 0, y= 1, z= 0},
+			}
+		}
+	}
 })
 minetest.register_craft({
 	output = "streets:bigpole 3",

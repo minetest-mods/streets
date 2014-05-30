@@ -103,24 +103,13 @@ minetest.register_node(":streets:digiline_distributor",{
 		}
 	},
 	digiline = {
-		receptor = {},
-		effector = {},
 		wire = {
 			rules = {
 				{x= 0, y= 0, z=-1},
+				{x= 0, y= 0, z= 1},
 				{x= 1, y= 0, z= 0},
 				{x=-1, y= 0, z= 0},
-				{x= 0, y= 0, z= 1},
-				{x= 1, y= 1, z= 0},
-				{x= 1, y=-1, z= 0},
-				{x=-1, y= 1, z= 0},
-				{x=-1, y=-1, z= 0},
-				{x= 0, y= 1, z= 1},
-				{x= 0, y=-1, z= 1},
-				{x= 0, y= 1, z=-1},
-				{x= 0, y=-1, z=-1},
-				{x= 0, y=-1, z= 0},
-				{x= 0, y= 1, z= 0}
+				{x= 0, y= 2, z=0}
 			}
 		}
 	}
@@ -284,5 +273,14 @@ minetest.register_craft({
 		{"default:steel_ingot", "dye:red", "default:steel_ingot"},
 		{"default:steel_ingot", "dye:yellow", "default:steel_ingot"},
 		{"default:steel_ingot", "dye:green", "default:steel_ingot"}
+	}
+})
+
+minetest.register_craft({
+	output = "streets:digiline_distributor",
+	recipe = {
+		{"", "digilines:wire_std_00000000", ""},
+		{"digilines:wire_std_00000000", "mesecons_luacontroller:luacontroller0000", "digilines:wire_std_00000000"},
+		{"", "digilines:wire_std_00000000", ""}
 	}
 })
