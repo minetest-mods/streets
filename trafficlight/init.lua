@@ -93,6 +93,15 @@ minetest.register_node(":streets:digiline_distributor",{
 	description = streets.S("Digiline distributor"),
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
+			{-0.05,0.5,-0.05,0.05,1.6,0.05}
+		}
+	},
 	digiline = {
 		receptor = {},
 		effector = {},
