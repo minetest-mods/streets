@@ -277,3 +277,12 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 		}
 	},
 })
+
+minetest.register_craft({
+	output = "streets:trafficlight_top_off",
+	recipe = {
+		{"default:steel_ingot", "dye:red", "default:steel_ingot"},
+		{"default:steel_ingot", "dye:yellow", "default:steel_ingot"},
+		{"default:steel_ingot", "dye:green", "default:steel_ingot"}
+	}
+})
