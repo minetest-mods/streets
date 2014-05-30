@@ -2,4 +2,3 @@ default
 streetsmod
 digilines?
 mesecons?
-streetspoles
