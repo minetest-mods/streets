@@ -1,7 +1,7 @@
 minetest.register_node(":streets:constructionfence_bottom",{
 	description = streets.S("Construction fence"),
 	tiles = {"streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_bottom.png","streets_fence_bottom.png"},
-	groups = {cracky = 2,},
+	groups = {cracky = 2, disable_jump = 1},
 	paramtype = "light",
 	inventory_image = "streets_fence_inv.png",
 	wield_image = "streets_fence_inv.png",
@@ -37,7 +37,7 @@ minetest.register_node(":streets:constructionfence_bottom",{
 minetest.register_node(":streets:constructionfence_top",{
 	description = streets.S("Construction fence"),
 	tiles = {"streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_top.png","streets_fence_top.png"},
-	groups = {cracky = 2, not_in_creative_inventory = 1},
+	groups = {cracky = 2, not_in_creative_inventory = 1, disable_jump = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
