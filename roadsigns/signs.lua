@@ -1,130 +1,17 @@
-minetest.register_node(":streets:sign_blank",{
-	description = streets.S("Empty sign"),
-	tiles = {"streets_sign_back.png"},
-	inventory_image = "streets_sign_back.png",
-	wield_image = "streets_sign_back.png",
-	groups = {snappy = 1,attached_node = 1},
-	drawtype = "nodebox",
-	node_box = {
-		type = "wallmounted",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
-		}
-	},
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	walkable = false,
-	sunlight_propagates = true,
-	selection_box = {
-		type = "wallmounted"
-	},
-	streets = {
-		signworkshop = {
-			recipe = {"default:steel_ingot","","",""},
-			time = 3
-		}
-	},
-	after_place_node = function(pos)
-		local meta = minetest.get_meta(pos)
-		
-		meta:set_string("infotext", streets.S("Empty Sign"))
-	end
-})
-minetest.register_node(":streets:sign_lava",{
-	description = streets.S("Warning sign (lava)"),
-	tiles = {"streets_sign_lava.png"},
-	inventory_image = "streets_sign_lava.png",
-	wield_image = "streets_sign_lava.png",
-	groups = {snappy = 1,attached_node = 1},
-	drawtype = "nodebox",
-	node_box = {
-		type = "wallmounted",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
-		}
-	},
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	walkable = false,
-	sunlight_propagates = true,
-	selection_box = {
-		type = "wallmounted"
-	},
-	streets = {
-		signworkshop = {
-			recipe = {"streets:sign_blank","bucket:bucket_lava","",""},
-			time = 5
-		}
-	},
-	after_place_node = function(pos)
-		local meta = minetest.get_meta(pos)
-		
-		meta:set_string("infotext", streets.S("Warning: Careful of lava"))
-	end
-})
-	
-minetest.register_node(":streets:sign_water",{
-	description = streets.S("Warning sign (water)"),
-	tiles = {"streets_sign_water.png"},
-	inventory_image = "streets_sign_water.png",
-	wield_image = "streets_sign_water.png",
-	groups = {snappy = 1,attached_node = 1},
-	drawtype = "nodebox",
-	node_box = {
-		type = "wallmounted",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
-		}
-	},
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	walkable = false,
-	sunlight_propagates = true,
-	selection_box = {
-		type = "wallmounted"
-	},
-	streets = {
-		signworkshop = {
-			recipe = {"streets:sign_blank","bucket:bucket_water","",""},
-			time = 5
-		}
-	},
-	after_place_node = function(pos)
-		local meta = minetest.get_meta(pos)
-		
-		meta:set_string("infotext", streets.S("Warning: Water nearby"))
-	end
-})
+-- example: streets.workshop.register_sign(nodename, desc, img, recipe, time)
+streets.workshop.register_sign(":streets:sign_blank", treets.S("Empty sign"), "streets_sign_back.png", {"default:steel_ingot","","",""}, 3)
 
-minetest.register_node(":streets:sign_construction",{
-	description = streets.S("Warning sign (Construction area)"),
-	tiles = {"streets_sign_construction.png"},
-	inventory_image = "streets_sign_construction.png",
-	wield_image = "streets_sign_construction.png",
-	groups = {snappy = 1,attached_node = 1},
-	drawtype = "nodebox",
-	node_box = {
-		type = "wallmounted",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4,0.4}
-		}
-	},
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	walkable = false,
-	sunlight_propagates = true,
-	selection_box = {
-		type = "wallmounted"
-	},
-	streets = {
-		signworkshop = {
-			recipe = {"streets:sign_blank","default:dirt","",""},
-			time = 5
-		}
-	},
-	after_place_node = function(pos)
-		local meta = minetest.get_meta(pos)
-		
-		meta:set_string("infotext", streets.S("Warning: Construction area, possible deep excavations"))
-	end
-})
+streets.workshop.register_sign(":streets:sign_lava", streets.S("Warning sign (lava)"), "streets_sign_lava.png", {"streets:sign_blank","bucket:bucket_lava","",""}, 5)
+
+streets.workshop.register_sign(":streets:sign_water", streets.S("Warning sign (water)"), "streets_sign_water.png", {"streets:sign_blank","bucket:bucket_water","",""}, 5)
+
+streets.workshop.register_sign(":streets:sign_construction", streets.S("Warning sign (Construction area)"), "streets_sign_construction.png", {"streets:sign_blank","default:dirt","",""}, 5)
+
+
+streets.workshop.register_sign(":streets:sign_mine", streets.S("Notice sign (Public Mine Ahead)"), "streets_sign_mine.png", {"streets:sign_blank","default:dirt","",""}, 5)
+
+streets.workshop.register_sign(":streets:sign_shop", streets.S("Notice sign (Shop/Mall Ahead)"), "streets_sign_construction.png", {"streets:sign_blank","default:dirt","",""}, 5)
+
+streets.workshop.register_sign(":streets:sign_workshop", streets.S("Notice sign (Public Workshop Ahead)"), "streets_sign_workshop.png", {"streets:sign_blank","default:dirt","",""}, 5)
+
+streets.workshop.register_sign(":streets:sign_grasswalk", streets.S("Warning sign (No walking on the grass)"), "streets_sign_grasswalk.png", {"streets:sign_blank","default:dirt","",""}, 5)
