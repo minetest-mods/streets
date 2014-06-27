@@ -1,5 +1,5 @@
 -- example: streets.workshop.register_sign(nodename, desc, img, recipe, time)
-streets.workshop.register_sign(":streets:sign_blank", treets.S("Empty sign"), "streets_sign_back.png", {"default:steel_ingot","","",""}, 3)
+streets.workshop.register_sign(":streets:sign_blank", streets.S("Empty sign"), "streets_sign_back.png", {"default:steel_ingot","","",""}, 3)
 
 streets.workshop.register_sign(":streets:sign_lava", streets.S("Warning sign (lava)"), "streets_sign_lava.png", {"streets:sign_blank","bucket:bucket_lava","",""}, 5)
 
