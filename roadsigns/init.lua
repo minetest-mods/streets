@@ -7,7 +7,7 @@ streets.workshop.register_sign  = function(nodename, desc, img, rrecipe, rtime)
 	
 	minetest.register_node(nodename,{
 		description = desc,
-		tiles = img,
+		tiles = {img},
 		inventory_image = img,
 		wield_image = img,
 		groups = {snappy = 1,attached_node = 1},
