@@ -4,7 +4,7 @@
 minetest.register_node(":streets:asphalt_sideline",{
 	description = streets.S("Asphalt with sideline"),
 	groups = {cracky=3},
-	tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png"},
+	tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side.png^[transformR180","streets_asphalt.png^streets_asphalt_side.png"},
 	paramtype2 = "facedir"
 })
 minetest.register_alias("streets:asphalt_side","streets:asphalt_sideline")
@@ -20,7 +20,7 @@ minetest.register_craft({
 minetest.register_node(":streets:asphalt_solid_line",{
 	description = streets.S("Asphalt with solid line"),
 	groups = {cracky=3},
-	tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png"},
+	tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png^streets_asphalt_solid_line.png"},
 	paramtype2 = "facedir"
 })
 minetest.register_alias("streets:asphalt_middle","streets:asphalt_solid_line")
@@ -36,7 +36,7 @@ minetest.register_craft({
 minetest.register_node(":streets:asphalt_dashed_line",{
 	description = streets.S("Asphalt with dashed line"),
 	groups = {cracky=3},
-	tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png"},
+	tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png^streets_asphalt_dashed_line.png"},
 	paramtype2 = "facedir"
 })
 minetest.register_alias("streets:asphalt_middle_dashed","streets:asphalt_dashed_line")
