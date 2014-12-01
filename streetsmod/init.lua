@@ -26,19 +26,6 @@ streets	= {}
 	}
 	streets.forms = {}
 
-
-	
--- Support for mimnetest_next's fancy inventories
-	if gui_bg and gui_bg_img and gui_slots and type(default.get_hotbar_bg) == "function" then
-		-- Everything fine :)
-		-- minetest_next rules! :P
-	else
-		gui_bg = ""
-		gui_bg_img = ""
-		gui_slots = ""
-		default.get_hotbar_bg = function() return "" end
-	end
-	
 -- rubenwardy: smartfs
 	if not minetest.get_modpath("smartfs") then
 		dofile(streets.modpath .. "/libs/smartfs/smartfs.lua")
