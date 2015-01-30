@@ -10,7 +10,7 @@ streets.workshop.register_sign(":streets:sign_construction", streets.S("Warning 
 
 streets.workshop.register_sign(":streets:sign_mine", streets.S("Notice sign (Public Mine Ahead)"), "streets_sign_mine.png", {"streets:sign_blank","default:dirt","",""}, 5)
 
-streets.workshop.register_sign(":streets:sign_shop", streets.S("Notice sign (Shop/Mall Ahead)"), "streets_sign_construction.png", {"streets:sign_blank","default:dirt","",""}, 5)
+streets.workshop.register_sign(":streets:sign_shop", streets.S("Notice sign (Shop/Mall Ahead)"), "streets_sign_shop.png", {"streets:sign_blank","default:dirt","",""}, 5)
 
 streets.workshop.register_sign(":streets:sign_workshop", streets.S("Notice sign (Public Workshop Ahead)"), "streets_sign_workshop.png", {"streets:sign_blank","default:dirt","",""}, 5)
 
