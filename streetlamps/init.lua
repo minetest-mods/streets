@@ -122,7 +122,7 @@ minetest.register_craft({
 	output = "streets:streetlamp_basic_bottom",
 	recipe = {
 		{"","default:torch",""},
-		{"","default:stick",""},
-		{"","default:stick",""}
+		{"","default:steel_ingot",""},
+		{"","default:steel_ingot",""}
 	}
 })
