@@ -3,11 +3,7 @@
 ]]
 if not rawget(_G, "register_stair_slab_panel_micro")
 or type(register_stair_slab_panel_micro) ~= "function" then return end
-	-- Asphalt
-	register_stair_slab_panel_micro("streets", "asphalt", "streets:asphalt", {cracky=3}, {"streets_asphalt.png"}, "Asphalt", "asphalt", nil)
-	minetest.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
-	minetest.register_alias("streets:asphalt_slab","stairs:slab_asphalt")
-	table.insert(circular_saw.known_stairs,"streets:asphalt")
+
 	-- Asphalt solid line
 		-- Stair
 		minetest.register_node(":streets:asphalt_solid_line_stair",{
@@ -226,3 +222,23 @@ or type(register_stair_slab_panel_micro) ~= "function" then return end
 			output = "streets:asphalt_side_l",
 			recipe = {"streets:asphalt_side_r"}
 		})
+
+	-- Asphalt
+	minetest.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
+	minetest.register_alias("streets:asphalt_slab","stairs:slab_asphalt")
+
+	register_stair_slab_panel_micro("streets", "asphalt",              "streets:asphalt",              {cracky=3}, {"streets_asphalt.png"}, "Asphalt", "asphalt", nil)
+	register_stair_slab_panel_micro("streets", "asphalt_solid_line",   "streets:asphalt_solid_line",   {cracky=3}, {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_solid_line.png"},   "Asphalt with solid centerline",                        "asphalt", nil)
+	register_stair_slab_panel_micro("streets", "asphalt_dashed_line",  "streets:asphalt_dashed_line",  {cracky=3}, {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_dashed_line.png"}, "Asphalt with dashed centerline",                       "asphalt", nil)
+	register_stair_slab_panel_micro("streets", "asphalt_side",         "streets:asphalt_sideline",     {cracky=3}, {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side.png"},               "Asphalt with solid outer line (left)",                 "asphalt", nil)
+	register_stair_slab_panel_micro("streets", "asphalt_side_r",       "streets:asphalt_side_r",       {cracky=3}, {"streets_asphalt.png^streets_asphalt_side_r.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side_r.png"},           "Asphalt with solid outer line (right)",                "asphalt", nil)
+	register_stair_slab_panel_micro("streets", "asphalt_outer_edge",   "streets:asphalt_outer_edge",   {cracky=3}, {"streets_asphalt.png^streets_asphalt_outer_edge.png","streets_asphalt.png"},                                                                                                                          "Asphalt with solid outer line (corner/edge)",          "asphalt", nil)
+	register_stair_slab_panel_micro("streets", "asphalt_outer_edge_r", "streets:asphalt_outer_edge_r", {cracky=3}, {"streets_asphalt.png^(streets_asphalt_outer_edge.png^[transformR270)","streets_asphalt.png"},                                                                                                         "Asphalt with solid outer line (corner/edge, rotated)", "asphalt", nil)
+
+	table.insert(circular_saw.known_stairs,"streets:asphalt")
+	table.insert(circular_saw.known_stairs,"streets:asphalt_solid_line")
+	table.insert(circular_saw.known_stairs,"streets:asphalt_dashed_line")
+	table.insert(circular_saw.known_stairs,"streets:asphalt_side")
+	table.insert(circular_saw.known_stairs,"streets:asphalt_side_r")
+	table.insert(circular_saw.known_stairs,"streets:asphalt_outer_edge")
+	table.insert(circular_saw.known_stairs,"streets:asphalt_outer_edge_r")

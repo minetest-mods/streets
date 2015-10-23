@@ -7,13 +7,36 @@ minetest.register_node(":streets:asphalt_sideline",{
 	tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
 })
+
 minetest.register_alias("streets:asphalt_side","streets:asphalt_sideline")
+
 minetest.register_craft({
 	output = "streets:asphalt_side 6",
 	recipe = {
 		{"dye:white","streets:asphalt","streets:asphalt"},
 		{"dye:white","streets:asphalt","streets:asphalt"},
 		{"dye:white","streets:asphalt","streets:asphalt"}
+	}
+})
+
+minetest.register_node(":streets:asphalt_side_r",{
+	description = streets.S("Asphalt with sideline (right)"),
+	groups = {cracky=3},
+	tiles = {"streets_asphalt.png^streets_asphalt_side_r.png","streets_asphalt.png"},
+	paramtype2 = "facedir"
+})
+
+minetest.register_craft({
+	output = "streets:asphalt_side",
+	recipe = {
+		{"streets:asphalt_side_r"},
+	}
+})
+
+minetest.register_craft({
+	output = "streets:asphalt_side_r",
+	recipe = {
+		{"streets:asphalt_side"},
 	}
 })
 
@@ -55,6 +78,28 @@ minetest.register_node(":streets:asphalt_outer_edge",{
 	tiles = {"streets_asphalt.png^streets_asphalt_outer_edge.png","streets_asphalt.png"},
 	paramtype2 = "facedir"
 })
+
+minetest.register_node(":streets:asphalt_outer_edge_r",{
+	description = streets.S("Asphalt with sideline (edge, rotated))"),
+	groups = {cracky=3},
+	tiles = {"streets_asphalt.png^(streets_asphalt_outer_edge.png^[transformR270)","streets_asphalt.png"},
+	paramtype2 = "facedir"
+})
+
+minetest.register_craft({
+	output = "streets:asphalt_outer_edge",
+	recipe = {
+		{"streets:asphalt_outer_edge_r"},
+	}
+})
+
+minetest.register_craft({
+	output = "streets:asphalt_outer_edge_r",
+	recipe = {
+		{"streets:asphalt_outer_edge"},
+	}
+})
+
 -- no minetest.register_alias() needed
 minetest.register_craft({
 	output = "streets:asphalt_outer_edge 4",
