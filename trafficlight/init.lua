@@ -33,6 +33,9 @@ streets.tlRythm = {
 	},
 	toWarn = {
 		{name = "streets:trafficlight_top_warn", pauseBefore = 0}
+	},
+	toFlashRed = {
+		{name = "streets:trafficlight_top_flashred", pauseBefore = 0}
 	}
 }
 
@@ -79,6 +82,11 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 		streets.tlSwitch({
 			pos = pos,
 			to = "toWarn"
+		})
+	elseif msg == "FLASHRED" then
+		streets.tlSwitch({
+			pos = pos,
+			to = "toFlashRed"
 		})
 	elseif msg == "GET" then
 		local state = minetest.get_meta(pos):get_string("state")
@@ -250,6 +258,32 @@ minetest.register_node(":streets:trafficlight_top_warn",{
 	drawtype = "nodebox",
 	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png",{
 		name="streets_tl_warn.png",
+		animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.5},
+	}},
+	node_box = {
+		type = "fixed",
+		fixed = streets.tlBox
+	},
+	light_source = 6,
+	digiline = {
+		receptor = {},
+		effector = {
+			action = function(pos, node, channel, msg)
+				streets.on_digiline_receive(pos, node, channel, msg)
+			end
+		}
+	},
+})
+
+minetest.register_node(":streets:trafficlight_top_flashred",{
+	drop = "streets:trafficlight_top_off",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png",{
+		name="streets_tl_flashred.png",
 		animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.5},
 	}},
 	node_box = {
