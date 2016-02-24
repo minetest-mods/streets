@@ -5,4 +5,13 @@
   Category: Roads
 ]]
 
-streets.register_road_marking("line_dashed", "streets_line_dashed.png")
+streets.register_road_marking({
+  suffix = "line_dashed",
+  friendly_suffix = "dashed line",
+  overlay = "streets_line_dashed.png",
+  craft = {
+    {"?", "dye:white", "?"},
+    {"?", "?", "?"},
+    {"?", "dye:white", "?"}
+  }
+})

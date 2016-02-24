@@ -21,6 +21,6 @@ function streets.register_road_surface(nodename, nodedef)
   streets.api.register_road_surfaces[nodename] = nodedef
 end
 
-function streets.register_road_marking(markingname, texture)
-  streets.api.register_road_markings[markingname] = texture
+function streets.register_road_marking(markingdef)
+  streets.api.register_road_markings[markingdef.suffix] = markingdef
 end
