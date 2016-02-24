@@ -15,3 +15,13 @@ streets.register_road_marking({
     {"?", "dye:white", "?"}
   }
 })
+streets.register_road_marking({
+  suffix = "line_solid",
+  friendly_suffix = "solid line",
+  overlay = "streets_line_solid.png",
+  craft = {
+    {"?", "dye:white", "?"},
+    {"?", "dye:white", "?"},
+    {"?", "dye:white", "?"}
+  }
+})
