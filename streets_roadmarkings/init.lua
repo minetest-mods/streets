@@ -70,3 +70,25 @@ streets.register_road_marking({
     {"?", "dye:white", "dye:white"}
   }
 })
+
+streets.register_road_marking({
+  suffix = "edge_slim",
+  friendly_suffix = "slim edge line",
+  overlay = "streets_line_edge_slim.png",
+  craft = {
+    {"dye:white", "dye:white", "dye:white"},
+    {"?", "?", "dye:white"},
+    {"?", "?", "dye:white"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "edge_thick",
+  friendly_suffix = "thick edge line",
+  overlay = "streets_line_edge_thick.png",
+  craft = {
+    {"dye:white", "dye:white", "dye:white"},
+    {"dye:white", "dye:white", "dye:white"},
+    {"?", "dye:white", "dye:white"}
+  }
+})
