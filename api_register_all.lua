@@ -12,6 +12,12 @@ minetest.after(0, function()
   for surface_name, surface_definition in pairs(surface_list) do
     -- Register the surface itself (e.g. plain asphalt)
     minetest.register_node(surface_name, surface_definition)
+    -- Register alias if given
+    if type(surface_definition.aka) == "table" then
+      for _, alias in ipairs(surface_definition.aka) do
+        minetest.register_alias(alias, surface_name)
+      end
+    end
     -- Register the craft for this surface
     minetest.register_craft(surface_definition.craft)
     -- Loop through the list of markings
