@@ -10,6 +10,7 @@ streets.register_road_surface(":streets:asphalt", {
   tiles = {"streets_asphalt.png"},
   groups = {cracky = 3},
   sounds = default.node_sound_stone_defaults(),
+  aka = {},
   craft = {
     output = "streets:asphalt 1",
     type = "cooking",
@@ -23,6 +24,7 @@ streets.register_road_surface(":streets:asphalt_red", {
   tiles = {"streets_asphalt_red.png"},
   groups = {cracky = 3},
   sounds = default.node_sound_stone_defaults(),
+  aka = {},
   craft = {
     output = "streets:asphalt_red 1",
     type = "shapeless",
@@ -35,6 +37,7 @@ streets.register_road_surface(":streets:asphalt_yellow", {
   tiles = {"streets_asphalt_yellow.png"},
   groups = {cracky = 3},
   sounds = default.node_sound_stone_defaults(),
+  aka = {},
   craft = {
     output = "streets:asphalt_yellow 1",
     type = "shapeless",
