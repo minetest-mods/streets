@@ -44,3 +44,15 @@ streets.register_road_surface(":streets:asphalt_yellow", {
     recipe = {"streets:asphalt", "dye:yellow"}
   }
 })
+
+streets.register_road_surface(":streets:asphalt_blue", {
+  description = "Colored Asphalt",
+  tiles = {"streets_asphalt_blue.png"},
+  groups = {cracky = 3},
+  sounds = default.node_sound_stone_defaults(),
+  craft = {
+    output = "streets:asphalt_blue 1",
+    type = "shapeless",
+    recipe = {"streets:asphalt", "dye:yellow"}
+  }
+})
