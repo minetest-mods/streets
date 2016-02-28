@@ -23,9 +23,8 @@ minetest.after(0, function()
       local groups = surface_definition.groups
       local sounds = surface_definition.sounds
       -- Replace placeholders in craft recipe
-      local craft = marking_data.craft
+      local craft = table.copy(marking_data.craft)
       local replacement = surface_name:sub(2, -1)
-      print("The replacement item for the craft recipe is: " .. replacement)
       if craft[1][1] == "?" then craft[1][1] = replacement end
       if craft[1][2] == "?" then craft[1][2] = replacement end
       if craft[1][3] == "?" then craft[1][3] = replacement end
@@ -45,7 +44,6 @@ minetest.after(0, function()
         paramtype2 = "facedir"
       })
       local craft_output = nn:sub(2, -1)
-      print("The craft recipe is (JSON): " .. minetest.write_json(craft))
       -- Register the craft for this node
       minetest.register_craft({
         output = craft_output,
