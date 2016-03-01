@@ -26,6 +26,7 @@ minetest.after(0, function()
       local nn = surface_name .. "_" .. marking_suffix
       local description = surface_definition.description .. " " .. marking_data.friendly_suffix
       local tiles = {surface_definition.tiles[1] .. "^" .. marking_data.overlay, surface_definition.tiles[1]}
+      local tiles2 = {surface_definition.tiles[1] .. "^" .. marking_data.overlay:split(".")[1] .. "_yellow.png", surface_definition.tiles[1]}
       local groups = surface_definition.groups
       local sounds = surface_definition.sounds
       -- Replace placeholders in craft recipe
@@ -56,6 +57,34 @@ minetest.after(0, function()
         recipe = craft
       })
       -- Register alias for the marking if given
+      if type(marking_data.aka) == "table" then
+        for _, old_name in ipairs(marking_data.aka) do
+          minetest.register_alias(old_name, craft_output)
+        end
+      end
+      -- Register the yellow version, too
+      nn = nn .. "_yellow"
+      minetest.register_node(nn, {
+        description = description,
+        tiles = tiles2,
+        groups = groups,
+        sounds = sounds,
+        paramtype = "light",
+        paramtype2 = "facedir"
+      })
+      craft = table.copy(marking_data.craft)
+      replacement = surface_name:sub(2, -1)
+      for i = 1, 3 do
+        for j = 1, 3 do
+          if craft[i][j] == "?" then craft[i][j] = replacement end
+          if craft[i][j] == "dye:white" then craft[i][j] = "dye:yellow" end
+        end
+      end
+      craft_output = nn:sub(2, -1)
+      minetest.register_craft({
+        output = craft_output,
+        recipe = craft
+      })
       if type(marking_data.aka) == "table" then
         for _, old_name in ipairs(marking_data.aka) do
           minetest.register_alias(old_name, craft_output)
