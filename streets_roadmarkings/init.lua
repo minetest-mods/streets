@@ -136,3 +136,15 @@ streets.register_road_marking({
     {"dye:white", "?", "dye:white"}
   }
 })
+
+streets.register_road_marking({
+  suffix = "crosswalk",
+  friendly_suffix = "crosswalk",
+  overlay = "streets_crosswalk.png",
+  aka = {},
+  craft = {
+    {"?", "?", "?"},
+    {"dye:white", "dye:white", "dye:white"},
+    {"?", "?", "?"}
+  }
+})
