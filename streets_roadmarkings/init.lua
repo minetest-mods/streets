@@ -35,9 +35,9 @@ streets.register_road_marking({
   overlay = "streets_line_side_slim.png",
   aka = {},
   craft = {
-    {"?", "?", "dye:white"},
-    {"?", "?", "dye:white"},
-    {"?", "?", "dye:white"}
+    {"dye:white", "?", "?"},
+    {"dye:white", "?", "?"},
+    {"dye:white", "?", "?"}
   }
 })
 
@@ -47,9 +47,9 @@ streets.register_road_marking({
   overlay = "streets_line_side_thick.png",
   aka = {},
   craft = {
-    {"?", "dye:white", "dye:white"},
-    {"?", "dye:white", "dye:white"},
-    {"?", "dye:white", "dye:white"}
+    {"dye:white", "dye:white", "?"},
+    {"dye:white", "dye:white", "?"},
+    {"dye:white", "dye:white", "?"}
   }
 })
 
@@ -59,9 +59,9 @@ streets.register_road_marking({
   overlay = "streets_line_side_dashed_slim.png",
   aka = {},
   craft = {
-    {"?", "?", "dye:white"},
+    {"dye:white", "?", "?"},
     {"?", "?", "?"},
-    {"?", "?", "dye:white"}
+    {"dye:white", "?", "?"}
   }
 })
 
@@ -71,9 +71,9 @@ streets.register_road_marking({
   overlay = "streets_line_side_dashed_thick.png",
   aka = {},
   craft = {
-    {"?", "dye:white", "dye:white"},
+    {"dye:white", "dye:white", "?"},
     {"?", "?", "?"},
-    {"?", "dye:white", "dye:white"}
+    {"dye:white", "dye:white", "?"}
   }
 })
 
@@ -84,8 +84,8 @@ streets.register_road_marking({
   aka = {},
   craft = {
     {"dye:white", "dye:white", "dye:white"},
-    {"?", "?", "dye:white"},
-    {"?", "?", "dye:white"}
+    {"dye:white", "?", "?"},
+    {"dye:white", "?", "?"}
   }
 })
 
@@ -97,6 +97,6 @@ streets.register_road_marking({
   craft = {
     {"dye:white", "dye:white", "dye:white"},
     {"dye:white", "dye:white", "dye:white"},
-    {"?", "dye:white", "dye:white"}
+    {"dye:white", "dye:white", "?"}
   }
 })
