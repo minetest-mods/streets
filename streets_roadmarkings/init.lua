@@ -100,3 +100,39 @@ streets.register_road_marking({
     {"dye:white", "dye:white", "?"}
   }
 })
+
+streets.register_road_marking({
+  suffix = "line_solid_double",
+  friendly_suffix = "double solid line",
+  overlay = "streets_line_solid_double.png",
+  aka = {},
+  craft = {
+    {"dye:white", "?", "dye:white"},
+    {"dye:white", "?", "dye:white"},
+    {"dye:white", "?", "dye:white"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "line_dashed_double",
+  friendly_suffix = "double dashed line",
+  overlay = "streets_line_dashed_double.png",
+  aka = {},
+  craft = {
+    {"dye:white", "?", "dye:white"},
+    {"?", "?", "?"},
+    {"dye:white", "?", "dye:white"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "line_mixed_double",
+  friendly_suffix = "double mixed line",
+  overlay = "streets_line_mixed_double.png",
+  aka = {},
+  craft = {
+    {"dye:white", "?", "dye:white"},
+    {"dye:white", "?", "?"},
+    {"dye:white", "?", "dye:white"}
+  }
+})
