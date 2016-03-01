@@ -232,3 +232,15 @@ streets.register_road_marking({
     {"?", "dye:white", "?"}
   }
 })
+
+streets.register_road_marking({
+  suffix = "parking",
+  friendly_suffix = "parking",
+  overlay = "streets_parking.png",
+  aka = {},
+  craft = {
+    {"dye:white", "dye:white", "?"},
+    {"dye:white", "dye:white", "?"},
+    {"dye:white", "?", "?"}
+  }
+})
