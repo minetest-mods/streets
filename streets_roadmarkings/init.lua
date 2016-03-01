@@ -184,3 +184,51 @@ streets.register_road_marking({
     {"?", "dye:white", "?"}
   }
 })
+
+streets.register_road_marking({
+  suffix = "arrow_straightleft",
+  friendly_suffix = "arrow straigth on + left",
+  overlay = "streets_arrow_straightleft.png",
+  aka = {},
+  craft = {
+    {"?", "dye.white", "?"},
+    {"dye:white", "dye:white", "?"},
+    {"?", "dye:white", "?"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "arrow_straightright",
+  friendly_suffix = "arrow straigth on + right",
+  overlay = "streets_arrow_straightright.png",
+  aka = {},
+  craft = {
+    {"?", "dye.white", "?"},
+    {"?", "dye:white", "dye:white"},
+    {"?", "dye:white", "?"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "arrow_straightleftright",
+  friendly_suffix = "arrow straigth on + left + right",
+  overlay = "streets_arrow_straightleftright.png",
+  aka = {},
+  craft = {
+    {"?", "dye.white", "?"},
+    {"dye:white", "dye:white", "dye:white"},
+    {"?", "dye:white", "?"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "arrow_leftright",
+  friendly_suffix = "arrow left + right",
+  overlay = "streets_arrow_leftright.png",
+  aka = {},
+  craft = {
+    {"?", "?", "?"},
+    {"dye:white", "dye:white", "dye:white"},
+    {"?", "dye:white", "?"}
+  }
+})
