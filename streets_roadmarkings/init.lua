@@ -244,3 +244,27 @@ streets.register_road_marking({
     {"dye:white", "?", "?"}
   }
 })
+
+streets.register_road_marking({
+  suffix = "zizag",
+  friendly_suffix = "zigzag",
+  overlay = "streets_zigzag.png",
+  aka = {},
+  craft = {
+    {"dye:white", "?", "?"},
+    {"?", "dye:white", "?"},
+    {"?", "?", "dye:white"}
+  }
+})
+
+streets.register_road_marking({
+  suffix = "forbidden",
+  friendly_suffix = "forbidden area",
+  overlay = "streets_forbidden.png",
+  aka = {},
+  craft = {
+    {"dye:white", "?", "dye:white"},
+    {"?", "dye:white", "?"},
+    {"dye:white", "?", "dye:white"}
+  }
+})
