@@ -32,15 +32,11 @@ minetest.after(0, function()
       -- Replace placeholders in craft recipe
       local craft = table.copy(marking_data.craft)
       local replacement = surface_name:sub(2, -1)
-      if craft[1][1] == "?" then craft[1][1] = replacement end
-      if craft[1][2] == "?" then craft[1][2] = replacement end
-      if craft[1][3] == "?" then craft[1][3] = replacement end
-      if craft[2][1] == "?" then craft[2][1] = replacement end
-      if craft[2][2] == "?" then craft[2][2] = replacement end
-      if craft[2][3] == "?" then craft[2][3] = replacement end
-      if craft[3][1] == "?" then craft[3][1] = replacement end
-      if craft[3][2] == "?" then craft[3][2] = replacement end
-      if craft[3][3] == "?" then craft[3][3] = replacement end
+      for i = 1, 3 do
+        for j = 1, 3 do
+          if craft[i][j] == "?" then craft[i][j] = replacement end
+        end
+      end
       -- Register the combination of surface and marking
       minetest.register_node(nn, {
         description = description,
@@ -72,19 +68,23 @@ minetest.after(0, function()
         paramtype = "light",
         paramtype2 = "facedir"
       })
+      -- Get a fresh copy of the craft template
       craft = table.copy(marking_data.craft)
       replacement = surface_name:sub(2, -1)
+      -- Replace placeholders and replace white dye by yellow dye
       for i = 1, 3 do
         for j = 1, 3 do
           if craft[i][j] == "?" then craft[i][j] = replacement end
           if craft[i][j] == "dye:white" then craft[i][j] = "dye:yellow" end
         end
       end
+      -- Register the craft
       craft_output = nn:sub(2, -1)
       minetest.register_craft({
         output = craft_output,
         recipe = craft
       })
+      -- Register the aliass
       if type(marking_data.aka) == "table" then
         for _, old_name in ipairs(marking_data.aka) do
           minetest.register_alias(old_name, craft_output)
