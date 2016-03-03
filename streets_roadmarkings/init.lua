@@ -10,6 +10,9 @@ streets.register_road_marking({
   friendly_suffix = "dashed line",
   overlay = "streets_line_dashed.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"?", "dye:white", "?"},
     {"?", "?", "?"},
@@ -22,6 +25,9 @@ streets.register_road_marking({
   friendly_suffix = "solid line",
   overlay = "streets_line_solid.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"?", "dye:white", "?"},
     {"?", "dye:white", "?"},
@@ -34,6 +40,9 @@ streets.register_road_marking({
   friendly_suffix = "slim line",
   overlay = "streets_line_side_slim.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "?", "?"},
     {"dye:white", "?", "?"},
@@ -46,6 +55,9 @@ streets.register_road_marking({
   friendly_suffix = "thick line",
   overlay = "streets_line_side_thick.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "dye:white", "?"},
     {"dye:white", "dye:white", "?"},
@@ -58,6 +70,9 @@ streets.register_road_marking({
   friendly_suffix = "slim dashed line",
   overlay = "streets_line_side_dashed_slim.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "?", "?"},
     {"?", "?", "?"},
@@ -70,6 +85,9 @@ streets.register_road_marking({
   friendly_suffix = "thick dashed line",
   overlay = "streets_line_side_dashed_thick.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "dye:white", "?"},
     {"?", "?", "?"},
@@ -82,6 +100,9 @@ streets.register_road_marking({
   friendly_suffix = "slim edge line",
   overlay = "streets_line_edge_slim.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "dye:white", "dye:white"},
     {"dye:white", "?", "?"},
@@ -94,6 +115,9 @@ streets.register_road_marking({
   friendly_suffix = "thick edge line",
   overlay = "streets_line_edge_thick.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "dye:white", "dye:white"},
     {"dye:white", "dye:white", "dye:white"},
@@ -106,6 +130,9 @@ streets.register_road_marking({
   friendly_suffix = "double solid line",
   overlay = "streets_line_solid_double.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
     {"dye:white", "?", "dye:white"},
@@ -118,6 +145,9 @@ streets.register_road_marking({
   friendly_suffix = "double dashed line",
   overlay = "streets_line_dashed_double.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
     {"?", "?", "?"},
@@ -130,6 +160,9 @@ streets.register_road_marking({
   friendly_suffix = "double mixed line",
   overlay = "streets_line_mixed_double.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
     {"dye:white", "?", "?"},
@@ -142,6 +175,9 @@ streets.register_road_marking({
   friendly_suffix = "crosswalk",
   overlay = "streets_crosswalk.png",
   aka = {},
+  register_stair = false,
+  register_slab = false,
+  continous = false,
   craft = {
     {"?", "?", "?"},
     {"dye:white", "dye:white", "dye:white"},
@@ -154,6 +190,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow straight on",
   overlay = "streets_arrow_straight.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "?", "?"},
     {"?", "dye:white", "?"},
@@ -166,6 +205,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow left",
   overlay = "streets_arrow_left.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "?", "?"},
     {"dye:white", "dye:white", "?"},
@@ -178,6 +220,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow right",
   overlay = "streets_arrow_right.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "?", "?"},
     {"?", "dye:white", "dye:white"},
@@ -190,6 +235,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow straigth on + left",
   overlay = "streets_arrow_straightleft.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "dye.white", "?"},
     {"dye:white", "dye:white", "?"},
@@ -202,6 +250,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow straigth on + right",
   overlay = "streets_arrow_straightright.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "dye.white", "?"},
     {"?", "dye:white", "dye:white"},
@@ -214,6 +265,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow straigth on + left + right",
   overlay = "streets_arrow_straightleftright.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "dye.white", "?"},
     {"dye:white", "dye:white", "dye:white"},
@@ -226,6 +280,9 @@ streets.register_road_marking({
   friendly_suffix = "arrow left + right",
   overlay = "streets_arrow_leftright.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"?", "?", "?"},
     {"dye:white", "dye:white", "dye:white"},
@@ -238,6 +295,9 @@ streets.register_road_marking({
   friendly_suffix = "parking",
   overlay = "streets_parking.png",
   aka = {},
+  register_stair = false,
+  register_slab = true,
+  continous = false,
   craft = {
     {"dye:white", "dye:white", "?"},
     {"dye:white", "dye:white", "?"},
@@ -250,6 +310,9 @@ streets.register_road_marking({
   friendly_suffix = "zigzag",
   overlay = "streets_zigzag.png",
   aka = {},
+  register_stair = false,
+  register_slab = false,
+  continous = true,
   craft = {
     {"dye:white", "?", "?"},
     {"?", "dye:white", "?"},
@@ -262,6 +325,9 @@ streets.register_road_marking({
   friendly_suffix = "forbidden area",
   overlay = "streets_forbidden.png",
   aka = {},
+  register_stair = true,
+  register_slab = true,
+  continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
     {"?", "dye:white", "?"},

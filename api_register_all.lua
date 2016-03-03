@@ -46,8 +46,18 @@ minetest.after(0, function()
         paramtype = "light",
         paramtype2 = "facedir"
       })
-      local craft_output = nn:sub(2, -1)
+      -- Register stair or slab if allowed in definition
+      if marking_data.register_stair == true then
+        stairs.register_stair(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2], tiles[2], tiles[2], tiles[2], tiles[1]}, description, sounds)
+      end
+      if marking_data.register_slab == true and marking_data.continous == true then
+        stairs.register_slab(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2], tiles[2], tiles[2], tiles[2], tiles[1]}, description, sounds)
+      end
+      if marking_data.register_slab == true and marking_data.continous == false then
+        stairs.register_slab(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2]}, description, sounds)
+      end
       -- Register the craft for this node
+      local craft_output = nn:sub(2, -1)
       minetest.register_craft({
         output = craft_output,
         recipe = craft
