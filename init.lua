@@ -26,6 +26,9 @@ streets.api = {
 -- Load the API file
 dofile(streets.conf.modpath .. "/api.lua")
 
+-- Load global definitions
+dofile(streets.conf.modpath .. "/global.lua")
+
 -- Load mod files
 streets.load_submod("streets_roadsurface")
 streets.load_submod("streets_roadmarkings")
