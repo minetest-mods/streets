@@ -19,7 +19,11 @@ minetest.after(0, function()
       end
     end
     -- Register the craft for this surface
-    minetest.register_craft(surface_definition.craft)
+    if type(surface_definition.craft) == "table" then
+      minetest.register_craft(surface_definition.craft)
+    else
+      minetest.log("warning", surface_name .. "registered, but no craft recipe specified.")
+    end
     -- Loop through the list of markings
     for marking_suffix, marking_data in pairs(marking_list) do
       -- Collect required data for node defintion
