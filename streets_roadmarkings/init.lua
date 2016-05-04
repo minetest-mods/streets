@@ -325,8 +325,8 @@ streets.register_road_marking({
   friendly_suffix = "forbidden area",
   overlay = "streets_forbidden.png",
   aka = {},
-  register_stair = true,
-  register_slab = true,
+  register_stair = false,
+  register_slab = false,
   continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
