@@ -12,6 +12,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = false,
   continous = true,
   craft = {
     {"?", "dye:white", "?"},
@@ -27,6 +28,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = false,
   continous = true,
   craft = {
     {"?", "dye:white", "?"},
@@ -42,6 +44,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = true,
   continous = true,
   craft = {
     {"dye:white", "?", "?"},
@@ -57,6 +60,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = true,
   continous = true,
   craft = {
     {"dye:white", "dye:white", "?"},
@@ -72,6 +76,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = true,
   continous = true,
   craft = {
     {"dye:white", "?", "?"},
@@ -87,6 +92,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = true,
   continous = true,
   craft = {
     {"dye:white", "dye:white", "?"},
@@ -102,6 +108,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = true,
   craft = {
     {"dye:white", "dye:white", "dye:white"},
@@ -117,6 +124,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = true,
   craft = {
     {"dye:white", "dye:white", "dye:white"},
@@ -132,6 +140,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = false,
   continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
@@ -147,6 +156,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = false,
   continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
@@ -162,6 +172,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = true,
   register_slab = true,
+  flip_required = true,
   continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
@@ -177,6 +188,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = false,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "?", "?"},
@@ -192,6 +204,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "?", "?"},
@@ -207,6 +220,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "?", "?"},
@@ -222,6 +236,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "?", "?"},
@@ -237,6 +252,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "dye.white", "?"},
@@ -252,6 +268,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "dye.white", "?"},
@@ -267,6 +284,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "dye.white", "?"},
@@ -282,6 +300,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"?", "?", "?"},
@@ -297,6 +316,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = true,
+  flip_required = false,
   continous = false,
   craft = {
     {"dye:white", "dye:white", "?"},
@@ -312,6 +332,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = false,
+  flip_required = false,
   continous = true,
   craft = {
     {"dye:white", "?", "?"},
@@ -327,6 +348,7 @@ streets.register_road_marking({
   aka = {},
   register_stair = false,
   register_slab = false,
+  flip_required = false,
   continous = true,
   craft = {
     {"dye:white", "?", "dye:white"},
