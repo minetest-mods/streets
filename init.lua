@@ -32,6 +32,7 @@ dofile(streets.conf.modpath .. "/global.lua")
 -- Load mod files
 streets.load_submod("streets_roadsurface")
 streets.load_submod("streets_roadmarkings")
+streets.load_submod("streets_roadworks")
 
 -- Let the API register everything and finish the setup
 dofile(streets.conf.modpath .. "/api_register_all.lua")
