@@ -42,7 +42,7 @@ minetest.register_node(":streets:rw_dashed_yellow",{
 })
 
 minetest.register_node(":streets:rw_sideline_slim", {
-  description = "Slim sideline for roadworks",
+  description = "Roadworks: Slim sideline",
   tiles = {"streets_line_side_slim_yellow.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -63,7 +63,7 @@ minetest.register_node(":streets:rw_sideline_slim", {
 })
 
 minetest.register_node(":streets:rw_sideline_thick", {
-  description = "Thick sideline for roadworks",
+  description = "Roadworks: Thick sideline",
   tiles = {"streets_line_side_thick_yellow.png", "streets_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -84,7 +84,7 @@ minetest.register_node(":streets:rw_sideline_thick", {
 })
 
 minetest.register_node(":streets:rw_side_dashed_slim", {
-  description = "Slim dashed sideline for roadworks",
+  description = "Roadworks: Slim dashed sideline",
   tiles = {"streets_line_side_dashed_slim_yellow.png", "streets_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -105,7 +105,7 @@ minetest.register_node(":streets:rw_side_dashed_slim", {
 })
 
 minetest.register_node(":streets:rw_side_dashed_thick", {
-  description = "Tick dashed sideline for roadworks",
+  description = "Roadworks: Tick dashed sideline",
   tiles = {"streets_line_side_dashed_thick_yellow.png", "streets_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -126,7 +126,7 @@ minetest.register_node(":streets:rw_side_dashed_thick", {
 })
 
 minetest.register_node(":streets:rw_edge_slim", {
-  description = "Slim sideline for roadworks",
+  description = "Roadworks: Slim sideline",
   tiles = {"streets_line_edge_slim_yellow.png", "streets_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -147,7 +147,7 @@ minetest.register_node(":streets:rw_edge_slim", {
 })
 
 minetest.register_node(":streets:rw_edge_thick", {
-  description = "Thick sideline for roadworks",
+  description = "Roadworks: Thick sideline",
   tiles = {"streets_line_edge_thick_yellow.png", "streets_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -168,16 +168,16 @@ minetest.register_node(":streets:rw_edge_thick", {
 })
 
 minetest.register_node(":streets:rw_cross",{
-	description = "Cross",
-	tiles = {"streets_rw_cross.png"},
+	description = "Roadworks: Cross",
+	tiles = {"streets_cross.png"},
 	drawtype = "signlike",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
 	sunlight_propagates = true,
 	walkable = false,
-	inventory_image = "streets_rw_cross.png",
-	wield_image = "streets_rw_cross.png",
+	inventory_image = "streets_cross.png",
+	wield_image = "streets_cross.png",
 	selection_box = {
 		type = "wallmounted"
 	}
