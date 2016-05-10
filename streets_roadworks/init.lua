@@ -6,7 +6,7 @@
 
 minetest.register_node(":streets:rw_cross",{
 	description = "Roadworks: Cross",
-	tiles = {"streets_cross.png"},
+	tiles = {"streets_cross.png", "streets_transparent.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
 	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
@@ -16,10 +16,10 @@ minetest.register_node(":streets:rw_cross",{
 	wield_image = "streets_cross.png",
   node_box = {
 		type = "fixed",
-		fixed = box
+		fixed = {{-0.5, -0.5, -0.5, 0.5, -0.499, 0.5}}
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = sel
+		fixed = {{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5}}
 	}
 })
