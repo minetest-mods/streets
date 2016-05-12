@@ -29,8 +29,8 @@ minetest.after(0, function()
       -- Collect required data for node defintion
       local nn = surface_name .. "_" .. marking_suffix
       local description = surface_definition.description .. " " .. marking_data.friendly_suffix
-      local tiles = {surface_definition.tiles[1] .. "^" .. marking_data.overlay, surface_definition.tiles[1]}
-      local tiles2 = {surface_definition.tiles[1] .. "^" .. marking_data.overlay:split(".")[1] .. "_yellow.png", surface_definition.tiles[1]}
+      local tiles = {surface_definition.tiles[1] .. "^" .. marking_data.overlay, surface_definition.tiles[1], surface_definition.tiles[1], surface_definition.tiles[1], surface_definition.tiles[1] .. "^" .. marking_data.overlay  .. "^[transformFX", surface_definition.tiles[1] .. "^" .. marking_data.overlay}
+      local tiles2 = {surface_definition.tiles[1] .. "^" .. marking_data.overlay:split(".")[1] .. "_yellow.png", surface_definition.tiles[1], surface_definition.tiles[1], surface_definition.tiles[1], surface_definition.tiles[1] .. "^" .. marking_data.overlay:split(".")[1] .. "_yellow.png^[transformFX", surface_definition.tiles[1] .. "^" .. marking_data.overlay:split(".")[1] .. "_yellow.png"}
       local groups = surface_definition.groups
       local sounds = surface_definition.sounds
       -- Replace placeholders in craft recipe
