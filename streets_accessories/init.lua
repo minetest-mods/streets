@@ -11,6 +11,7 @@ minetest.register_node(":streets:delineator", {
   paramtype2 = "facedir",
   groups = {snappy = 2},
   light_source = 2,
+  sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
