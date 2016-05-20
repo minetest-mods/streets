@@ -4,6 +4,23 @@
   Optional: true
 ]]
 
+local function workshop_form(tab, color, progress)
+  return table.concat({
+    "size[9,9;]",
+    "tabheader[0,0;sphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. tab .. ";false;true]",
+    "image_button[0,0;1,1;dye_white.png;color_white;]",
+    "image_button[1,0;1,1;dye_yellow.png;color_yellow;]",
+    "image[0,2;1,2.125;wool_white.png]",
+    "image[1,2;1,2.125;wool_yellow.png]",
+    "list[context;asphalt_workshop_list;2,0;4,4]",
+    "list[context;asphalt_workshop_surface;6,1;1,1]",
+    "list[context;asphalt_workshop_template;8,1;1,1]",
+    "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. progress .. ":gui_furnace_arrow_fg.png^[transformR180]",
+    "list[context;asphalt_workshop_output;7,3;1,1]",
+    "list[current_player;main;0.5,5;8,4]",
+  })
+end
+
 minetest.register_node(":streets:asphalt_workshop", {
 	tiles = {"default_wood.png",},
 	drawtype = "nodebox",
@@ -36,5 +53,11 @@ minetest.register_node(":streets:asphalt_workshop", {
 	},
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
     local meta = minetest.get_meta(pos)
+    local inv = meta:get_inventory(pos)
+    meta:set_string("formspec", workshop_form(1, "white", 0))
+    inv:set_size("asphalt_workshop_list", 16)
+    inv:set_size("asphalt_workshop_template", 1)
+    inv:set_size("asphalt_workshop_surface", 1)
+    inv:set_size("asphalt_workshop_output", 1)
 	end
 })
