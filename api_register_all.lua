@@ -119,7 +119,7 @@ minetest.after(0, function()
   -- Register roadwork markings
   for marking_suffix, marking_data in pairs(marking_list) do
     if marking_data.register_rw == true then
-      minetest.register_node(":streets:rw_" .. marking_data.suffix,{
+      minetest.register_node(":streets:rw_" .. marking_data.suffix .. "_yellow",{
         description = "Roadworks: " .. marking_data.friendly_suffix:gsub("^%l", string.upper),
         tiles = {marking_data.overlay:split(".")[1] .. "_yellow.png", "streets_transparent.png"},
       	drawtype = "nodebox",
@@ -130,6 +130,26 @@ minetest.after(0, function()
       	walkable = false,
       	inventory_image = marking_data.overlay:split(".")[1] .. "_yellow.png",
       	wield_image = marking_data.overlay:split(".")[1] .. "_yellow.png",
+        node_box = {
+      		type = "fixed",
+      		fixed = {{-0.5, -0.5, -0.5, 0.5, -0.499, 0.5}}
+      	},
+      	selection_box = {
+      		type = "fixed",
+      		fixed = {{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5}}
+      	}
+      })
+      minetest.register_node(":streets:rw_" .. marking_data.suffix .. "_white",{
+        description = "Roadworks: " .. marking_data.friendly_suffix:gsub("^%l", string.upper),
+        tiles = {marking_data.overlay, "streets_transparent.png"},
+      	drawtype = "nodebox",
+      	paramtype = "light",
+      	paramtype2 = "facedir",
+      	groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1},
+      	sunlight_propagates = true,
+      	walkable = false,
+      	inventory_image = marking_data.overlay,
+      	wield_image = marking_data.overlay,
         node_box = {
       		type = "fixed",
       		fixed = {{-0.5, -0.5, -0.5, 0.5, -0.499, 0.5}}

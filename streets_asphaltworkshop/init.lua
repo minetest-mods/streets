@@ -21,6 +21,20 @@ local function workshop_form(tab, color, progress)
   })
 end
 
+local function workshop_list(color, tab)
+  local markings = {
+    {
+      "streets:rw_line_dashed_white"
+    }
+  }
+  if color == "yellow" then
+    for k, v in ipairs(r) do
+      r[k] = v .. "_yellow"
+    end
+  end
+  return markings[tab]
+end
+
 minetest.register_node(":streets:asphalt_workshop", {
 	tiles = {"default_wood.png",},
 	drawtype = "nodebox",
@@ -52,12 +66,22 @@ minetest.register_node(":streets:asphalt_workshop", {
 		type = "regular"
 	},
   on_receive_fields = function(pos, formname, fields, sender)
-    minetest.chat_send_all(minetest.write_json(fields))
+    if fields.asphalt_workshop_tabs then
+      if fields.asphalt_workshop_tabs == "1" then
+        local meta = minetest.get_meta(pos)
+        local inv = meta:get_inventory(pos)
+        minetest.chat_send_all(minetest.write_json(workshop_list(meta:get_string("color"), meta:get_int("tab") or 1)))
+        inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), meta:get_int("tab") or 1))
+      end
+    end
   end,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
     local meta = minetest.get_meta(pos)
     local inv = meta:get_inventory(pos)
     meta:set_string("formspec", workshop_form(1, "white", 0))
+    meta:set_string("color", "white")
+    meta:set_int("progress", 0)
+    meta:set_int("tab", 1)
     inv:set_size("asphalt_workshop_list", 16)
     inv:set_size("asphalt_workshop_template", 1)
     inv:set_size("asphalt_workshop_surface", 1)
