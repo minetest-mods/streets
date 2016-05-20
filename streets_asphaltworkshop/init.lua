@@ -7,7 +7,7 @@
 local function workshop_form(tab, color, progress)
   return table.concat({
     "size[9,9;]",
-    "tabheader[0,0;sphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. tab .. ";false;true]",
+    "tabheader[0,0;asphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. tab .. ";false;true]",
     "image_button[0,0;1,1;dye_white.png;color_white;]",
     "image_button[1,0;1,1;dye_yellow.png;color_yellow;]",
     "image[0,2;1,2.125;wool_white.png]",
@@ -51,6 +51,9 @@ minetest.register_node(":streets:asphalt_workshop", {
 	selection_box = {
 		type = "regular"
 	},
+  on_receive_fields = function(pos, formname, fields, sender)
+    minetest.chat_send_all(minetest.write_json(fields))
+  end,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
     local meta = minetest.get_meta(pos)
     local inv = meta:get_inventory(pos)
