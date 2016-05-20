@@ -5,6 +5,7 @@
 ]]
 
 local function workshop_form(tab, color, progress)
+  minetest.chat_send_all(tab)
   return table.concat({
     "size[9,9;]",
     "tabheader[0,0;asphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. tab .. ";false;true]",
@@ -23,14 +24,44 @@ end
 
 local function workshop_list(color, tab)
   local markings = {
+    -- Center lines
     {
-      "streets:rw_line_dashed_white"
+      "streets:rw_line_dashed_",
+      "streets:rw_line_solid_",
+      "streets:rw_line_solid_double_",
+      "streets:rw_line_dashed_double_",
+      "streets:rw_line_mixed_double_",
+    },
+    -- Side lines
+    {
+      "streets:rw_side_slim_",
+      "streets:rw_side_thick_",
+      "streets:rw_side_dashed_slim_",
+      "streets:rw_side_dashed_thick_",
+      "streets:rw_edge_slim_",
+      "streets:rw_edge_thick_",
+    },
+    -- Arrows
+    {
+      "streets:rw_arrow_straightleftright_",
+      "streets:rw_arrow_straightleft_",
+      "streets:rw_arrow_straightright_",
+      "streets:rw_arrow_leftright_",
+      "streets:rw_arrow_straight_",
+      "streets:rw_arrow_left_",
+      "streets:rw_arrow_right_",
+    },
+    -- Other
+    {
+      "streets:rw_parking_",
+      "streets:rw_cross_",
+      "streets:rw_crosswalk_",
+      "streets:rw_zigzag_",
+      "streets:rw_forbidden_",
     }
   }
-  if color == "yellow" then
-    for k, v in ipairs(r) do
-      r[k] = v .. "_yellow"
-    end
+  for k, v in ipairs(markings[tab]) do
+    markings[tab][k] = v .. color
   end
   return markings[tab]
 end
@@ -65,14 +96,24 @@ minetest.register_node(":streets:asphalt_workshop", {
 	selection_box = {
 		type = "regular"
 	},
+  on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+    local meta = minetest.get_meta(pos)
+    meta:set_string("formspec", workshop_form(meta:get_int("tab"), "white", meta:get_int("progress")))
+  end,
   on_receive_fields = function(pos, formname, fields, sender)
+    local meta = minetest.get_meta(pos)
+    local inv = meta:get_inventory(pos)
     if fields.asphalt_workshop_tabs then
-      if fields.asphalt_workshop_tabs == "1" then
-        local meta = minetest.get_meta(pos)
-        local inv = meta:get_inventory(pos)
-        minetest.chat_send_all(minetest.write_json(workshop_list(meta:get_string("color"), meta:get_int("tab") or 1)))
-        inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), meta:get_int("tab") or 1))
-      end
+      meta:set_int("tab", tonumber(fields.asphalt_workshop_tabs))
+      inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), tonumber(fields.asphalt_workshop_tabs)))
+    end
+    if fields.color_white then
+      meta:set_string("color", "white")
+      inv:set_list("asphalt_workshop_list", workshop_list("white", meta:get_int("tab")))
+    end
+    if fields.color_yellow then
+      meta:set_string("color", "yellow")
+      inv:set_list("asphalt_workshop_list", workshop_list("yellow", meta:get_int("tab")))
     end
   end,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)

@@ -346,7 +346,7 @@ streets.register_road_marking({
 })
 
 streets.register_road_marking({
-  suffix = "zizag",
+  suffix = "zigzag",
   friendly_suffix = "zigzag",
   overlay = "streets_zigzag.png",
   aka = {},
