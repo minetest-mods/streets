@@ -4,11 +4,11 @@
   Optional: true
 ]]
 
-local function workshop_form(tab, color, progress)
-  minetest.chat_send_all(tab)
+local function workshop_form(pos)
+  local meta = minetest.get_meta(pos)
   return table.concat({
     "size[9,9;]",
-    "tabheader[0,0;asphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. tab .. ";false;true]",
+    "tabheader[0,0;asphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. (meta:get_int("tab") or 1) .. ";false;true]",
     "image_button[0,0;1,1;dye_white.png;color_white;]",
     "image_button[1,0;1,1;dye_yellow.png;color_yellow;]",
     "image[0,2;1,2.125;wool_white.png]",
@@ -16,7 +16,7 @@ local function workshop_form(tab, color, progress)
     "list[context;asphalt_workshop_list;2,0;4,4]",
     "list[context;asphalt_workshop_surface;6,1;1,1]",
     "list[context;asphalt_workshop_template;8,1;1,1]",
-    "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. progress .. ":gui_furnace_arrow_fg.png^[transformR180]",
+    "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. (meta:get_int("progress") or 1) .. ":gui_furnace_arrow_fg.png^[transformR180]",
     "list[context;asphalt_workshop_output;7,3;1,1]",
     "list[current_player;main;0.5,5;8,4]",
   })
@@ -96,34 +96,39 @@ minetest.register_node(":streets:asphalt_workshop", {
 	selection_box = {
 		type = "regular"
 	},
-  on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-    local meta = minetest.get_meta(pos)
-    meta:set_string("formspec", workshop_form(meta:get_int("tab"), "white", meta:get_int("progress")))
-  end,
   on_receive_fields = function(pos, formname, fields, sender)
     local meta = minetest.get_meta(pos)
     local inv = meta:get_inventory(pos)
+    -- Switch tabs
     if fields.asphalt_workshop_tabs then
       meta:set_int("tab", tonumber(fields.asphalt_workshop_tabs))
       inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), tonumber(fields.asphalt_workshop_tabs)))
     end
+    -- Switch color to white
     if fields.color_white then
       meta:set_string("color", "white")
       inv:set_list("asphalt_workshop_list", workshop_list("white", meta:get_int("tab")))
     end
+    -- Switch color to yellow
     if fields.color_yellow then
       meta:set_string("color", "yellow")
       inv:set_list("asphalt_workshop_list", workshop_list("yellow", meta:get_int("tab")))
     end
+    -- Prepare form for the next time
+    meta:set_string("formspec", workshop_form(pos))
+    inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), meta:get_int("tab")))
   end,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
     local meta = minetest.get_meta(pos)
     local inv = meta:get_inventory(pos)
-    meta:set_string("formspec", workshop_form(1, "white", 0))
+    -- Set up initial meta data (white markings, no production progress, tab 1 active)
     meta:set_string("color", "white")
     meta:set_int("progress", 0)
     meta:set_int("tab", 1)
+    -- Generate formspec and set up inventories
+    meta:set_string("formspec", workshop_form(pos))
     inv:set_size("asphalt_workshop_list", 16)
+    inv:set_list("asphalt_workshop_list", workshop_list("white", 1))
     inv:set_size("asphalt_workshop_template", 1)
     inv:set_size("asphalt_workshop_surface", 1)
     inv:set_size("asphalt_workshop_output", 1)
