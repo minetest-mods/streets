@@ -132,5 +132,32 @@ minetest.register_node(":streets:asphalt_workshop", {
     inv:set_size("asphalt_workshop_template", 1)
     inv:set_size("asphalt_workshop_surface", 1)
     inv:set_size("asphalt_workshop_output", 1)
-	end
+	end,
+  allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+    -- Put item into input slot
+		if listname ~= "asphalt_workshop_surface" then
+			return 0
+		else
+			return 1
+		end
+	end,
+  allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+    -- list -> template slot
+    if from_list == "asphalt_workshop_list" and to_list == "asphalt_workshop_template" then
+      return 1
+    end
+    -- template slot -> list
+    if from_list == "asphalt_workshop_template" and to_list == "asphalt_workshop_list" then
+      return 1
+    end
+    -- Every other case
+    return 0
+  end,
+  allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+    if listname == "asphalt_workshop_output" or listname == "asphalt_workshop_surface" then
+      return 99
+    end
+    -- Every other case
+    return 0
+  end
 })
