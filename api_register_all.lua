@@ -12,6 +12,8 @@ minetest.after(0, function()
   for surface_name, surface_definition in pairs(surface_list) do
     -- Register the surface itself (e.g. plain asphalt)
     minetest.register_node(surface_name, surface_definition)
+    stairs.register_slab(surface_name:sub(2, -1):split(":")[2], surface_name:sub(2, -1), surface_definition.groups, surface_definition.tiles, surface_definition.description .. " Slab", surface_definition.sounds)
+    stairs.register_stair(surface_name:sub(2, -1):split(":")[2], surface_name:sub(2, -1), surface_definition.groups, surface_definition.tiles, surface_definition.description .. " Stair", surface_definition.sounds)
     -- Register for surface alias if given
     if type(surface_definition.aka) == "table" then
       for _, old_name in ipairs(surface_definition.aka) do
