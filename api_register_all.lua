@@ -63,11 +63,11 @@ minetest.after(0, function()
       if marking_data.register_stair == true then
         stairs.register_stair(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2], tiles[2], tiles[2], tiles[2], tiles[1]}, description, sounds)
         if marking_data.flip_required == true then
-          stairs.register_stair(nn:sub(2, -1):split(":")[2] .. "_transformFY", nn:sub(2, -1), groups, {tiles[1] .. "^[transformR180", tiles[2] .. "^[transformFY", tiles[2], tiles[2], tiles[2], tiles[1]}, description, sounds)
+          stairs.register_stair(nn:sub(2, -1):split(":")[2] .. "_transformFY", nn:sub(2, -1), groups, {tiles[1] .. "^[transformR180", tiles[2], tiles[2], tiles[2], tiles[2], tiles[1] .. "^[transformR180"}, description, sounds)
         end
       end
       if marking_data.register_slab == true and marking_data.continous == true then
-        stairs.register_slab(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2], tiles[2], tiles[2], tiles[2], tiles[1]}, description, sounds)
+        stairs.register_slab(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2], tiles[2], tiles[2], tiles[1] .. "^[transformFX", tiles[1]}, description, sounds)
       end
       if marking_data.register_slab == true and marking_data.continous == false then
         stairs.register_slab(nn:sub(2, -1):split(":")[2], nn:sub(2, -1), groups, {tiles[1], tiles[2]}, description, sounds)
