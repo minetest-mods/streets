@@ -1,5 +1,7 @@
 --[[
-	StreetsMod: inDev Trafficlights
+  ## StreetsMod 2.0 ##
+  Submod: trafficlight
+  Optional: true
 ]]
 
 streets.tlBox =	{
