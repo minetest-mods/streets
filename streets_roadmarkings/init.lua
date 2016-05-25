@@ -160,6 +160,13 @@ streets.register_road_marking({
 })
 
 streets.register_road_marking({
+  name = "white_x",
+  friendlyname = "White X",
+  tex = "streets_cross.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
   name = "dashed_yellow_center_line",
   friendlyname = "Dashed Yellow Center Line",
   tex = "streets_line_dashed_yellow.png",
@@ -311,4 +318,11 @@ streets.register_road_marking({
   friendlyname = "Double Solid Yellow Diagonal Line",
   tex = "streets_forbidden_yellow.png",
   flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "yellow_x",
+  friendlyname = "Yellow X",
+  tex = "streets_cross_yellow.png",
+  flip_required = false,
 })
