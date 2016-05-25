@@ -4,7 +4,7 @@
   Optional: true
 ]]
 
-for surface_name, surface_data in pairs(streets.api.register_road_surfaces) do
+for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
   minetest.register_node(":streets:" .. surface_name:sub(2, -1):split(":")[2] .. "_manhole", {
     description = "Manhole",
     tiles = {surface_data["tiles"][1] .. "^streets_manhole.png", surface_data.tiles[1]},
