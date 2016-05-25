@@ -326,3 +326,27 @@ streets.register_road_marking({
   tex = "streets_cross_yellow.png",
   flip_required = false,
 })
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line_corner",
+  friendlyname = "Solid Yellow Center Line Corner",
+  tex = "streets_rw_solid_curve.png",
+  flip_required = true,
+})
+
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line_tjunction",
+  friendlyname = "Solid Yellow Center Line T-Junction",
+  tex = "streets_rw_solid_tjunction.png",
+  flip_required = true,
+})
+
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line",
+  friendlyname = "Solid Yellow Center Line Crossing",
+  tex = "streets_rw_solid_crossing.png",
+  flip_required = false,
+})
+
