@@ -1,3 +1,5 @@
 default
 stairs
 walls
+stairsplus?
+moreblocks?

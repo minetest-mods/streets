@@ -6,375 +6,309 @@
 ]]
 
 streets.register_road_marking({
-  suffix = "line_dashed",
-  friendly_suffix = "dashed line",
-  overlay = "streets_line_dashed.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "dashed_white_center_line",
+  friendlyname = "Dashed White Center Line",
+  tex = "streets_line_dashed.png",
   flip_required = false,
-  continous = true,
-  register_rw = false,
-  craft = {
-    {"?", "dye:white", "?"},
-    {"?", "?", "?"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "line_solid",
-  friendly_suffix = "solid line",
-  overlay = "streets_line_solid.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "solid_white_center_line",
+  friendlyname = "Solid White Center Line",
+  tex = "streets_line_solid.png",
   flip_required = false,
-  continous = true,
-  register_rw = false,
-  craft = {
-    {"?", "dye:white", "?"},
-    {"?", "dye:white", "?"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "side_slim",
-  friendly_suffix = "slim line",
-  overlay = "streets_line_side_slim.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "solid_white_side_line",
+  friendlyname = "Solid White Side Line",
+  tex = "streets_line_side_slim.png",
   flip_required = true,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "?"},
-    {"dye:white", "?", "?"},
-    {"dye:white", "?", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "side_thick",
-  friendly_suffix = "thick line",
-  overlay = "streets_line_side_thick.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "solid_white_side_line_wide",
+  friendlyname = "Solid White Side Line (Wide)",
+  tex = "streets_line_side_thick.png",
   flip_required = true,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "dye:white", "?"},
-    {"dye:white", "dye:white", "?"},
-    {"dye:white", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "side_dashed_slim",
-  friendly_suffix = "slim dashed line",
-  overlay = "streets_line_side_dashed_slim.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "dashed_white_side_line",
+  friendlyname = "Dashed White Side Line",
+  tex = "streets_line_side_dashed_slim.png",
   flip_required = true,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "?"},
-    {"?", "?", "?"},
-    {"dye:white", "?", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "side_dashed_thick",
-  friendly_suffix = "thick dashed line",
-  overlay = "streets_line_side_dashed_thick.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "dashed_white_side_line_wide",
+  friendlyname = "Dashed White Side Line (Wide)",
+  tex = "streets_line_side_dashed_thick.png",
   flip_required = true,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "dye:white", "?"},
-    {"?", "?", "?"},
-    {"dye:white", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "edge_slim",
-  friendly_suffix = "slim edge line",
-  overlay = "streets_line_edge_slim.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
-  flip_required = false,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "dye:white", "dye:white"},
-    {"dye:white", "?", "?"},
-    {"dye:white", "?", "?"}
-  }
-})
-
-streets.register_road_marking({
-  suffix = "edge_thick",
-  friendly_suffix = "thick edge line",
-  overlay = "streets_line_edge_thick.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
-  flip_required = false,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "dye:white", "dye:white"},
-    {"dye:white", "dye:white", "dye:white"},
-    {"dye:white", "dye:white", "?"}
-  }
-})
-
-streets.register_road_marking({
-  suffix = "line_solid_double",
-  friendly_suffix = "double solid line",
-  overlay = "streets_line_solid_double.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
-  flip_required = false,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "dye:white"},
-    {"dye:white", "?", "dye:white"},
-    {"dye:white", "?", "dye:white"}
-  }
-})
-
-streets.register_road_marking({
-  suffix = "line_dashed_double",
-  friendly_suffix = "double dashed line",
-  overlay = "streets_line_dashed_double.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
-  flip_required = false,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "dye:white"},
-    {"?", "?", "?"},
-    {"dye:white", "?", "dye:white"}
-  }
-})
-
-streets.register_road_marking({
-  suffix = "line_mixed_double",
-  friendly_suffix = "double mixed line",
-  overlay = "streets_line_mixed_double.png",
-  aka = {},
-  register_stair = true,
-  register_slab = true,
+  name = "solid_white_side_line_corner",
+  friendlyname = "Solid White Side Line Corner",
+  tex = "streets_line_edge_slim.png",
   flip_required = true,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "dye:white"},
-    {"dye:white", "?", "?"},
-    {"dye:white", "?", "dye:white"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "crosswalk",
-  friendly_suffix = "crosswalk",
-  overlay = "streets_crosswalk.png",
-  aka = {},
-  register_stair = false,
-  register_slab = false,
-  flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "?", "?"},
-    {"dye:white", "dye:white", "dye:white"},
-    {"?", "?", "?"}
-  }
+  name = "solid_white_side_line_wide_corner",
+  friendlyname = "Solid White Side Line (Wide) Corner",
+  tex = "streets_line_edge_thick.png",
+  flip_required = true,
 })
 
 streets.register_road_marking({
-  suffix = "arrow_straight",
-  friendly_suffix = "arrow straight on",
-  overlay = "streets_arrow_straight.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "double_solid_white_center_line",
+  friendlyname = "Double Solid White Center Line",
+  tex = "streets_line_solid_double.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "?", "?"},
-    {"?", "dye:white", "?"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "arrow_left",
-  friendly_suffix = "arrow left",
-  overlay = "streets_arrow_left.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "double_dashed_white_center_line",
+  friendlyname = "Double Dashed White Center Line",
+  tex = "streets_line_dashed_double.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "?", "?"},
-    {"dye:white", "dye:white", "?"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "arrow_right",
-  friendly_suffix = "arrow right",
-  overlay = "streets_arrow_right.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
-  flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "?", "?"},
-    {"?", "dye:white", "dye:white"},
-    {"?", "dye:white", "?"}
-  }
+  name = "mixed_white_center_line",
+  friendlyname = "Solid/Dashed White Center Line",
+  tex = "streets_line_mixed_double.png",
+  flip_required = true,
 })
 
 streets.register_road_marking({
-  suffix = "arrow_straightleft",
-  friendly_suffix = "arrow straigth on + left",
-  overlay = "streets_arrow_straightleft.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "solid_white_stripe",
+  friendlyname = "Solid White Stripe",
+  tex = "streets_crosswalk.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "dye.white", "?"},
-    {"dye:white", "dye:white", "?"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "arrow_straightright",
-  friendly_suffix = "arrow straigth on + right",
-  overlay = "streets_arrow_straightright.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "white_arrow_straight",
+  friendlyname = "White Arrow (straight)",
+  tex = "streets_arrow_straight.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "dye.white", "?"},
-    {"?", "dye:white", "dye:white"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "arrow_straightleftright",
-  friendly_suffix = "arrow straigth on + left + right",
-  overlay = "streets_arrow_straightleftright.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "white_arrow_left",
+  friendlyname = "White Arrow (left)",
+  tex = "streets_arrow_left.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "dye.white", "?"},
-    {"dye:white", "dye:white", "dye:white"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "arrow_leftright",
-  friendly_suffix = "arrow left + right",
-  overlay = "streets_arrow_leftright.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "white_arrow_right",
+  friendlyname = "White Arrow (right)",
+  tex = "streets_arrow_right.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"?", "?", "?"},
-    {"dye:white", "dye:white", "dye:white"},
-    {"?", "dye:white", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "parking",
-  friendly_suffix = "parking",
-  overlay = "streets_parking.png",
-  aka = {},
-  register_stair = false,
-  register_slab = true,
+  name = "white_arrow_left_straight",
+  friendlyname = "White Arrow (left+straight)",
+  tex = "streets_arrow_straightleft.png",
   flip_required = false,
-  continous = false,
-  register_rw = true,
-  craft = {
-    {"dye:white", "dye:white", "?"},
-    {"dye:white", "dye:white", "?"},
-    {"dye:white", "?", "?"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "zigzag",
-  friendly_suffix = "zigzag",
-  overlay = "streets_zigzag.png",
-  aka = {},
-  register_stair = false,
-  register_slab = false,
+  name = "white_arrow_straight_right",
+  friendlyname = "White Arrow (straight+right)",
+  tex = "streets_arrow_straightright.png",
   flip_required = false,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "?"},
-    {"?", "dye:white", "?"},
-    {"?", "?", "dye:white"}
-  }
 })
 
 streets.register_road_marking({
-  suffix = "forbidden",
-  friendly_suffix = "forbidden area",
-  overlay = "streets_forbidden.png",
-  aka = {},
-  register_stair = false,
-  register_slab = false,
+  name = "white_arrow_left_straight_right",
+  friendlyname = "White Arrow (left+straight+right)",
+  tex = "streets_arrow_straightleftright.png",
   flip_required = false,
-  continous = true,
-  register_rw = true,
-  craft = {
-    {"dye:white", "?", "dye:white"},
-    {"?", "dye:white", "?"},
-    {"dye:white", "?", "dye:white"}
-  }
+})
+
+streets.register_road_marking({
+  name = "white_arrow_left_right",
+  friendlyname = "White Arrow (left+right)",
+  tex = "streets_arrow_leftright.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "white_parking",
+  friendlyname = "White Parking",
+  tex = "streets_parking.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "solid_white_diagonal_line",
+  friendlyname = "Solid White Diagonal Line",
+  tex = "streets_zigzag.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_white_diagonal_line",
+  friendlyname = "Double Solid White Diagonal Line",
+  tex = "streets_forbidden.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "dashed_yellow_center_line",
+  friendlyname = "Dashed Yellow Center Line",
+  tex = "streets_line_dashed_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line",
+  friendlyname = "Solid Yellow Center Line",
+  tex = "streets_line_solid_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_side_line",
+  friendlyname = "Solid Yellow Side Line",
+  tex = "streets_line_side_slim_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_side_line_wide",
+  friendlyname = "Solid Yellow Side Line (Wide)",
+  tex = "streets_line_side_thick_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "dashed_yellow_side_line",
+  friendlyname = "Dashed Yellow Side Line",
+  tex = "streets_line_side_dashed_slim_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "dashed_yellow_side_line_wide",
+  friendlyname = "Dashed Yellow Side Line (Wide)",
+  tex = "streets_line_side_dashed_thick_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_side_line_corner",
+  friendlyname = "Solid Yellow Side Line Corner",
+  tex = "streets_line_edge_slim_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_side_line_wide_corner",
+  friendlyname = "Solid Yellow Side Line (Wide) Corner",
+  tex = "streets_line_edge_thick_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "double_solid_yellow_center_line",
+  friendlyname = "Double Solid Yellow Center Line",
+  tex = "streets_line_solid_double_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "double_dashed_yellow_center_line",
+  friendlyname = "Double Dashed Yellow Center Line",
+  tex = "streets_line_dashed_double_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "mixed_yellow_center_line",
+  friendlyname = "Solid/Dashed Yellow Center Line",
+  tex = "streets_line_mixed_double_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_stripe",
+  friendlyname = "Solid Yellow Stripe",
+  tex = "streets_crosswalk_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_straight",
+  friendlyname = "Yellow Arrow (straight)",
+  tex = "streets_arrow_straight_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_left",
+  friendlyname = "Yellow Arrow (left)",
+  tex = "streets_arrow_left_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_right",
+  friendlyname = "Yellow Arrow (right)",
+  tex = "streets_arrow_right_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_left_straight",
+  friendlyname = "Yellow Arrow (left+straight)",
+  tex = "streets_arrow_straightleft_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_straight_right",
+  friendlyname = "Yellow Arrow (straight+right)",
+  tex = "streets_arrow_straightright_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_left_straight_right",
+  friendlyname = "Yellow Arrow (left+straight+right)",
+  tex = "streets_arrow_straightleftright_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_arrow_left_right",
+  friendlyname = "Yellow Arrow (left+right)",
+  tex = "streets_arrow_leftright_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "yellow_parking",
+  friendlyname = "Yellow Parking",
+  tex = "streets_parking_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_diagonal_line",
+  friendlyname = "Solid Yellow Diagonal Line",
+  tex = "streets_zigzag_yellow.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_diagonal_line",
+  friendlyname = "Double Solid Yellow Diagonal Line",
+  tex = "streets_forbidden_yellow.png",
+  flip_required = true,
 })

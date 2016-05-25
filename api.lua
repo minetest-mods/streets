@@ -5,6 +5,21 @@
   Category: Init
 ]]
 
+local function copytable(orig)
+	local orig_type = type(orig)
+	local copy
+	if orig_type == 'table' then
+		copy = {}
+		for orig_key, orig_value in next, orig, nil do
+			copy[copytable(orig_key)] = copytable(orig_value)
+		end
+		setmetatable(copy, copytable(getmetatable(orig)))
+	else
+		copy = orig
+	end
+	return copy
+end
+
 function streets.load_submod(dirname)
   -- Check whether submod's init file exists
   local f = io.open(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
@@ -17,10 +32,17 @@ function streets.load_submod(dirname)
   end
 end
 
-function streets.register_road_surface(nodename, nodedef)
-  streets.api.register_road_surfaces[nodename] = nodedef
+function streets.register_road_surface(data)
+	streets.surfaces.surfacetypes["streets:"..data.name] = data
 end
 
-function streets.register_road_marking(markingdef)
-  streets.api.register_road_markings[markingdef.suffix] = markingdef
+function streets.register_road_marking(data)
+	table.insert(streets.labels.labeltypes,data)
+	if data.flip_required then
+		local data2 = copytable(data)
+		data2.tex = data2.tex.."^[transformFX"
+		data2.name = data2.name.."_rotated"
+		data2.friendlyname = data2.friendlyname.." (rotated)"
+		table.insert(streets.labels.labeltypes,data2)
+	end
 end

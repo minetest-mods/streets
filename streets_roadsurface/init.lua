@@ -5,12 +5,12 @@
   Category: Roads
 ]]
 
-streets.register_road_surface(":streets:asphalt", {
-  description = "Asphalt",
+streets.register_road_surface({
+  name="asphalt",
+  friendlyname = "Asphalt",
   tiles = {"streets_asphalt.png"},
-  groups = {cracky = 3},
+  groups = {cracky = 3,asphalt = 1},
   sounds = default.node_sound_stone_defaults(),
-  aka = {},
   craft = {
     output = "streets:asphalt 1",
     type = "cooking",
@@ -19,12 +19,12 @@ streets.register_road_surface(":streets:asphalt", {
   }
 })
 
-streets.register_road_surface(":streets:asphalt_red", {
-  description = "Colored Asphalt",
+streets.register_road_surface({
+  name = "asphalt_red",
+  friendlyname = "Red Asphalt",
   tiles = {"streets_asphalt_red.png"},
-  groups = {cracky = 3},
+  groups = {cracky = 3,asphalt = 1},
   sounds = default.node_sound_stone_defaults(),
-  aka = {},
   craft = {
     output = "streets:asphalt_red 1",
     type = "shapeless",
@@ -32,12 +32,12 @@ streets.register_road_surface(":streets:asphalt_red", {
   }
 })
 
-streets.register_road_surface(":streets:asphalt_yellow", {
-  description = "Colored Asphalt",
+streets.register_road_surface({
+  name = "asphalt_yellow",
+  friendlyname = "Yellow Asphalt",
   tiles = {"streets_asphalt_yellow.png"},
-  groups = {cracky = 3},
+  groups = {cracky = 3,asphalt = 1},
   sounds = default.node_sound_stone_defaults(),
-  aka = {},
   craft = {
     output = "streets:asphalt_yellow 1",
     type = "shapeless",
@@ -45,10 +45,11 @@ streets.register_road_surface(":streets:asphalt_yellow", {
   }
 })
 
-streets.register_road_surface(":streets:asphalt_blue", {
-  description = "Colored Asphalt",
+streets.register_road_surface({
+  name = "asphalt_blue",
+  friendlyname = "Blue Asphalt",
   tiles = {"streets_asphalt_blue.png"},
-  groups = {cracky = 3},
+  groups = {cracky = 3,asphalt = 1},
   sounds = default.node_sound_stone_defaults(),
   craft = {
     output = "streets:asphalt_blue 1",

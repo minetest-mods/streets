@@ -18,10 +18,8 @@ streets.conf = {
 }
 
 -- The API collects some data here
-streets.api = {
-  register_road_surfaces = {},
-  register_road_markings = {}
-}
+streets.surfaces = {surfacetypes = {}}
+streets.labels = {labeltypes = {}}
 
 -- Load the API file
 dofile(streets.conf.modpath .. "/api.lua")
