@@ -54,7 +54,7 @@ local register_marking_nodes = function(surface_friendlyname,surface_name,surfac
 			local node = minetest.get_node(pos)
 			local lower_pos = {x = pos.x, y = pos.y-1, z = pos.z}
 			local lower_node = minetest.get_node(lower_pos)
-			local lower_node_is_asphalt = minetest.registered_nodes[lower_node.name].groups.asphalt
+			local lower_node_is_asphalt = minetest.registered_nodes[lower_node.name].groups.asphalt and streets.surfaces.surfacetypes[lower_node.name]
 			if lower_node_is_asphalt then
 				local lower_node_basename = streets.surfaces.surfacetypes[lower_node.name].name
 				lower_node.name = "streets:mark_"..(node.name:sub(14)).."_on_"..lower_node_basename
