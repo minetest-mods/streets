@@ -36,6 +36,7 @@ streets.load_submod("streets_accessories")
 streets.load_submod("streets_concrete")
 streets.load_submod("streets_poles")
 streets.load_submod("streets_rrxing")
+streets.load_submod("streets_signs")
 
 if minetest.get_modpath("digilines") then
 	streets.load_submod("streets_trafficlight")
