@@ -127,3 +127,12 @@ for _,v in pairs({"green","yellow","red"}) do
 		}
 	})
 end
+
+minetest.register_craft({
+	output = "streets:lane_use_off",
+	recipe = {
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
+		{"dye:red","dye:yellow","dye:green"},
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+	}
+})

@@ -959,3 +959,30 @@ minetest.register_node("streets:rrgate_up", {
 		}
 	}
 })
+
+minetest.register_craft({
+	output = "streets:rrxing_bottom",
+	recipe = {
+		{"","default:copper_ingot",""},
+		{"wool:red","default:sign_wall_wood","wool:red"},
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+	}
+})
+
+minetest.register_craft({
+	output = "streets:rrgate_mech_down",
+	recipe = {
+		{"","default:copper_ingot","streets:rrgate_lightfirst"},
+		{"","default:steel_ingot",""},
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+	}
+})
+
+minetest.register_craft({
+	output = "streets:rrgate_lightfirst 4",
+	recipe = {
+		{"default:steel_ingot","default:torch","default:steel_ingot"},
+		{"dye:red","dye:white","dye:red"},
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+	}
+})
