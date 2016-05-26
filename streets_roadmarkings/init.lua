@@ -350,3 +350,37 @@ streets.register_road_marking({
   flip_required = false,
 })
 
+streets.register_road_marking({
+  name = "double_yellow_center_line_wide",
+  friendlyname = "Double Solid Yellow Center Line (Wide)",
+  tex = "streets_line_solid_double_wide_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line_wide",
+  friendlyname = "Solid Yellow Center Line (Wide)",
+  tex = "streets_line_solid_wide_yellow.png",
+  flip_required = false,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line_wide_corner",
+  friendlyname = "Solid Yellow Center Line (Wide) Corner",
+  tex = "streets_line_solid_wide_yellow_corner.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "double_yellow_center_line_wide_corner",
+  friendlyname = "Double Solid Yellow Center Line (Wide) Corner",
+  tex = "streets_line_solid_double_wide_yellow_corner.png",
+  flip_required = true,
+})
+
+streets.register_road_marking({
+  name = "solid_yellow_center_line_wide_offset",
+  friendlyname = "Solid Yellow Center Line (Wide, Offset)",
+  tex = "streets_line_solid_offset_wide_yellow.png",
+  flip_required = true,
+})
