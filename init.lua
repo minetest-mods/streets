@@ -34,6 +34,15 @@ streets.load_submod("streets_asphaltworkshop")
 streets.load_submod("streets_installations")
 streets.load_submod("streets_accessories")
 streets.load_submod("streets_concrete")
+streets.load_submod("streets_poles")
+streets.load_submod("streets_rrxing")
+streets.load_submod("streets_signs")
+streets.load_submod("streets_steelsupport")
+
+if minetest.get_modpath("digilines") then
+	streets.load_submod("streets_trafficlight")
+	streets.load_submod("streets_laneuse")
+end
 
 -- Let the API register everything and finish the setup
 dofile(streets.conf.modpath .. "/api_register_all.lua")

@@ -12,6 +12,10 @@ for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
     paramtype = "light",
     paramtype2 = "facedir",
     groups = {cracky = 3},
+    on_rightclick = function(pos,node)
+	node.name = node.name.."_open"
+	minetest.set_node(pos,node)
+    end,
     sunlight_propagates = true,
     node_box = {
       type = "fixed",
@@ -23,6 +27,32 @@ for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
   			{-0.25, 0.4375, -0.25, 0.25, 0.5, 0.25}, -- CenterPlate
   			{-0.5, 0.4375, -0.0625, 0.5, 0.5, 0.0625}, -- CenterLR
   			{-0.0625, 0.4375, -0.5, 0.0625, 0.5, 0.5}, -- CenterFR
+  		}
+    },
+    selection_box = {
+      type = "regular"
+    }
+  })
+
+  minetest.register_node(":streets:" .. surface_name:sub(2, -1):split(":")[2] .. "_manhole_open", {
+    tiles = {surface_data["tiles"][1] .. "^streets_manhole.png", surface_data.tiles[1]},
+    drawtype = "nodebox",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    climbable = true,
+    groups = {cracky = 3,not_in_creative_inventory = 1},
+    on_rightclick = function(pos,node)
+	node.name = string.sub(node.name,1,-6)
+	minetest.set_node(pos,node)
+    end,
+    sunlight_propagates = true,
+    node_box = {
+      type = "fixed",
+      fixed = {
+  			{-0.5, -0.5, -0.5, 0.5, 0.5, -0.375}, -- F
+  			{-0.5, -0.5, 0.375, 0.5, 0.5, 0.5}, -- B
+  			{-0.5, -0.5, -0.4375, -0.375, 0.5, 0.4375}, -- L
+  			{0.375, -0.5, -0.4375, 0.5, 0.5, 0.4375}, -- R
   		}
     },
     selection_box = {
