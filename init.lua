@@ -20,6 +20,7 @@ streets.conf = {
 -- The API collects some data here
 streets.surfaces = {surfacetypes = {}}
 streets.labels = {labeltypes = {}}
+streets.signs = {signtypes = {}}
 
 -- Load the API file
 dofile(streets.conf.modpath .. "/api.lua")
