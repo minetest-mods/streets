@@ -87,7 +87,7 @@ for _,v in pairs({"green","yellow","red"}) do
 			meta:set_string("formspec", "field[channel;Channel;${channel}]")
 		end,
 		groups = {cracky = 3,not_in_creative_inventory = 1},
-		light_source = 5,
+		light_source = 11,
 		node_box = {
 			type = "fixed",
 				fixed = nodebox
