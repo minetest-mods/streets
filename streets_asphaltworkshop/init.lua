@@ -207,6 +207,7 @@ local function can_dig(pos,player)
 end
 
 minetest.register_node(":streets:asphalt_workshop", {
+	description = "Asphalt Workshop",
 	tiles = {"default_wood.png",},
 	drawtype = "nodebox",
 	paramtype = "light",
