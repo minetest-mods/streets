@@ -5,6 +5,16 @@
   Category: Roads
 ]]
 
+--These register the sections in the workshop that these will be placed into
+streets.labels.sections = {
+	{name="centerlines",friendlyname="Center Lines"},
+	{name="centerlinecorners",friendlyname="Center Line Corners/Junctions"},
+	{name="sidelines",friendlyname="Side Lines"},
+	{name="arrows",friendlyname="Arrows"},
+	{name="symbols",friendlyname="Symbols"},
+	{name="other",friendlyname="Other"}
+}
+
 streets.register_road_marking({
   name = "dashed_white_center_line",
   friendlyname = "Dashed White Center Line",
@@ -424,7 +434,7 @@ streets.register_road_marking({
   friendlyname = "Solid Yellow Center Line Corner",
   tex = "streets_rw_solid_curve.png",
   flip_required = true,
-  category = {color = "yellow", section = "centerlines"},
+  category = {color = "yellow", section = "centerlinecorners"},
   dye_needed = {yellow = 3},
 })
 
@@ -434,17 +444,17 @@ streets.register_road_marking({
   friendlyname = "Solid Yellow Center Line T-Junction",
   tex = "streets_rw_solid_tjunction.png",
   flip_required = true,
-  category = {color = "yellow", section = "centerlines"},
+  category = {color = "yellow", section = "centerlinecorners"},
   dye_needed = {yellow = 4},
 })
 
 
 streets.register_road_marking({
-  name = "solid_yellow_center_line",
+  name = "solid_yellow_center_line_crossing",
   friendlyname = "Solid Yellow Center Line Crossing",
   tex = "streets_rw_solid_crossing.png",
   flip_required = false,
-  category = {color = "yellow", section = "centerlines"},
+  category = {color = "yellow", section = "centerlinecorners"},
   dye_needed = {yellow = 5},
 })
 
@@ -471,7 +481,7 @@ streets.register_road_marking({
   friendlyname = "Solid Yellow Center Line (Wide) Corner",
   tex = "streets_line_solid_wide_yellow_corner.png",
   flip_required = true,
-  category = {color = "yellow", section = "centerlines"},
+  category = {color = "yellow", section = "centerlinecorners"},
   dye_needed = {yellow = 3},
 })
 
@@ -480,7 +490,7 @@ streets.register_road_marking({
   friendlyname = "Double Solid Yellow Center Line (Wide) Corner",
   tex = "streets_line_solid_double_wide_yellow_corner.png",
   flip_required = true,
-  category = {color = "yellow", section = "centerlines"},
+  category = {color = "yellow", section = "centerlinecorners"},
   dye_needed = {yellow = 5},
 })
 

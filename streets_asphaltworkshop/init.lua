@@ -1,69 +1,209 @@
 --[[
   ## StreetsMod 2.0 ##
-  Submod: roadworks
+  Submod: asphaltworkshop
   Optional: true
 ]]
 
-local function workshop_form(pos)
-  local meta = minetest.get_meta(pos)
-  return table.concat({
-    "size[9,9;]",
-    "tabheader[0,0;asphalt_workshop_tabs;Center lines,Side lines,Arrows,Other;" .. (meta:get_int("tab") or 1) .. ";false;true]",
-    "image_button[0,0;1,1;dye_white.png;color_white;]",
-    "image_button[1,0;1,1;dye_yellow.png;color_yellow;]",
-    "image[0,2;1,2.125;wool_white.png]",
-    "image[1,2;1,2.125;wool_yellow.png]",
-    "list[context;asphalt_workshop_list;2,0;4,4]",
-    "list[context;asphalt_workshop_surface;6,1;1,1]",
-    "list[context;asphalt_workshop_template;8,1;1,1]",
-    "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. (meta:get_int("progress") or 1) .. ":gui_furnace_arrow_fg.png^[transformR180]",
-    "list[context;asphalt_workshop_output;7,3;1,1]",
-    "list[current_player;main;0.5,5;8,4]",
-  })
+streets.workshop = {}
+
+function streets.workshop.start(pos)
+	local node = minetest.get_node(pos)
+	if node.name ~= "streets:asphalt_workshop" then
+		return
+	end
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+	local template = inv:get_stack("template",1):get_name()
+	local surface = inv:get_stack("surface",1):get_name()
+	local yellow_needed = inv:get_stack("yellow_needed",1):get_count()
+	local white_needed = inv:get_stack("white_needed",1):get_count()
+	local yellow_ok = inv:get_stack("yellow_dye",1):get_count() >= yellow_needed
+	local white_ok = inv:get_stack("white_dye",1):get_count() >= white_needed
+	if not (yellow_ok and white_ok and surface and surface ~= "" and template and template ~= "") then
+		return
+	end
+	local surface_suffix = ""
+	if streets.surfaces.surfacetypes[surface] then surface_suffix = "_on_"..streets.surfaces.surfacetypes[surface].name end
+	local outname = template..surface_suffix
+	if not inv:room_for_item("output",{name = outname,count = 1}) then
+		return
+	end
+	meta:set_string("working_on",outname)
+	meta:set_int("progress",0)
+	inv:remove_item("yellow_dye",{name = "dye:yellow",count = yellow_needed})
+	inv:remove_item("white_dye",{name = "dye:white",count = white_needed})
+	inv:remove_item("surface",{name = inv:get_stack("surface",1):get_name(),count = 1})
+	streets.workshop.step(pos)
 end
 
-local function workshop_list(color, tab)
-  local markings = {
-    -- Center lines
-    {
-      "streets:rw_line_dashed_",
-      "streets:rw_line_solid_",
-      "streets:rw_line_solid_double_",
-      "streets:rw_line_dashed_double_",
-      "streets:rw_line_mixed_double_",
-    },
-    -- Side lines
-    {
-      "streets:rw_side_slim_",
-      "streets:rw_side_thick_",
-      "streets:rw_side_dashed_slim_",
-      "streets:rw_side_dashed_thick_",
-      "streets:rw_edge_slim_",
-      "streets:rw_edge_thick_",
-    },
-    -- Arrows
-    {
-      "streets:rw_arrow_straightleftright_",
-      "streets:rw_arrow_straightleft_",
-      "streets:rw_arrow_straightright_",
-      "streets:rw_arrow_leftright_",
-      "streets:rw_arrow_straight_",
-      "streets:rw_arrow_left_",
-      "streets:rw_arrow_right_",
-    },
-    -- Other
-    {
-      "streets:rw_parking_",
-      "streets:rw_cross_",
-      "streets:rw_crosswalk_",
-      "streets:rw_zigzag_",
-      "streets:rw_forbidden_",
-    }
-  }
-  for k, v in ipairs(markings[tab]) do
-    markings[tab][k] = v .. color
-  end
-  return markings[tab]
+function streets.workshop.step(pos)
+	local node = minetest.get_node(pos)
+	if node.name ~= "streets:asphalt_workshop" then
+		return
+	end
+	local meta = minetest.get_meta(pos)
+	if meta:get_string("working_on") == "" then
+		return
+	end
+	local inv = meta:get_inventory()
+	local progress = meta:get_int("progress")
+	progress = progress + 1
+	if progress < 10 then
+		minetest.after(0.2,streets.workshop.step,pos)
+	else
+		meta:set_int("progress",0)
+		progress = 0
+		inv:add_item("output",meta:get_string("working_on"))
+		meta:set_string("working_on","")
+		streets.workshop.start(pos)
+	end
+	meta:set_int("progress",progress)
+	streets.workshop.update_formspec(pos)	
+end
+
+function streets.workshop.update_formspec(pos)
+	local node = minetest.get_node(pos)
+	if node.name ~= "streets:asphalt_workshop" then
+		return
+	end
+	local meta = minetest.get_meta(pos)
+	local fs =  "size[9,9;]"
+	fs = fs.."tabheader[0,0;tabs;"
+	for k,v in pairs(streets.labels.sections) do
+		fs = fs..minetest.formspec_escape(v.friendlyname)..","
+	end
+	fs = fs:sub(1,-2) --Strip trailing comma
+	fs = fs .. ";" .. meta:get_int("section") .. ";false;true]"
+	fs = fs .. "label[0,-0.25;Select Color]"
+	fs = fs .. "image_button[0,0.25;1,1;dye_white.png;color_white;]"
+	fs = fs .. "image_button[1,0.25;1,1;dye_yellow.png;color_yellow;]"
+	fs = fs .. "label[0,1.25;Dye Input]"
+	fs = fs .. "list[context;white_dye;0,1.75;1,1]"
+	fs = fs .. "list[context;yellow_dye;1,1.75;1,1]"
+	fs = fs .. "label[0,2.75;Dye Required]"
+	fs = fs .. "list[context;white_needed;0,3.25;1,1]"
+	fs = fs .. "list[context;yellow_needed;1,3.25;1,1]"
+	fs = fs .. "list[context;list;2,0;4,4]"
+	fs = fs .. "label[6.5,0.5;Surface]"
+	fs = fs .. "label[7.5,0.5;Template]"
+	fs = fs .. "list[context;surface;6.5,1;1,1]"
+	fs = fs .. "list[context;template;7.5,1;1,1]"
+	fs = fs .. "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress")*10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
+	fs = fs .. "list[context;output;7,3;1,1]"
+	fs = fs .. "list[current_player;main;0.5,5;8,4]"
+	meta:set_string("formspec",fs)
+end
+
+local function update_inventory(pos)
+	local node = minetest.get_node(pos)
+	if node.name ~= "streets:asphalt_workshop" then
+		return
+	end
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+	inv:set_size("white_dye",1)
+	inv:set_size("yellow_dye",1)
+	inv:set_size("white_needed",0)
+	inv:set_size("yellow_needed",0)
+	inv:set_size("list",0)
+	inv:set_size("white_needed",1)
+	inv:set_size("yellow_needed",1)
+	inv:set_size("list",16) -- 4x4
+	inv:set_size("surface",1)
+	inv:set_size("template",1)
+	inv:set_size("output",1)
+	local color = meta:get_string("color")
+	local section = meta:get_int("section")
+	local sectionname = streets.labels.sections[section].name
+	for k,v in pairs(streets.labels.labeltypes) do
+		if v.category.color == color and v.category.section == sectionname then
+			inv:add_item("list","streets:mark_"..v.name)
+		end
+	end
+	local templatestack = inv:get_stack("template",1)
+	if templatestack and templatestack:to_string() ~= "" then
+		local selectedmarking = templatestack:to_table().name:sub(14)
+		local dyesneeded = streets.labels.labeltypes[selectedmarking].dye_needed
+		if dyesneeded.white then
+			inv:add_item("white_needed",{name = "dye:white",count = dyesneeded.white})
+		end
+		if dyesneeded.yellow then
+			inv:add_item("yellow_needed",{name = "dye:yellow",count = dyesneeded.yellow})
+		end
+	end
+	streets.workshop.update_formspec(pos)
+	streets.workshop.start(pos)
+end
+
+local function on_receive_fields(pos,formname,fields,sender)
+	local meta = minetest.get_meta(pos)
+	if fields.tabs then
+		meta:set_int("section",fields.tabs)
+	elseif fields.color_white then
+		meta:set_string("color","white")
+	elseif fields.color_yellow then
+		meta:set_string("color","yellow")
+	end
+	update_inventory(pos)
+end
+
+local function on_construct(pos)
+	local meta = minetest.get_meta(pos)
+	meta:set_int("section",1)
+	meta:set_string("color","yellow")
+	meta:set_int("progress",0)
+	meta:set_string("working_on","")
+	update_inventory(pos)
+end
+
+local function allow_metadata_inventory_take(pos, listname, index, stack, player)
+	if listname == "output" or listname == "surface" or listname == "white_dye" or listname == "yellow_dye" then
+		return stack:get_count()
+	else
+		return 0
+	end
+end
+
+local function allow_metadata_inventory_move(pos, from_list, from_index, to_list, to_index, count, player)
+	if from_list == "list" and to_list == "template" then
+		return 1
+	elseif from_list == "template" and to_list == "list" then
+		local inv = minetest.get_meta(pos):get_inventory()
+		return 1
+	else
+		return 0
+	end
+end
+
+local function on_metadata_inventory_move(pos, from_list, from_index, to_list, to_index, count, player)
+	update_inventory(pos)
+end
+
+local function on_metadata_inventory_put(pos, listname, index, stack, player)
+	update_inventory(pos)
+end
+
+local function on_metadata_inventory_take(pos, listname, index, stack, player)
+	update_inventory(pos)
+end
+
+local function allow_metadata_inventory_put(pos, listname, index, stack, player)
+	if listname == "yellow_dye" or listname == "white_dye" then
+		return stack:get_count()
+	elseif listname == "surface" and (stack:get_name() == "default:paper" or streets.surfaces.surfacetypes[stack:get_name()]) then
+		return stack:get_count()
+	else
+		return 0
+	end
+end
+
+local function can_dig(pos,player)
+	local inv = minetest.get_meta(pos):get_inventory()
+	if inv:is_empty("yellow_dye") and inv:is_empty("white_dye") and inv:is_empty("surface") and inv:is_empty("output") then
+		return true
+	else
+		return false
+	end
 end
 
 minetest.register_node(":streets:asphalt_workshop", {
@@ -71,7 +211,7 @@ minetest.register_node(":streets:asphalt_workshop", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-  groups = {cracky = 1},
+	groups = {cracky = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -96,68 +236,13 @@ minetest.register_node(":streets:asphalt_workshop", {
 	selection_box = {
 		type = "regular"
 	},
-  on_receive_fields = function(pos, formname, fields, sender)
-    local meta = minetest.get_meta(pos)
-    local inv = meta:get_inventory(pos)
-    -- Switch tabs
-    if fields.asphalt_workshop_tabs then
-      meta:set_int("tab", tonumber(fields.asphalt_workshop_tabs))
-      inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), tonumber(fields.asphalt_workshop_tabs)))
-    end
-    -- Switch color to white
-    if fields.color_white then
-      meta:set_string("color", "white")
-      inv:set_list("asphalt_workshop_list", workshop_list("white", meta:get_int("tab")))
-    end
-    -- Switch color to yellow
-    if fields.color_yellow then
-      meta:set_string("color", "yellow")
-      inv:set_list("asphalt_workshop_list", workshop_list("yellow", meta:get_int("tab")))
-    end
-    -- Prepare form for the next time
-    meta:set_string("formspec", workshop_form(pos))
-    inv:set_list("asphalt_workshop_list", workshop_list(meta:get_string("color"), meta:get_int("tab")))
-  end,
-	after_place_node = function(pos, placer, itemstack, pointed_thing)
-    local meta = minetest.get_meta(pos)
-    local inv = meta:get_inventory(pos)
-    -- Set up initial meta data (white markings, no production progress, tab 1 active)
-    meta:set_string("color", "white")
-    meta:set_int("progress", 0)
-    meta:set_int("tab", 1)
-    -- Generate formspec and set up inventories
-    meta:set_string("formspec", workshop_form(pos))
-    inv:set_size("asphalt_workshop_list", 16)
-    inv:set_list("asphalt_workshop_list", workshop_list("white", 1))
-    inv:set_size("asphalt_workshop_template", 1)
-    inv:set_size("asphalt_workshop_surface", 1)
-    inv:set_size("asphalt_workshop_output", 1)
-	end,
-  allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-    -- Put item into input slot
-		if listname ~= "asphalt_workshop_surface" then
-			return 0
-		else
-			return 1
-		end
-	end,
-  allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-    -- list -> template slot
-    if from_list == "asphalt_workshop_list" and to_list == "asphalt_workshop_template" then
-      return 1
-    end
-    -- template slot -> list
-    if from_list == "asphalt_workshop_template" and to_list == "asphalt_workshop_list" then
-      return 1
-    end
-    -- Every other case
-    return 0
-  end,
-  allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-    if listname == "asphalt_workshop_output" or listname == "asphalt_workshop_surface" then
-      return 99
-    end
-    -- Every other case
-    return 0
-  end
+  on_receive_fields = on_receive_fields,
+  on_construct = on_construct,
+  allow_metadata_inventory_take = allow_metadata_inventory_take,
+  allow_metadata_inventory_move = allow_metadata_inventory_move,
+  allow_metadata_inventory_put = allow_metadata_inventory_put,
+  on_metadata_inventory_move = on_metadata_inventory_move,
+  on_metadata_inventory_put = on_metadata_inventory_put,
+  on_metadata_inventory_take = on_metadata_inventory_take,
+  can_dig = can_dig,
 })
