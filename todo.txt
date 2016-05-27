@@ -6,7 +6,7 @@
 -      | Not Done
 *      | Comment
 
-== 1. General = 
+== 1. General =
 ✓ create a new folder structure that is: easy to understand, easy to extend,  easily configurable (important later on...)
 - find suitable licenses for media/code: CC-BY-SA 3.0 seems to be fine for media, not sure which license I should choose for the code though...
 ✓ create new 16px textures; many people asked for it...
@@ -34,23 +34,27 @@
 === 3.3 Roadworks ===
 ✓ Overriding markings: all from 3.2 but only in yellow
 ✓ drawtypes: raillike (for middle lines) or nodebox (Minetest lacks a drawtype that combines raillike and facedir)
-- Roadwork related accessories: Fences, pylons, lights, "Warnbaken" (I need a translation for these things: http://www.rheinbahn.de/PublishingImages/Baustelle_Warnbaken_1.jpg), etc.
+- Roadwork related accessories: Fences, pylons, lights, Vertical bars, etc.
 
 === 3.4 Concrete ===
 ✓ nothing new here: concrete blocks and walls as known from 1.5 and below
+✓ use walls API for concrete walls
 
 === 3.5 Passive road accessories ===
 -? find a style that is not too country specific but still easy for everyone to understand
-* Possibly include the old signs, but maybe with some country specific? I'd love to have at least some of the most common USA ones in there. (cheapie)
+  * Possibly include the old signs, but maybe with some country specific? I'd love to have at least some of the most common USA ones in there. (cheapie)
+  * Let's forget to be un-country-specific. Let's include US and EU ones, that should satisfy many players. We can make the sign workshop use tabs to organise them into categories and a dropdown to select the set to be used. (wd97)
 - Warning signs: "!", lava, water, construction area, curves, railroad crossings, crosswalks, "Baken"
 ... Traffic: "STOP", "Railroad", "Give way", "right of way", "Priority", "One way", "roundabout (a square of course)", "dead end", "Parking"
 - Writable using signs_lib (hopefully?): city entrance/exit, street name, guideposts
 * Especially in this category, the list of signs is subject to change. If something is not possible due to graphical or technical limitations, it won't get implemented.
 * Spontaneous ideas of mine are possible and very likely...
-- Traffic barriers, delineators
+- Traffic barriers
+✓ delineators
 
 === 3.6 Active road accessories
-✓? (ambiguous) Traffic guidance system for highways, controllable via digilines
+✓ Traffic guidance system for highways, controllable via digilines
+ * = streets/laneuse
 ✓ Trafficlight (off, red, yellow, green)
 ✓? (ambiguous) Trafficlight (off, red, yellow)
 - Compact and portable trafficlight (e.g. for roadworks)
@@ -63,4 +67,5 @@
 
 === 3.8 Bridges ===
 - Drawbridges. Definetely cool, but not easy to implement because of lack of facedir for many nodes and brdiges thicker than 1m... This one needs a seperate plan
-* Might be best in a separate mod (cheapie)
+  * Might be best in a separate mod (cheapie)
+  * Would be the best solution... (wd97)
