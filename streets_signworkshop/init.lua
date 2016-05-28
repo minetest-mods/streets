@@ -14,7 +14,7 @@ function streets.signworkshop.start(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	local template = inv:get_stack("template",1):get_name()
-	if not (template and templace ~= "") then
+	if not (template and template ~= "") then
 		return
 	end
 	local surface = inv:get_stack("surface",1):get_name()
