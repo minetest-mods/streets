@@ -36,6 +36,10 @@ function streets.register_road_surface(data)
 	streets.surfaces.surfacetypes["streets:"..data.name] = data
 end
 
+function streets.register_road_sign(data)
+	streets.signs.signtypes["streets:"..data.name] = data
+end
+
 function streets.register_road_marking(data)
 	streets.labels.labeltypes[data.name] = data
 	if data.flip_required then

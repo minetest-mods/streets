@@ -38,6 +38,61 @@ local register_surface_nodes = function(friendlyname,name,tiles,groups,sounds,cr
 	end
 end
 
+local register_sign_node = function(friendlyname,name,tiles,thickness)
+	minetest.register_node(":streets:"..name,{
+		description = friendlyname,
+		tiles = tiles,
+		groups = {cracky = 3, not_in_creative_inventory = (name == "sign_blank" and 0 or 1)},
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		inventory_image = tiles[6],
+		after_place_node = function(pos)
+			local behind_pos = {x = pos.x, y = pos.y, z = pos.z}
+			local node = minetest.get_node(pos)
+			local param2 = node.param2
+			if param2 == 0 then
+				behind_pos.z = behind_pos.z + 1
+			elseif param2 == 1 then
+				behind_pos.x = behind_pos.x + 1
+			elseif param2 == 2 then
+				behind_pos.z = behind_pos.z - 1
+			elseif param2 == 3 then
+				behind_pos.x = behind_pos.x - 1
+			end
+			local behind_node = minetest.get_node(behind_pos)
+			if behind_node.name:sub(1,15) == "streets:bigpole" then
+				node.name = node.name.."_polemount"
+				minetest.set_node(pos,node)
+			end
+		end,
+		node_box = {
+			type = "fixed",
+				fixed = {-1/2, -1/2, 0.5, 1/2, 1/2, 0.5 - thickness}
+		},
+		selection_box = {
+			type = "fixed",
+				fixed = {-1/2, -1/2, 0.5, 1/2, 1/2, math.min(0.5 - thickness,0.45)}
+		}
+	})
+	minetest.register_node(":streets:"..name.."_polemount",{
+		tiles = tiles,
+		groups = {cracky = 3,not_in_creative_inventory = 1},
+		drop = "streets:"..name,
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		node_box = {
+			type = "fixed",
+				fixed = {-1/2, -1/2, 0.85 - thickness, 1/2, 1/2, 0.85}
+		},
+		selection_box = {
+			type = "fixed",
+				fixed = {-1/2, -1/2, math.min(0.85 - thickness,0.80), 1/2, 1/2, 0.85}
+		}
+	})
+end
+
 local register_marking_nodes = function(surface_friendlyname,surface_name,surface_tiles,surface_groups,surface_sounds,friendlyname,name,tex)
 	minetest.register_node(":streets:mark_"..name,{
 		description = "Marking Overlay: "..friendlyname,
@@ -114,5 +169,11 @@ if streets.surfaces.surfacetypes then
 				register_marking_nodes(v.friendlyname,v.name,v.tiles,v.groups,v.sounds,w.friendlyname,w.name,w.tex)
 			end
 		end
+	end
+end
+
+if streets.signs.signtypes then
+	for _,v in pairs(streets.signs.signtypes) do
+		register_sign_node(v.friendlyname,v.name,v.tiles,v.thickness)
 	end
 end

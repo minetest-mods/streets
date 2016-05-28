@@ -20,6 +20,7 @@ streets.conf = {
 -- The API collects some data here
 streets.surfaces = {surfacetypes = {}}
 streets.labels = {labeltypes = {}}
+streets.signs = {signtypes = {}}
 
 -- Load the API file
 dofile(streets.conf.modpath .. "/api.lua")
@@ -37,6 +38,7 @@ streets.load_submod("streets_concrete")
 streets.load_submod("streets_poles")
 streets.load_submod("streets_rrxing")
 streets.load_submod("streets_signs")
+streets.load_submod("streets_signworkshop")
 streets.load_submod("streets_steelsupport")
 
 if minetest.get_modpath("digilines") then
