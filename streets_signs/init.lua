@@ -6,10 +6,25 @@
 
 --These register the sections in the workshop that these will be placed into
 streets.signs.sections = {
+	{name="dyestorage",friendlyname="Dye Storage"}, -- Used for dye storage in the workshop
 	{name="warn",friendlyname="Warning"},
 	{name="reg",friendlyname="Regulatory"},
 	{name="info",friendlyname="Information"},
 }
+
+streets.register_road_sign({
+	name = "sign_blank",
+	friendlyname = "Blank Sign",
+	tiles = {
+		"streets_tl_bg.png",
+		"streets_tl_bg.png",
+		"streets_tl_bg.png",
+		"streets_tl_bg.png",
+		"streets_tl_bg.png",
+		"streets_tl_bg.png"
+	},
+	thickness = 0.05
+})
 
 streets.register_road_sign({
 	name = "sign_curve_chevron_right",
@@ -156,7 +171,7 @@ streets.register_road_sign({
 })
 
 streets.register_road_sign({
-	name = "sign_workshop",
+	name = "sign_work_shop",
 	friendlyname = "Workshop Sign",
 	tiles = {
 		"streets_tl_bg.png^[colorize:#D20000FF",
