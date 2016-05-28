@@ -42,7 +42,7 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 	minetest.register_node(":streets:"..name,{
 		description = friendlyname,
 		tiles = tiles,
-		groups = {cracky = 3},
+		groups = {cracky = 3, not_in_creative_inventory = (name == "sign_blank" and 0 or 1)},
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
