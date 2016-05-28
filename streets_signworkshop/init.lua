@@ -165,6 +165,8 @@ local function allow_metadata_inventory_move(pos, from_list, from_index, to_list
 	elseif from_list == "template" and to_list == "list" then
 		local inv = minetest.get_meta(pos):get_inventory()
 		return 1
+	elseif from_list == "dye" and to_list == "dye" then
+		return count
 	else
 		return 0
 	end
@@ -183,7 +185,7 @@ local function on_metadata_inventory_take(pos, listname, index, stack, player)
 end
 
 local function allow_metadata_inventory_put(pos, listname, index, stack, player)
-	if listname == "dye" then
+	if listname == "dye" and stack:get_name():sub(1,4) == "dye:" then
 		return stack:get_count()
 	elseif listname == "surface" and stack:get_name() == "streets:sign_blank" then
 		return stack:get_count()
