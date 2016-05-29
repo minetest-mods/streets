@@ -300,6 +300,11 @@ minetest.register_node(":streets:beacon_hybrid_off",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -334,6 +339,11 @@ minetest.register_node(":streets:beacon_hybrid_yellow",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -368,6 +378,11 @@ minetest.register_node(":streets:beacon_hybrid_red",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -405,6 +420,11 @@ minetest.register_node(":streets:beacon_hybrid_flashyellow",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -442,6 +462,11 @@ minetest.register_node(":streets:beacon_hybrid_flashred",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -477,6 +502,11 @@ minetest.register_node(":streets:beacon_off",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -514,6 +544,11 @@ minetest.register_node(":streets:beacon_flashred",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -551,6 +586,11 @@ minetest.register_node(":streets:beacon_flashyellow",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -586,6 +626,11 @@ minetest.register_node(":streets:trafficlight_top_extender_left_off",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -621,6 +666,11 @@ minetest.register_node(":streets:trafficlight_top_extender_left_yellow",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -656,6 +706,11 @@ minetest.register_node(":streets:trafficlight_top_extender_left_green",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -694,6 +749,11 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -729,6 +789,11 @@ minetest.register_node(":streets:trafficlight_top_extender_right_off",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -764,6 +829,11 @@ minetest.register_node(":streets:trafficlight_top_extender_right_yellow",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -799,6 +869,11 @@ minetest.register_node(":streets:trafficlight_top_extender_right_green",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -837,6 +912,11 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -872,6 +952,11 @@ minetest.register_node(":streets:pedlight_top_off",{
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
+		local name = sender:get_player_name()
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			minetest.record_protection_violation(pos, name)
+			return
+		end
 		if (fields.channel) then
 			minetest.get_meta(pos):set_string("channel", fields.channel)
 			minetest.get_meta(pos):set_string("state", "Off")
@@ -1011,6 +1096,11 @@ for _,i in pairs({"","_left","_right"}) do
 			meta:set_string("formspec", "field[channel;Channel;${channel}]")
 		end,
 		on_receive_fields = function(pos, formname, fields, sender)
+			local name = sender:get_player_name()
+			if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+				minetest.record_protection_violation(pos, name)
+				return
+			end
 			if (fields.channel) then
 				minetest.get_meta(pos):set_string("channel", fields.channel)
 				minetest.get_meta(pos):set_string("state", "Off")
