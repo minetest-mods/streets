@@ -1,6 +1,5 @@
 default
 stairs
-walls
 stairsplus?
 moreblocks?
 digilines?
