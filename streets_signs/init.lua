@@ -75,6 +75,22 @@ streets.register_road_sign({
 })
 
 streets.register_road_sign({
+	name = "sign_warning",
+	friendlyname = "Warning Sign",
+	tiles = {
+		"streets_tl_bg.png^[colorize:#D20000FF",
+		"streets_tl_bg.png^[colorize:#D20000FF",
+		"streets_tl_bg.png^[colorize:#D20000FF",
+		"streets_tl_bg.png^[colorize:#D20000FF",
+		"streets_square_sign_back.png",
+		"streets_sign_warning.png"
+	},
+	thickness = 0.05,
+	section = "warn",
+	dye_needed = {black = 2}
+})
+
+streets.register_road_sign({
 	name = "sign_water",
 	friendlyname = "Water Warning Sign",
 	tiles = {
