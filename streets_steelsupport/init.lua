@@ -12,6 +12,12 @@ minetest.register_node(":streets:steel_support",{
 	climbable = true,
 	sunlight_propagates = true,
 	paramtype = "light",
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2},
+		},
+	},
 })
 minetest.register_craft({
 	output = "streets:steel_support 5",
