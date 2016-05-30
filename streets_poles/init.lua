@@ -22,7 +22,7 @@ minetest.register_node(":streets:bigpole", {
 		connect_left   = {-0.5,  -0.15, -0.15, 0.15,  0.15, 0.15}, -- x-
 		connect_right  = {-0.15, -0.15, -0.15, 0.5,   0.15, 0.15}, -- x+
 	},
-	connects_to = {"group:crumbly", "group:cracky", "group:snappy", "group:choppy", "group:fleshy", "group:explody", "group:oddly_breakable_by_hand"},
+	connects_to = {"group:wall", "group:stone", "group:wood", "group:tree", "group:sign", "group:concrete", "group:sand", "group:bigpole"},
 	on_place = minetest.rotate_node,
 	digiline = {
 		wire = {
