@@ -76,6 +76,7 @@ minetest.register_node("streets:lane_use_off", {
 
 for _,v in pairs({"green","yellow","red"}) do
 	minetest.register_node("streets:lane_use_"..v, {
+		drop = "streets:lane_use_off",
 		tiles = {
 			"streets_tl_bg.png",
 			"streets_tl_bg.png",
