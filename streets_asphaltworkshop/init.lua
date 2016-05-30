@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: asphaltworkshop
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: asphaltworkshop
+	Optional: true
 ]]
 
 streets.workshop = {}
@@ -237,13 +237,13 @@ minetest.register_node(":streets:asphalt_workshop", {
 	selection_box = {
 		type = "regular"
 	},
-  on_receive_fields = on_receive_fields,
-  on_construct = on_construct,
-  allow_metadata_inventory_take = allow_metadata_inventory_take,
-  allow_metadata_inventory_move = allow_metadata_inventory_move,
-  allow_metadata_inventory_put = allow_metadata_inventory_put,
-  on_metadata_inventory_move = on_metadata_inventory_move,
-  on_metadata_inventory_put = on_metadata_inventory_put,
-  on_metadata_inventory_take = on_metadata_inventory_take,
-  can_dig = can_dig,
+	on_receive_fields = on_receive_fields,
+	on_construct = on_construct,
+	allow_metadata_inventory_take = allow_metadata_inventory_take,
+	allow_metadata_inventory_move = allow_metadata_inventory_move,
+	allow_metadata_inventory_put = allow_metadata_inventory_put,
+	on_metadata_inventory_move = on_metadata_inventory_move,
+	on_metadata_inventory_put = on_metadata_inventory_put,
+	on_metadata_inventory_take = on_metadata_inventory_take,
+	can_dig = can_dig,
 })

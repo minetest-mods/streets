@@ -1,8 +1,8 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: streetsmod
-  Optional: false
-  Category: Init
+	## StreetsMod 2.0 ##
+	Submod: streetsmod
+	Optional: false
+	Category: Init
 ]]
 
 print("[Mod][StreetsMod] Loading...")
@@ -11,10 +11,10 @@ streets = {}
 
 -- Config stuff goes here
 streets.conf = {
-  version = "2.0",
-  licenseCode = "",
-  licenseMedia = "CC-BY-SA 3.0",
-  modpath = minetest.get_modpath("streets")
+	version = "2.0",
+	licenseCode = "",
+	licenseMedia = "CC-BY-SA 3.0",
+	modpath = minetest.get_modpath("streets")
 }
 
 -- The API collects some data here

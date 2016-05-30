@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: rrxing
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: rrxing
+	Optional: true
 ]]
 
 streets.rrxing_sound_handles = {}

@@ -1,8 +1,8 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: streetsapi
-  Optional: false
-  Category: Init
+	## StreetsMod 2.0 ##
+	Submod: streetsapi
+	Optional: false
+	Category: Init
 ]]
 
 local function copytable(orig)

@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: steelsupport
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: steelsupport
+	Optional: true
 ]]
 
 minetest.register_node(":streets:steel_support",{
@@ -19,6 +19,7 @@ minetest.register_node(":streets:steel_support",{
 		},
 	},
 })
+
 minetest.register_craft({
 	output = "streets:steel_support 5",
 	recipe = {

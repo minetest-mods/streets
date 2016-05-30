@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: accessories
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: accessories
+	Optional: true
 ]]
 
 minetest.register_node(":streets:delineator", {
