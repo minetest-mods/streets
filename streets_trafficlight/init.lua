@@ -99,6 +99,7 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 	end
 	-- Tl states
 	local name = minetest.get_node(pos).name
+	msg = string.upper(msg)
 	if msg == "OFF" then
 		if name:find("pedlight") then
 			streets.tlSwitch(pos,"streets:pedlight_top_off")
@@ -842,7 +843,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_yellow",{
 })
 
 minetest.register_node(":streets:trafficlight_top_extender_right_green",{
-	drop = "streets:trafficlight_top_extender_left_off",
+	drop = "streets:trafficlight_top_extender_right_off",
 	description = "Traffic Light Right-Turn Module",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -882,7 +883,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_green",{
 })
 
 minetest.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
-	drop = "streets:trafficlight_top_extender_left_off",
+	drop = "streets:trafficlight_top_extender_right_off",
 	description = "Traffic Light Right-Turn Module",
 	drawtype="nodebox",
 	paramtype = "light",
