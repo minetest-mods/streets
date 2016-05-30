@@ -83,7 +83,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_warning.png"
+		"streets_square_sign_empty.png^streets_sign_warning.png"
 	},
 	thickness = 0.05,
 	section = "warn",
@@ -99,7 +99,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_water.png"
+		"streets_square_sign_empty.png^streets_sign_water.png"
 	},
 	thickness = 0.05,
 	section = "warn",
@@ -115,7 +115,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_lava.png"
+		"streets_square_sign_empty.png^streets_sign_lava.png"
 	},
 	thickness = 0.05,
 	section = "warn",
@@ -131,7 +131,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_construction.png"
+		"streets_square_sign_empty.png^streets_sign_construction.png"
 	},
 	thickness = 0.05,
 	section = "warn",
@@ -147,7 +147,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_grass.png"
+		"streets_square_sign_empty.png^streets_sign_grass.png"
 	},
 	thickness = 0.05,
 	section = "reg",
@@ -163,7 +163,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_mine.png"
+		"streets_square_sign_empty.png^streets_sign_mine.png"
 	},
 	thickness = 0.05,
 	section = "info",
@@ -179,7 +179,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_shop.png"
+		"streets_square_sign_empty.png^streets_sign_shop.png"
 	},
 	thickness = 0.05,
 	section = "info",
@@ -195,7 +195,7 @@ streets.register_road_sign({
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_tl_bg.png^[colorize:#D20000FF",
 		"streets_square_sign_back.png",
-		"streets_sign_workshop.png"
+		"streets_square_sign_empty.png^streets_sign_workshop.png"
 	},
 	thickness = 0.05,
 	section = "info",
