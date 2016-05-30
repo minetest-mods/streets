@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: laneuse
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: laneuse
+	Optional: true
 ]]
 
 local nodebox = {

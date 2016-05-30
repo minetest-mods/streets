@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: signs
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: signs
+	Optional: true
 ]]
 
 --These register the sections in the workshop that these will be placed into

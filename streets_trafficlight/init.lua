@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: trafficlight
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: trafficlight
+	Optional: true
 ]]
 
 streets.tlBox =	{
@@ -22,7 +22,7 @@ streets.tlBox =	{
 	{0.0625,-0.3125,0.3125,0.125,-0.25,0.5}, --Bottom Visor, Right
 }
 
-streets.tleBox =	{
+streets.tleBox = {
 	{-0.1875,-0.1875,0.5,0.1875,0.5,0.75}, --Box
 
 	{-0.125,0.3125,0.3125,-0.0625,0.375,0.5}, --Top Visor, Left

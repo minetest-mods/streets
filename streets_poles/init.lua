@@ -1,7 +1,7 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: poles
-  Optional: true
+	## StreetsMod 2.0 ##
+	Submod: poles
+	Optional: true
 ]]
 
 minetest.register_node(":streets:bigpole", {

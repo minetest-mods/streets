@@ -1,8 +1,8 @@
 --[[
-  ## StreetsMod 2.0 ##
-  Submod: streetsmod
-  Optional: false
-  Category: Init
+	## StreetsMod 2.0 ##
+	Submod: streetsmod
+	Optional: false
+	Category: Init
 ]]
 
 local function copytable(orig)
@@ -21,15 +21,15 @@ local function copytable(orig)
 end
 
 function streets.load_submod(dirname)
-  -- Check whether submod's init file exists
-  local f = io.open(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
-  if f ~= nil then
-    -- Load it
-    f.close()
-    dofile(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
-  else
-    minetest.log("error", "[Streets] '" .. dirname .. "' does not exist")
-  end
+	-- Check whether submod's init file exists
+	local f = io.open(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
+	if f ~= nil then
+		-- Load it
+		f.close()
+		dofile(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
+	else
+		minetest.log("error", "[Streets] '" .. dirname .. "' does not exist")
+	end
 end
 
 function streets.register_road_surface(data)
