@@ -15,490 +15,341 @@ streets.labels.sections = {
 	{name="other",friendlyname="Other"}
 }
 
+
+-- CENTER LINES
+
+-- Normal Lines
+
 streets.register_road_marking({
-	name = "dashed_white_center_line",
-	friendlyname = "Dashed White Center Line",
-	tex = "streets_line_dashed.png",
-	flip_required = false,
-	category = {color = "white", section = "centerlines"},
-	dye_needed = {white = 1},
+	name = "dashed_{color}_center_line",
+	friendlyname = "Dashed Center Line",
+	tex = "streets_dashed_center_line.png",
+	section = "centerlines",
+	dye_needed = 1,
+	rotation = { r90 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_center_line",
-	friendlyname = "Solid White Center Line",
-	tex = "streets_line_solid.png",
-	flip_required = false,
-	category = {color = "white", section = "centerlines"},
-	dye_needed = {white = 2},
+	name = "solid_{color}_center_line",
+	friendlyname = "Solid Center Line",
+	tex = "streets_solid_center_line.png",
+	section = "centerlines",
+	dye_needed = 2,
+	rotation = { r90 = 1},
+})
+
+
+-- Wide Lines
+
+streets.register_road_marking({
+	name = "dashed_{color}_center_line_wide",
+	friendlyname = "Dashed Center Line Wide",
+	tex = "streets_dashed_center_line_wide.png",
+	section = "centerlines",
+	dye_needed = 2,
+	rotation = { r90 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_side_line",
-	friendlyname = "Solid White Side Line",
-	tex = "streets_line_side_slim.png",
-	flip_required = true,
-	category = {color = "white", section = "sidelines"},
-	dye_needed = {white = 2},
+	name = "solid_{color}_center_line_wide",
+	friendlyname = "Solid Center Line Wide",
+	tex = "streets_solid_center_line_wide.png",
+	section = "centerlines",
+	dye_needed = 4,
+	rotation = { r90 = 1},
+})
+
+
+-- Double Lines
+
+streets.register_road_marking({
+	name = "double_dashed_{color}_center_line",
+	friendlyname = "Double Dashed Center Line",
+	tex = "streets_double_dashed_center_line.png",
+	section = "centerlines",
+	dye_needed = 2,
+	rotation = { r90 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_side_line_wide",
-	friendlyname = "Solid White Side Line (Wide)",
-	tex = "streets_line_side_thick.png",
-	flip_required = true,
-	category = {color = "white", section = "sidelines"},
-	dye_needed = {white = 3},
+	name = "double_solid_{color}_center_line",
+	friendlyname = "Double Solid Center Line",
+	tex = "streets_double_solid_center_line.png",
+	section = "centerlines",
+	dye_needed = 4,
+	rotation = { r90 = 1},
 })
 
 streets.register_road_marking({
-	name = "dashed_white_side_line",
-	friendlyname = "Dashed White Side Line",
-	tex = "streets_line_side_dashed_slim.png",
-	flip_required = true,
-	category = {color = "white", section = "sidelines"},
-	dye_needed = {white = 1},
+	name = "mixed_{color}_center_line",
+	friendlyname = "Solid/Dashed Center Line",
+	tex = "streets_mixed_center_line.png",
+	section = "centerlines",
+	dye_needed = 3,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
+})
+
+
+--CENTER LINE CORNERS
+
+--Normal Lines
+
+streets.register_road_marking({
+	name = "solid_{color}_center_line_corner",
+	friendlyname = "Solid Center Line Corner",
+	tex = "streets_solid_center_line_corner.png",
+	section = "centerlinecorners",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "dashed_white_side_line_wide",
-	friendlyname = "Dashed White Side Line (Wide)",
-	tex = "streets_line_side_dashed_thick.png",
-	flip_required = true,
-	category = {color = "white", section = "sidelines"},
-	dye_needed = {white = 2},
+	name = "solid_{color}_center_line_tjunction",
+	friendlyname = "Solid Center Line T-Junction",
+	tex = "streets_solid_center_line_tjunction.png",
+	section = "centerlinecorners",
+	dye_needed = 3,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_side_line_corner",
-	friendlyname = "Solid White Side Line Corner",
-	tex = "streets_line_edge_slim.png",
-	flip_required = true,
-	category = {color = "white", section = "sidelines"},
-	dye_needed = {white = 3},
+	name = "solid_{color}_center_line_crossing",
+	friendlyname = "Solid Center Line Crossing",
+	tex = "streets_solid_center_line_crossing.png",
+	section = "centerlinecorners",
+	dye_needed = 4,
+})
+
+
+--Wide Lines
+
+streets.register_road_marking({
+	name = "solid_{color}_center_line_wide_corner",
+	friendlyname = "Solid Center Line Wide Corner",
+	tex = "streets_solid_center_line_wide_corner.png",
+	section = "centerlinecorners",
+	dye_needed = 4,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_side_line_wide_corner",
-	friendlyname = "Solid White Side Line (Wide) Corner",
-	tex = "streets_line_edge_thick.png",
-	flip_required = true,
-	category = {color = "white", section = "sidelines"},
-	dye_needed = {white = 4},
+	name = "solid_{color}_center_line_wide_tjunction",
+	friendlyname = "Solid Center Line Wide T-Junction",
+	tex = "streets_solid_center_line_wide_tjunction.png",
+	section = "centerlinecorners",
+	dye_needed = 6,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "double_solid_white_center_line",
-	friendlyname = "Double Solid White Center Line",
-	tex = "streets_line_solid_double.png",
-	flip_required = false,
-	category = {color = "white", section = "centerlines"},
-	dye_needed = {white = 4},
+	name = "solid_{color}_center_line_wide_crossing",
+	friendlyname = "Solid Center Line Wide Crossing",
+	tex = "streets_solid_center_line_wide_crossing.png",
+	section = "centerlinecorners",
+	dye_needed = 8,
+})
+
+
+--Double Lines
+
+streets.register_road_marking({
+	name = "double_solid_{color}_center_line_corner",
+	friendlyname = "Double Solid Center Line Corner",
+	tex = "streets_double_solid_center_line_corner.png",
+	section = "centerlinecorners",
+	dye_needed = 4,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "double_dashed_white_center_line",
-	friendlyname = "Double Dashed White Center Line",
-	tex = "streets_line_dashed_double.png",
-	flip_required = false,
-	category = {color = "white", section = "centerlines"},
-	dye_needed = {white = 2},
+	name = "double_solid_{color}_center_line_tjunction",
+	friendlyname = "Double Solid Center Line T-Junction",
+	tex = "streets_double_solid_center_line_tjunction.png",
+	section = "centerlinecorners",
+	dye_needed = 6,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "mixed_white_center_line",
-	friendlyname = "Solid/Dashed White Center Line",
-	tex = "streets_line_mixed_double.png",
-	flip_required = true,
-	category = {color = "white", section = "centerlines"},
-	dye_needed = {white = 3},
+	name = "double_solid_{color}_center_line_crossing",
+	friendlyname = "Double Solid Center Line Crossing",
+	tex = "streets_double_solid_center_line_crossing.png",
+	section = "centerlinecorners",
+	dye_needed = 8,
+})
+
+--SIDE LINES
+
+--Normal Lines
+
+streets.register_road_marking({
+	name = "solid_{color}_side_line",
+	friendlyname = "Solid Side Line",
+	tex = "streets_solid_side_line.png",
+	section = "sidelines",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_stripe",
-	friendlyname = "Solid White Stripe",
-	tex = "streets_crosswalk.png",
-	flip_required = false,
-	category = {color = "white", section = "other"},
-	dye_needed = {white = 4},
+	name = "solid_{color}_side_line_corner",
+	friendlyname = "Solid Side Line Corner",
+	tex = "streets_solid_side_line_corner.png",
+	section = "sidelines",
+	dye_needed = 4,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_straight",
-	friendlyname = "White Arrow (straight)",
+	name = "dashed_{color}_side_line",
+	friendlyname = "Dashed Side Line",
+	tex = "streets_dashed_side_line.png",
+	section = "sidelines",
+	dye_needed = 1,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
+})
+
+
+--Wide Lines
+
+streets.register_road_marking({
+	name = "solid_{color}_side_line_wide",
+	friendlyname = "Solid Side Line Wide",
+	tex = "streets_solid_side_line_wide.png",
+	section = "sidelines",
+	dye_needed = 4,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
+})
+
+streets.register_road_marking({
+	name = "solid_{color}_side_line_wide_corner",
+	friendlyname = "Solid Side Line Wide Corner",
+	tex = "streets_solid_side_line_wide_corner.png",
+	section = "sidelines",
+	dye_needed = 8,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
+})
+
+streets.register_road_marking({
+	name = "dashed_{color}_side_line_wide",
+	friendlyname = "Dashed Side Line Wide",
+	tex = "streets_dashed_side_line_wide.png",
+	section = "sidelines",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
+})
+
+
+--ARROWS
+
+streets.register_road_marking({
+	name = "{color}_arrow_straight",
+	friendlyname = "Arrow Straight",
 	tex = "streets_arrow_straight.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 2},
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_left",
-	friendlyname = "White Arrow (left)",
-	tex = "streets_arrow_left.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 2},
+	name = "{color}_arrow_left",
+	friendlyname = "Arrow Left",
+	tex = "streets_arrow_right.png^[transformFX",
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_right",
-	friendlyname = "White Arrow (right)",
+	name = "{color}_arrow_right",
+	friendlyname = "Arrow Right",
 	tex = "streets_arrow_right.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 2},
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_left_straight",
-	friendlyname = "White Arrow (left+straight)",
-	tex = "streets_arrow_straightleft.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 3},
+	name = "{color}_arrow_left_straight",
+	friendlyname = "Arrow Left And Straight",
+	tex = "streets_arrow_right_straight.png^[transformFX",
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_straight_right",
-	friendlyname = "White Arrow (straight+right)",
-	tex = "streets_arrow_straightright.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 3},
+	name = "{color}_arrow_right_straight",
+	friendlyname = "Arrow Right And Straight",
+	tex = "streets_arrow_right_straight.png",
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_left_straight_right",
-	friendlyname = "White Arrow (left+straight+right)",
-	tex = "streets_arrow_straightleftright.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 4},
+	name = "{color}_arrow_left_right_straight",
+	friendlyname = "Arrow Left, Right And Straight",
+	tex = "streets_arrow_right_straight.png^[transformFX^streets_arrow_right_straight.png",
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "white_arrow_left_right",
-	friendlyname = "White Arrow (left+right)",
-	tex = "streets_arrow_leftright.png",
-	flip_required = false,
-	category = {color = "white", section = "arrows"},
-	dye_needed = {white = 3},
+	name = "{color}_arrow_left_right",
+	friendlyname = "Arrow Left And Right",
+	tex = "streets_arrow_left_right.png",
+	section = "arrows",
+	dye_needed = 2,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
+
+--SYMBOLS
+
 streets.register_road_marking({
-	name = "white_parking",
-	friendlyname = "White Parking",
+	name = "{color}_parking",
+	friendlyname = "Parking",
 	tex = "streets_parking.png",
-	flip_required = false,
-	category = {color = "white", section = "symbols"},
-	dye_needed = {white = 3},
+	section = "symbols",
+	dye_needed = 3,
+	rotation = { r90 = 1, r180 = 1, r270 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_white_diagonal_line",
-	friendlyname = "Solid White Diagonal Line",
-	tex = "streets_zigzag.png",
-	flip_required = true,
-	category = {color = "white", section = "other"},
-	dye_needed = {white = 2},
-})
-
-streets.register_road_marking({
-	name = "double_solid_white_diagonal_line",
-	friendlyname = "Double Solid White Diagonal Line",
-	tex = "streets_forbidden.png",
-	flip_required = true,
-	category = {color = "white", section = "other"},
-	dye_needed = {white = 4},
-})
-
-streets.register_road_marking({
-	name = "white_x",
-	friendlyname = "White X",
+	name = "{color}_cross",
+	friendlyname = "Cross",
 	tex = "streets_cross.png",
-	flip_required = false,
-	category = {color = "white", section = "symbols"},
-	dye_needed = {white = 4},
+	section = "symbols",
+	dye_needed = 4,
+})
+
+--OTHER
+
+streets.register_road_marking({
+	name = "solid_{color}_stripe",
+	friendlyname = "Solid Stripe",
+	tex = "streets_solid_stripe.png",
+	section = "other",
+	dye_needed = 4,
+	rotation = { r90 = 1},
 })
 
 streets.register_road_marking({
-	name = "dashed_yellow_center_line",
-	friendlyname = "Dashed Yellow Center Line",
-	tex = "streets_line_dashed_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 1},
+	name = "solid_{color}_diagonal_line",
+	friendlyname = "Solid Diagonal Line",
+	tex = "streets_solid_diagonal_line.png",
+	section = "other",
+	dye_needed = 2,
+	rotation = { r90 = 1},
 })
 
 streets.register_road_marking({
-	name = "solid_yellow_center_line",
-	friendlyname = "Solid Yellow Center Line",
-	tex = "streets_line_solid_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_side_line",
-	friendlyname = "Solid Yellow Side Line",
-	tex = "streets_line_side_slim_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "sidelines"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_side_line_wide",
-	friendlyname = "Solid Yellow Side Line (Wide)",
-	tex = "streets_line_side_thick_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "sidelines"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "dashed_yellow_side_line",
-	friendlyname = "Dashed Yellow Side Line",
-	tex = "streets_line_side_dashed_slim_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "sidelines"},
-	dye_needed = {yellow = 1},
-})
-
-streets.register_road_marking({
-	name = "dashed_yellow_side_line_wide",
-	friendlyname = "Dashed Yellow Side Line (Wide)",
-	tex = "streets_line_side_dashed_thick_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "sidelines"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_side_line_corner",
-	friendlyname = "Solid Yellow Side Line Corner",
-	tex = "streets_line_edge_slim_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "sidelines"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_side_line_wide_corner",
-	friendlyname = "Solid Yellow Side Line (Wide) Corner",
-	tex = "streets_line_edge_thick_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "sidelines"},
-	dye_needed = {yellow = 4},
-})
-
-streets.register_road_marking({
-	name = "double_solid_yellow_center_line",
-	friendlyname = "Double Solid Yellow Center Line",
-	tex = "streets_line_solid_double_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 4},
-})
-
-streets.register_road_marking({
-	name = "double_dashed_yellow_center_line",
-	friendlyname = "Double Dashed Yellow Center Line",
-	tex = "streets_line_dashed_double_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "mixed_yellow_center_line",
-	friendlyname = "Solid/Dashed Yellow Center Line",
-	tex = "streets_line_mixed_double_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_stripe",
-	friendlyname = "Solid Yellow Stripe",
-	tex = "streets_crosswalk_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "other"},
-	dye_needed = {yellow = 4},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_straight",
-	friendlyname = "Yellow Arrow (straight)",
-	tex = "streets_arrow_straight_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_left",
-	friendlyname = "Yellow Arrow (left)",
-	tex = "streets_arrow_left_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_right",
-	friendlyname = "Yellow Arrow (right)",
-	tex = "streets_arrow_right_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_left_straight",
-	friendlyname = "Yellow Arrow (left+straight)",
-	tex = "streets_arrow_straightleft_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_straight_right",
-	friendlyname = "Yellow Arrow (straight+right)",
-	tex = "streets_arrow_straightright_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_left_straight_right",
-	friendlyname = "Yellow Arrow (left+straight+right)",
-	tex = "streets_arrow_straightleftright_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 4},
-})
-
-streets.register_road_marking({
-	name = "yellow_arrow_left_right",
-	friendlyname = "Yellow Arrow (left+right)",
-	tex = "streets_arrow_leftright_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "arrows"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "yellow_parking",
-	friendlyname = "Yellow Parking",
-	tex = "streets_parking_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "symbols"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_diagonal_line",
-	friendlyname = "Solid Yellow Diagonal Line",
-	tex = "streets_zigzag_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "other"},
-	dye_needed = {yellow = 2},
-})
-
-streets.register_road_marking({
-	name = "double_solid_yellow_diagonal_line",
-	friendlyname = "Double Solid Yellow Diagonal Line",
-	tex = "streets_forbidden_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "other"},
-	dye_needed = {yellow = 4},
-})
-
-streets.register_road_marking({
-	name = "yellow_x",
-	friendlyname = "Yellow X",
-	tex = "streets_cross_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "symbols"},
-	dye_needed = {yellow = 4},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_center_line_corner",
-	friendlyname = "Solid Yellow Center Line Corner",
-	tex = "streets_rw_solid_curve.png",
-	flip_required = true,
-	category = {color = "yellow", section = "centerlinecorners"},
-	dye_needed = {yellow = 3},
-})
-
-
-streets.register_road_marking({
-	name = "solid_yellow_center_line_tjunction",
-	friendlyname = "Solid Yellow Center Line T-Junction",
-	tex = "streets_rw_solid_tjunction.png",
-	flip_required = true,
-	category = {color = "yellow", section = "centerlinecorners"},
-	dye_needed = {yellow = 4},
-})
-
-
-streets.register_road_marking({
-	name = "solid_yellow_center_line_crossing",
-	friendlyname = "Solid Yellow Center Line Crossing",
-	tex = "streets_rw_solid_crossing.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlinecorners"},
-	dye_needed = {yellow = 5},
-})
-
-streets.register_road_marking({
-	name = "double_yellow_center_line_wide",
-	friendlyname = "Double Solid Yellow Center Line (Wide)",
-	tex = "streets_line_solid_double_wide_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 5},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_center_line_wide",
-	friendlyname = "Solid Yellow Center Line (Wide)",
-	tex = "streets_line_solid_wide_yellow.png",
-	flip_required = false,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_center_line_wide_corner",
-	friendlyname = "Solid Yellow Center Line (Wide) Corner",
-	tex = "streets_line_solid_wide_yellow_corner.png",
-	flip_required = true,
-	category = {color = "yellow", section = "centerlinecorners"},
-	dye_needed = {yellow = 3},
-})
-
-streets.register_road_marking({
-	name = "double_yellow_center_line_wide_corner",
-	friendlyname = "Double Solid Yellow Center Line (Wide) Corner",
-	tex = "streets_line_solid_double_wide_yellow_corner.png",
-	flip_required = true,
-	category = {color = "yellow", section = "centerlinecorners"},
-	dye_needed = {yellow = 5},
-})
-
-streets.register_road_marking({
-	name = "solid_yellow_center_line_wide_offset",
-	friendlyname = "Solid Yellow Center Line (Wide, Offset)",
-	tex = "streets_line_solid_offset_wide_yellow.png",
-	flip_required = true,
-	category = {color = "yellow", section = "centerlines"},
-	dye_needed = {yellow = 3},
+	name = "double_solid_{color}_diagonal_line",
+	friendlyname = "Double Solid White Diagonal Line",
+	tex = "streets_double_solid_diagonal_line.png",
+	section = "other",
+	dye_needed = 4,
+	rotation = { r90 = 1},
 })

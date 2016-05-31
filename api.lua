@@ -42,11 +42,4 @@ end
 
 function streets.register_road_marking(data)
 	streets.labels.labeltypes[data.name] = data
-	if data.flip_required then
-		local data2 = copytable(data)
-		data2.tex = data2.tex.."^[transformFX"
-		data2.name = data2.name.."_rotated"
-		data2.friendlyname = data2.friendlyname.." (rotated)"
-		streets.labels.labeltypes[data2.name] = data2
-	end
 end
