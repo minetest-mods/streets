@@ -15,6 +15,16 @@ else
 		groups = {cracky = 2, stone = 3},
 		sounds =  default.node_sound_stone_defaults()
 	})
+
+	
+	if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus") then
+		stairsplus:register_all("streets", "concrete", "streets:concrete", {
+			description = "Concrete",
+			tiles = {streets.concrete_texture},
+			groups = {cracky = 2, stone = 3},
+			sounds = default.node_sound_stone_defaults()
+		})
+	end
 end
 
 minetest.register_node("streets:concrete_wall", {
