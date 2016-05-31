@@ -14,3 +14,9 @@ streets.nodeboxes.stair = {
 streets.nodeboxes.slab = {
 	{-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 }
+
+if minetest.get_modpath("concrete") then
+	streets.concrete_texture = "technic_concrete_block.png"
+else
+	streets.concrete_texture = "streets_concrete.png"
+end

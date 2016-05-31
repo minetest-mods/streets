@@ -8,7 +8,7 @@ minetest.register_node("streets:roadwork_traffic_barrier", {
 	description = "Traffic Barrier",
 	paramtype = "light",
 	drawtype = "nodebox",
-	tiles = {"streets_concrete.png", "streets_concrete.png", "streets_concrete.png^streets_roadwork_traffic_barrier.png"},
+	tiles = {streets.concrete_texture, streets.concrete_texture, streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"},
 	sunlight_propagates = true,
 	groups = {cracky = 1, level = 2, wall = 1},
 	node_box = {
