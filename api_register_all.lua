@@ -48,21 +48,11 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 		paramtype2 = "facedir",
 		inventory_image = tiles[6],
 		after_place_node = function(pos)
-			local behind_pos = {x = pos.x, y = pos.y, z = pos.z}
+			local under_pos = {x = pos.x, y = pos.y-1, z = pos.z}
+			local under_node = minetest.get_node(under_pos)
 			local node = minetest.get_node(pos)
-			local param2 = node.param2
-			if param2 == 0 then
-				behind_pos.z = behind_pos.z + 1
-			elseif param2 == 1 then
-				behind_pos.x = behind_pos.x + 1
-			elseif param2 == 2 then
-				behind_pos.z = behind_pos.z - 1
-			elseif param2 == 3 then
-				behind_pos.x = behind_pos.x - 1
-			end
-			local behind_node = minetest.get_node(behind_pos)
-			if behind_node.name:sub(1,15) == "streets:bigpole" then
-				node.name = node.name.."_polemount"
+			if under_node.name == "streets:bigpole" then
+				node.name = node.name.."_top"
 				minetest.set_node(pos,node)
 			end
 		end,
@@ -75,7 +65,7 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 				fixed = {-1/2, -1/2, 0.5, 1/2, 1/2, math.min(0.5 - thickness,0.45)}
 		}
 	})
-	minetest.register_node(":streets:"..name.."_polemount",{
+	minetest.register_node(":streets:"..name.."_top",{
 		tiles = tiles,
 		groups = {cracky = 3,not_in_creative_inventory = 1},
 		drop = "streets:"..name,
@@ -84,11 +74,11 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 		paramtype2 = "facedir",
 		node_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, 0.85 - thickness, 1/2, 1/2, 0.85}
+				fixed = {-1/2, -1/2, -(thickness/2), 1/2, 1/2, (thickness/2)}
 		},
 		selection_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, math.min(0.85 - thickness,0.80), 1/2, 1/2, 0.85}
+				fixed = {-1/2, -1/2, -math.min((thickness/2),0.05), 1/2, 1/2, math.min((thickness/2),0.05)}
 		}
 	})
 end
