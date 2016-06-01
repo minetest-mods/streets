@@ -4,18 +4,34 @@
 	Optional: true
 ]]
 
-minetest.register_node("streets:concrete", {
-	description = "Concrete",
-	tiles = {"streets_concrete.png"},
-	groups = {cracky = 2, stone = 3},
-	sounds =  default.node_sound_stone_defaults()
-})
+if minetest.get_modpath("concrete") then
+	minetest.register_alias("streets:concrete", "technic:concrete")
+else
+	minetest.register_alias("technic:concrete", "streets:concrete")
+
+	minetest.register_node("streets:concrete", {
+		description = "Concrete",
+		tiles = {streets.concrete_texture},
+		groups = {cracky = 2, stone = 3},
+		sounds =  default.node_sound_stone_defaults()
+	})
+
+	
+	if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus") then
+		stairsplus:register_all("streets", "concrete", "streets:concrete", {
+			description = "Concrete",
+			tiles = {streets.concrete_texture},
+			groups = {cracky = 2, stone = 3},
+			sounds = default.node_sound_stone_defaults()
+		})
+	end
+end
 
 minetest.register_node("streets:concrete_wall", {
 	description = "Concrete Wall",
 	paramtype = "light",
 	drawtype = "nodebox",
-	tiles = {"streets_concrete.png"},
+	tiles = {streets.concrete_texture},
 	sunlight_propagates = true,
 	groups = {cracky = 1, level = 2, wall = 1},
 	node_box = {

@@ -1365,3 +1365,343 @@ minetest.register_craft({
 		{"", "digilines:wire_std_00000000", ""}
 	}
 })
+
+streets.portable_tl_on_receive_fields = function(pos,formname,fields,sender)
+	local meta = minetest.get_meta(pos)
+	if fields.normal then
+		meta:set_string("mode","Normal")
+	elseif fields.yyflash then
+		meta:set_string("mode","Y-Y Flash")
+	elseif fields.yrflash then
+		meta:set_string("mode","Y-R Flash")
+	elseif fields.rrflash then
+		meta:set_string("mode","R-R Flash")
+	elseif fields.save then
+		if tonumber(fields.yellow) then
+			meta:set_int("yellow",fields.yellow)
+		end
+		if tonumber(fields.allred) then
+			meta:set_int("allred",fields.allred)
+		end
+		if tonumber(fields.maingreen) then
+			meta:set_int("maingreen",fields.maingreen)
+		end
+		if tonumber(fields.sidegreen) then
+			meta:set_int("sidegreen",fields.sidegreen)
+		end
+	end
+end
+
+streets.portable_tl_tick = function(pos,meta)
+	local yellow = meta:get_int("yellow")
+	local allred = meta:get_int("allred")
+	local sidegreen = meta:get_int("sidegreen")
+	local maingreen = meta:get_int("maingreen")
+	local tick = meta:get_int("tick")
+	local mode = meta:get_string("mode")
+	local phase = meta:get_string("phase")
+	local time = ""
+	if mode == "Normal" then
+		local phaselen = 0
+		if phase == "All Red A" or phase == "All Red B" then
+			phaselen = allred
+		elseif phase == "Yellow A" or phase == "Yellow B" then
+			phaselen = yellow
+		elseif phase == "Side Green" then
+			phaselen = sidegreen
+		elseif phase == "Main Green" then
+			phaselen = maingreen
+		end
+		tick = tick + 1
+		if tick >= phaselen then
+			tick = 0
+			if phase == "All Red A" then
+				phase = "Side Green"
+			elseif phase == "Side Green" then
+				phase = "Yellow B"
+			elseif phase == "Yellow B" then
+				phase = "All Red B"
+			elseif phase == "All Red B" then
+				phase = "Main Green"
+			elseif phase == "Main Green" then
+				phase = "Yellow A"
+			elseif phase == "Yellow A" then
+				phase = "All Red A"
+			end
+			if phase == "All Red A" or phase == "All Red B" then
+				phaselen = allred
+			elseif phase == "Yellow A" or phase == "Yellow B" then
+				phaselen = yellow
+			elseif phase == "Side Green" then
+				phaselen = sidegreen
+			elseif phase == "Main Green" then
+				phaselen = maingreen
+			end
+		end
+		time = string.format("%s of %s Seconds Remaining",phaselen-tick,phaselen)
+	end
+	meta:set_int("tick",tick)
+	local need_swap = phase ~= meta:get_string(phase)
+	local swap_to = "streets:trafficlight_portable_rrflash"
+	meta:set_string("phase",phase)
+
+	if mode == "R-R Flash" then
+		need_swap = true
+		swap_to = "streets:trafficlight_portable_rrflash"
+	elseif mode == "Y-Y Flash" then
+		need_swap = true
+		swap_to = "streets:trafficlight_portable_yyflash"
+	elseif mode == "Y-R Flash" then
+		need_swap = true
+		swap_to = "streets:trafficlight_portable_yrflash"
+	end
+
+	if need_swap then
+		if mode == "Normal" then
+			if phase == "All Red A" or phase == "All Red B" then
+				swap_to = "streets:trafficlight_portable_allred"
+			elseif phase == "Yellow A" then
+				swap_to = "streets:trafficlight_portable_yellowa"
+			elseif phase == "Yellow B" then
+				swap_to = "streets:trafficlight_portable_yellowb"
+			elseif phase == "Main Green" then
+				swap_to = "streets:trafficlight_portable_maingreen"
+			elseif phase == "Side Green" then
+				swap_to = "streets:trafficlight_portable_sidegreen"
+			end
+		end
+		local node = minetest.get_node(pos)
+		minetest.swap_node(pos,{name = swap_to,param2 = node.param2})
+	end
+
+	local formspec =        "size[8,4]"..
+				"label[0,0;Mode: "..mode.."]"..
+				"label[0,0.5;"..(mode == "Normal" and "Phase: "..phase or "").."]"..
+				"label[0,1;"..time.."]"..
+				"label[0,2;Select Mode:]"..
+				"button[0,2.5;2,1;normal;Normal]"..
+				"button[2,2.5;2,1;rrflash;R-R Flash]"..
+				"button[0,3.5;2,1;yyflash;Y-Y Flash]"..
+				"button[2,3.5;2,1;yrflash;Y-R Flash]"..
+				"label[5.5,0;Time Adjustments:]"
+	if mode == "Normal" then
+		formspec = formspec.."label[5.5,1;Cannot edit times\nwhile running.\nSelect a flash mode first.]"
+	else
+		formspec = formspec..   "field[4.5,1;2,1;yellow;Yellow;${yellow}]"..
+					"field[6.5,1;2,1;allred;All Red;${allred}]"..
+					"field[4.5,2;2,1;maingreen;Main Green;${maingreen}]"..
+					"field[6.5,2;2,1;sidegreen;Side Green;${sidegreen}]"..
+					"button[5.25,3;2,1;save;Save]"
+	end
+	meta:set_string("formspec",formspec)
+end
+
+minetest.register_node(":streets:trafficlight_portable_off",{
+	description = "Portable Traffic Light",
+	groups = {cracky = 1,portable_tl = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_off.png","streets_tl_off.png","streets_tl_off.png","streets_tl_off.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_int("yellow",3)
+		meta:set_int("allred",2)
+		meta:set_int("sidegreen",5)
+		meta:set_int("maingreen",10)
+		meta:set_int("tick",0)
+		meta:set_string("mode","R-R Flash")
+		meta:set_string("phase","All Red A")
+	end,
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_allred",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_red.png","streets_tl_red.png","streets_tl_red.png","streets_tl_red.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_yellowa",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_red.png","streets_tl_red.png","streets_tl_yellow.png","streets_tl_yellow.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_yellowb",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_yellow.png","streets_tl_yellow.png","streets_tl_red.png","streets_tl_red.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_maingreen",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_red.png","streets_tl_red.png","streets_tl_green.png","streets_tl_green.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_sidegreen",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_green.png","streets_tl_green.png","streets_tl_red.png","streets_tl_red.png"},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+streets.portable_tl_tile_flashred = {
+						name="streets_tl_flashred.png",
+						animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.2}
+					}
+
+streets.portable_tl_tile_flashyellow = {
+						name="streets_tl_warn.png",
+						animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.2}
+					}
+
+minetest.register_node(":streets:trafficlight_portable_rrflash",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png",streets.portable_tl_tile_flashred,streets.portable_tl_tile_flashred,streets.portable_tl_tile_flashred,streets.portable_tl_tile_flashred},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_yyflash",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png",streets.portable_tl_tile_flashyellow,streets.portable_tl_tile_flashyellow,streets.portable_tl_tile_flashyellow,streets.portable_tl_tile_flashyellow},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_node(":streets:trafficlight_portable_yrflash",{
+	drop = "streets:trafficlight_portable_off",
+	groups = {cracky = 1,portable_tl = 1,not_in_creative_inventory = 1},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	on_receive_fields = streets.portable_tl_on_receive_fields,
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png",streets.portable_tl_tile_flashred,streets.portable_tl_tile_flashred,streets.portable_tl_tile_flashyellow,streets.portable_tl_tile_flashyellow},
+	node_box = {
+		type = "fixed",
+		fixed = {
+				{-0.1875,-0.5,-0.1875,0.1875,0.5,0.1875}, --Box
+
+				--Needs visors at some point. Converting to a mesh would be best.
+			}
+	},
+	light_source = 6,
+})
+
+minetest.register_abm({
+	nodenames = "group:portable_tl",
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		streets.portable_tl_tick(pos,minetest.get_meta(pos))
+	end,
+})
+	

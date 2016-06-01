@@ -54,6 +54,28 @@ streets.register_road_surface({
 	craft = {
 		output = "streets:asphalt_blue 1",
 		type = "shapeless",
-		recipe = {"streets:asphalt", "dye:yellow"}
+		recipe = {"streets:asphalt", "dye:blue"}
 	}
+})
+
+minetest.register_node("streets:sidewalk", {
+	description = "Sidewalk",
+	tiles = {"streets_sidewalk.png"},
+	groups = {cracky = 3, stone = 1},
+	sounds =  default.node_sound_stone_defaults()
+})
+	
+if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus") then
+	stairsplus:register_all("streets", "sidewalk", "streets:sidewalk", {
+		description = "Concrete",
+		tiles = {"streets_sidewalk.png"},
+		groups = {cracky = 3, asphalt = 1},
+		sounds = default.node_sound_stone_defaults()
+	})
+end
+
+minetest.register_craft({
+	output = "streets:sidewalk 1",
+	type = "shapeless",
+	recipe = {"streets:asphalt", "dye:white"}
 })
