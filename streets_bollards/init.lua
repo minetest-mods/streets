@@ -8,6 +8,12 @@ local function toggle_bollard(pos, node, clicker, itemstack, pointed_thing)
 	if minetest.registered_nodes[minetest.get_node(pos).name].bollard then
 		local n = minetest.get_node(pos)
 		local ndef = minetest.registered_nodes[n.name]
+		if clicker and ndef.bollard.protection then
+			if minetest.is_protected(pos, clicker) and not minetest.check_player_privs(clicker, {protection_bypass=true}) then
+				minetest.record_protection_violation(pos, clicker)
+				return
+			end
+		end
 		minetest.set_node(pos, {name = ndef.bollard.counterpart, param2 = n.param2})
 	end
 end
@@ -82,7 +88,8 @@ minetest.register_node("streets:bollard_steel_manual_up", {
 	},
 	bollard = {
 		role = "up",
-		counterpart = "streets:bollard_steel_manual_down"
+		counterpart = "streets:bollard_steel_manual_down",
+		protection = true
 	}
 })
 
@@ -105,6 +112,7 @@ minetest.register_node("streets:bollard_steel_manual_down", {
 	},
 	bollard = {
 		role = "down",
-		counterpart = "streets:bollard_steel_manual_up"
+		counterpart = "streets:bollard_steel_manual_up",
+		protection = true
 	}
 })
