@@ -13,7 +13,7 @@ local function toggle_bollard(pos, node, clicker, itemstack, pointed_thing)
 end
 
 minetest.register_node("streets:bollard_driver", {
-	description = "Driver for bollards",
+	description = "Driver for Bollards",
 	tiles = {"streets_bollard_driver_top.png", "default_steel_block.png"},
 	groups = {cracky = 1},
 	-- on_rightclick = toggle_bollard, -- Automatic bollards mustn't be toggled manually!
@@ -27,7 +27,7 @@ minetest.register_node("streets:bollard_driver", {
 })
 
 minetest.register_node("streets:bollard_steel_automatic_up", {
-	description = "Steel bollard",
+	description = "Steel Bollard",
 	tiles = {"streets_bollard_driver_top.png", "streets_bollard_driver_top.png", "streets_bollard_automatic_side.png"},
 	groups = {cracky = 1},
 	paramtype = "light",
@@ -47,7 +47,7 @@ minetest.register_node("streets:bollard_steel_automatic_up", {
 
 minetest.register_node("streets:bollard_steel_automatic_down", {
 	tiles = {"streets_bollard_driver_top.png", "streets_bollard_driver_top.png", "streets_bollard_automatic_side.png"},
-	groups = {cracky = 1},
+	groups = {cracky = 1,not_in_creative_inventory = 1},
 	drop = "streets:bollard_steel_automatic_up",
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -66,6 +66,7 @@ minetest.register_node("streets:bollard_steel_automatic_down", {
 })
 
 minetest.register_node("streets:bollard_steel_manual_up", {
+	description = "Manual Bollard",
 	tiles = {"streets_bollard_manual_top.png", "streets_bollard_manual_top.png", "streets_bollard_manual_side.png"},
 	groups = {cracky = 1},
 	paramtype = "light",
@@ -88,7 +89,7 @@ minetest.register_node("streets:bollard_steel_manual_up", {
 minetest.register_node("streets:bollard_steel_manual_down", {
 	tiles = {"streets_bollard_manual_side_down.png", "streets_bollard_manual_side_down.png^[transformR180", "streets_bollard_manual_side_down.png^[transformR270", "streets_bollard_manual_side_down.png^[transformR90", "streets_bollard_manual_top.png",
 },
-	groups = {cracky = 1},
+	groups = {cracky = 1,not_in_creative_inventory = 1},
 	drop = "streets:bollard_steel_manual_up",
 	paramtype = "light",
 	paramtype2 = "facedir",
