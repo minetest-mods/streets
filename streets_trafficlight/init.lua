@@ -1711,3 +1711,199 @@ minetest.register_craft({
 	type = "shapeless",
 	recipe = {"streets:trafficlight_top_off","mesecons_luacontroller:luacontroller0000"}
 })
+
+minetest.register_node("streets:pedbutton_left", {
+	drawtype = "nodebox",
+	tiles = {
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_pedbutton_us_back.png",
+	"streets_pedbutton_us_left.png"
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	legacy_wallmounted = true,
+	walkable = false,
+	sunlight_propagates = true,
+	selection_box = {
+		type = "fixed",
+			fixed = { -0.5, -0.5, 0.65, 0.5, 0.5, 0.85 }
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.1, -0.1, 0.7, 0.1, 0.1, 0.85 },
+			{ -0.5, -0.5, 0.7, 0.5, 0.5, 0.7 },
+			{ -0.06, -0.41, 0.7, 0.05, -0.32, 0.65 }
+		}
+	},
+	{
+		receptor = {}
+	},
+	groups = {cracky = 1},
+	description = "Pedestrian Crossing Button Assembly - Left",
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec","size[8,4;]field[1,1;6,2;channel;Channel;${channel}]field[1,2;6,2;msg;Message;${msg}]button_exit[2.25,3;3,1;submit;Save]")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		local meta = minetest.get_meta(pos)
+		if fields.channel and fields.msg and fields.channel ~= "" and fields.msg ~= "" then
+			meta:set_string("channel",fields.channel)
+			meta:set_string("msg",fields.msg)
+			meta:set_string("formspec","")
+			minetest.swap_node(pos, {name = "streets:pedbutton_left_off", param2=minetest.get_node(pos).param2})
+		else
+			minetest.chat_send_player(sender:get_player_name(),"Channel and message must both be set!")
+		end
+	end,
+})
+
+minetest.register_node("streets:pedbutton_left_off", {
+	drawtype = "nodebox",
+	tiles = {
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_pedbutton_us_back.png",
+	"streets_pedbutton_us_left.png"
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	legacy_wallmounted = true,
+	walkable = false,
+	sunlight_propagates = true,
+	selection_box = {
+		type = "fixed",
+			fixed = { -0.5, -0.5, 0.65, 0.5, 0.5, 0.85 }
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.1, -0.1, 0.7, 0.1, 0.1, 0.85 },
+			{ -0.5, -0.5, 0.7, 0.5, 0.5, 0.7 },
+			{ -0.06, -0.41, 0.7, 0.05, -0.32, 0.65 }
+		}
+	},
+	digiline = 
+	{
+		receptor = {}
+	},
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	drop = "streets:pedbutton_left",
+	on_rightclick = function (pos)
+		local meta = minetest.get_meta(pos)
+		digiline:receptor_send(pos, digiline.rules.default, meta:get_string("channel"), meta:get_string("msg"))
+	end,
+	on_punch = function (pos)
+		local meta = minetest.get_meta(pos)
+		digiline:receptor_send(pos, digiline.rules.default, meta:get_string("channel"), meta:get_string("msg"))
+	end,
+})
+
+minetest.register_node("streets:pedbutton_right", {
+	drawtype = "nodebox",
+	tiles = {
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_pedbutton_us_back.png",
+	"streets_pedbutton_us_right.png"
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	legacy_wallmounted = true,
+	walkable = false,
+	sunlight_propagates = true,
+	selection_box = {
+		type = "fixed",
+			fixed = { -0.5, -0.5, 0.65, 0.5, 0.5, 0.85 }
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.1, -0.1, 0.7, 0.1, 0.1, 0.85 },
+			{ -0.5, -0.5, 0.7, 0.5, 0.5, 0.7 },
+			{ -0.06, -0.41, 0.7, 0.05, -0.32, 0.65 }
+		}
+	},
+	{
+		receptor = {}
+	},
+	groups = {cracky = 1},
+	description = "Pedestrian Crossing Button Assembly - Right",
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec","size[8,4;]field[1,1;6,2;channel;Channel;${channel}]field[1,2;6,2;msg;Message;${msg}]button_exit[2.25,3;3,1;submit;Save]")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		local meta = minetest.get_meta(pos)
+		if fields.channel and fields.msg and fields.channel ~= "" and fields.msg ~= "" then
+			meta:set_string("channel",fields.channel)
+			meta:set_string("msg",fields.msg)
+			meta:set_string("formspec","")
+			minetest.swap_node(pos, {name = "streets:pedbutton_right_off", param2=minetest.get_node(pos).param2})
+		else
+			minetest.chat_send_player(sender:get_player_name(),"Channel and message must both be set!")
+		end
+	end,
+})
+
+minetest.register_node("streets:pedbutton_right_off", {
+	drawtype = "nodebox",
+	tiles = {
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_tl_bg.png",
+	"streets_pedbutton_us_back.png",
+	"streets_pedbutton_us_right.png"
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	legacy_wallmounted = true,
+	walkable = false,
+	sunlight_propagates = true,
+	selection_box = {
+		type = "fixed",
+			fixed = { -0.5, -0.5, 0.65, 0.5, 0.5, 0.85 }
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.1, -0.1, 0.7, 0.1, 0.1, 0.85 },
+			{ -0.5, -0.5, 0.7, 0.5, 0.5, 0.7 },
+			{ -0.06, -0.41, 0.7, 0.05, -0.32, 0.65 }
+		}
+	},
+	digiline = 
+	{
+		receptor = {}
+	},
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	drop = "streets:pedbutton_right",
+	on_rightclick = function (pos)
+		local meta = minetest.get_meta(pos)
+		digiline:receptor_send(pos, digiline.rules.default, meta:get_string("channel"), meta:get_string("msg"))
+	end,
+	on_punch = function (pos)
+		local meta = minetest.get_meta(pos)
+		digiline:receptor_send(pos, digiline.rules.default, meta:get_string("channel"), meta:get_string("msg"))
+	end,
+})
+
+minetest.register_craft({
+	output = "streets:pedbutton_left",
+	type = "shapeless",
+	recipe = {"streets:sign_us_pushtocross_left","digilines:wire_std_00000000"}
+})
+
+minetest.register_craft({
+	output = "streets:pedbutton_right",
+	type = "shapeless",
+	recipe = {"streets:sign_us_pushtocross_right","digilines:wire_std_00000000"}
+})
