@@ -21,12 +21,12 @@ streets.register_road_sign({
 	name = "sign_blank",
 	friendlyname = "Blank Sign",
 	tiles = {
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png"
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png"
 	},
 	thickness = 0.05
 })
@@ -35,11 +35,11 @@ streets.register_road_sign({
 	name = "sign_curve_chevron_right",
 	friendlyname = "Curve Chevron Sign (Right)",
 	tiles = {
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
 		"streets_curve_sign.png"
 	},
 	thickness = 0.05,
@@ -51,11 +51,11 @@ streets.register_road_sign({
 	name = "sign_curve_chevron_left",
 	friendlyname = "Curve Chevron Sign (Left)",
 	tiles = {
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
+		"streets_sign_back.png",
 		"streets_curve_sign.png^[transformFX"
 	},
 	thickness = 0.05,
@@ -67,11 +67,11 @@ streets.register_road_sign({
 	name = "sign_warning",
 	friendlyname = "Warning Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_warning.png"
 	},
 	thickness = 0.05,
@@ -83,11 +83,11 @@ streets.register_road_sign({
 	name = "sign_water",
 	friendlyname = "Water Warning Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_water.png"
 	},
 	thickness = 0.05,
@@ -99,11 +99,11 @@ streets.register_road_sign({
 	name = "sign_lava",
 	friendlyname = "Lava Warning Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_lava.png"
 	},
 	thickness = 0.05,
@@ -115,11 +115,11 @@ streets.register_road_sign({
 	name = "sign_construction",
 	friendlyname = "Construction Warning Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_construction.png"
 	},
 	thickness = 0.05,
@@ -131,11 +131,11 @@ streets.register_road_sign({
 	name = "sign_grass",
 	friendlyname = "No Walking on Grass Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_grass.png"
 	},
 	thickness = 0.05,
@@ -147,11 +147,11 @@ streets.register_road_sign({
 	name = "sign_mine",
 	friendlyname = "Mine Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_mine.png"
 	},
 	thickness = 0.05,
@@ -163,11 +163,11 @@ streets.register_road_sign({
 	name = "sign_shop",
 	friendlyname = "Shop Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_shop.png"
 	},
 	thickness = 0.05,
@@ -179,11 +179,11 @@ streets.register_road_sign({
 	name = "sign_work_shop",
 	friendlyname = "Workshop Sign",
 	tiles = {
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png^[colorize:#D20000FF",
-		"streets_tl_bg.png",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png^[colorize:#D20000FF",
+		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_workshop.png"
 	},
 	thickness = 0.05,
@@ -201,7 +201,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_4wayintersection.png"
 	},
 	thickness = 0.01,
@@ -217,7 +217,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_arrow_exitgore.png"
 	},
 	thickness = 0.01,
@@ -233,7 +233,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_arrow_left.png"
 	},
 	thickness = 0.01,
@@ -249,7 +249,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_arrow_left.png^[transformFX"
 	},
 	thickness = 0.01,
@@ -265,7 +265,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_arrow_leftright.png"
 	},
 	thickness = 0.01,
@@ -281,7 +281,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_bepreparedtostop.png"
 	},
 	thickness = 0.01,
@@ -297,7 +297,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_bikelane.png"
 	},
 	thickness = 0.01,
@@ -313,7 +313,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_crossbuck.png"
 	},
 	thickness = 0.01,
@@ -329,7 +329,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_deadend.png"
 	},
 	thickness = 0.01,
@@ -345,7 +345,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_divhwyend.png"
 	},
 	thickness = 0.01,
@@ -361,7 +361,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_divhwystart.png"
 	},
 	thickness = 0.01,
@@ -377,7 +377,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_donotenter.png"
 	},
 	thickness = 0.01,
@@ -393,7 +393,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_donotstopontracks.png"
 	},
 	thickness = 0.01,
@@ -409,7 +409,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_emergencyhybridbeacon.png"
 	},
 	thickness = 0.01,
@@ -425,7 +425,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_emergencysignal.png"
 	},
 	thickness = 0.01,
@@ -441,7 +441,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_endschoolspeedlimit.png"
 	},
 	thickness = 0.01,
@@ -457,7 +457,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_arrow_left.png"
 	},
 	thickness = 0.01,
@@ -473,7 +473,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_exitclosed.png"
 	},
 	thickness = 0.01,
@@ -489,7 +489,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_firetruckwarning.png"
 	},
 	thickness = 0.01,
@@ -505,7 +505,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_fork.png"
 	},
 	thickness = 0.01,
@@ -521,7 +521,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_keepright.png"
 	},
 	thickness = 0.01,
@@ -537,7 +537,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftcurve.png"
 	},
 	thickness = 0.01,
@@ -553,7 +553,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftcurve.png^[transformFX"
 	},
 	thickness = 0.01,
@@ -569,7 +569,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftongreenarrowonly.png"
 	},
 	thickness = 0.01,
@@ -585,7 +585,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftreversecurve.png"
 	},
 	thickness = 0.01,
@@ -601,7 +601,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftreversecurve.png^[transformFX"
 	},
 	thickness = 0.01,
@@ -617,7 +617,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftreversecurve.png"
 	},
 	thickness = 0.01,
@@ -633,7 +633,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftreverseturn.png^[transformFX"
 	},
 	thickness = 0.01,
@@ -649,7 +649,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftturn.png"
 	},
 	thickness = 0.01,
@@ -665,7 +665,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftturn.png^[transformFX"
 	},
 	thickness = 0.01,
@@ -681,7 +681,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftturnonly.png"
 	},
 	thickness = 0.01,
@@ -697,7 +697,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftturnsignal.png"
 	},
 	thickness = 0.01,
@@ -713,7 +713,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_leftturnyieldongreen.png"
 	},
 	thickness = 0.01,
@@ -729,7 +729,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_merge_newlane.png"
 	},
 	thickness = 0.01,
@@ -745,7 +745,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_merge_samelane.png"
 	},
 	thickness = 0.01,
@@ -761,7 +761,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_nobicycles.png"
 	},
 	thickness = 0.01,
@@ -777,7 +777,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_noleftturn.png"
 	},
 	thickness = 0.01,
@@ -793,7 +793,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_nooutlet.png"
 	},
 	thickness = 0.01,
@@ -809,7 +809,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_noparkingboth.png"
 	},
 	thickness = 0.01,
@@ -825,7 +825,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_noparkingleft.png"
 	},
 	thickness = 0.01,
@@ -841,7 +841,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_noparkingright.png"
 	},
 	thickness = 0.01,
@@ -857,7 +857,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_nopassing.png"
 	},
 	thickness = 0.01,
@@ -873,7 +873,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_noped.png"
 	},
 	thickness = 0.01,
@@ -889,7 +889,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_norightturn.png"
 	},
 	thickness = 0.01,
@@ -905,7 +905,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_notrucks.png"
 	},
 	thickness = 0.01,
@@ -921,7 +921,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_noturnonred.png"
 	},
 	thickness = 0.01,
@@ -937,7 +937,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_nouturn.png"
 	},
 	thickness = 0.01,
@@ -953,7 +953,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_om1.png"
 	},
 	thickness = 0.01,
@@ -969,7 +969,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_om2.png"
 	},
 	thickness = 0.01,
@@ -985,7 +985,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_om3l.png"
 	},
 	thickness = 0.01,
@@ -1001,7 +1001,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_om3c.png"
 	},
 	thickness = 0.01,
@@ -1017,7 +1017,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_om3r.png"
 	},
 	thickness = 0.01,
@@ -1033,7 +1033,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_om4.png"
 	},
 	thickness = 0.01,
@@ -1049,7 +1049,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_onewayleft.png"
 	},
 	thickness = 0.01,
@@ -1065,7 +1065,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_onewayright.png"
 	},
 	thickness = 0.01,
@@ -1081,7 +1081,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_pedhybridbeacon.png"
 	},
 	thickness = 0.01,
@@ -1097,7 +1097,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_pedwarning.png"
 	},
 	thickness = 0.01,
@@ -1113,7 +1113,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_pushtocross_left.png"
 	},
 	thickness = 0.01,
@@ -1129,7 +1129,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_pushtocross_right.png"
 	},
 	thickness = 0.01,
@@ -1145,7 +1145,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_rightturn270.png"
 	},
 	thickness = 0.01,
@@ -1161,7 +1161,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_rightturn270.png^[transformFX"
 	},
 	thickness = 0.01,
@@ -1177,7 +1177,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_rightturnonly.png"
 	},
 	thickness = 0.01,
@@ -1193,7 +1193,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_roadclosed.png"
 	},
 	thickness = 0.01,
@@ -1209,7 +1209,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_roadclosedahead.png"
 	},
 	thickness = 0.01,
@@ -1225,7 +1225,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_roadclosedtothrutraffic.png"
 	},
 	thickness = 0.01,
@@ -1241,7 +1241,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_roadnarrows.png"
 	},
 	thickness = 0.01,
@@ -1257,7 +1257,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_roadworkahead.png"
 	},
 	thickness = 0.01,
@@ -1273,7 +1273,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_roundaboutchevron.png"
 	},
 	thickness = 0.01,
@@ -1289,7 +1289,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_rrxing.png"
 	},
 	thickness = 0.01,
@@ -1305,7 +1305,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_schoolcrossing.png"
 	},
 	thickness = 0.01,
@@ -1321,7 +1321,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_schoolspeedlimit20.png"
 	},
 	thickness = 0.01,
@@ -1337,7 +1337,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_speedlimit50.png"
 	},
 	thickness = 0.01,
@@ -1353,7 +1353,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_stopahead.png"
 	},
 	thickness = 0.01,
@@ -1369,7 +1369,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_stopforped.png"
 	},
 	thickness = 0.01,
@@ -1385,7 +1385,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_stophereonred.png"
 	},
 	thickness = 0.01,
@@ -1401,7 +1401,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_straightonly.png"
 	},
 	thickness = 0.01,
@@ -1417,7 +1417,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_tintersection.png"
 	},
 	thickness = 0.01,
@@ -1433,7 +1433,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_tintersection_stem.png"
 	},
 	thickness = 0.01,
@@ -1449,7 +1449,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_trafficlightahead.png"
 	},
 	thickness = 0.01,
@@ -1465,7 +1465,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_twowaytraffic.png"
 	},
 	thickness = 0.01,
@@ -1481,7 +1481,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_utilityworkahead.png"
 	},
 	thickness = 0.01,
@@ -1497,7 +1497,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_wrongway.png"
 	},
 	thickness = 0.01,
@@ -1513,7 +1513,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_yield.png"
 	},
 	thickness = 0.01,
@@ -1529,7 +1529,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_yieldahead.png"
 	},
 	thickness = 0.01,
@@ -1545,7 +1545,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_yieldtoped.png"
 	},
 	thickness = 0.01,
@@ -1561,7 +1561,7 @@ streets.register_road_sign({
 		"streets_transparent.png",
 		"streets_transparent.png",
 		"streets_transparent.png",
-		"streets_tl_bg.png",
+		"streets_sign_back.png",
 		"streets_sign_us_stop.png"
 	},
 	thickness = 0.01,
