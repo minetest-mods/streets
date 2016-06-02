@@ -75,6 +75,14 @@ function streets.signworkshop.update_formspec(pos)
 		return
 	end
 	local meta = minetest.get_meta(pos)
+	local page = meta:get_int("page")
+	local maxpage = meta:get_int("maxpage")
+	if page < 1 then
+		page = maxpage
+	elseif page > maxpage then
+		page = 1
+	end
+	meta:set_int("page",page)
 	local fs =	"size[9,9;]"
 	fs = fs.."tabheader[0,0;tabs;"
 	for k,v in pairs(streets.signs.sections) do
@@ -87,13 +95,16 @@ function streets.signworkshop.update_formspec(pos)
 	else
 		fs = fs .. "label[0,0;Dyes Needed]"
 		fs = fs .. "list[context;dye_needed;0,0.5;2,3]"
-		fs = fs .. "list[context;list;2.25,0;4,4]"
+		fs = fs .. "list[context;list;2.25,0;4,4;"..tostring((page-1)*16).."]" --Each page is a 4x4 grid (16 items)
 		fs = fs .. "label[6.5,0.5;Blank Sign]"
 		fs = fs .. "label[7.5,0.5;Template]"
 		fs = fs .. "list[context;surface;6.5,1;1,1]"
 		fs = fs .. "list[context;template;7.5,1;1,1]"
 		fs = fs .. "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress")*10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
 		fs = fs .. "list[context;output;7,3;1,1]"
+		fs = fs .. "button[2.25,4;1,1;prevpage;<-]"
+		fs = fs .. "button[5.25,4;1,1;nextpage;->]"
+		fs = fs .. "label[3.75,4;"..string.format("Page %s of %s",page,maxpage).."]"
 	end
 	fs = fs .. "list[current_player;main;0.5,5;8,4]"
 	meta:set_string("formspec",fs)
@@ -106,21 +117,28 @@ local function update_inventory(pos)
 	end
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
+	local section = meta:get_int("section")
+	local sectionname = streets.signs.sections[section].name
+	local itemcount = 0
+	for k,v in pairs(streets.signs.signtypes) do
+		if v.section == sectionname then
+			itemcount = itemcount + 1
+		end
+	end
 	inv:set_size("dye_needed",0)
 	inv:set_size("list",0)
 	inv:set_size("dye_needed",6)
-	inv:set_size("list",16) -- 4x4
+	inv:set_size("list",math.ceil(itemcount/16)*16)
 	inv:set_size("dye",32) -- 8x4
 	inv:set_size("surface",1)
 	inv:set_size("template",1)
 	inv:set_size("output",1)
-	local section = meta:get_int("section")
-	local sectionname = streets.signs.sections[section].name
 	for k,v in pairs(streets.signs.signtypes) do
 		if v.section == sectionname then
 			inv:add_item("list","streets:"..v.name)
 		end
 	end
+	meta:set_int("maxpage",math.ceil(itemcount/16))
 	local templatestack = inv:get_stack("template",1)
 	if templatestack and templatestack:to_string() ~= "" then
 		local selectedmarking = templatestack:to_table().name
@@ -139,6 +157,11 @@ local function on_receive_fields(pos,formname,fields,sender)
 	local meta = minetest.get_meta(pos)
 	if fields.tabs then
 		meta:set_int("section",fields.tabs)
+		meta:set_int("page",1)
+	elseif fields.prevpage then
+		meta:set_int("page",meta:get_int("page")-1)
+	elseif fields.nextpage then
+		meta:set_int("page",meta:get_int("page")+1)
 	end
 	update_inventory(pos)
 end
@@ -147,6 +170,8 @@ local function on_construct(pos)
 	local meta = minetest.get_meta(pos)
 	meta:set_int("section",1)
 	meta:set_int("progress",0)
+	meta:set_int("page",1)
+	meta:set_int("maxpage",1)
 	meta:set_string("working_on","")
 	update_inventory(pos)
 end
