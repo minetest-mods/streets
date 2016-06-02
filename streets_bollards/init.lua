@@ -4,13 +4,19 @@
 	Optional: true
 ]]
 
-local function toggle_bollard(pos, node, clicker, itemstack, pointed_thing)
+local function toggle_bollard(pos, node, clicker, itemstack, pointed_thing, to_role)
 	if minetest.registered_nodes[minetest.get_node(pos).name].bollard then
 		local n = minetest.get_node(pos)
 		local ndef = minetest.registered_nodes[n.name]
 		if clicker and ndef.bollard.protection then
 			if minetest.is_protected(pos, clicker) and not minetest.check_player_privs(clicker, {protection_bypass=true}) then
 				minetest.record_protection_violation(pos, clicker)
+				return
+			end
+		end
+		if to_role then
+			local to = minetest.registered_nodes[ndef.bollard.counterpart]
+			if to.bollard.role ~= to_role then
 				return
 			end
 		end
@@ -26,8 +32,11 @@ minetest.register_node("streets:bollard_driver", {
 	mesecons = {
 			effector = {
 				rules = mesecon.rules.default,
-				action_change = function (pos, node)
-					toggle_bollard(vector.add(pos, vector.new(0, 1, 0)), node, nil, nil, {type = "node", under = vector.add(pos, vector.new(0, -1, 0)), above = vector.add(pos, vector.new(0, 1, 0))})
+				action_on = function (pos, node)
+					toggle_bollard(vector.add(pos, vector.new(0, 1, 0)), node, nil, nil, {type = "node", under = vector.add(pos, vector.new(0, -1, 0)), above = vector.add(pos, vector.new(0, 1, 0))},"up")
+				end,
+				action_off = function (pos, node)
+					toggle_bollard(vector.add(pos, vector.new(0, 1, 0)), node, nil, nil, {type = "node", under = vector.add(pos, vector.new(0, -1, 0)), above = vector.add(pos, vector.new(0, 1, 0))},"down")
 				end
 	}}
 })
