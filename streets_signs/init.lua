@@ -1552,3 +1552,19 @@ streets.register_road_sign({
 	section = "usreg",
 	dye_needed = {white = 3,black = 2,red = 1}
 })
+
+streets.register_road_sign({
+	name = "sign_us_stop",
+	friendlyname = "Stop Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_tl_bg.png",
+		"streets_sign_us_stop.png"
+	},
+	thickness = 0.01,
+	section = "usreg",
+	dye_needed = {red = 4,white = 1}
+})
