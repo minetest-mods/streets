@@ -1498,6 +1498,7 @@ end
 
 minetest.register_node(":streets:trafficlight_portable_off",{
 	description = "Portable Traffic Light",
+	inventory_image = "streets_trafficlight_inv_portable.png",
 	groups = {cracky = 1,portable_tl = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
