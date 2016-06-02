@@ -91,6 +91,9 @@ function streets.workshop.update_formspec(pos)
 	fs = fs .. "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress")*10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
 	fs = fs .. "list[context;output;7,3;1,1]"
 	fs = fs .. "list[current_player;main;0.5,5;8,4]"
+	if minetest.setting_getbool("creative_mode") then
+		fs = fs .."label[2,4;CREATIVE MODE: Taking templates is enabled]"
+	end
 	meta:set_string("formspec",fs)
 end
 
@@ -157,7 +160,7 @@ local function on_construct(pos)
 end
 
 local function allow_metadata_inventory_take(pos, listname, index, stack, player)
-	if listname == "output" or listname == "surface" or listname == "white_dye" or listname == "yellow_dye" then
+	if listname == "output" or listname == "surface" or listname == "white_dye" or listname == "yellow_dye" or (listname == "list" and minetest.setting_getbool("creative_mode")) then
 		return stack:get_count()
 	else
 		return 0
@@ -188,7 +191,7 @@ local function on_metadata_inventory_take(pos, listname, index, stack, player)
 end
 
 local function allow_metadata_inventory_put(pos, listname, index, stack, player)
-	if listname == "yellow_dye" or listname == "white_dye" then
+	if listname == "yellow_dye" or listname == "white_dye" or (listname == "list" and minetest.setting_getbool("creative_mode")) then
 		return stack:get_count()
 	elseif listname == "surface" and (stack:get_name() == "default:paper" or streets.surfaces.surfacetypes[stack:get_name()]) then
 		return stack:get_count()
