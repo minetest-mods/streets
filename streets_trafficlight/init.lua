@@ -1705,3 +1705,8 @@ minetest.register_abm({
 	end,
 })
 	
+minetest.register_craft({
+	output = "streets:trafficlight_portable_off",
+	type = "shapeless",
+	recipe = {"streets:trafficlight_top_off","mesecons_luacontroller:luacontroller0000"}
+})
