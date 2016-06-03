@@ -15,7 +15,11 @@ streets.signs.sections = {
 	{name = "usinfo", friendlyname = "US Information"},
 	{name = "usom", friendlyname = "US Object Markers"},
 	{name = "usttc", friendlyname = "US TTC"},
-
+	{name = "euprio", friendlyname = "EU Priority"},
+	{name = "euwarn", friendlyname = "EU Warning"},
+	{name = "euprohib", friendlyname = "EU Prohibitory"},
+	{name = "eumandat", friendlyname = "EU Mandatory"},
+	{name = "euother", friendlyname = "EU Other"},
 }
 
 streets.register_road_sign({
@@ -1568,4 +1572,148 @@ streets.register_road_sign({
 	thickness = 0.01,
 	section = "usreg",
 	dye_needed = {red = 4,white = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_twowaytraffic",
+	friendlyname = "Two-Way traffic Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_twowaytraffic.png"
+	},
+	thickness = 0.01,
+	section = "euwarn",
+	dye_needed = {red = 2, white = 2, black = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_100m",
+	friendlyname = "100m Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_100m.png"
+	},
+	thickness = 0.01,
+	section = "euother",
+	dye_needed = {white = 2, black = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_exit_autobahn",
+	friendlyname = "Autobahn exit Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_exit_autobahn.png"
+	},
+	thickness = 0.01,
+	section = "euother",
+	dye_needed = {white = 1, blue = 4}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_additional_lane",
+	friendlyname = "Additional lane Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_additional_lane.png"
+	},
+	thickness = 0.01,
+	section = "euother",
+	dye_needed = {white = 3, black = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_trafficlightahead",
+	friendlyname = "Trafficlight Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_trafficlightahead.png"
+	},
+	thickness = 0.01,
+	section = "euwarn",
+	dye_needed = {red = 2, white = 2, black = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_standrews",
+	friendlyname = "St. Andrews Cross",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_standrews.png"
+	},
+	thickness = 0.01,
+	section = "euwarn",
+	dye_needed = {white = 2, red = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_farmanimals",
+	friendlyname = "Farm Animals Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_farmanimals.png"
+	},
+	thickness = 0.01,
+	section = "euwarn",
+	dye_needed = {red = 2, white = 2, black = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_arrow_bw_R0",
+	friendlyname = "Arrow additional Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_arrow_bw.png"
+	},
+	thickness = 0.01,
+	section = "euother",
+	dye_needed = {white = 2, black = 1}
+})
+
+streets.register_road_sign({
+	name = "sign_eu_arrow_bw_R180",
+	friendlyname = "Arrow additional Sign",
+	tiles = {
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_sign_back.png",
+		"streets_sign_eu_arrow_bw.png^[transformR180"
+	},
+	thickness = 0.01,
+	section = "euother",
+	dye_needed = {white = 2, black = 1}
 })
