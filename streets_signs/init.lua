@@ -6,15 +6,16 @@
 
 --These register the sections in the workshop that these will be placed into
 streets.signs.sections = {
-	{name="dyestorage",friendlyname="Dye Storage"}, -- Used for dye storage in the workshop
-	{name="warn",friendlyname="Warning"},
-	{name="reg",friendlyname="Regulatory"},
-	{name="info",friendlyname="Information"},
-	{name="usreg",friendlyname="US Regulatory"},
-	{name="uswarn",friendlyname="US Warning"},
-	{name="usinfo",friendlyname="US Information"},
-	{name="usom",friendlyname="US Object Markers"},
-	{name="usttc",friendlyname="US TTC"}
+	{name = "dyestorage",friendlyname = "Dye Storage"}, -- Used for dye storage in the workshop
+	{name = "warn", friendlyname = "MT Warning"},
+	{name = "reg", friendlyname = "MT Regulatory"},
+	{name = "info", friendlyname = "MT Information"},
+	{name = "usreg", friendlyname = "US Regulatory"},
+	{name = "uswarn", friendlyname = "US Warning"},
+	{name = "usinfo", friendlyname = "US Information"},
+	{name = "usom", friendlyname = "US Object Markers"},
+	{name = "usttc", friendlyname = "US TTC"},
+
 }
 
 streets.register_road_sign({
