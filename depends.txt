@@ -1,4 +1,5 @@
 default
+dye
 stairs
 xpanes
 stairsplus?

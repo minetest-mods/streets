@@ -67,6 +67,36 @@ minetest.register_craft({
 })
 
 
+-- Pylon
+
+
+minetest.register_node("streets:roadwork_pylon", {
+	description = "Pylon",
+	paramtype = "light",
+	drawtype = "nodebox",
+	tiles = {"streets_roadwork_pylon_top.png", "streets_roadwork_pylon_top.png", "streets_roadwork_pylon.png"},
+	sunlight_propagates = true,
+	groups = {cracky = 1},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.125, 0.375, -0.4375, 0.125},
+			{-0.125, -0.5, -0.375, 0.125, -0.4375, 0.375},
+			{-0.25, -0.5, 0, 0.25, 0.0625, 0},
+			{0, -0.5, -0.25, 0, 0.0625, 0.25},
+		}
+	}
+})
+
+minetest.register_craft({
+	output = "streets:roadwork_pylon 3",
+	recipe = {
+		{"dye:orange", "", "dye:orange"},
+		{"dye:white", "default:stick", "dye:white"},
+		{"dye:orange", "default:steel_ingot", "dye:orange"},
+	}
+})
+
 -- Blinking Light
 
 minetest.register_node("streets:roadwork_blinking_light_off", {
