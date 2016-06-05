@@ -4,6 +4,9 @@
   Optional: true
 ]]
 
+
+-- Traffic Barrier
+
 minetest.register_node("streets:roadwork_traffic_barrier", {
 	description = "Traffic Barrier",
 	paramtype = "light",
@@ -31,6 +34,40 @@ minetest.register_craft({
 	}
 })
 
+
+-- Traffic Fence
+
+
+minetest.register_node("streets:roadwork_traffic_fence", {
+	description = "Traffic Fence",
+	paramtype = "light",
+	drawtype = "nodebox",
+	tiles = {"streets_roadwork_traffic_fence_top.png", "streets_roadwork_traffic_fence_top.png", "streets_roadwork_traffic_fence.png"},
+	inventory_image = "streets_roadwork_traffic_fence.png",
+	wield_image = "streets_roadwork_traffic_fence.png",
+	sunlight_propagates = true,
+	groups = {cracky = 1, wall = 1},
+	node_box = {
+		type = "connected",
+		fixed          = {-1/16, -0.5, -1/16, 1/16, 0.5, 1/16},
+		connect_front  = {-1/16, -0.5, -0.5, 1/16, 0.5, 1/16}, -- z-
+		connect_back   = {-1/16, -0.5, -1/16, 1/16, 0.5, 0.5}, -- z+
+		connect_left   = {-0.5, -0.5, -1/16, 1/16, 0.5, 1/16}, -- x-
+		connect_right  = {-1/16, -0.5, -1/16, 0.5, 0.5, 1/16}, -- x+
+	},
+	connects_to = {"group:wall", "group:stone", "group:wood", "group:tree", "group:sign", "group:concrete"},
+})
+
+minetest.register_craft({
+	output = "streets:roadwork_traffic_fence 3",
+	recipe = {
+		{"dye:red", "dye:white", "dye:red"},
+		{"xpanes:bar", "xpanes:bar", "xpanes:bar"},
+	}
+})
+
+
+-- Blinking Light
 
 minetest.register_node("streets:roadwork_blinking_light_off", {
 	description = "Blinking Light",
