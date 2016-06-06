@@ -1,7 +1,7 @@
 default
-dye
 stairs
-xpanes
+dye?
+xpanes?
 stairsplus?
 moreblocks?
 digilines?
