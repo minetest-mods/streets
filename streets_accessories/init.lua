@@ -6,7 +6,7 @@
 
 minetest.register_node(":streets:delineator", {
 	description = "Delineator",
-	tiles = {"streets_delineator_top.png", "streets_delineator_top.png", "streets_delineator_right.png", "streets_delineator_left.png", "streets_delineator_back.png", "streets_delineator_front.png"},
+	tiles = {"streets_delineator_top.png", "streets_delineator_top.png", "streets_delineator_left.png", "streets_delineator_right.png", "streets_delineator_back.png", "streets_delineator_front.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
