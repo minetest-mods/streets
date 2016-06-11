@@ -62,9 +62,25 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 				behind_pos.x = behind_pos.x - 1
 			end
 			local behind_node = minetest.get_node(behind_pos)
-			if behind_node.name:sub(1,15) == "streets:bigpole" then
-				node.name = node.name.."_polemount"
-				minetest.set_node(pos,node)
+			local under_pos   = {x = pos.x, y = pos.y-1, z = pos.z}
+			local under_node  = minetest.get_node(under_pos)
+			local upper_pos   = {x = pos.x, y = pos.y+1, z = pos.z}
+			local upper_node  = minetest.get_node(upper_pos)
+			if minetest.registered_nodes[behind_node.name].groups.bigpole then
+				if minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1 then
+					node.name = node.name .. "_polemount"
+					minetest.set_node(pos, node)
+				end
+			elseif minetest.registered_nodes[under_node.name].groups.bigpole then
+				if minetest.registered_nodes[under_node.name].streets_pole_connection["t"][under_node.param2 + 1] == 1 then
+					node.name = node.name .. "_center"
+					minetest.set_node(pos, node)
+				end
+			elseif minetest.registered_nodes[upper_node.name].groups.bigpole then
+				if minetest.registered_nodes[upper_node.name].streets_pole_connection["b"][upper_node.param2 + 1] == 1 then
+					node.name = node.name .. "_center"
+					minetest.set_node(pos, node)
+				end
 			end
 		end,
 		node_box = {
@@ -76,7 +92,7 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 				fixed = {-1/2, -1/2, 0.5, 1/2, 1/2, math.min(0.5 - thickness,0.45)}
 		}
 	})
-	minetest.register_node(":streets:"..name.."_polemount",{
+	minetest.register_node(":streets:"..name.."_polemount", {
 		tiles = tiles,
 		groups = {cracky = 3,not_in_creative_inventory = 1},
 		drop = "streets:"..name,
@@ -89,7 +105,24 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 		},
 		selection_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, math.min(0.85 - thickness,0.80), 1/2, 1/2, 0.85}
+				fixed = {-1/2, -1/2, math.min(0.875 - thickness,0.80), 1/2, 1/2, 0.85}
+		}
+	})
+
+	minetest.register_node(":streets:"..name.."_center", {
+		tiles = tiles,
+		groups = {cracky = 3,not_in_creative_inventory = 1},
+		drop = "streets:"..name,
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		node_box = {
+			type = "fixed",
+				fixed = {-1/2, -1/2, -(thickness/2), 1/2, 1/2, (thickness/2)}
+		},
+		selection_box = {
+			type = "fixed",
+				fixed = {-1/2, -1/2, -math.min((thickness/2),0.05), 1/2, 1/2, math.min((thickness/2),0.05)}
 		}
 	})
 end
