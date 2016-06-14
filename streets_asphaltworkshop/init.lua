@@ -11,28 +11,35 @@ function streets.workshop.start(pos)
 	if node.name ~= "streets:asphalt_workshop" then
 		return
 	end
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
-	local template = inv:get_stack("template",1):get_name()
-	local surface = inv:get_stack("surface",1):get_name()
-	local yellow_needed = inv:get_stack("yellow_needed",1):get_count()
-	local white_needed = inv:get_stack("white_needed",1):get_count()
-	local yellow_ok = inv:get_stack("yellow_dye",1):get_count() >= yellow_needed
-	local white_ok = inv:get_stack("white_dye",1):get_count() >= white_needed
+
+	local meta          = minetest.get_meta(pos)
+	local inv           = meta:get_inventory()
+	local template      = inv:get_stack("template", 1):get_name()
+	local surface       = inv:get_stack("surface", 1):get_name()
+	local yellow_needed = inv:get_stack("yellow_needed", 1):get_count()
+	local white_needed  = inv:get_stack("white_needed", 1):get_count()
+	local yellow_ok     = inv:get_stack("yellow_dye", 1):get_count() >= yellow_needed
+	local white_ok      = inv:get_stack("white_dye", 1):get_count() >= white_needed
+
 	if not (yellow_ok and white_ok and surface and surface ~= "" and template and template ~= "") then
 		return
 	end
+
 	local surface_suffix = ""
-	if streets.surfaces.surfacetypes[surface] then surface_suffix = "_on_"..streets.surfaces.surfacetypes[surface].name end
-	local outname = template..surface_suffix
-	if not inv:room_for_item("output",{name = outname,count = 1}) then
+	if streets.surfaces.surfacetypes[surface] then
+		surface_suffix = "_on_" .. streets.surfaces.surfacetypes[surface].name
+	end
+
+	local outname = template .. surface_suffix
+	if not inv:room_for_item("output", {name = outname, count = 1}) then
 		return
 	end
-	meta:set_string("working_on",outname)
-	meta:set_int("progress",0)
-	inv:remove_item("yellow_dye",{name = "dye:yellow",count = yellow_needed})
-	inv:remove_item("white_dye",{name = "dye:white",count = white_needed})
-	inv:remove_item("surface",{name = inv:get_stack("surface",1):get_name(),count = 1})
+
+	meta:set_string("working_on", outname)
+	meta:set_int("progress", 0)
+	inv:remove_item("yellow_dye", {name = "dye:yellow", count = yellow_needed})
+	inv:remove_item("white_dye" , {name = "dye:white" , count = white_needed })
+	inv:remove_item("surface", {name = inv:get_stack("surface", 1):get_name(), count = 1})
 	streets.workshop.step(pos)
 end
 
@@ -49,12 +56,12 @@ function streets.workshop.step(pos)
 	local progress = meta:get_int("progress")
 	progress = progress + 1
 	if progress < 10 then
-		minetest.after(0.2,streets.workshop.step,pos)
+		minetest.after(0.2, streets.workshop.step, pos)
 	else
 		meta:set_int("progress",0)
 		progress = 0
 		inv:add_item("output",meta:get_string("working_on"))
-		meta:set_string("working_on","")
+		meta:set_string("working_on", "")
 		streets.workshop.start(pos)
 	end
 	meta:set_int("progress",progress)
@@ -68,9 +75,9 @@ function streets.workshop.update_formspec(pos)
 	end
 	local meta = minetest.get_meta(pos)
 	local fs =  "size[9,9;]"
-	fs = fs.."tabheader[0,0;tabs;"
+	fs = fs .. "tabheader[0,0;tabs;"
 	for k,v in pairs(streets.labels.sections) do
-		fs = fs..minetest.formspec_escape(v.friendlyname)..","
+		fs = fs..minetest.formspec_escape(v.friendlyname) .. ","
 	end
 	fs = fs:sub(1,-2) --Strip trailing comma
 	fs = fs .. ";" .. meta:get_int("section") .. ";false;true]"
@@ -83,18 +90,23 @@ function streets.workshop.update_formspec(pos)
 	fs = fs .. "label[0,2.75;Dye Required]"
 	fs = fs .. "list[context;white_needed;0,3.25;1,1]"
 	fs = fs .. "list[context;yellow_needed;1,3.25;1,1]"
-	fs = fs .. "list[context;list;2,0;4,4]"
-	fs = fs .. "label[6.5,0.5;Surface]"
-	fs = fs .. "label[7.5,0.5;Template]"
-	fs = fs .. "list[context;surface;6.5,1;1,1]"
-	fs = fs .. "list[context;template;7.5,1;1,1]"
-	fs = fs .. "image[7,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress")*10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
-	fs = fs .. "list[context;output;7,3;1,1]"
+	fs = fs .. "label[2,-0.25;Rotation]"
+	fs = fs .. "button[2,0.25;1,1;r0;R0]"
+	fs = fs .. "button[2,1.25;1,1;r90;R90]"
+	fs = fs .. "button[2,2.25;1,1;r180;R180]"
+	fs = fs .. "button[2,3.25;1,1;r270;R270]"
+	fs = fs .. "list[context;list;3,0;4,4]"
+	fs = fs .. "label[7,0.5;Surface]"
+	fs = fs .. "label[8,0.5;Template]"
+	fs = fs .. "list[context;surface;7,1;1,1]"
+	fs = fs .. "list[context;template;8,1;1,1]"
+	fs = fs .. "image[7.5,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress")*10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
+	fs = fs .. "list[context;output;7.5,3;1,1]"
 	fs = fs .. "list[current_player;main;0.5,5;8,4]"
 	if minetest.setting_getbool("creative_mode") then
 		fs = fs .."label[2,4;CREATIVE MODE: Taking templates is enabled]"
 	end
-	meta:set_string("formspec",fs)
+	meta:set_string("formspec", fs)
 end
 
 local function update_inventory(pos)
@@ -103,49 +115,77 @@ local function update_inventory(pos)
 		return
 	end
 	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
-	inv:set_size("white_dye",1)
-	inv:set_size("yellow_dye",1)
-	inv:set_size("white_needed",0)
-	inv:set_size("yellow_needed",0)
-	inv:set_size("list",0)
-	inv:set_size("white_needed",1)
-	inv:set_size("yellow_needed",1)
-	inv:set_size("list",16) -- 4x4
-	inv:set_size("surface",1)
-	inv:set_size("template",1)
-	inv:set_size("output",1)
+	local inv  = meta:get_inventory()
+	inv:set_size("white_dye"    , 1)
+	inv:set_size("yellow_dye"   , 1)
+	inv:set_size("white_needed" , 0)
+	inv:set_size("yellow_needed", 0)
+	inv:set_size("list"         , 0)
+	inv:set_size("white_needed" , 1)
+	inv:set_size("yellow_needed", 1)
+	inv:set_size("list"         , 16) -- 4x4
+	inv:set_size("surface"      , 1)
+	inv:set_size("template"     , 1)
+	inv:set_size("output"       , 1)
+
 	local color = meta:get_string("color")
 	local section = meta:get_int("section")
+	local rotation = meta:get_string("rotation")
 	local sectionname = streets.labels.sections[section].name
 	for k,v in pairs(streets.labels.labeltypes) do
-		if v.category.color == color and v.category.section == sectionname then
-			inv:add_item("list","streets:mark_"..v.name)
+		if v.section == sectionname then
+			if v.rotation then
+				if v.rotation.r90 and rotation == "r90" then
+					inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) .. "_r90" )
+				elseif v.rotation.r180 and rotation == "r180" then
+					inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) .. "_r180")
+				elseif v.rotation.r270 and rotation == "r270" then
+					inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) .. "_r270")
+				end
+			end
+			if rotation == "r0" then
+				inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) )
+			end
 		end
 	end
-	local templatestack = inv:get_stack("template",1)
+	local templatestack = inv:get_stack("template", 1)
 	if templatestack and templatestack:to_string() ~= "" then
 		local selectedmarking = templatestack:to_table().name:sub(14)
-		local dyesneeded = streets.labels.labeltypes[selectedmarking].dye_needed
-		if dyesneeded.white then
-			inv:add_item("white_needed",{name = "dye:white",count = dyesneeded.white})
+		if selectedmarking:find("white") then
+			markingcolor = "white"
+		elseif selectedmarking:find("yellow") then
+			markingcolor = "yellow"
 		end
-		if dyesneeded.yellow then
-			inv:add_item("yellow_needed",{name = "dye:yellow",count = dyesneeded.yellow})
+		selectedmarking = selectedmarking:gsub("white" , "{color}")
+		selectedmarking = selectedmarking:gsub("yellow", "{color}")
+		local dyesneeded = streets.labels.labeltypes[selectedmarking].dye_needed
+		if markingcolor == "white" then
+			inv:add_item("white_needed",  {name = "dye:white",  count = dyesneeded})
+		end
+		if markingcolor == "yellow" then
+			inv:add_item("yellow_needed", {name = "dye:yellow", count = dyesneeded})
 		end
 	end
 	streets.workshop.update_formspec(pos)
 	streets.workshop.start(pos)
 end
 
-local function on_receive_fields(pos,formname,fields,sender)
+local function on_receive_fields(pos, formname, fields, sender)
 	local meta = minetest.get_meta(pos)
 	if fields.tabs then
-		meta:set_int("section",fields.tabs)
+		meta:set_int("section", fields.tabs)
 	elseif fields.color_white then
-		meta:set_string("color","white")
+		meta:set_string("color", "white")
 	elseif fields.color_yellow then
-		meta:set_string("color","yellow")
+		meta:set_string("color", "yellow")
+	elseif fields.r0 then
+		meta:set_string("rotation", "r0")
+	elseif fields.r90 then
+		meta:set_string("rotation", "r90")
+	elseif fields.r180 then
+		meta:set_string("rotation", "r180")
+	elseif fields.r270 then
+		meta:set_string("rotation", "r270")
 	end
 	update_inventory(pos)
 end

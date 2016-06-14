@@ -32,10 +32,10 @@ minetest.register_node("streets:bollard_driver", {
 	mesecons = {
 			effector = {
 				rules = mesecon.rules.default,
-				action_on = function (pos, node)
+				action_off = function (pos, node)
 					toggle_bollard(vector.add(pos, vector.new(0, 1, 0)), node, nil, nil, {type = "node", under = vector.add(pos, vector.new(0, -1, 0)), above = vector.add(pos, vector.new(0, 1, 0))},"up")
 				end,
-				action_off = function (pos, node)
+				action_on = function (pos, node)
 					toggle_bollard(vector.add(pos, vector.new(0, 1, 0)), node, nil, nil, {type = "node", under = vector.add(pos, vector.new(0, -1, 0)), above = vector.add(pos, vector.new(0, 1, 0))},"down")
 				end
 	}}
