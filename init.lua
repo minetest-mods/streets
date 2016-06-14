@@ -12,7 +12,7 @@ streets = {}
 -- Config stuff goes here
 streets.conf = {
 	version = "2.0",
-	licenseCode = "",
+	licenseCode = "BSD 2-clause",
 	licenseMedia = "CC-BY-SA 3.0",
 	modpath = minetest.get_modpath("streets")
 }
