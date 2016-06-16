@@ -188,3 +188,89 @@ minetest.register_abm({
 		end
 	end,
 })
+
+minetest.register_node("streets:roadwork_delineator_top", {
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_roadwork_delineator_top_front_back.png^[transformFX",
+		"streets_roadwork_delineator_top_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -1/2, 0, 1/4, 0, 0}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {0, 0, 0, 0, 0, 0}
+	}
+})
+
+minetest.register_node("streets:roadwork_delineator_bottom", {
+	description = "Roadwork Delineator",
+	inventory_image = "streets_roadwork_delineator.png",
+	wield_image = "streets_roadwork_delineator.png",
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_roadwork_delineator_bottom_side.png",
+		"streets_roadwork_delineator_bottom_side.png",
+		"streets_roadwork_delineator_bottom_front_back.png^[transformFX",
+		"streets_roadwork_delineator_bottom_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1},
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -7/32, 0, 1/4, 1/2, 0},
+			{-1/16, -5/16, -1/16, 1/16, -7/32, 1/16},
+			{-1/8, -3/8, -1/8, 1/8, -5/16, 1/8},
+			{-1/4, -1/2, -1/2, 1/4, -3/8, 1/2}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -7/32, 0, 1/4, 1, 0},
+			{-1/16, -5/16, -1/16, 1/16, -7/32, 1/16},
+			{-1/8, -3/8, -1/8, 1/8, -5/16, 1/8},
+			{-1/4, -1/2, -1/2, 1/4, -3/8, 1/2}
+		}
+	},
+	after_place_node = function(pos)
+		local node = minetest.env:get_node(pos)
+		node.name = "streets:roadwork_delineator_bottom"
+		minetest.env:add_node(pos, node)
+		pos.y = pos.y + 1
+		node.name = "streets:roadwork_delineator_top"
+		minetest.env:add_node(pos, node)
+	end,
+	after_dig_node = function(pos)
+		pos.y = pos.y + 1
+		minetest.env:remove_node(pos)
+	end,
+})
+
+minetest.register_alias("streets:roadwork_delineator", "streets:roadwork_delineator_bottom")
+
+minetest.register_craft({
+	output = "streets:roadwork_delineator 5",
+	recipe = {
+		{"dye:red", "default:steel_ingot", "dye:red"},
+		{"dye:white", "default:steel_ingot", "dye:white"},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+	}
+})
