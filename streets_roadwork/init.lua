@@ -178,7 +178,10 @@ minetest.register_craft({
 })
 
 minetest.register_abm({
-	nodenames = {"streets:roadwork_blinking_light_on", "streets:roadwork_blinking_light_off"},
+	nodenames = {
+		"streets:roadwork_blinking_light_on", "streets:roadwork_blinking_light_off",
+		"streets:roadwork_delineator_light_on_top", "streets:roadwork_delineator_light_off_top"
+	},
 	interval = 10,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
@@ -187,4 +190,218 @@ minetest.register_abm({
 			timer:start(1)
 		end
 	end,
+})
+
+minetest.register_node("streets:roadwork_delineator_top", {
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_roadwork_delineator_top_front_back.png^[transformFX",
+		"streets_roadwork_delineator_top_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -1/2, 0, 1/4, 0, 0}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {0, 0, 0, 0, 0, 0}
+	}
+})
+
+minetest.register_node("streets:roadwork_delineator_bottom", {
+	description = "Roadwork Delineator",
+	inventory_image = "streets_roadwork_delineator.png",
+	wield_image = "streets_roadwork_delineator.png",
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_roadwork_delineator_bottom_side.png",
+		"streets_roadwork_delineator_bottom_side.png",
+		"streets_roadwork_delineator_bottom_front_back.png^[transformFX",
+		"streets_roadwork_delineator_bottom_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1},
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -7/32, 0, 1/4, 1/2, 0},
+			{-1/16, -5/16, -1/16, 1/16, -7/32, 1/16},
+			{-1/8, -3/8, -1/8, 1/8, -5/16, 1/8},
+			{-1/4, -1/2, -1/2, 1/4, -3/8, 1/2}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -7/32, 0, 1/4, 1, 0},
+			{-1/16, -5/16, -1/16, 1/16, -7/32, 1/16},
+			{-1/8, -3/8, -1/8, 1/8, -5/16, 1/8},
+			{-1/4, -1/2, -1/2, 1/4, -3/8, 1/2}
+		}
+	},
+	after_place_node = function(pos)
+		local node = minetest.env:get_node(pos)
+		node.name = "streets:roadwork_delineator_bottom"
+		minetest.env:add_node(pos, node)
+		pos.y = pos.y + 1
+		node.name = "streets:roadwork_delineator_top"
+		minetest.env:add_node(pos, node)
+	end,
+	after_dig_node = function(pos)
+		pos.y = pos.y + 1
+		minetest.env:remove_node(pos)
+	end,
+})
+
+minetest.register_alias("streets:roadwork_delineator", "streets:roadwork_delineator_bottom")
+
+minetest.register_craft({
+	output = "streets:roadwork_delineator 5",
+	recipe = {
+		{"dye:red", "default:steel_ingot", "dye:red"},
+		{"dye:white", "default:steel_ingot", "dye:white"},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+	}
+})
+
+
+
+minetest.register_node("streets:roadwork_delineator_light_off_top", {
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_roadwork_delineator_light_off_top_front_back.png^[transformFX",
+		"streets_roadwork_delineator_light_off_top_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	light_source = 5,
+	on_timer = function(pos, elapsed)
+		minetest.set_node(pos, {name = "streets:roadwork_delineator_light_on_top", param2 = minetest.get_node(pos).param2 })
+	end,
+	on_construct = function(pos)
+		timer = minetest.get_node_timer(pos)
+		timer:start(1)
+	end,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -1/2, 0, 1/4, 3/8, 0}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {0, 0, 0, 0, 0, 0}
+	}
+})
+
+minetest.register_node("streets:roadwork_delineator_light_on_top", {
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_transparent.png",
+		"streets_transparent.png",
+		"streets_roadwork_delineator_light_on_top_front_back.png^[transformFX",
+		"streets_roadwork_delineator_light_on_top_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1, not_in_creative_inventory = 1},
+	light_source = 12,
+	on_timer = function(pos, elapsed)
+		minetest.set_node(pos, {name = "streets:roadwork_delineator_light_off_top", param2 = minetest.get_node(pos).param2 })
+	end,
+	on_construct = function(pos)
+		timer = minetest.get_node_timer(pos)
+		timer:start(1)
+	end,
+	drop = "streets:roadwork_delineator_light_off_top",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -1/2, 0, 1/4, 3/8, 0}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {0, 0, 0, 0, 0, 0}
+	}
+})
+
+minetest.register_node("streets:roadwork_delineator_light_bottom", {
+	description = "Roadwork Delineator with Blinking Light",
+	inventory_image = "streets_roadwork_delineator_light.png",
+	wield_image = "streets_roadwork_delineator_light.png",
+	tile_images = {
+		"streets_roadwork_delineator_top.png",
+		"streets_tl_bg.png",
+		"streets_roadwork_delineator_bottom_side.png",
+		"streets_roadwork_delineator_bottom_side.png",
+		"streets_roadwork_delineator_bottom_front_back.png^[transformFX",
+		"streets_roadwork_delineator_bottom_front_back.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1},
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -7/32, 0, 1/4, 1/2, 0},
+			{-1/16, -5/16, -1/16, 1/16, -7/32, 1/16},
+			{-1/8, -3/8, -1/8, 1/8, -5/16, 1/8},
+			{-1/4, -1/2, -1/2, 1/4, -3/8, 1/2}
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-1/4, -7/32, 0, 1/4, 11/8, 0},
+			{-1/16, -5/16, -1/16, 1/16, -7/32, 1/16},
+			{-1/8, -3/8, -1/8, 1/8, -5/16, 1/8},
+			{-1/4, -1/2, -1/2, 1/4, -3/8, 1/2}
+		}
+	},
+	after_place_node = function(pos)
+		local node = minetest.env:get_node(pos)
+		node.name = "streets:roadwork_delineator_light_bottom"
+		minetest.env:add_node(pos, node)
+		pos.y = pos.y + 1
+		node.name = "streets:roadwork_delineator_light_off_top"
+		minetest.env:add_node(pos, node)
+	end,
+	after_dig_node = function(pos)
+		pos.y = pos.y + 1
+		minetest.env:remove_node(pos)
+	end,
+})
+
+minetest.register_alias("streets:roadwork_delineator_light", "streets:roadwork_delineator_light_bottom")
+
+minetest.register_craft({
+	output = "streets:roadwork_delineator_light",
+	recipe = {
+		{"streets:roadwork_blinking_light_off"},
+		{"streets:roadwork_delineator"}
+	}
 })
