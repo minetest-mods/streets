@@ -35,6 +35,40 @@ minetest.register_craft({
 })
 
 
+-- Barrier Tape
+
+minetest.register_node("streets:roadwork_barrier_tape", {
+	description = "Barrier Tape",
+	paramtype = "light",
+	drawtype = "nodebox",
+	tiles = {"streets_roadwork_barrier_tape.png"},
+	sunlight_propagates = true,
+	groups = {choppy = 1, dig_immediate = 3, level = 1, wall = 1},
+	node_box = {
+		type = "connected",
+		fixed          = {-1/16, -0.5, -1/16, 1/16, 0.5, 1/16},
+		connect_front  = {0, 4/16, -0.5, 0, 6/16, 0}, -- z-
+		connect_back   = {0, 4/16, 0, 0, 6/16, 0.5}, -- z+
+		connect_left   = {-0.5, 4/16, 0, 0, 6/16, 0}, -- x-
+		connect_right  = {0, 4/16, 0, 0.5, 6/16, 0}, -- x+
+	},
+	selection_box = {
+		type = "fixed",
+		fixed          = {-2/16, -0.5, -2/16, 2/16, 0.5, 2/16},
+	},
+	connects_to = {"group:wall", "group:stone", "group:wood", "group:tree", "group:sign", "group:concrete"},
+})
+
+minetest.register_craft({
+	output = "streets:roadwork_barrier_tape 24",
+	recipe = {
+		{"dye:red", "dye:white", "dye:red"},
+		{"farming:cotton", "default:stick", "farming:cotton"},
+		{"", "default:stick", ""}
+	}
+})
+
+
 -- Traffic Fence
 
 
