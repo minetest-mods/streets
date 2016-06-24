@@ -42,6 +42,7 @@ streets.load_submod("streets_signworkshop")
 streets.load_submod("streets_steelsupport")
 streets.load_submod("streets_roadwork")
 streets.load_submod("streets_bollards")
+streets.load_submod("streets_light")
 
 if minetest.get_modpath("digilines") then
 	streets.load_submod("streets_trafficlight")
