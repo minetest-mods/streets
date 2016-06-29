@@ -153,7 +153,9 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			tex = "" .. tex .. "^[colorize:#ecb100"
 		end
 
-		minetest.register_node(":streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r, {
+		local marking_name = name:gsub("{color}", colorname:lower()) .. r
+
+		minetest.register_node(":streets:mark_" .. marking_name, {
 			description = "Marking Overlay: " .. friendlyname .. rotation_friendly .. " " .. colorname,
 			tiles = {tex, "streets_transparent.png"},
 			drawtype = "nodebox",
@@ -199,28 +201,50 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 		tiles[6] = tiles[6] .. "^(" .. tex .. ")"
 		local groups = copytable(surface_groups)
 		groups.not_in_creative_inventory = 1
-		minetest.register_node(":streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
+		minetest.register_node(":streets:mark_" .. marking_name .. "_on_" .. surface_name, {
 			description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
+			drop = "streets:mark_" .. marking_name,
+			after_destruct = function(pos, oldnode)
+				local newnode = oldnode
+				newnode.name = oldnode.name:gsub("mark_(.-)_on_","")
+				minetest.set_node(pos, newnode)
+			end,
 			groups = groups,
 			sounds = surface_sounds,
 			tiles = tiles,
 			paramtype2 = "facedir"
 		})
 		minetest.register_craft({
-			output = "streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+			output = "streets:mark_" .. marking_name .. "_on_" .. surface_name,
 			type = "shapeless",
 			recipe = {"streets:" .. surface_name, "streets:mark_" .. name:gsub("{color}", colorname:lower())}
 		})
 		if register_stairs and (minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus")) then
 			stairsplus:register_all(
-					"streets", 
-					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. "_on_" .. surface_name, {
-				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
-				tiles = tiles,
-				groups = surface_groups,
-				sounds = surface_sounds
-			})
+				"streets", 
+				"mark_" .. marking_name .. "_on_" .. surface_name,
+				"streets:mark_" .. marking_name .. "_on_" .. surface_name,
+				{
+					description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
+					tiles = tiles,
+					groups = surface_groups,
+					sounds = surface_sounds,
+					drop = {
+				            max_items = 1,  -- Maximum number of items to drop.
+				            items = { -- Choose max_items randomly from this list.
+				                {
+				                    items = {"streets:mark_" .. marking_name},  -- Choose one item randomly from this list.
+				                    rarity = 1,  -- Probability of getting is 1 / rarity.
+				                },
+				            },
+					},
+					after_destruct = function(pos, oldnode)
+						local newnode = oldnode
+						newnode.name = oldnode.name:gsub("mark_(.-)_on_","")
+						minetest.set_node(pos, newnode)
+					end,
+				}
+			)
 		end
 	end
 end
