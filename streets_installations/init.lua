@@ -12,7 +12,7 @@ for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3},
-		on_rightclick = function(pos,node)
+		on_rightclick = function(pos, node, clicker)
 			if minetest.is_protected(pos, clicker) and not minetest.check_player_privs(clicker, {protection_bypass=true}) then
 				minetest.record_protection_violation(pos, clicker)
 				return
@@ -46,7 +46,7 @@ for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
 		climbable = true,
 		drop = "streets:" .. surface_name:sub(2, -1):split(":")[2] .. "_manhole",
 		groups = {cracky = 3,not_in_creative_inventory = 1},
-		on_rightclick = function(pos,node)
+		on_rightclick = function(pos, node, clicker)
 			if minetest.is_protected(pos, clicker) and not minetest.check_player_privs(clicker, {protection_bypass=true}) then
 				minetest.record_protection_violation(pos, clicker)
 				return
