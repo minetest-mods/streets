@@ -33,9 +33,6 @@ for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
   				{-0.0625, 0.4375, -0.5, 0.0625, 0.5, 0.5}, -- CenterFR
   			}
 		},
-		selection_box = {
-			type = "regular"
-		}
 	})
 
 	minetest.register_node(":streets:" .. surface_name:sub(2, -1):split(":")[2] .. "_manhole_open", {
@@ -64,9 +61,6 @@ for surface_name, surface_data in pairs(streets.surfaces.surfacetypes) do
   				{0.375, -0.5, -0.4375, 0.5, 0.5, 0.4375}, -- R
   			}
 		},
-		selection_box = {
-			type = "regular"
-		}
 	})
 
 	minetest.register_node(":streets:" .. surface_name:sub(2, -1):split(":")[2] .. "_stormdrain", {
