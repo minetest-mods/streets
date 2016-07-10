@@ -96,17 +96,19 @@ local on_digiline_receive = function(pos, node, channel, msg)
 	local mode = meta:get_string("mode")
 	local state = node.name:find("off") and "off" or "on"
 	local newnode = node
-	msg = msg:lower()
-	if mode == "digiline" and channel ==  meta:get_string("channel") then
-		if state == "on" then
-			if msg == "off" then
-				newnode.name = newnode.name:gsub("_on", "_off")
-				minetest.swap_node(pos, newnode)
-			end
-		else
-			if msg == "on" then
-				newnode.name = newnode.name:gsub("_off", "_on")
-				minetest.swap_node(pos, newnode)
+	if type(msg) == "string" then
+		msg = msg:lower()
+		if mode == "digiline" and channel ==  meta:get_string("channel") then
+			if state == "on" then
+				if msg == "off" then
+					newnode.name = newnode.name:gsub("_on", "_off")
+					minetest.swap_node(pos, newnode)
+				end
+			else
+				if msg == "on" then
+					newnode.name = newnode.name:gsub("_off", "_on")
+					minetest.swap_node(pos, newnode)
+				end
 			end
 		end
 	end
