@@ -259,6 +259,15 @@ streets.register_road_marking({
 	rotation = {r90 = 1, r180 = 1, r270 = 1},
 })
 
+streets.register_road_marking({
+	name = "solid_{color}_side_line_combinated_corner_flipped",
+	friendlyname = "Solid Side Line Combinated Corner (Flipped)",
+	tex = "streets_solid_side_line_combinated_corner.png^[transformFX",
+	section = "sidelines",
+	dye_needed = 6,
+	rotation = {r90 = 1, r180 = 1, r270 = 1},
+})
+
 
 
 --ARROWS
@@ -388,6 +397,24 @@ streets.register_road_marking({
 	name = "{color}_halt_line_center_corner_wide",
 	friendlyname = "Halt Line Center Corner Wide",
 	tex = "streets_halt_line_center_corner_wide.png",
+	section = "other",
+	dye_needed = 6,
+	rotation = {r90 = 1, r180 = 1, r270 = 1},
+})
+
+streets.register_road_marking({
+	name = "{color}_halt_line_center_corner_flipped",
+	friendlyname = "Halt Line Center Corner (Flipped)",
+	tex = "streets_halt_line_center_corner.png^[transformFX",
+	section = "other",
+	dye_needed = 4,
+	rotation = {r90 = 1, r180 = 1, r270 = 1},
+})
+
+streets.register_road_marking({
+	name = "{color}_halt_line_center_corner_wide_flipped",
+	friendlyname = "Halt Line Center Corner Wide (Flipped)",
+	tex = "streets_halt_line_center_corner_wide.png^[transformFX",
 	section = "other",
 	dye_needed = 6,
 	rotation = {r90 = 1, r180 = 1, r270 = 1},
