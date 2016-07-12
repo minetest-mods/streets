@@ -215,7 +215,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			stairsplus:register_stair(
 					"streets", 
 					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. "_on_" .. surface_name, {
+					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
 				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
 				tiles = tiles,
 				groups = surface_groups,
@@ -224,7 +224,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			stairsplus:register_slab(
 					"streets", 
 					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. "_on_" .. surface_name, {
+					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
 				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
 				tiles = tiles,
 				groups = surface_groups,
@@ -233,7 +233,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			stairsplus:register_slope(
 					"streets", 
 					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. "_on_" .. surface_name, {
+					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
 				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
 				tiles = tiles,
 				groups = surface_groups,
