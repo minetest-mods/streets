@@ -95,6 +95,7 @@ streets.register_road_marking({
 	tex = "streets_solid_line_offset.png",
 	section = "centerlines",
 	dye_needed = 2,
+	rotation = {r90 = 1, r180 = 1, r270 = 1},
 })
 
 
