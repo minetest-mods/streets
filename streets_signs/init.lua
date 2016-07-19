@@ -6,7 +6,6 @@
 
 --These register the sections in the workshop that these will be placed into
 streets.signs.sections = {
-	{name="dyestorage",friendlyname="Dye Storage"}, -- Used for dye storage in the workshop
 	{name="warn",friendlyname="Warning"},
 	{name="reg",friendlyname="Regulatory"},
 	{name="info",friendlyname="Information"},
