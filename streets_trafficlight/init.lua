@@ -99,6 +99,9 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 	end
 	-- Tl states
 	local name = minetest.get_node(pos).name
+	if type(msg) ~= "string" then
+		return
+	end
 	msg = string.upper(msg)
 	if msg == "OFF" then
 		if name:find("pedlight") then

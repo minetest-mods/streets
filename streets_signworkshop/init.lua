@@ -83,16 +83,30 @@ function streets.signworkshop.update_formspec(pos)
 		page = 1
 	end
 	meta:set_int("page",page)
-	local fs =	"size[9,9;]"
-	fs = fs.."tabheader[0,0;tabs;"
-	for k,v in pairs(streets.signs.sections) do
-		fs = fs..minetest.formspec_escape(v.friendlyname)..","
-	end
-	fs = fs:sub(1,-2) --Strip trailing comma
-	fs = fs .. ";" .. meta:get_int("section") .. ";false;true]"
-	if meta:get_int("section") == 1 then
+	local fs = "size[9,9;]"
+	fs = fs .. "tabheader[0,0;tabs;"
+	fs = fs .. minetest.formspec_escape("Dye Storage") .. ","
+	fs = fs .. minetest.formspec_escape("Select Section") .. ","
+	fs = fs .. minetest.formspec_escape("Craft Signs") .. ";"
+	fs = fs .. meta:get_int("tab") .. ";false;true]"
+	if meta:get_int("tab") == 1 then
 		fs = fs .. "list[context;dye;0,0;8,6]"
-	else
+		fs = fs .. "listring[context;dye]"
+		fs = fs .. "listring[current_player;main]"
+	elseif meta:get_int("tab") == 2 then
+		local x_pos = 0.5
+		local y_pos = 0
+		for k,v in pairs(streets.signs.sections) do
+			fs = fs .. "button[" .. x_pos .. "," .. y_pos .. ";2.5,1;"
+			fs = fs..minetest.formspec_escape(v.name) .. ";"
+			fs = fs..minetest.formspec_escape(v.friendlyname) .. "]"
+			y_pos = y_pos + 0.8
+			if y_pos > 4 then
+				y_pos = 0
+				x_pos = x_pos + 2.5
+			end
+		end
+	elseif meta:get_int("tab") == 3 then
 		fs = fs .. "label[0,0;Dyes Needed]"
 		fs = fs .. "list[context;dye_needed;0,0.5;2,3]"
 		fs = fs .. "list[context;list;2.25,0;4,4;"..tostring((page-1)*16).."]" --Each page is a 4x4 grid (16 items)
@@ -110,7 +124,7 @@ function streets.signworkshop.update_formspec(pos)
 		end
 	end
 	fs = fs .. "list[current_player;main;0.5,5;8,4]"
-	meta:set_string("formspec",fs)
+	meta:set_string("formspec", fs)
 end
 
 local function update_inventory(pos)
@@ -120,34 +134,33 @@ local function update_inventory(pos)
 	end
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
-	local section = meta:get_int("section")
-	local sectionname = streets.signs.sections[section].name
+	local section = meta:get_string("section")
 	local itemcount = 0
 	for k,v in pairs(streets.signs.signtypes) do
-		if v.section == sectionname then
+		if v.section == section then
 			itemcount = itemcount + 1
 		end
 	end
-	inv:set_size("dye_needed",0)
-	inv:set_size("list",0)
-	inv:set_size("dye_needed",6)
-	inv:set_size("list",math.ceil(itemcount/16)*16)
-	inv:set_size("dye",32) -- 8x4
-	inv:set_size("surface",1)
-	inv:set_size("template",1)
-	inv:set_size("output",1)
+	inv:set_size("dye_needed", 0)
+	inv:set_size("list", 0)
+	inv:set_size("dye_needed", 6)
+	inv:set_size("list", math.ceil(itemcount/16)*16)
+	inv:set_size("dye", 32) -- 8x4
+	inv:set_size("surface", 1)
+	inv:set_size("template", 1)
+	inv:set_size("output", 1)
 	for k,v in pairs(streets.signs.signtypes) do
-		if v.section == sectionname then
+		if v.section == section then
 			inv:add_item("list","streets:"..v.name)
 		end
 	end
-	meta:set_int("maxpage",math.ceil(itemcount/16))
+	meta:set_int("maxpage", math.ceil(itemcount/16))
 	local templatestack = inv:get_stack("template",1)
 	if templatestack and templatestack:to_string() ~= "" then
 		local selectedmarking = templatestack:to_table().name
 		local dyesneeded = streets.signs.signtypes[selectedmarking].dye_needed
 		for k,v in pairs(dyesneeded) do
-			inv:add_item("dye_needed",{name = "dye:"..k,count = v})
+			inv:add_item("dye_needed", {name = "dye:"..k,count = v})
 		end
 	end
 	streets.signworkshop.update_formspec(pos)
@@ -159,23 +172,31 @@ end
 local function on_receive_fields(pos,formname,fields,sender)
 	local meta = minetest.get_meta(pos)
 	if fields.tabs then
-		meta:set_int("section",fields.tabs)
-		meta:set_int("page",1)
+		meta:set_int("tab", fields.tabs)
+		meta:set_int("page", 1)
 	elseif fields.prevpage then
-		meta:set_int("page",meta:get_int("page")-1)
+		meta:set_int("page", meta:get_int("page") - 1)
 	elseif fields.nextpage then
-		meta:set_int("page",meta:get_int("page")+1)
+		meta:set_int("page", meta:get_int("page") + 1)
+	else
+		for k,v in pairs(streets.signs.sections) do
+			if fields[v.name] then
+				meta:set_string("section", v.name)
+				meta:set_int("tab", 3)
+			end
+		end
 	end
 	update_inventory(pos)
 end
 
 local function on_construct(pos)
 	local meta = minetest.get_meta(pos)
-	meta:set_int("section",1)
-	meta:set_int("progress",0)
-	meta:set_int("page",1)
-	meta:set_int("maxpage",1)
-	meta:set_string("working_on","")
+	meta:set_string("section", streets.signs.sections[1].name)
+	meta:set_int("tab", 1)
+	meta:set_int("progress", 0)
+	meta:set_int("page", 1)
+	meta:set_int("maxpage", 1)
+	meta:set_string("working_on", "")
 	update_inventory(pos)
 end
 

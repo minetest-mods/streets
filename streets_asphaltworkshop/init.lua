@@ -158,6 +158,9 @@ local function update_inventory(pos)
 		end
 		selectedmarking = selectedmarking:gsub("white" , "{color}")
 		selectedmarking = selectedmarking:gsub("yellow", "{color}")
+		selectedmarking = selectedmarking:gsub("_r90"  , "")
+		selectedmarking = selectedmarking:gsub("_r180" , "")
+		selectedmarking = selectedmarking:gsub("_r270" , "")
 		local dyesneeded = streets.labels.labeltypes[selectedmarking].dye_needed
 		if markingcolor == "white" then
 			inv:add_item("white_needed",  {name = "dye:white",  count = dyesneeded})
@@ -192,10 +195,11 @@ end
 
 local function on_construct(pos)
 	local meta = minetest.get_meta(pos)
-	meta:set_int("section",1)
-	meta:set_string("color","yellow")
-	meta:set_int("progress",0)
-	meta:set_string("working_on","")
+	meta:set_int("section", 1)
+	meta:set_string("color", "white")
+	meta:set_string("rotation", "r0")
+	meta:set_int("progress", 0)
+	meta:set_string("working_on", "")
 	update_inventory(pos)
 end
 

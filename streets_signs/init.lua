@@ -6,7 +6,6 @@
 
 --These register the sections in the workshop that these will be placed into
 streets.signs.sections = {
-	{name = "dyestorage",friendlyname = "Dye Storage"}, -- Used for dye storage in the workshop
 	{name = "warn", friendlyname = "MT Warning"},
 	{name = "reg", friendlyname = "MT Regulatory"},
 	{name = "info", friendlyname = "MT Information"},
@@ -19,7 +18,7 @@ streets.signs.sections = {
 	{name = "euwarn", friendlyname = "EU Warning"},
 	{name = "euprohib", friendlyname = "EU Prohibitory"},
 	{name = "eumandat", friendlyname = "EU Mandatory"},
-	{name = "euother", friendlyname = "EU Other"},
+	{name = "euother", friendlyname = "EU Other"}
 }
 
 streets.register_road_sign({

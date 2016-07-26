@@ -15,7 +15,7 @@ minetest.register_node(":streets:steel_support",{
 	collision_box = {
 		type = "fixed",
 		fixed = {
-			{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2},
+			{-0.15, -0.5, -0.15, 0.15, 0.5, 0.15},
 		},
 	},
 })
