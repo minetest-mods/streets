@@ -9,8 +9,9 @@ local function toggle_bollard(pos, node, clicker, itemstack, pointed_thing, to_r
 		local n = minetest.get_node(pos)
 		local ndef = minetest.registered_nodes[n.name]
 		if clicker and ndef.bollard.protection then
-			if minetest.is_protected(pos, clicker) and not minetest.check_player_privs(clicker, {protection_bypass=true}) then
-				minetest.record_protection_violation(pos, clicker)
+			local name = clicker:get_player_name()
+			if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+				minetest.record_protection_violation(pos, name)
 				return
 			end
 		end
