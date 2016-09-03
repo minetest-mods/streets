@@ -25,12 +25,11 @@ function streets.workshop.start(pos)
 		return
 	end
 
-	local outname = template:gsub("mark", "tool")
-	if not inv:room_for_item("output", { name = outname, count = 1 }) then
+	if not inv:room_for_item("output", { name = template, count = 1 }) then
 		return
 	end
 
-	meta:set_string("working_on", outname)
+	meta:set_string("working_on", template)
 	meta:set_int("progress", 0)
 	inv:remove_item("yellow_dye", { name = "dye:yellow", count = yellow_needed })
 	inv:remove_item("white_dye", { name = "dye:white", count = white_needed })
