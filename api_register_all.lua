@@ -21,7 +21,7 @@ local function copytable(orig)
 end
 
 local register_surface_nodes = function(friendlyname, name, tiles, groups, sounds, craft)
-	minetest.register_node(":streets:"..name,{
+	minetest.register_node(":streets:" .. name, {
 		description = friendlyname,
 		tiles = tiles,
 		groups = groups,
@@ -29,7 +29,7 @@ local register_surface_nodes = function(friendlyname, name, tiles, groups, sound
 	})
 	minetest.register_craft(craft)
 	if minetest.get_modpath("moreblocks") then
-		stairsplus:register_all("streets",name,"streets:"..name,{
+		stairsplus:register_all("streets", name, "streets:" .. name, {
 			description = friendlyname,
 			tiles = tiles,
 			groups = groups,
@@ -38,18 +38,18 @@ local register_surface_nodes = function(friendlyname, name, tiles, groups, sound
 	end
 end
 
-local register_sign_node = function(friendlyname,name,tiles,thickness)
-	tiles[5] = tiles[5].."^[mask:"..tiles[6]
-	minetest.register_node(":streets:"..name,{
+local register_sign_node = function(friendlyname, name, tiles, thickness)
+	tiles[5] = tiles[5] .. "^[mask:" .. tiles[6]
+	minetest.register_node(":streets:" .. name, {
 		description = friendlyname,
 		tiles = tiles,
-		groups = {cracky = 3, not_in_creative_inventory = (name == "sign_blank" and 0 or 1), sign = 1},
+		groups = { cracky = 3, not_in_creative_inventory = (name == "sign_blank" and 0 or 1), sign = 1 },
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		inventory_image = tiles[6],
 		after_place_node = function(pos)
-			local behind_pos = {x = pos.x, y = pos.y, z = pos.z}
+			local behind_pos = { x = pos.x, y = pos.y, z = pos.z }
 			local node = minetest.get_node(pos)
 			local param2 = node.param2
 			if param2 == 0 then
@@ -62,10 +62,10 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 				behind_pos.x = behind_pos.x - 1
 			end
 			local behind_node = minetest.get_node(behind_pos)
-			local under_pos   = {x = pos.x, y = pos.y-1, z = pos.z}
-			local under_node  = minetest.get_node(under_pos)
-			local upper_pos   = {x = pos.x, y = pos.y+1, z = pos.z}
-			local upper_node  = minetest.get_node(upper_pos)
+			local under_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
+			local under_node = minetest.get_node(under_pos)
+			local upper_pos = { x = pos.x, y = pos.y + 1, z = pos.z }
+			local upper_node = minetest.get_node(upper_pos)
 			if minetest.registered_nodes[behind_node.name].groups.bigpole then
 				if minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1 then
 					node.name = node.name .. "_polemount"
@@ -85,44 +85,44 @@ local register_sign_node = function(friendlyname,name,tiles,thickness)
 		end,
 		node_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, 0.5, 1/2, 1/2, 0.5 - thickness}
+			fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, 0.5 - thickness }
 		},
 		selection_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, 0.5, 1/2, 1/2, math.min(0.5 - thickness,0.45)}
+			fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, math.min(0.5 - thickness, 0.45) }
 		}
 	})
-	minetest.register_node(":streets:"..name.."_polemount", {
+	minetest.register_node(":streets:" .. name .. "_polemount", {
 		tiles = tiles,
-		groups = {cracky = 3,not_in_creative_inventory = 1},
-		drop = "streets:"..name,
+		groups = { cracky = 3, not_in_creative_inventory = 1 },
+		drop = "streets:" .. name,
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		node_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, 0.85 - thickness, 1/2, 1/2, 0.85}
+			fixed = { -1 / 2, -1 / 2, 0.85 - thickness, 1 / 2, 1 / 2, 0.85 }
 		},
 		selection_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, math.min(0.875 - thickness,0.80), 1/2, 1/2, 0.85}
+			fixed = { -1 / 2, -1 / 2, math.min(0.875 - thickness, 0.80), 1 / 2, 1 / 2, 0.85 }
 		}
 	})
 
-	minetest.register_node(":streets:"..name.."_center", {
+	minetest.register_node(":streets:" .. name .. "_center", {
 		tiles = tiles,
-		groups = {cracky = 3,not_in_creative_inventory = 1},
-		drop = "streets:"..name,
+		groups = { cracky = 3, not_in_creative_inventory = 1 },
+		drop = "streets:" .. name,
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		node_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, -(thickness/2), 1/2, 1/2, (thickness/2)}
+			fixed = { -1 / 2, -1 / 2, -(thickness / 2), 1 / 2, 1 / 2, (thickness / 2) }
 		},
 		selection_box = {
 			type = "fixed",
-				fixed = {-1/2, -1/2, -math.min((thickness/2),0.05), 1/2, 1/2, math.min((thickness/2),0.05)}
+			fixed = { -1 / 2, -1 / 2, -math.min((thickness / 2), 0.05), 1 / 2, 1 / 2, math.min((thickness / 2), 0.05) }
 		}
 	})
 end
@@ -144,7 +144,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 		r = "_" .. r
 	end
 
-	for color = 1,2 do
+	for color = 1, 2 do
 		local colorname
 		if color == 1 then
 			colorname = "White"
@@ -153,38 +153,63 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			tex = "" .. tex .. "^[colorize:#ecb100"
 		end
 
-		minetest.register_node(":streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r, {
-			description = "Marking Overlay: " .. friendlyname .. rotation_friendly .. " " .. colorname,
-			tiles = {tex, "streets_transparent.png"},
-			drawtype = "nodebox",
-			paramtype = "light",
-			paramtype2 = "facedir",
-			groups = {snappy = 3, attached_node = 1, oddly_breakable_by_hand = 1, not_in_creative_inventory = 1},
-			sunlight_propagates = true,
-			walkable = false,
+		minetest.register_tool(":streets:tool_" .. name:gsub("{color}", colorname:lower()) .. r, {
+			description = "Marking Tool: " .. friendlyname .. rotation_friendly .. " " .. colorname,
+			groups = { not_in_creative_inventory = 1 },
 			inventory_image = tex,
 			wield_image = tex,
-			after_place_node = function(pos)
+			on_place = function(itemstack, placer, pointed_thing)
+				local pos = {}
+				if pointed_thing["type"] == "node" then
+					pos = pointed_thing.under
+					pos.y = pos.y + 1
+				else
+					return itemstack
+				end
+				minetest.set_node(pos, {
+					name = "streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r,
+					param2 = minetest.dir_to_facedir(placer:get_look_dir())
+				})
 				local node = minetest.get_node(pos)
-				local lower_pos = {x = pos.x, y = pos.y-1, z = pos.z}
+				local lower_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
 				local lower_node = minetest.get_node(lower_pos)
-				local lower_node_is_asphalt = minetest.registered_nodes[lower_node.name].groups.asphalt and streets.surfaces.surfacetypes[lower_node.name]
-				if lower_node_is_asphalt then
+				if minetest.registered_nodes[lower_node.name].groups.asphalt and streets.surfaces.surfacetypes[lower_node.name] then
 					local lower_node_basename = streets.surfaces.surfacetypes[lower_node.name].name
 					lower_node.name = "streets:mark_" .. (node.name:sub(14)) .. "_on_" .. lower_node_basename
 					lower_node.param2 = node.param2
 					minetest.set_node(lower_pos, lower_node)
 					minetest.remove_node(pos)
+				elseif minetest.registered_nodes[lower_node.name].groups.asphalt
+						and minetest.registered_nodes[lower_node.name:gsub("asphalt", ("mark_" .. node.name:sub(14)) .. "_on_asphalt")] then
+					lower_node.name = lower_node.name:gsub("asphalt", ("mark_" .. node.name:sub(14)) .. "_on_asphalt")
+					minetest.set_node(lower_pos, lower_node)
+					minetest.remove_node(pos)
 				end
-			end,				
+				itemstack:add_wear(65535 / 30)
+				return itemstack
+			end,
+		})
+
+		minetest.register_node(":streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r, {
+			description = "Marking Overlay: " .. friendlyname .. rotation_friendly .. " " .. colorname,
+			tiles = { tex, "streets_transparent.png" },
+			drawtype = "nodebox",
+			paramtype = "light",
+			paramtype2 = "facedir",
+			groups = { snappy = 3, attached_node = 1, oddly_breakable_by_hand = 1, not_in_creative_inventory = 1 },
+			sunlight_propagates = true,
+			walkable = false,
+			inventory_image = tex,
+			wield_image = tex,
 			node_box = {
 				type = "fixed",
-				fixed = {-0.5,-0.5,-0.5,0.5,-0.499,0.5}
+				fixed = { -0.5, -0.5, -0.5, 0.5, -0.499, 0.5 }
 			},
 			selection_box = {
 				type = "fixed",
-				fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2}
-			}
+				fixed = { -1 / 2, -1 / 2, -1 / 2, 1 / 2, -1 / 2 + 1 / 16, 1 / 2 }
+			},
+			drop = "",
 		})
 
 		local tiles = {}
@@ -204,50 +229,63 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			groups = groups,
 			sounds = surface_sounds,
 			tiles = tiles,
-			paramtype2 = "facedir"
+			paramtype2 = "facedir",
+			drop = "",
+			after_destruct = function(pos, oldnode)
+				local newnode = oldnode
+				newnode.name = oldnode.name:gsub("mark_(.-)_on_", "")
+				minetest.set_node(pos, newnode)
+			end,
 		})
 		minetest.register_craft({
 			output = "streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
 			type = "shapeless",
-			recipe = {"streets:" .. surface_name, "streets:mark_" .. name:gsub("{color}", colorname:lower())}
+			recipe = { "streets:" .. surface_name, "streets:mark_" .. name:gsub("{color}", colorname:lower()) }
 		})
 		if register_stairs and (minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus")) then
-			stairsplus:register_stair(
-					"streets", 
-					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
+			local stairs_def = {
 				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
 				tiles = tiles,
 				groups = surface_groups,
-				sounds = surface_sounds
-			})
-			stairsplus:register_slab(
-					"streets", 
-					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
-				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
-				tiles = tiles,
-				groups = surface_groups,
-				sounds = surface_sounds
-			})
-			stairsplus:register_slope(
-					"streets", 
-					name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-					"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
-				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
-				tiles = tiles,
-				groups = surface_groups,
-				sounds = surface_sounds
-			})
+				sounds = surface_sounds,
+				drop = {
+					max_items = 1, -- Maximum number of items to drop.
+					items = {
+						-- Choose max_items randomly from this list.
+						{
+							items = { "" }, -- Choose one item randomly from this list.
+							rarity = 1, -- Probability of getting is 1 / rarity.
+						},
+					},
+				},
+				after_destruct = function(pos, oldnode)
+					local newnode = oldnode
+					newnode.name = oldnode.name:gsub("mark_(.-)_on_", "")
+					minetest.set_node(pos, newnode)
+				end,
+			}
+
+			stairsplus:register_stair("streets",
+				"mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+				"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+				stairs_def)
+			stairsplus:register_slab("streets",
+				"mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+				"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+				stairs_def)
+			stairsplus:register_slope("streets",
+				"mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+				"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
+				stairs_def)
 		end
 	end
 end
 
 if streets.surfaces.surfacetypes then
-	for _,v in pairs(streets.surfaces.surfacetypes) do
-		register_surface_nodes(v.friendlyname,v.name,v.tiles,v.groups,v.sounds,v.craft)
+	for _, v in pairs(streets.surfaces.surfacetypes) do
+		register_surface_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.craft)
 		if streets.labels.labeltypes then
-			for _,w in pairs(streets.labels.labeltypes) do
+			for _, w in pairs(streets.labels.labeltypes) do
 				register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "")
 				if w.rotation then
 					if w.rotation.r90 then
@@ -266,7 +304,7 @@ if streets.surfaces.surfacetypes then
 end
 
 if streets.signs.signtypes then
-	for _,v in pairs(streets.signs.signtypes) do
-		register_sign_node(v.friendlyname,v.name,v.tiles,v.thickness)
+	for _, v in pairs(streets.signs.signtypes) do
+		register_sign_node(v.friendlyname, v.name, v.tiles, v.thickness)
 	end
 end

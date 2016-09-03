@@ -12,34 +12,29 @@ function streets.workshop.start(pos)
 		return
 	end
 
-	local meta          = minetest.get_meta(pos)
-	local inv           = meta:get_inventory()
-	local template      = inv:get_stack("template", 1):get_name()
-	local surface       = inv:get_stack("surface", 1):get_name()
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+	local template = inv:get_stack("template", 1):get_name()
+	local steel = inv:get_stack("steel", 1):get_name()
 	local yellow_needed = inv:get_stack("yellow_needed", 1):get_count()
-	local white_needed  = inv:get_stack("white_needed", 1):get_count()
-	local yellow_ok     = inv:get_stack("yellow_dye", 1):get_count() >= yellow_needed
-	local white_ok      = inv:get_stack("white_dye", 1):get_count() >= white_needed
+	local white_needed = inv:get_stack("white_needed", 1):get_count()
+	local yellow_ok = inv:get_stack("yellow_dye", 1):get_count() >= yellow_needed
+	local white_ok = inv:get_stack("white_dye", 1):get_count() >= white_needed
 
-	if not (yellow_ok and white_ok and surface and surface ~= "" and template and template ~= "") then
+	if not (yellow_ok and white_ok and steel and steel == "default:steel_ingot" and template and template ~= "") then
 		return
 	end
 
-	local surface_suffix = ""
-	if streets.surfaces.surfacetypes[surface] then
-		surface_suffix = "_on_" .. streets.surfaces.surfacetypes[surface].name
-	end
-
-	local outname = template .. surface_suffix
-	if not inv:room_for_item("output", {name = outname, count = 1}) then
+	local outname = template:gsub("mark", "tool")
+	if not inv:room_for_item("output", { name = outname, count = 1 }) then
 		return
 	end
 
 	meta:set_string("working_on", outname)
 	meta:set_int("progress", 0)
-	inv:remove_item("yellow_dye", {name = "dye:yellow", count = yellow_needed})
-	inv:remove_item("white_dye" , {name = "dye:white" , count = white_needed })
-	inv:remove_item("surface", {name = inv:get_stack("surface", 1):get_name(), count = 1})
+	inv:remove_item("yellow_dye", { name = "dye:yellow", count = yellow_needed })
+	inv:remove_item("white_dye", { name = "dye:white", count = white_needed })
+	inv:remove_item("steel", { name = "default:steel_ingot", count = 1 })
 	streets.workshop.step(pos)
 end
 
@@ -58,14 +53,14 @@ function streets.workshop.step(pos)
 	if progress < 10 then
 		minetest.after(0.2, streets.workshop.step, pos)
 	else
-		meta:set_int("progress",0)
+		meta:set_int("progress", 0)
 		progress = 0
-		inv:add_item("output",meta:get_string("working_on"))
+		inv:add_item("output", meta:get_string("working_on"))
 		meta:set_string("working_on", "")
 		streets.workshop.start(pos)
 	end
-	meta:set_int("progress",progress)
-	streets.workshop.update_formspec(pos)	
+	meta:set_int("progress", progress)
+	streets.workshop.update_formspec(pos)
 end
 
 function streets.workshop.update_formspec(pos)
@@ -74,12 +69,12 @@ function streets.workshop.update_formspec(pos)
 		return
 	end
 	local meta = minetest.get_meta(pos)
-	local fs =  "size[9,9;]"
+	local fs = "size[9,9;]"
 	fs = fs .. "tabheader[0,0;tabs;"
-	for k,v in pairs(streets.labels.sections) do
-		fs = fs..minetest.formspec_escape(v.friendlyname) .. ","
+	for k, v in pairs(streets.labels.sections) do
+		fs = fs .. minetest.formspec_escape(v.friendlyname) .. ","
 	end
-	fs = fs:sub(1,-2) --Strip trailing comma
+	fs = fs:sub(1, -2) --Strip trailing comma
 	fs = fs .. ";" .. meta:get_int("section") .. ";false;true]"
 	fs = fs .. "label[0,-0.25;Select Color]"
 	fs = fs .. "image_button[0,0.25;1,1;dye_white.png;color_white;]"
@@ -97,14 +92,14 @@ function streets.workshop.update_formspec(pos)
 	fs = fs .. "button[2,3.25;1,1;r270;R270]"
 	fs = fs .. "list[context;list;3,0;4,4]"
 	fs = fs .. "label[7,0.5;Surface]"
-	fs = fs .. "label[8,0.5;Template]"
+	fs = fs .. "label[8,0.5;Steel ingot]"
 	fs = fs .. "list[context;surface;7,1;1,1]"
 	fs = fs .. "list[context;template;8,1;1,1]"
-	fs = fs .. "image[7.5,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress")*10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
+	fs = fs .. "image[7.5,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress") * 10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
 	fs = fs .. "list[context;output;7.5,3;1,1]"
 	fs = fs .. "list[current_player;main;0.5,5;8,4]"
 	if minetest.setting_getbool("creative_mode") then
-		fs = fs .."label[2,4;CREATIVE MODE: Taking templates is enabled]"
+		fs = fs .. "label[2,4;CREATIVE MODE: Taking templates is enabled]"
 	end
 	meta:set_string("formspec", fs)
 end
@@ -115,40 +110,41 @@ local function update_inventory(pos)
 		return
 	end
 	local meta = minetest.get_meta(pos)
-	local inv  = meta:get_inventory()
-	inv:set_size("white_dye"    , 1)
-	inv:set_size("yellow_dye"   , 1)
-	inv:set_size("white_needed" , 0)
+	local inv = meta:get_inventory()
+	inv:set_size("white_dye", 1)
+	inv:set_size("yellow_dye", 1)
+	inv:set_size("white_needed", 0)
 	inv:set_size("yellow_needed", 0)
-	inv:set_size("list"         , 0)
-	inv:set_size("white_needed" , 1)
+	inv:set_size("list", 0)
+	inv:set_size("white_needed", 1)
 	inv:set_size("yellow_needed", 1)
-	inv:set_size("list"         , 16) -- 4x4
-	inv:set_size("surface"      , 1)
-	inv:set_size("template"     , 1)
-	inv:set_size("output"       , 1)
+	inv:set_size("list", 16) -- 4x4
+	inv:set_size("steel", 1)
+	inv:set_size("template", 1)
+	inv:set_size("output", 1)
 
 	local color = meta:get_string("color")
 	local section = meta:get_int("section")
 	local rotation = meta:get_string("rotation")
 	local sectionname = streets.labels.sections[section].name
-	for k,v in pairs(streets.labels.labeltypes) do
+	for k, v in pairs(streets.labels.labeltypes) do
 		if v.section == sectionname then
 			if v.rotation then
 				if v.rotation.r90 and rotation == "r90" then
-					inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) .. "_r90" )
+					inv:add_item("list", "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r90")
 				elseif v.rotation.r180 and rotation == "r180" then
-					inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) .. "_r180")
+					inv:add_item("list", "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r180")
 				elseif v.rotation.r270 and rotation == "r270" then
-					inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) .. "_r270")
+					inv:add_item("list", "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r270")
 				end
 			end
 			if rotation == "r0" then
-				inv:add_item("list","streets:mark_" .. v.name:gsub("{color}", color:lower()) )
+				inv:add_item("list", "streets:tool_" .. v.name:gsub("{color}", color:lower()))
 			end
 		end
 	end
 	local templatestack = inv:get_stack("template", 1)
+	local markingcolor = ""
 	if templatestack and templatestack:to_string() ~= "" then
 		local selectedmarking = templatestack:to_table().name:sub(14)
 		if selectedmarking:find("white") then
@@ -156,17 +152,17 @@ local function update_inventory(pos)
 		elseif selectedmarking:find("yellow") then
 			markingcolor = "yellow"
 		end
-		selectedmarking = selectedmarking:gsub("white" , "{color}")
+		selectedmarking = selectedmarking:gsub("white", "{color}")
 		selectedmarking = selectedmarking:gsub("yellow", "{color}")
-		selectedmarking = selectedmarking:gsub("_r90"  , "")
-		selectedmarking = selectedmarking:gsub("_r180" , "")
-		selectedmarking = selectedmarking:gsub("_r270" , "")
+		selectedmarking = selectedmarking:gsub("_r90", "")
+		selectedmarking = selectedmarking:gsub("_r180", "")
+		selectedmarking = selectedmarking:gsub("_r270", "")
 		local dyesneeded = streets.labels.labeltypes[selectedmarking].dye_needed
 		if markingcolor == "white" then
-			inv:add_item("white_needed",  {name = "dye:white",  count = dyesneeded})
+			inv:add_item("white_needed", { name = "dye:white", count = dyesneeded })
 		end
 		if markingcolor == "yellow" then
-			inv:add_item("yellow_needed", {name = "dye:yellow", count = dyesneeded})
+			inv:add_item("yellow_needed", { name = "dye:yellow", count = dyesneeded })
 		end
 	end
 	streets.workshop.update_formspec(pos)
@@ -244,7 +240,7 @@ local function allow_metadata_inventory_put(pos, listname, index, stack, player)
 	end
 end
 
-local function can_dig(pos,player)
+local function can_dig(pos, player)
 	local inv = minetest.get_meta(pos):get_inventory()
 	if inv:is_empty("yellow_dye") and inv:is_empty("white_dye") and inv:is_empty("surface") and inv:is_empty("output") then
 		return true
@@ -255,30 +251,30 @@ end
 
 minetest.register_node(":streets:asphalt_workshop", {
 	description = "Asphalt Workshop",
-	tiles = {"default_wood.png",},
+	tiles = { "default_wood.png", },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1},
+	groups = { cracky = 1 },
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.4375, 0.375, -0.1875, 0.4375, 0.4375, -0.125}, -- rail
-			{-0.125, 0.3125, -0.25, -0.0625, 0.375, -0.0625}, -- sprayer
-			{-0.5, -0.5, -0.5, -0.4375, 0.5, 0.5}, -- sideL
-			{0.4375, -0.5, -0.5, 0.5, 0.5, 0.5}, -- sideR
-			{-0.4375, 0.3125, -0.5, -0.375, 0.375, 0.5}, -- railLB
-			{-0.4375, 0.4375, -0.5, -0.375, 0.5, 0.5}, -- railLT
-			{-0.4375, 0.375, -0.5, -0.375, 0.4375, -0.4375}, -- railLF
-			{-0.4375, -0.5, 0.4375, 0.4375, 0.5, 0.5}, -- sideR
-			{0.375, 0.3125, -0.5, 0.4375, 0.375, 0.5}, -- railRB
-			{0.375, 0.4375, -0.5, 0.4375, 0.5, 0.5}, -- railRT
-			{0.375, 0.375, -0.5, 0.4375, 0.4375, -0.4375}, -- railRF
-			{-0.4375, 0.375, 0.375, -0.375, 0.4375, 0.4375}, -- railLB
-			{0.375, 0.3125, 0.375, 0.4375, 0.375, 0.4375}, -- railRB
-			{-0.5, -0.5, -0.5, -0.375, 0.3125, 0.4375}, -- sideL2
-			{0.375, -0.5, -0.5, 0.4375, 0.3125, 0.4375}, -- sideR2
-			{-0.4375, -0.5, -0.4375, 0.4375, -0.1875, 0.4375}, -- body
+			{ -0.4375, 0.375, -0.1875, 0.4375, 0.4375, -0.125 }, -- rail
+			{ -0.125, 0.3125, -0.25, -0.0625, 0.375, -0.0625 }, -- sprayer
+			{ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, -- sideL
+			{ 0.4375, -0.5, -0.5, 0.5, 0.5, 0.5 }, -- sideR
+			{ -0.4375, 0.3125, -0.5, -0.375, 0.375, 0.5 }, -- railLB
+			{ -0.4375, 0.4375, -0.5, -0.375, 0.5, 0.5 }, -- railLT
+			{ -0.4375, 0.375, -0.5, -0.375, 0.4375, -0.4375 }, -- railLF
+			{ -0.4375, -0.5, 0.4375, 0.4375, 0.5, 0.5 }, -- sideR
+			{ 0.375, 0.3125, -0.5, 0.4375, 0.375, 0.5 }, -- railRB
+			{ 0.375, 0.4375, -0.5, 0.4375, 0.5, 0.5 }, -- railRT
+			{ 0.375, 0.375, -0.5, 0.4375, 0.4375, -0.4375 }, -- railRF
+			{ -0.4375, 0.375, 0.375, -0.375, 0.4375, 0.4375 }, -- railLB
+			{ 0.375, 0.3125, 0.375, 0.4375, 0.375, 0.4375 }, -- railRB
+			{ -0.5, -0.5, -0.5, -0.375, 0.3125, 0.4375 }, -- sideL2
+			{ 0.375, -0.5, -0.5, 0.4375, 0.3125, 0.4375 }, -- sideR2
+			{ -0.4375, -0.5, -0.4375, 0.4375, -0.1875, 0.4375 }, -- body
 		}
 	},
 	selection_box = {
@@ -293,4 +289,12 @@ minetest.register_node(":streets:asphalt_workshop", {
 	on_metadata_inventory_put = on_metadata_inventory_put,
 	on_metadata_inventory_take = on_metadata_inventory_take,
 	can_dig = can_dig,
+})
+
+minetest.register_lbm({
+	name = "streets:update_asphaltworkshop",
+	nodenames = {"streets:asphalt_workshop"},
+	action = function(pos, node)
+		update_inventory(pos)
+	end,
 })
