@@ -91,9 +91,9 @@ function streets.workshop.update_formspec(pos)
 	fs = fs .. "button[2,2.25;1,1;r180;R180]"
 	fs = fs .. "button[2,3.25;1,1;r270;R270]"
 	fs = fs .. "list[context;list;3,0;4,4]"
-	fs = fs .. "label[7,0.5;Surface]"
-	fs = fs .. "label[8,0.5;Steel ingot]"
-	fs = fs .. "list[context;surface;7,1;1,1]"
+	fs = fs .. "label[7,0.5;Steel ingot]"
+	fs = fs .. "label[8,0.5;Template]"
+	fs = fs .. "list[context;steel;7,1;1,1]"
 	fs = fs .. "list[context;template;8,1;1,1]"
 	fs = fs .. "image[7.5,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress") * 10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
 	fs = fs .. "list[context;output;7.5,3;1,1]"
@@ -200,7 +200,7 @@ local function on_construct(pos)
 end
 
 local function allow_metadata_inventory_take(pos, listname, index, stack, player)
-	if listname == "output" or listname == "surface" or listname == "white_dye" or listname == "yellow_dye" or (listname == "list" and minetest.setting_getbool("creative_mode")) then
+	if listname == "output" or listname == "steel" or listname == "white_dye" or listname == "yellow_dye" or (listname == "list" and minetest.setting_getbool("creative_mode")) then
 		return stack:get_count()
 	else
 		return 0
@@ -233,7 +233,7 @@ end
 local function allow_metadata_inventory_put(pos, listname, index, stack, player)
 	if listname == "yellow_dye" or listname == "white_dye" or (listname == "list" and minetest.setting_getbool("creative_mode")) then
 		return stack:get_count()
-	elseif listname == "surface" and (stack:get_name() == "default:paper" or streets.surfaces.surfacetypes[stack:get_name()]) then
+	elseif listname == "steel" and (stack:get_name() == "default:steel_ingot") then
 		return stack:get_count()
 	else
 		return 0
@@ -242,7 +242,7 @@ end
 
 local function can_dig(pos, player)
 	local inv = minetest.get_meta(pos):get_inventory()
-	if inv:is_empty("yellow_dye") and inv:is_empty("white_dye") and inv:is_empty("surface") and inv:is_empty("output") then
+	if inv:is_empty("yellow_dye") and inv:is_empty("white_dye") and inv:is_empty("steel") and inv:is_empty("output") then
 		return true
 	else
 		return false
@@ -292,7 +292,7 @@ minetest.register_node(":streets:asphalt_workshop", {
 })
 
 minetest.register_lbm({
-	name = "streets:update_asphaltworkshop",
+	name = "streets:update_asphalt_workshop",
 	nodenames = {"streets:asphalt_workshop"},
 	action = function(pos, node)
 		update_inventory(pos)
