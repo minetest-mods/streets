@@ -39,7 +39,7 @@ local register_surface_nodes = function(friendlyname, name, tiles, groups, sound
 end
 
 local register_sign_node = function(friendlyname, name, tiles, thickness)
-	tiles[5] = tiles[5] .. "^[mask:" .. tiles[6]
+	tiles[5] = tiles[5] .. "^[mask:" .. tiles[6] .. "^[colorize:#fff^[mask:" .. tiles[5]
 	minetest.register_node(":streets:" .. name, {
 		description = friendlyname,
 		tiles = tiles,
