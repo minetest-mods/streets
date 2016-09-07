@@ -47,6 +47,7 @@ streets.load_submod("streets_light")
 if minetest.get_modpath("digilines") then
 	streets.load_submod("streets_trafficlight")
 	streets.load_submod("streets_laneuse")
+	streets.load_submod("streets_matrix_screen")
 end
 
 -- Let the API register everything and finish the setup
