@@ -250,7 +250,14 @@ end
 
 minetest.register_node(":streets:asphalt_workshop", {
 	description = "Asphalt Workshop",
-	tiles = { "default_wood.png", },
+	tiles = {
+		"default_steel_block.png^(streets_asphalt.png^[opacity:200)",
+		"default_steel_block.png^(streets_asphalt.png^[opacity:200)",
+		"default_steel_block.png^(streets_asphalt.png^[opacity:200)",
+		"default_steel_block.png^(streets_asphalt.png^[opacity:200)",
+		"default_steel_block.png^(streets_asphalt.png^[opacity:200)",
+		"default_steel_block.png^(streets_asphalt.png^[opacity:200)",
+	},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -292,8 +299,17 @@ minetest.register_node(":streets:asphalt_workshop", {
 
 minetest.register_lbm({
 	name = "streets:update_asphalt_workshop",
-	nodenames = {"streets:asphalt_workshop"},
+	nodenames = { "streets:asphalt_workshop" },
 	action = function(pos, node)
 		update_inventory(pos)
 	end,
+})
+
+minetest.register_craft({
+	output = "streets:asphalt_workshop",
+	recipe = {
+		{ "streets:asphalt", "streets:asphalt", "streets:asphalt" },
+		{ "streets:asphalt", "default:mese_crystal_fragment", "streets:asphalt" },
+		{ "streets:asphalt", "streets:asphalt", "streets:asphalt" },
+	}
 })

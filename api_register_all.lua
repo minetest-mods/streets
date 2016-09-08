@@ -5,21 +5,6 @@
 	Category: Init
 ]]
 
-local function copytable(orig)
-	local orig_type = type(orig)
-	local copy
-	if orig_type == 'table' then
-		copy = {}
-		for orig_key, orig_value in next, orig, nil do
-			copy[copytable(orig_key)] = copytable(orig_value)
-		end
-		setmetatable(copy, copytable(getmetatable(orig)))
-	else
-		copy = orig
-	end
-	return copy
-end
-
 local register_surface_nodes = function(friendlyname, name, tiles, groups, sounds, craft)
 	minetest.register_node(":streets:" .. name, {
 		description = friendlyname,
@@ -62,20 +47,28 @@ local register_sign_node = function(friendlyname, name, tiles, thickness)
 				behind_pos.x = behind_pos.x - 1
 			end
 			local behind_node = minetest.get_node(behind_pos)
+			local behind_nodes = {}
+			behind_nodes["streets:roadwork_traffic_barrier"] = true
+			behind_nodes["streets:concrete_wall"] = true
+			behind_nodes["technic:concrete_post"] = true
 			local under_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
 			local under_node = minetest.get_node(under_pos)
+			local under_nodes = {}
+			under_nodes["streets:roadwork_traffic_barrier"] = true
+			under_nodes["streets:concrete_wall"] = true
+			under_nodes["technic:concrete_post"] = true
 			local upper_pos = { x = pos.x, y = pos.y + 1, z = pos.z }
 			local upper_node = minetest.get_node(upper_pos)
-			if minetest.registered_nodes[behind_node.name].groups.bigpole then
-				if minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1 then
-					node.name = node.name .. "_polemount"
-					minetest.set_node(pos, node)
-				end
-			elseif minetest.registered_nodes[under_node.name].groups.bigpole then
-				if minetest.registered_nodes[under_node.name].streets_pole_connection["t"][under_node.param2 + 1] == 1 then
-					node.name = node.name .. "_center"
-					minetest.set_node(pos, node)
-				end
+			if (minetest.registered_nodes[behind_node.name].groups.bigpole
+					and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
+					or behind_nodes[behind_node.name] == true then
+				node.name = node.name .. "_polemount"
+				minetest.set_node(pos, node)
+			elseif (minetest.registered_nodes[under_node.name].groups.bigpole
+					and minetest.registered_nodes[under_node.name].streets_pole_connection["t"][under_node.param2 + 1] == 1)
+					or under_nodes[under_node.name] then
+				node.name = node.name .. "_center"
+				minetest.set_node(pos, node)
 			elseif minetest.registered_nodes[upper_node.name].groups.bigpole then
 				if minetest.registered_nodes[upper_node.name].streets_pole_connection["b"][upper_node.param2 + 1] == 1 then
 					node.name = node.name .. "_center"
@@ -222,7 +215,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 		tiles[1] = tiles[1] .. "^(" .. tex .. ")"
 		tiles[5] = tiles[5] .. "^(" .. tex .. ")^[transformR180"
 		tiles[6] = tiles[6] .. "^(" .. tex .. ")"
-		local groups = copytable(surface_groups)
+		local groups = streets.copytable(surface_groups)
 		groups.not_in_creative_inventory = 1
 		minetest.register_node(":streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name, {
 			description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,

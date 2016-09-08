@@ -5,11 +5,11 @@
 ]]
 
 local nodebox = {
-	{-7/16, -7/16, -1/8, 7/16, 7/16, 1/8}, --Face
-	{-7/16, 0, -1/4, -3/8, 7/16, -1/8}, --Visor Left
-	{3/8, 0, -1/4, 7/16, 7/16, -1/8}, --Visor Right
-	{-7/16, 3/8, -5/16, 7/16, 7/16, -1/8}, --Visor Top
-	{-1/4, -1/4, 0.85, 1/4, 1/4, 1/8}, --Mounting Bracket
+	{ -7 / 16, -7 / 16, -1 / 8, 7 / 16, 7 / 16, 1 / 8 }, --Face
+	{ -7 / 16, 0, -1 / 4, -3 / 8, 7 / 16, -1 / 8 }, --Visor Left
+	{ 3 / 8, 0, -1 / 4, 7 / 16, 7 / 16, -1 / 8 }, --Visor Right
+	{ -7 / 16, 3 / 8, -5 / 16, 7 / 16, 7 / 16, -1 / 8 }, --Visor Top
+	{ -1 / 4, -1 / 4, 0.85, 1 / 4, 1 / 4, 1 / 8 }, --Mounting Bracket
 }
 
 minetest.register_node("streets:lane_use_off", {
@@ -29,19 +29,18 @@ minetest.register_node("streets:lane_use_off", {
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
-	groups = {cracky = 3},
+	groups = { cracky = 3 },
 	node_box = {
 		type = "fixed",
-			fixed = nodebox
+		fixed = nodebox
 	},
 	selection_box = {
 		type = "fixed",
-			fixed = nodebox
-
+		fixed = nodebox
 	},
 	on_receive_fields = function(pos, formname, fields, sender)
 		local name = sender:get_player_name()
-		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+		if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, { protection_bypass = true }) then
 			minetest.record_protection_violation(pos, name)
 			return
 		end
@@ -58,24 +57,24 @@ minetest.register_node("streets:lane_use_off", {
 					return
 				end
 				msg = msg:lower()
-				if (msg=="off") then
+				if (msg == "off") then
 					node.name = "streets:lane_use_off"
-				elseif (msg=="green") then
+				elseif (msg == "green") then
 					node.name = "streets:lane_use_green"
-				elseif (msg=="red") then
+				elseif (msg == "red") then
 					node.name = "streets:lane_use_red"
-				elseif (msg=="yellow") then
+				elseif (msg == "yellow") then
 					node.name = "streets:lane_use_yellow"
 				end
-				minetest.set_node(pos,node)
-				minetest.get_meta(pos):set_string("channel",setchan)
+				minetest.set_node(pos, node)
+				minetest.get_meta(pos):set_string("channel", setchan)
 			end
 		}
 	}
 })
 
-for _,v in pairs({"green","yellow","red"}) do
-	minetest.register_node("streets:lane_use_"..v, {
+for _, v in pairs({ "green", "yellow", "red" }) do
+	minetest.register_node("streets:lane_use_" .. v, {
 		drop = "streets:lane_use_off",
 		tiles = {
 			"streets_tl_bg.png",
@@ -83,7 +82,7 @@ for _,v in pairs({"green","yellow","red"}) do
 			"streets_tl_bg.png",
 			"streets_tl_bg.png",
 			"streets_tl_bg.png",
-			"streets_laneuse_"..v..".png"
+			"streets_laneuse_" .. v .. ".png"
 		},
 		drawtype = "nodebox",
 		paramtype = "light",
@@ -92,20 +91,19 @@ for _,v in pairs({"green","yellow","red"}) do
 			local meta = minetest.get_meta(pos)
 			meta:set_string("formspec", "field[channel;Channel;${channel}]")
 		end,
-		groups = {cracky = 3,not_in_creative_inventory = 1},
+		groups = { cracky = 3, not_in_creative_inventory = 1 },
 		light_source = 11,
 		node_box = {
 			type = "fixed",
-				fixed = nodebox
+			fixed = nodebox
 		},
 		selection_box = {
 			type = "fixed",
-				fixed = nodebox
-
+			fixed = nodebox
 		},
 		on_receive_fields = function(pos, formname, fields, sender)
 			local name = sender:get_player_name()
-			if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+			if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, { protection_bypass = true }) then
 				minetest.record_protection_violation(pos, name)
 				return
 			end
@@ -122,17 +120,17 @@ for _,v in pairs({"green","yellow","red"}) do
 						return
 					end
 					msg = msg:lower()
-					if (msg=="off") then
+					if (msg == "off") then
 						node.name = "streets:lane_use_off"
-					elseif (msg=="green") then
+					elseif (msg == "green") then
 						node.name = "streets:lane_use_green"
-					elseif (msg=="red") then
+					elseif (msg == "red") then
 						node.name = "streets:lane_use_red"
-					elseif (msg=="yellow") then
+					elseif (msg == "yellow") then
 						node.name = "streets:lane_use_yellow"
 					end
-					minetest.set_node(pos,node)
-					minetest.get_meta(pos):set_string("channel",setchan)
+					minetest.set_node(pos, node)
+					minetest.get_meta(pos):set_string("channel", setchan)
 				end
 			}
 		}
@@ -142,8 +140,8 @@ end
 minetest.register_craft({
 	output = "streets:lane_use_off",
 	recipe = {
-		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-		{"dye:red","dye:yellow","dye:green"},
-		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+		{ "dye:red", "dye:yellow", "dye:green" },
+		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
 	}
 })

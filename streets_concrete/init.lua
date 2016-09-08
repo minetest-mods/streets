@@ -11,17 +11,17 @@ else
 
 	minetest.register_node("streets:concrete", {
 		description = "Concrete",
-		tiles = {streets.concrete_texture},
-		groups = {cracky = 2, stone = 3},
-		sounds =  default.node_sound_stone_defaults()
+		tiles = { streets.concrete_texture },
+		groups = { cracky = 2, stone = 3 },
+		sounds = default.node_sound_stone_defaults()
 	})
 
-	
+
 	if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus") then
 		stairsplus:register_all("streets", "concrete", "streets:concrete", {
 			description = "Concrete",
-			tiles = {streets.concrete_texture},
-			groups = {cracky = 2, stone = 3},
+			tiles = { streets.concrete_texture },
+			groups = { cracky = 2, stone = 3 },
 			sounds = default.node_sound_stone_defaults()
 		})
 	end
@@ -31,18 +31,18 @@ minetest.register_node("streets:concrete_wall", {
 	description = "Concrete Wall",
 	paramtype = "light",
 	drawtype = "nodebox",
-	tiles = {streets.concrete_texture},
+	tiles = { streets.concrete_texture },
 	sunlight_propagates = true,
-	groups = {cracky = 1, level = 2, wall = 1},
+	groups = { cracky = 1, level = 2, wall = 1 },
 	node_box = {
 		type = "connected",
-		fixed          = {{-0.3, -0.5, -0.3, 0.3, -0.4, 0.3}, {-0.1, -0.5, -0.1, 0.1, 0.5, 0.1}},
-		connect_front  = {{-0.3, -0.5, -0.5, 0.3, -0.4, 0.3}, {-0.1, -0.5, -0.5, 0.1, 0.5, 0.1}}, -- z-
-		connect_back   = {{-0.3, -0.5, -0.3, 0.3, -0.4, 0.5}, {-0.1, -0.5, -0.1, 0.1, 0.5, 0.5}}, -- z+
-		connect_left   = {{-0.5, -0.5, -0.3, 0.3, -0.4, 0.3}, {-0.5, -0.5, -0.1, 0.1, 0.5, 0.1}}, -- x-
-		connect_right  = {{-0.3, -0.5, -0.3, 0.5, -0.4, 0.3}, {-0.1, -0.5, -0.1, 0.5, 0.5, 0.1}}, -- x+
+		fixed = { { -0.35, -0.5, -0.35, 0.35, -0.4, 0.35 }, { -0.15, -0.5, -0.15, 0.15, 0.5, 0.15 } },
+		connect_front = { { -0.35, -0.5, -0.5, 0.35, -0.4, 0.35 }, { -0.15, -0.5, -0.5, 0.15, 0.5, 0.15 } }, -- z-
+		connect_back = { { -0.35, -0.5, -0.35, 0.35, -0.4, 0.5 }, { -0.15, -0.5, -0.15, 0.15, 0.5, 0.5 } }, -- z+
+		connect_left = { { -0.5, -0.5, -0.35, 0.35, -0.4, 0.35 }, { -0.5, -0.5, -0.15, 0.15, 0.5, 0.15 } }, -- x-
+		connect_right = { { -0.35, -0.5, -0.35, 0.5, -0.4, 0.35 }, { -0.15, -0.5, -0.15, 0.5, 0.5, 0.15 } }, -- x+
 	},
-	connects_to = {"group:wall", "group:stone", "group:wood", "group:tree", "group:sign", "group:concrete"},
+	connects_to = { "group:wall", "group:stone", "group:wood", "group:tree", "group:concrete" },
 	sound = default.node_sound_stone_defaults()
 })
 
@@ -50,8 +50,8 @@ minetest.register_node("streets:concrete_wall", {
 minetest.register_craft({
 	output = "streets:concrete_wall 5",
 	recipe = {
-		{"", "streets:concrete", ""},
-		{"", "streets:concrete", ""},
-		{"streets:concrete", "streets:concrete", "streets:concrete"},
+		{ "", "streets:concrete", "" },
+		{ "", "streets:concrete", "" },
+		{ "streets:concrete", "streets:concrete", "streets:concrete" },
 	}
 })

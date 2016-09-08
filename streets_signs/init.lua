@@ -36,6 +36,12 @@ streets.register_road_sign({
 	thickness = 0.05
 })
 
+minetest.register_craft({
+	type = "shapeless",
+	output = "streets:sign_blank",
+	recipe = { "streets:asphalt", "default:sign_wall_wood" },
+})
+
 streets.register_road_sign({
 	name = "sign_curve_chevron_right",
 	friendlyname = "Curve Chevron Sign (Right)",

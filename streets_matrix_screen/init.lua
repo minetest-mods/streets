@@ -204,3 +204,12 @@ minetest.register_entity("streets:matrix_screen_lights", {
 		end, pos)
 	end,
 })
+
+minetest.register_craft({
+	output = "streets:matrix_screen_base",
+	recipe = {
+		{ "dye:yellow", "default:steel_ingot", "dye:yellow" },
+		{ "default:steel_ingot", "digilines:lcd", "default:steel_ingot" },
+		{ "dye:yellow", "default:steel_ingot", "dye:yellow" },
+	}
+})
