@@ -21,15 +21,19 @@ function streets.copytable(orig)
 end
 
 function streets.load_submod(dirname)
+	dofile(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
+	-- The function below had to be replaced by the line above
+	-- to make the streets mod work with minetest commit 2ff054d
+
 	-- Check whether submod's init file exists
-	local f = io.open(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
+	--[[local f = io.open(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
 	if f ~= nil then
 		-- Load it
 		f.close()
 		dofile(streets.conf.modpath .. "/" .. dirname .. "/init.lua")
 	else
 		minetest.log("error", "[Streets] '" .. dirname .. "' does not exist")
-	end
+	end]]
 end
 
 function streets.register_road_surface(data)
