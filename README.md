@@ -11,7 +11,7 @@
 If not mentioned otherwise:
 
 ###Code
-BSD-2-Clause
+MIT License
 
 ###Media
 CC-BY-SA 3.0
