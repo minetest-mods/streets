@@ -98,7 +98,7 @@ minetest.register_node("streets:matrix_screen_base", {
 	paramtype2 = "facedir",
 	groups = { cracky = 3, oddly_breakable_by_hand = 2 },
 	sounds = default.node_sound_stone_defaults(),
-	light_source = 15,
+	light_source = 14,
 	node_box = {
 		type = "fixed",
 		fixed = {
