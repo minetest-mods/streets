@@ -152,6 +152,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			inventory_image = tex,
 			wield_image = tex,
 			on_place = function(itemstack, placer, pointed_thing)
+				local player_name = placer:get_player_name()
 				local pos = {}
 				if pointed_thing["type"] == "node" then
 					pos = pointed_thing.under
@@ -159,10 +160,18 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 				else
 					return itemstack
 				end
-				minetest.set_node(pos, {
-					name = "streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r,
-					param2 = minetest.dir_to_facedir(placer:get_look_dir())
-				})
+				if minetest.is_protected(pos, player_name) and not minetest.check_player_privs(player_name, { protection_bypass = true }) then
+					minetest.record_protection_violation(pos, name)
+					return
+				end
+				if minetest.get_node(pos).name == "air" then
+					minetest.set_node(pos, {
+						name = "streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r,
+						param2 = minetest.dir_to_facedir(placer:get_look_dir())
+					})
+				else
+					return itemstack
+				end
 				local node = minetest.get_node(pos)
 				local lower_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
 				local lower_node = minetest.get_node(lower_pos)
