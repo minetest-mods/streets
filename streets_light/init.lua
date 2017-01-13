@@ -115,9 +115,10 @@ local on_digiline_receive = function(pos, node, channel, msg)
 end
 
 local on_punch = function(pos, node, player, pointed_thing)
-	if minetest.is_protected(pos, player) and not minetest.check_player_privs(player, {protection_bypass=true}) then
-		minetest.chat_send_player(player, core.colorize("#FF5300", "You don't have access to this lantern. Stop trying to turn it on/off!"))
-		minetest.record_protection_violation(pos, name)
+	local player_name = player:get_player_name()
+	if minetest.is_protected(pos, player_name) and not minetest.check_player_privs(player_name, {protection_bypass=true}) then
+		minetest.chat_send_player(player_name, core.colorize("#FF5300", "You don't have access to this lantern. Stop trying to turn it on/off!"))
+		minetest.record_protection_violation(pos, player_name)
 		return
 	end
 	local meta = minetest.get_meta(pos)
