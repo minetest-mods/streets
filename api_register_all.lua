@@ -187,7 +187,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 					minetest.set_node(lower_pos, lower_node)
 					minetest.remove_node(pos)
 				end
-				itemstack:add_wear(65535 / 30)
+				itemstack:add_wear(65535 / 75)
 				return itemstack
 			end,
 		})
