@@ -10,14 +10,22 @@ local matrix_px = 16
 
 -- gets the object at pos
 local function get_screen(pos)
-	for _, obj in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+	local object
+	local objects = minetest.get_objects_inside_radius(pos, 0.5) or {}
+	for _, obj in pairs(objects) do
 		local ent = obj:get_luaentity()
-		if ent
-				and ent.name == "streets:matrix_screen_lights" then
-			return obj
+		if ent then
+			if ent.name == "streets:matrix_screen_lights" then
+				-- Remove duplicates
+				if object then
+					obj:remove()
+				else
+					object = obj
+				end
+			end
 		end
 	end
-	return false
+	return object
 end
 
 -- used to get the texture for the object
