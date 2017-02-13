@@ -63,8 +63,9 @@ local function update_formspec(pos)
 end
 
 local on_receive_fields = function(pos, formname, fields, sender)
-	if minetest.is_protected(pos, sender) and not minetest.check_player_privs(sender, {protection_bypass=true}) then
-		minetest.chat_send_player(sender, core.colorize("#FF5300", "You don't have access to this lantern. Stop trying to configure it!"))
+	local name = sender:get_player_name()
+	if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+		minetest.chat_send_player(name, core.colorize("#FF5300", "You don't have access to this lantern. Stop trying to configure it!"))
 		minetest.record_protection_violation(pos, name)
 		return
 	end
