@@ -1,4 +1,7 @@
 #Streets mod 2.0
+_Released on 21st of February 2017_
+
+_Streets 2.0 is **not** fully backwards-compatible to streets 1.x!_
 
 ##Contributors
 
