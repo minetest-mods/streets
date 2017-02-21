@@ -32,7 +32,22 @@ minetest.register_node("streets:bollard_driver", {
 	-- on_rightclick = toggle_bollard, -- Automatic bollards mustn't be toggled manually!
 	mesecons = {
 		effector = {
-			rules = mesecon.rules.default,
+			rules = {
+				{x= 0, y= 0, z=-1},
+				{x= 0, y= 0, z= 1},
+				{x= 1, y= 0, z= 0},
+				{x=-1, y= 0, z= 0},
+				{x= 0, y=-1, z= 0},
+				{x= 0, y= 1, z= 0},
+				{x= 1, y= 1, z= 0},
+				{x= 1, y=-1, z= 0},
+				{x=-1, y= 1, z= 0},
+				{x=-1, y=-1, z= 0},
+				{x= 0, y= 1, z= 1},
+				{x= 0, y=-1, z= 1},
+				{x= 0, y= 1, z=-1},
+				{x= 0, y=-1, z=-1}
+			},
 			action_off = function(pos, node)
 				toggle_bollard(vector.add(pos, vector.new(0, 1, 0)), node, nil, nil, { type = "node", under = vector.add(pos, vector.new(0, -1, 0)), above = vector.add(pos, vector.new(0, 1, 0)) }, "up")
 			end,
