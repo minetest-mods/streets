@@ -369,17 +369,14 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "streets:light_horizontal_off 3",
 	recipe = {
-		{"", "", ""},
 		{"default:steel_ingot", "default:meselamp", "default:steel_ingot"},
-		{"", "", ""}
 	}
 })
 
 minetest.register_craft({
 	output = "streets:light_hanging_off 3",
 	recipe = {
+		{"", "default:stick", ""},
 		{"default:steel_ingot", "default:meselamp", "default:steel_ingot"},
-		{"", "", ""},
-		{"", "", ""}
 	}
 })
