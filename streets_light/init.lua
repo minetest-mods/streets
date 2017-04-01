@@ -5,20 +5,20 @@
 ]]
 
 local rules = {
-	{x= 0, y= 0, z=-1},
-	{x= 0, y= 0, z= 1},
-	{x= 1, y= 0, z= 0},
-	{x=-1, y= 0, z= 0},
-	{x= 0, y=-1, z= 0},
-	{x= 0, y= 1, z= 0},
-	{x= 1, y= 1, z= 0},
-	{x= 1, y=-1, z= 0},
-	{x=-1, y= 1, z= 0},
-	{x=-1, y=-1, z= 0},
-	{x= 0, y= 1, z= 1},
-	{x= 0, y=-1, z= 1},
-	{x= 0, y= 1, z=-1},
-	{x= 0, y=-1, z=-1}
+	{ x = 0, y = 0, z = -1 },
+	{ x = 0, y = 0, z = 1 },
+	{ x = 1, y = 0, z = 0 },
+	{ x = -1, y = 0, z = 0 },
+	{ x = 0, y = -1, z = 0 },
+	{ x = 0, y = 1, z = 0 },
+	{ x = 1, y = 1, z = 0 },
+	{ x = 1, y = -1, z = 0 },
+	{ x = -1, y = 1, z = 0 },
+	{ x = -1, y = -1, z = 0 },
+	{ x = 0, y = 1, z = 1 },
+	{ x = 0, y = -1, z = 1 },
+	{ x = 0, y = 1, z = -1 },
+	{ x = 0, y = -1, z = -1 }
 }
 
 local function update_formspec(pos)
@@ -28,8 +28,8 @@ local function update_formspec(pos)
 	end
 	local meta = minetest.get_meta(pos)
 	local mode = meta:get_string("mode")
-	
-	local fs =  "size[9,6;]"
+
+	local fs = "size[9,6;]"
 	fs = fs .. "label[0,0;Street Light Setup]"
 	fs = fs .. "box[0,0.4;8.6,0.05;#FFFFFF]"
 	fs = fs .. "box[2.6,0.6;0.05,5.4;#FFFFFF]"
@@ -64,7 +64,7 @@ end
 
 local on_receive_fields = function(pos, formname, fields, sender)
 	local name = sender:get_player_name()
-	if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, {protection_bypass=true}) then
+	if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, { protection_bypass = true }) then
 		minetest.chat_send_player(name, core.colorize("#FF5300", "You don't have access to this lantern. Stop trying to configure it!"))
 		minetest.record_protection_violation(pos, name)
 		return
@@ -99,7 +99,7 @@ local on_digiline_receive = function(pos, node, channel, msg)
 	local newnode = node
 	if type(msg) == "string" then
 		msg = msg:lower()
-		if mode == "digiline" and channel ==  meta:get_string("channel") then
+		if mode == "digiline" and channel == meta:get_string("channel") then
 			if state == "on" then
 				if msg == "off" then
 					newnode.name = newnode.name:gsub("_on", "_off")
@@ -117,7 +117,7 @@ end
 
 local on_punch = function(pos, node, player, pointed_thing)
 	local player_name = player:get_player_name()
-	if minetest.is_protected(pos, player_name) and not minetest.check_player_privs(player_name, {protection_bypass=true}) then
+	if minetest.is_protected(pos, player_name) and not minetest.check_player_privs(player_name, { protection_bypass = true }) then
 		minetest.chat_send_player(player_name, core.colorize("#FF5300", "You don't have access to this lantern. Stop trying to turn it on/off!"))
 		minetest.record_protection_violation(pos, player_name)
 		return
@@ -142,58 +142,56 @@ local on_construct = function(pos)
 	meta:set_string("mode", "time")
 	meta:set_string("channel", "streetlight")
 	meta:set_int("time_on", "18500")
-	meta:set_string("time_off","5500")
+	meta:set_string("time_off", "5500")
 	update_formspec(pos)
 end
 
-local def_digiline = 
-	{
-		receptor = {},
-		effector = {
-			action = on_digiline_receive,
-			rules = rules
-		},
-		wire = {
-			rules = rules
-		}
+local def_digiline =
+{
+	receptor = {},
+	effector = {
+		action = on_digiline_receive,
+		rules = rules
+	},
+	wire = {
+		rules = rules
 	}
+}
 
 local def_mesecons =
-	{
-		effector = {
-			action_on = function (pos, node)
-				local meta = minetest.get_meta(pos)
-				local state = node.name:find("off") and "off" or "on"
-				if meta:get_string("mode") == "mesecons" and state == "off" then
-					local newnode = node
-					newnode.name = newnode.name:gsub("_off", "_on")
-					minetest.swap_node(pos, newnode)
-				end
-			end,
-
-			action_off = function (pos, node)
-				local meta = minetest.get_meta(pos)
-				local state = node.name:find("off") and "off" or "on"
-				if meta:get_string("mode") == "mesecons" and state == "on" then
-					local newnode = node
-					newnode.name = newnode.name:gsub("_on", "_off")
-					minetest.swap_node(pos, newnode)
-				end
-			end,
-
-			rules = rules
-		},
-		wire = {
-			rules = rules
-		}
+{
+	effector = {
+		action_on = function(pos, node)
+			local meta = minetest.get_meta(pos)
+			local state = node.name:find("off") and "off" or "on"
+			if meta:get_string("mode") == "mesecons" and state == "off" then
+				local newnode = node
+				newnode.name = newnode.name:gsub("_off", "_on")
+				minetest.swap_node(pos, newnode)
+			end
+		end,
+		action_off = function(pos, node)
+			local meta = minetest.get_meta(pos)
+			local state = node.name:find("off") and "off" or "on"
+			if meta:get_string("mode") == "mesecons" and state == "on" then
+				local newnode = node
+				newnode.name = newnode.name:gsub("_on", "_off")
+				minetest.swap_node(pos, newnode)
+			end
+		end,
+		rules = rules
+	},
+	wire = {
+		rules = rules
 	}
+}
 
 
 
 
 
 minetest.register_abm({
-	nodenames = {"group:streets_light"},
+	nodenames = { "group:streets_light" },
 	interval = 10,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
@@ -225,17 +223,17 @@ minetest.register_abm({
 
 minetest.register_node(":streets:light_vertical_off", {
 	description = "Streets Light Vertical",
-	tiles = {"streets_pole.png", "streets_pole.png", "streets_light_vertical_off.png", "streets_light_vertical_off.png", "streets_light_vertical_off.png", "streets_light_vertical_off.png"},
+	tiles = { "streets_pole.png", "streets_pole.png", "streets_light_vertical_off.png", "streets_light_vertical_off.png", "streets_light_vertical_off.png", "streets_light_vertical_off.png" },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1, streets_light = 1},
+	groups = { cracky = 1, streets_light = 1 },
 	light_source = 0,
 	sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-5/16, -0.5, -5/16, 5/16, 0.5, 5/16},
+			{ -5 / 16, -0.5, -5 / 16, 5 / 16, 0.5, 5 / 16 },
 		}
 	},
 	on_construct = on_construct,
@@ -246,17 +244,17 @@ minetest.register_node(":streets:light_vertical_off", {
 })
 
 minetest.register_node(":streets:light_vertical_on", {
-	tiles = {"streets_pole.png", "streets_pole.png", "streets_light_vertical_on.png", "streets_light_vertical_on.png", "streets_light_vertical_on.png", "streets_light_vertical_on.png"},
+	tiles = { "streets_pole.png", "streets_pole.png", "streets_light_vertical_on.png", "streets_light_vertical_on.png", "streets_light_vertical_on.png", "streets_light_vertical_on.png" },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1, streets_light = 1, not_in_creative_inventory = 1},
+	groups = { cracky = 1, streets_light = 1, not_in_creative_inventory = 1 },
 	light_source = 14,
 	sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-5/16, -0.5, -5/16, 5/16, 0.5, 5/16},
+			{ -5 / 16, -0.5, -5 / 16, 5 / 16, 0.5, 5 / 16 },
 		}
 	},
 	drop = "streets:light_vertical_off",
@@ -270,17 +268,17 @@ minetest.register_node(":streets:light_vertical_on", {
 
 minetest.register_node(":streets:light_horizontal_off", {
 	description = "Streets Light Horizontal",
-	tiles = {"streets_pole.png", "streets_light_horizontal_off_bottom.png", "streets_light_horizontal_off_side.png", "streets_light_horizontal_off_side.png", "streets_light_horizontal_off_side.png", "streets_light_horizontal_off_side.png"},
+	tiles = { "streets_pole.png", "streets_light_horizontal_off_bottom.png", "streets_light_horizontal_off_side.png", "streets_light_horizontal_off_side.png", "streets_light_horizontal_off_side.png", "streets_light_horizontal_off_side.png" },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1, streets_light = 1},
+	groups = { cracky = 1, streets_light = 1 },
 	light_source = 0,
 	sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-3/16, -3/16, -0.5, 3/16, 3/16, 0.5},
+			{ -3 / 16, -3 / 16, -0.5, 3 / 16, 3 / 16, 0.5 },
 		}
 	},
 	on_construct = on_construct,
@@ -291,17 +289,17 @@ minetest.register_node(":streets:light_horizontal_off", {
 })
 
 minetest.register_node(":streets:light_horizontal_on", {
-	tiles = {"streets_pole.png", "streets_light_horizontal_on_bottom.png", "streets_light_horizontal_on_side.png", "streets_light_horizontal_on_side.png", "streets_light_horizontal_on_side.png", "streets_light_horizontal_on_side.png"},
+	tiles = { "streets_pole.png", "streets_light_horizontal_on_bottom.png", "streets_light_horizontal_on_side.png", "streets_light_horizontal_on_side.png", "streets_light_horizontal_on_side.png", "streets_light_horizontal_on_side.png" },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1, streets_light = 1, not_in_creative_inventory = 1},
+	groups = { cracky = 1, streets_light = 1, not_in_creative_inventory = 1 },
 	light_source = 14,
 	sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-3/16, -3/16, -0.5, 3/16, 3/16, 0.5},
+			{ -3 / 16, -3 / 16, -0.5, 3 / 16, 3 / 16, 0.5 },
 		}
 	},
 	drop = "streets:light_horizontal_off",
@@ -315,17 +313,17 @@ minetest.register_node(":streets:light_horizontal_on", {
 
 minetest.register_node(":streets:light_hanging_off", {
 	description = "Streets Light Hanging",
-	tiles = {"streets_pole.png", "streets_light_horizontal_off_bottom.png", "streets_light_hanging_off_side.png", "streets_light_hanging_off_side.png", "streets_light_hanging_off_side.png", "streets_light_hanging_off_side.png"},
+	tiles = { "streets_pole.png", "streets_light_horizontal_off_bottom.png", "streets_light_hanging_off_side.png", "streets_light_hanging_off_side.png", "streets_light_hanging_off_side.png", "streets_light_hanging_off_side.png" },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1, streets_light = 1},
+	groups = { cracky = 1, streets_light = 1 },
 	light_source = 0,
 	sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-3/16, 2/16, -0.5, 3/16, 0.5, 0.5},
+			{ -3 / 16, 2 / 16, -0.5, 3 / 16, 0.5, 0.5 },
 		}
 	},
 	on_construct = on_construct,
@@ -336,17 +334,17 @@ minetest.register_node(":streets:light_hanging_off", {
 })
 
 minetest.register_node(":streets:light_hanging_on", {
-	tiles = {"streets_pole.png", "streets_light_horizontal_on_bottom.png", "streets_light_hanging_on_side.png", "streets_light_hanging_on_side.png", "streets_light_hanging_on_side.png", "streets_light_hanging_on_side.png"},
+	tiles = { "streets_pole.png", "streets_light_horizontal_on_bottom.png", "streets_light_hanging_on_side.png", "streets_light_hanging_on_side.png", "streets_light_hanging_on_side.png", "streets_light_hanging_on_side.png" },
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky = 1, streets_light = 1, not_in_creative_inventory = 1},
+	groups = { cracky = 1, streets_light = 1, not_in_creative_inventory = 1 },
 	light_source = 14,
 	sunlight_propagates = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-3/16, 2/16, -0.5, 3/16, 0.5, 0.5},
+			{ -3 / 16, 2 / 16, -0.5, 3 / 16, 0.5, 0.5 },
 		}
 	},
 	drop = "streets:light_hanging_off",
@@ -360,23 +358,23 @@ minetest.register_node(":streets:light_hanging_on", {
 minetest.register_craft({
 	output = "streets:light_vertical_off 3",
 	recipe = {
-		{"", "default:steel_ingot", ""},
-		{"", "default:meselamp", ""},
-		{"", "default:steel_ingot", ""}
+		{ "", "default:steel_ingot", "" },
+		{ "", "default:meselamp", "" },
+		{ "", "default:steel_ingot", "" }
 	}
 })
 
 minetest.register_craft({
 	output = "streets:light_horizontal_off 3",
 	recipe = {
-		{"default:steel_ingot", "default:meselamp", "default:steel_ingot"},
+		{ "default:steel_ingot", "default:meselamp", "default:steel_ingot" },
 	}
 })
 
 minetest.register_craft({
 	output = "streets:light_hanging_off 3",
 	recipe = {
-		{"", "default:stick", ""},
-		{"default:steel_ingot", "default:meselamp", "default:steel_ingot"},
+		{ "", "default:stick", "" },
+		{ "default:steel_ingot", "default:meselamp", "default:steel_ingot" },
 	}
 })
