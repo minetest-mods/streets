@@ -303,7 +303,7 @@ minetest.register_node(":streets:light_horizontal_on", {
 		}
 	},
 	drop = "streets:light_horizontal_off",
-	on_construct = on_constract,
+	on_construct = on_construct,
 	on_punch = on_punch,
 	on_receive_fields = on_receive_fields,
 	digiline = def_digiline,
@@ -348,7 +348,7 @@ minetest.register_node(":streets:light_hanging_on", {
 		}
 	},
 	drop = "streets:light_hanging_off",
-	on_construct = on_constract,
+	on_construct = on_construct,
 	on_punch = on_punch,
 	on_receive_fields = on_receive_fields,
 	digiline = def_digiline,
