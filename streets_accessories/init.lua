@@ -63,7 +63,7 @@ minetest.register_node("streets:fence_chainlink", {
 	sound = default.node_sound_stone_defaults()
 })
 
-function toggleDoor(pos, node, player, action)
+local function toggleDoor(pos, node, player, action)
 	local name = player:get_player_name()
 	if minetest.is_protected(pos, name) and not minetest.check_player_privs(name, { protection_bypass = true }) then
 		minetest.record_protection_violation(pos, name)
@@ -103,8 +103,10 @@ minetest.register_node("streets:fence_chainlink_door_open", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{ -16 / 32, -0.5, -1 / 32, -14 / 32, 0.5, 1 / 32 }, { 16 / 32, -0.5, -1 / 32, 14 / 32, 0.5, 1 / 32 },
-			{ -15 / 32, -0.5, 0, -15 / 32, 0.5, 0.5 }, { 15 / 32, -0.5, 0, 15 / 32, 0.5, 0.5 }
+			{ -16 / 32, -0.5, -1 / 32, -14 / 32, 0.5, 1 / 32 },
+			{ 14 / 32, -0.5, -1 / 32, 16 / 32, 0.5, 1 / 32 },
+			{ -15 / 32, -0.5, 0, -15 / 32, 0.5, 0.5 },
+			{ 15 / 32, -0.5, 0, 15 / 32, 0.5, 0.5 }
 		},
 	},
 	sound = default.node_sound_stone_defaults(),
@@ -125,7 +127,8 @@ minetest.register_node("streets:fence_chainlink_door_closed", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{ -16 / 32, -0.5, -1 / 32, -14 / 32, 0.5, 1 / 32 }, { 16 / 32, -0.5, -1 / 32, 14 / 32, 0.5, 1 / 32 },
+			{ -16 / 32, -0.5, -1 / 32, -14 / 32, 0.5, 1 / 32 },
+			{ 14 / 32, -0.5, -1 / 32, 16 / 32, 0.5, 1 / 32 },
 			{ -15 / 32, -0.5, 0, 15 / 32, 0.5, 0 }
 		},
 	},
@@ -164,16 +167,18 @@ minetest.register_node("streets:guardrail", {
 	groups = { cracky = 1, wall = 1 },
 	node_box = {
 		type = "connected",
-		fixed = { { -0.1, -0.5, -0.1, 0.1, 0.5, 0.1 }, },
+		fixed = {
+			{ -0.1, -0.5, -0.1, 0.1, 0.5, 0.1 },
+		},
 		connect_front = {
 			{ 0, -0.1875, -0.5, 0, 0.4375, 0 },
 			{ -0.0625, 0.1875, -0.5, 0.0625, 0.3125, 0 },
 			{ -0.0625, -0.0625, -0.5, 0.0625, 0.0625, 0 },
 		}, -- z-
 		connect_back = {
-			{ 0, -0.1875, 0.5, 0, 0.4375, 0 },
-			{ -0.0625, 0.1875, 0.5, 0.0625, 0.3125, 0 },
-			{ -0.0625, -0.0625, 0.5, 0.0625, 0.0625, 0 },
+			{ 0, -0.1875, 0, 0, 0.4375, 0.5 },
+			{ -0.0625, 0.1875, 0, 0.0625, 0.3125, 0.5 },
+			{ -0.0625, -0.0625, 0, 0.0625, 0.0625, 0.5 },
 		}, -- z+
 		connect_left = {
 			{ -0.5, -0.1875, 0, 0, 0.4375, 0 },
@@ -181,9 +186,9 @@ minetest.register_node("streets:guardrail", {
 			{ -0.5, -0.0625, -0.0625, 0, 0.0625, 0.0625 },
 		}, -- x-
 		connect_right = {
-			{ 0.5, -0.1875, 0, 0, 0.4375, 0 },
-			{ 0.5, 0.1875, -0.0625, 0, 0.3125, 0.0625 },
-			{ 0.5, -0.0625, -0.0625, 0, 0.0625, 0.0625 },
+			{ 0, -0.1875, 0, 0.5, 0.4375, 0 },
+			{ 0, 0.1875, -0.0625, 0.5, 0.3125, 0.0625 },
+			{ 0, -0.0625, -0.0625, 0.5, 0.0625, 0.0625 },
 		}, -- x+
 	},
 	connects_to = { "group:wall", "group:stone", "group:wood", "group:tree", "group:concrete" },

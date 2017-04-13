@@ -11,16 +11,38 @@ minetest.register_node("streets:roadwork_traffic_barrier", {
 	description = "Traffic Barrier",
 	paramtype = "light",
 	drawtype = "nodebox",
-	tiles = { streets.concrete_texture, streets.concrete_texture, streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png" },
+	tiles = {
+		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+	},
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
 	node_box = {
 		type = "connected",
-		fixed = { { -0.35, -0.5, -0.35, 0.35, -0.4, 0.35 }, { -0.15, -0.5, -0.15, 0.15, 0.5, 0.15 } },
-		connect_front = { { -0.35, -0.5, -0.5, 0.35, -0.4, 0.35 }, { -0.15, -0.5, -0.5, 0.15, 0.5, 0.15 } }, -- z-
-		connect_back = { { -0.35, -0.5, -0.35, 0.35, -0.4, 0.5 }, { -0.15, -0.5, -0.15, 0.15, 0.5, 0.5 } }, -- z+
-		connect_left = { { -0.5, -0.5, -0.35, 0.35, -0.4, 0.35 }, { -0.5, -0.5, -0.15, 0.15, 0.5, 0.15 } }, -- x-
-		connect_right = { { -0.35, -0.5, -0.35, 0.5, -0.4, 0.35 }, { -0.15, -0.5, -0.15, 0.5, 0.5, 0.15 } }, -- x+
+		fixed = {
+			{ -0.35, -0.5, -0.35, 0.35, -0.4, 0.35 },
+			{ -0.15, -0.5, -0.15, 0.15, 0.5, 0.15 }
+		},
+		connect_front = {
+			{ -0.35, -0.5, -0.5, 0.35, -0.4, 0.35 },
+			{ -0.15, -0.5, -0.5, 0.15, 0.5, 0.15 }
+		}, -- z-
+		connect_back = {
+			{ -0.35, -0.5, -0.35, 0.35, -0.4, 0.5 },
+			{ -0.15, -0.5, -0.15, 0.15, 0.5, 0.5 }
+		}, -- z+
+		connect_left = {
+			{ -0.5, -0.5, -0.35, 0.35, -0.4, 0.35 },
+			{ -0.5, -0.5, -0.15, 0.15, 0.5, 0.15 }
+		}, -- x-
+		connect_right = {
+			{ -0.35, -0.5, -0.35, 0.5, -0.4, 0.35 },
+			{ -0.15, -0.5, -0.15, 0.5, 0.5, 0.15 }
+		}, -- x+
 	},
 	connects_to = { "group:wall", "group:stone", "group:wood", "group:tree", "group:concrete" },
 	sound = default.node_sound_stone_defaults()
@@ -172,7 +194,7 @@ minetest.register_node("streets:roadwork_blinking_light_off", {
 		minetest.set_node(pos, { name = "streets:roadwork_blinking_light_on", param2 = minetest.get_node(pos).param2 })
 	end,
 	on_construct = function(pos)
-		timer = minetest.get_node_timer(pos)
+		local timer = minetest.get_node_timer(pos)
 		timer:start(1)
 	end,
 })
@@ -197,7 +219,7 @@ minetest.register_node("streets:roadwork_blinking_light_on", {
 		minetest.set_node(pos, { name = "streets:roadwork_blinking_light_off", param2 = minetest.get_node(pos).param2 })
 	end,
 	on_construct = function(pos)
-		timer = minetest.get_node_timer(pos)
+		local timer = minetest.get_node_timer(pos)
 		timer:start(1)
 	end,
 	drop = "streets:roadwork_blinking_light_off",
@@ -219,7 +241,7 @@ minetest.register_abm({
 	interval = 10,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		timer = minetest.get_node_timer(pos)
+		local timer = minetest.get_node_timer(pos)
 		if not timer:is_started() then
 			timer:start(1)
 		end
@@ -332,7 +354,7 @@ minetest.register_node("streets:roadwork_delineator_light_off_top", {
 		minetest.set_node(pos, { name = "streets:roadwork_delineator_light_on_top", param2 = minetest.get_node(pos).param2 })
 	end,
 	on_construct = function(pos)
-		timer = minetest.get_node_timer(pos)
+		local timer = minetest.get_node_timer(pos)
 		timer:start(1)
 	end,
 	node_box = {
@@ -365,7 +387,7 @@ minetest.register_node("streets:roadwork_delineator_light_on_top", {
 		minetest.set_node(pos, { name = "streets:roadwork_delineator_light_off_top", param2 = minetest.get_node(pos).param2 })
 	end,
 	on_construct = function(pos)
-		timer = minetest.get_node_timer(pos)
+		local timer = minetest.get_node_timer(pos)
 		timer:start(1)
 	end,
 	drop = "streets:roadwork_delineator_light_off_top",
