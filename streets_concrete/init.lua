@@ -16,6 +16,14 @@ else
 		sounds = default.node_sound_stone_defaults()
 	})
 
+	minetest.register_craft({
+		output = "streets:concrete 5",
+		recipe = {
+			{ "default:steel_ingot", "default:stone", "default:steel_ingot" },
+			{ "default:stone", "default:steel_ingot", "default:stone" },
+			{ "default:steel_ingot", "default:stone", "default:steel_ingot" },
+		}
+	})
 
 	if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus") then
 		stairsplus:register_all("streets", "concrete", "streets:concrete", {

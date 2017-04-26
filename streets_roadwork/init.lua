@@ -138,7 +138,7 @@ minetest.register_craft({
 	output = "streets:roadwork_traffic_fence 3",
 	recipe = {
 		{ "dye:red", "dye:white", "dye:red" },
-		{ "xpanes:bar", "xpanes:bar", "xpanes:bar" },
+		{ "xpanes:bar_flat", "xpanes:bar_flat", "xpanes:bar_flat" },
 	}
 })
 
