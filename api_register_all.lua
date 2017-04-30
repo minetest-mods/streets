@@ -175,14 +175,21 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 				local node = minetest.get_node(pos)
 				local lower_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
 				local lower_node = minetest.get_node(lower_pos)
-				if minetest.registered_nodes[lower_node.name].groups.asphalt and streets.surfaces.surfacetypes[lower_node.name] then
+				if lower_node and
+						minetest.registered_nodes[lower_node.name] and
+						minetest.registered_nodes[lower_node.name].groups and
+						minetest.registered_nodes[lower_node.name].groups.asphalt and
+						streets.surfaces.surfacetypes[lower_node.name] then
 					local lower_node_basename = streets.surfaces.surfacetypes[lower_node.name].name
 					lower_node.name = "streets:mark_" .. (node.name:sub(14)) .. "_on_" .. lower_node_basename
 					lower_node.param2 = node.param2
 					minetest.set_node(lower_pos, lower_node)
 					minetest.remove_node(pos)
-				elseif minetest.registered_nodes[lower_node.name].groups.asphalt
-						and minetest.registered_nodes[lower_node.name:gsub("asphalt", ("mark_" .. node.name:sub(14)) .. "_on_asphalt")] then
+				elseif lower_node and
+						minetest.registered_nodes[lower_node.name] and
+						minetest.registered_nodes[lower_node.name].groups and
+						minetest.registered_nodes[lower_node.name].groups.asphalt and
+						minetest.registered_nodes[lower_node.name:gsub("asphalt", ("mark_" .. node.name:sub(14)) .. "_on_asphalt")] then
 					lower_node.name = lower_node.name:gsub("asphalt", ("mark_" .. node.name:sub(14)) .. "_on_asphalt")
 					minetest.set_node(lower_pos, lower_node)
 					minetest.remove_node(pos)
