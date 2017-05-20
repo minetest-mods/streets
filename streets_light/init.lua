@@ -258,7 +258,7 @@ minetest.register_node(":streets:light_vertical_on", {
 		}
 	},
 	drop = "streets:light_vertical_off",
-	on_construct = on_constract,
+	on_construct = on_construct,
 	on_punch = on_punch,
 	on_receive_fields = on_receive_fields,
 	digiline = def_digiline,
