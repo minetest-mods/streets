@@ -3,6 +3,8 @@ _Released on 21st of February 2017_
 
 _Streets 2.0 is **not** fully backwards-compatible to streets 1.x!_
 
+**NOTE:** This mod depends on the [ts_workshop](https://github.com/minetest-mods/ts_workshop) mod.
+
 ##Contributors
 
 * webdesigner97

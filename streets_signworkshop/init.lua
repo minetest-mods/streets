@@ -83,7 +83,7 @@ function streets.signworkshop.update_formspec(pos)
 		page = 1
 	end
 	meta:set_int("page", page)
-	local fs = "size[9,9;]"
+	local fs = "size[9,10;]"
 	fs = fs .. "tabheader[0,0;tabs;"
 	fs = fs .. minetest.formspec_escape("Dye Storage") .. ","
 	fs = fs .. minetest.formspec_escape("Select Section") .. ","
@@ -123,7 +123,8 @@ function streets.signworkshop.update_formspec(pos)
 			fs = fs .. "label[0,3.5;CREATIVE MODE\nTaking templates\nis enabled]"
 		end
 	end
-	fs = fs .. "list[current_player;main;0.5,5;8,4]"
+	fs = fs .. "label[0,5;" .. minetest.colorize("#dd0000", "THIS WORKSHOP IS DEPRECATED!\nPlease switch to the new \"Streets Workshop\" for better usability and cheaper crafting.") .. "]"
+	fs = fs .. "list[current_player;main;0.5,6;8,4]"
 	meta:set_string("formspec", fs)
 end
 
@@ -296,13 +297,4 @@ minetest.register_node(":streets:sign_workshop", {
 	on_metadata_inventory_put = on_metadata_inventory_put,
 	on_metadata_inventory_take = on_metadata_inventory_take,
 	can_dig = can_dig,
-})
-
-minetest.register_craft({
-	output = "streets:sign_workshop",
-	recipe = {
-		{ "streets:sign_blank", "streets:sign_blank", "streets:sign_blank" },
-		{ "streets:sign_blank", "default:mese_crystal_fragment", "streets:sign_blank" },
-		{ "streets:sign_blank", "streets:sign_blank", "streets:sign_blank" },
-	}
 })
