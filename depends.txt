@@ -1,6 +1,8 @@
 default
 stairs
-dye?
+ts_workshop
+dye
+creative?
 xpanes?
 stairsplus?
 moreblocks?

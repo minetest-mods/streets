@@ -4,9 +4,9 @@
 	Optional: true
 ]]
 
-streets.workshop = {}
+streets.asphaltworkshop = {}
 
-function streets.workshop.start(pos)
+function streets.asphaltworkshop.start(pos)
 	local node = minetest.get_node(pos)
 	if node.name ~= "streets:asphalt_workshop" then
 		return
@@ -34,10 +34,10 @@ function streets.workshop.start(pos)
 	inv:remove_item("yellow_dye", { name = "dye:yellow", count = yellow_needed })
 	inv:remove_item("white_dye", { name = "dye:white", count = white_needed })
 	inv:remove_item("steel", { name = "default:steel_ingot", count = 1 })
-	streets.workshop.step(pos)
+	streets.asphaltworkshop.step(pos)
 end
 
-function streets.workshop.step(pos)
+function streets.asphaltworkshop.step(pos)
 	local node = minetest.get_node(pos)
 	if node.name ~= "streets:asphalt_workshop" then
 		return
@@ -50,25 +50,25 @@ function streets.workshop.step(pos)
 	local progress = meta:get_int("progress")
 	progress = progress + 1
 	if progress < 10 then
-		minetest.after(0.2, streets.workshop.step, pos)
+		minetest.after(0.2, streets.asphaltworkshop.step, pos)
 	else
 		meta:set_int("progress", 0)
 		progress = 0
 		inv:add_item("output", meta:get_string("working_on"))
 		meta:set_string("working_on", "")
-		streets.workshop.start(pos)
+		streets.asphaltworkshop.start(pos)
 	end
 	meta:set_int("progress", progress)
-	streets.workshop.update_formspec(pos)
+	streets.asphaltworkshop.update_formspec(pos)
 end
 
-function streets.workshop.update_formspec(pos)
+function streets.asphaltworkshop.update_formspec(pos)
 	local node = minetest.get_node(pos)
 	if node.name ~= "streets:asphalt_workshop" then
 		return
 	end
 	local meta = minetest.get_meta(pos)
-	local fs = "size[9,9;]"
+	local fs = "size[9,10;]"
 	fs = fs .. "tabheader[0,0;tabs;"
 	for k, v in pairs(streets.labels.sections) do
 		fs = fs .. minetest.formspec_escape(v.friendlyname) .. ","
@@ -96,7 +96,8 @@ function streets.workshop.update_formspec(pos)
 	fs = fs .. "list[context;template;8,1;1,1]"
 	fs = fs .. "image[7.5,2;1,1;gui_furnace_arrow_bg.png^[lowpart:" .. meta:get_int("progress") * 10 .. ":gui_furnace_arrow_fg.png^[transformR180]"
 	fs = fs .. "list[context;output;7.5,3;1,1]"
-	fs = fs .. "list[current_player;main;0.5,5;8,4]"
+	fs = fs .. "label[0,5;" .. minetest.colorize("#dd0000", "THIS WORKSHOP IS DEPRECATED!\nPlease switch to the new \"Streets Workshop\" for better usability and cheaper crafting.") .. "]"
+	fs = fs .. "list[current_player;main;0.5,6;8,4]"
 	if minetest.setting_getbool("creative_mode") then
 		fs = fs .. "label[2,4;CREATIVE MODE: Taking templates is enabled]"
 	end
@@ -164,8 +165,8 @@ local function update_inventory(pos)
 			inv:add_item("yellow_needed", { name = "dye:yellow", count = dyesneeded })
 		end
 	end
-	streets.workshop.update_formspec(pos)
-	streets.workshop.start(pos)
+	streets.asphaltworkshop.update_formspec(pos)
+	streets.asphaltworkshop.start(pos)
 end
 
 local function on_receive_fields(pos, formname, fields, sender)
@@ -303,13 +304,4 @@ minetest.register_lbm({
 	action = function(pos, node)
 		update_inventory(pos)
 	end,
-})
-
-minetest.register_craft({
-	output = "streets:asphalt_workshop",
-	recipe = {
-		{ "streets:asphalt", "streets:asphalt", "streets:asphalt" },
-		{ "streets:asphalt", "default:mese_crystal_fragment", "streets:asphalt" },
-		{ "streets:asphalt", "streets:asphalt", "streets:asphalt" },
-	}
 })
