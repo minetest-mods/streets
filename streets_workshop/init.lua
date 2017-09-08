@@ -583,15 +583,12 @@ local can_dig = function(pos)
 end
 
 local on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-	update_inventory(pos)
 end
 
 local on_metadata_inventory_put = function(pos, listname, index, stack, player)
-	update_inventory(pos)
 end
 
 local on_metadata_inventory_take = function(pos, listname, index, stack, player)
-	update_inventory(pos)
 end
 
 local allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
