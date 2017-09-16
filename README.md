@@ -1,4 +1,4 @@
-#Streets mod 2.0
+# Streets mod 2.0
 _Released on 21st of February 2017_
 
 _Streets 2.0 is **not** fully backwards-compatible to streets 1.x!_
@@ -9,24 +9,26 @@ If you want to improve loading time and reduce the number of registered nodes,
 you can set the setting `streets.only_basic_stairsplus` to true in `minetest.conf`.
 When this is enabled, stairsplus nodes will only be registered for very basic roadmarkings.
 
-##Contributors
+Forum topic: https://forum.minetest.net/viewtopic.php?t=2984
+
+## Contributors
 
 * webdesigner97
 * cheapie
 * Thomas-S
 * HybridDog (for `streets_matrix_screen` submod)
 
-##Recommended Mods
+## Recommended Mods
 * [ltc4000e](https://github.com/cheapie/ltc4000e) by cheapie
 * [arrowboards](https://github.com/cheapie/arrowboards) by cheapie
 
-##License
+## License
 If not mentioned otherwise:
 
-###Code
+### Code
 MIT License
 
-###Media
+### Media
 CC-BY-SA 3.0
 
 ### License File
