@@ -5,6 +5,10 @@ _Streets 2.0 is **not** fully backwards-compatible to streets 1.x!_
 
 **NOTE:** This mod depends on the [ts_workshop](https://github.com/minetest-mods/ts_workshop) mod.
 
+If you want to improve loading time and reduce the number of registered nodes,
+you can set the setting `streets.only_basic_stairsplus` to true in `minetest.conf`.
+When this is enabled, stairsplus nodes will only be registered for very basic roadmarkings.
+
 ##Contributors
 
 * webdesigner97

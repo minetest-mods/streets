@@ -192,12 +192,20 @@ local update_formspec = function(pos)
 			for k, v in pairs(streets.labels.labeltypes) do
 				if v.section == section then
 					local item = ""
-					if v.rotation then
+					if not streets.only_basic_stairsplus and v.rotation then
 						if v.rotation.r90 and rotation == "r90" then
 							item = "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r90"
 						elseif v.rotation.r180 and rotation == "r180" then
 							item = "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r180"
 						elseif v.rotation.r270 and rotation == "r270" then
+							item = "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r270"
+						end
+					elseif streets.only_basic_stairsplus and v.basic_rotation then
+						if v.basic_rotation.r90 and rotation == "r90" then
+							item = "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r90"
+						elseif v.basic_rotation.r180 and rotation == "r180" then
+							item = "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r180"
+						elseif v.basic_rotation.r270 and rotation == "r270" then
 							item = "streets:tool_" .. v.name:gsub("{color}", color:lower()) .. "_r270"
 						end
 					end

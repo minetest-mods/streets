@@ -120,7 +120,7 @@ local register_sign_node = function(friendlyname, name, tiles, thickness)
 	})
 end
 
-local register_marking_nodes = function(surface_friendlyname, surface_name, surface_tiles, surface_groups, surface_sounds, register_stairs, friendlyname, name, tex, r)
+local register_marking_nodes = function(surface_friendlyname, surface_name, surface_tiles, surface_groups, surface_sounds, register_stairs, friendlyname, name, tex, r, basic)
 	local rotation_friendly = ""
 	if r == "r90" then
 		rotation_friendly = " (R90)"
@@ -251,7 +251,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			type = "shapeless",
 			recipe = { "streets:" .. surface_name, "streets:mark_" .. name:gsub("{color}", colorname:lower()) }
 		})
-		if register_stairs and (minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus")) then
+		if register_stairs and ( not streets.only_basic_stairsplus or basic ) and (minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus")) then
 			local stairs_def = {
 				description = surface_friendlyname .. " with Marking: " .. friendlyname .. rotation_friendly .. " " .. colorname,
 				tiles = tiles,
@@ -295,16 +295,26 @@ if streets.surfaces.surfacetypes then
 		register_surface_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.craft)
 		if streets.labels.labeltypes then
 			for _, w in pairs(streets.labels.labeltypes) do
-				register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "")
-				if w.rotation then
+				register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "", w.basic)
+				if not streets.only_basic_stairsplus and w.rotation then
 					if w.rotation.r90 then
-						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r90")
+						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r90", w.basic)
 					end
 					if w.rotation.r180 then
-						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r180")
+						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r180", w.basic)
 					end
 					if w.rotation.r270 then
-						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r270")
+						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r270", w.basic)
+					end
+				elseif streets.only_basic_stairsplus and w.basic_rotation then
+					if w.basic_rotation.r90 then
+					register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r90", w.basic)
+					end
+					if w.basic_rotation.r180 then
+						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r180", w.basic)
+					end
+					if w.basic_rotation.r270 then
+						register_marking_nodes(v.friendlyname, v.name, v.tiles, v.groups, v.sounds, v.register_stairs, w.friendlyname, w.name, w.tex, "r270", w.basic)
 					end
 				end
 			end

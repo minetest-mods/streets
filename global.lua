@@ -20,3 +20,5 @@ if minetest.get_modpath("concrete") then
 else
 	streets.concrete_texture = "streets_concrete.png"
 end
+
+streets.only_basic_stairsplus = minetest.settings:get_bool("streets.only_basic_stairsplus") or false
