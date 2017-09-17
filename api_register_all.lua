@@ -88,6 +88,18 @@ local register_sign_node = function(friendlyname, name, tiles, type, inventory_i
 		type = "fixed",
 		fixed = { -1 / 2, -1 / 2, 0.8, 1 / 2, 1 / 2, 0.85 }
 	}
+	normal_def.collision_box = {
+		type = "fixed",
+		fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, 0.45 }
+	}
+	center_def.collision_box = {
+		type = "fixed",
+		fixed = { -1 / 2, -1 / 2, -0.025, 1 / 2, 1 / 2, 0.025 }
+	}
+	polemount_def.collision_box = {
+		type = "fixed",
+		fixed = { -1 / 2, -1 / 2, 0.8, 1 / 2, 1 / 2, 0.85 }
+	}
 
 	normal_def.after_place_node = function(pos)
 		local behind_pos = { x = pos.x, y = pos.y, z = pos.z }
@@ -105,19 +117,33 @@ local register_sign_node = function(friendlyname, name, tiles, type, inventory_i
 		local behind_node = minetest.get_node(behind_pos)
 		local behind_nodes = {}
 		behind_nodes["streets:roadwork_traffic_barrier"] = true
+		behind_nodes["streets:roadwork_traffic_barrier_top"] = true
 		behind_nodes["streets:concrete_wall"] = true
+		behind_nodes["streets:concrete_wall_top"] = true
 		behind_nodes["technic:concrete_post"] = true
+		local behind_nodes_same_parity = {}
+		behind_nodes_same_parity["streets:roadwork_traffic_barrier_straight"] = true
+		behind_nodes_same_parity["streets:roadwork_traffic_barrier_top_straight"] = true
+		behind_nodes_same_parity["streets:concrete_wall_straight"] = true
+		behind_nodes_same_parity["streets:concrete_wall_top_straight"] = true
 		local under_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
 		local under_node = minetest.get_node(under_pos)
 		local under_nodes = {}
 		under_nodes["streets:roadwork_traffic_barrier"] = true
+		under_nodes["streets:roadwork_traffic_barrier_straight"] = true
+		under_nodes["streets:roadwork_traffic_barrier_top"] = true
+		under_nodes["streets:roadwork_traffic_barrier_top_straight"] = true
 		under_nodes["streets:concrete_wall"] = true
+		under_nodes["streets:concrete_wall_straight"] = true
+		under_nodes["streets:concrete_wall_top"] = true
+		under_nodes["streets:concrete_wall_top_straight"] = true
 		under_nodes["technic:concrete_post"] = true
 		local upper_pos = { x = pos.x, y = pos.y + 1, z = pos.z }
 		local upper_node = minetest.get_node(upper_pos)
 		if (minetest.registered_nodes[behind_node.name].groups.bigpole
 				and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
-				or behind_nodes[behind_node.name] == true then
+				or behind_nodes[behind_node.name] == true
+				or (behind_nodes_same_parity[behind_node.name] and (behind_node.param2 + param2) % 2 == 0) then
 			node.name = node.name .. "_polemount"
 			minetest.set_node(pos, node)
 		elseif (minetest.registered_nodes[under_node.name].groups.bigpole
