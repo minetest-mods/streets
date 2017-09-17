@@ -22,25 +22,7 @@ streets.signs.sections = {
 	{ name = "euother", friendlyname = "EU Other" }
 }
 
-streets.register_road_sign({
-	name = "sign_blank",
-	friendlyname = "Blank Sign",
-	tiles = {
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png"
-	},
-	thickness = 0.05
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "streets:sign_blank",
-	recipe = { "streets:asphalt", "default:sign_wall_wood" },
-})
+minetest.register_alias("streets:sign_blank", "default:sign_wall_steel")
 
 streets.register_road_sign({
 	name = "sign_curve_chevron_right",
@@ -53,7 +35,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_curve_sign.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "warn",
 	dye_needed = { yellow = 3, black = 3 }
 })
@@ -69,7 +51,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_curve_sign.png^[transformFX"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "warn",
 	dye_needed = { yellow = 3, black = 3 }
 })
@@ -85,7 +67,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_warning.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "warn",
 	dye_needed = { black = 2 }
 })
@@ -101,7 +83,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_water.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "warn",
 	dye_needed = { green = 1, blue = 3, black = 1 }
 })
@@ -117,7 +99,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_lava.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "warn",
 	dye_needed = { green = 1, red = 3 }
 })
@@ -133,7 +115,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_construction.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "warn",
 	dye_needed = { green = 1, blue = 1, brown = 1 }
 })
@@ -149,7 +131,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_grass.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "reg",
 	dye_needed = { green = 3, red = 2 }
 })
@@ -165,7 +147,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_mine.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "info",
 	dye_needed = { blue = 2, yellow = 1 }
 })
@@ -181,7 +163,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_shop.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "info",
 	dye_needed = { blue = 1, red = 1, yellow = 1, blue = 1 }
 })
@@ -197,7 +179,7 @@ streets.register_road_sign({
 		"streets_sign_back.png",
 		"streets_square_sign_empty.png^streets_sign_workshop.png"
 	},
-	thickness = 0.05,
+	type = "minetest",
 	section = "info",
 	dye_needed = { red = 1, yellow = 2, blue = 1 }
 })

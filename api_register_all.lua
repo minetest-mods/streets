@@ -23,101 +23,120 @@ local register_surface_nodes = function(friendlyname, name, tiles, groups, sound
 	end
 end
 
-local register_sign_node = function(friendlyname, name, tiles, thickness)
-	tiles[5] = tiles[5] .. "^[mask:" .. tiles[6] .. "^[colorize:#fff^[mask:" .. tiles[5]
-	minetest.register_node(":streets:" .. name, {
-		description = friendlyname,
-		tiles = tiles,
-		groups = { cracky = 3, not_in_creative_inventory = (name == "sign_blank" and 0 or 1), sign = 1 },
-		drawtype = "nodebox",
-		paramtype = "light",
-		paramtype2 = "facedir",
-		inventory_image = tiles[6],
-		after_place_node = function(pos)
-			local behind_pos = { x = pos.x, y = pos.y, z = pos.z }
-			local node = minetest.get_node(pos)
-			local param2 = node.param2
-			if param2 == 0 then
-				behind_pos.z = behind_pos.z + 1
-			elseif param2 == 1 then
-				behind_pos.x = behind_pos.x + 1
-			elseif param2 == 2 then
-				behind_pos.z = behind_pos.z - 1
-			elseif param2 == 3 then
-				behind_pos.x = behind_pos.x - 1
-			end
-			local behind_node = minetest.get_node(behind_pos)
-			local behind_nodes = {}
-			behind_nodes["streets:roadwork_traffic_barrier"] = true
-			behind_nodes["streets:concrete_wall"] = true
-			behind_nodes["technic:concrete_post"] = true
-			local under_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
-			local under_node = minetest.get_node(under_pos)
-			local under_nodes = {}
-			under_nodes["streets:roadwork_traffic_barrier"] = true
-			under_nodes["streets:concrete_wall"] = true
-			under_nodes["technic:concrete_post"] = true
-			local upper_pos = { x = pos.x, y = pos.y + 1, z = pos.z }
-			local upper_node = minetest.get_node(upper_pos)
-			if (minetest.registered_nodes[behind_node.name].groups.bigpole
-					and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
-					or behind_nodes[behind_node.name] == true then
-				node.name = node.name .. "_polemount"
-				minetest.set_node(pos, node)
-			elseif (minetest.registered_nodes[under_node.name].groups.bigpole
-					and minetest.registered_nodes[under_node.name].streets_pole_connection["t"][under_node.param2 + 1] == 1)
-					or under_nodes[under_node.name] then
+local register_sign_node = function(friendlyname, name, tiles, type, inventory_image, light_source)
+	if type == "minetest" then
+		tiles[5] = tiles[6] .. "^[colorize:#fff^[mask:(" .. tiles[6] .. "^" .. tiles[5] .. ")"
+	elseif type == "normal" or type == "big" then
+		tiles[2] = tiles[1] .. "^[colorize:#fff^[mask:(" .. tiles[1] .. "^" .. tiles[2] .. ")^[transformFX"
+	end
+	local def = {}
+	def.description = friendlyname
+	def.paramtype = "light"
+	def.paramtype2 = "facedir"
+	def.tiles = tiles
+	def.light_source = light_source
+	def.groups = { cracky = 3, not_in_creative_inventory = 1, sign = 1 }
+	def.drop = "streets:" .. name
+	if type == "minetest" then
+		def.drawtype = "nodebox"
+		def.inventory_image = tiles[6]
+	elseif type == "normal" or type == "big" then
+		def.drawtype = "mesh"
+		def.inventory_image = tiles[1]
+	end
+
+	if inventory_image then
+		def.inventory_image = inventory_image
+	end
+
+	local normal_def = table.copy(def)
+	local center_def = table.copy(def)
+	local polemount_def = table.copy(def)
+
+	if type == "minetest" then
+		normal_def.node_box = {
+			type = "fixed",
+			fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, 0.45 }
+		}
+		center_def.node_box = {
+			type = "fixed",
+			fixed = { -1 / 2, -1 / 2, -0.025, 1 / 2, 1 / 2, 0.025 }
+		}
+		polemount_def.node_box = {
+			type = "fixed",
+			fixed = { -1 / 2, -1 / 2, 0.8, 1 / 2, 1 / 2, 0.85 }
+		}
+	elseif type == "normal" then
+		normal_def.mesh = "sign.obj"
+		center_def.mesh = "sign_center.obj"
+		polemount_def.mesh = "sign_polemount.obj"
+	elseif type == "big" then
+		normal_def.mesh = "sign_big.obj"
+		center_def.mesh = "sign_center_big.obj"
+		polemount_def.mesh = "sign_polemount_big.obj"
+	end
+
+	normal_def.selection_box = {
+		type = "fixed",
+		fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, 0.45 }
+	}
+	center_def.selection_box = {
+		type = "fixed",
+		fixed = { -1 / 2, -1 / 2, -0.025, 1 / 2, 1 / 2, 0.025 }
+	}
+	polemount_def.selection_box = {
+		type = "fixed",
+		fixed = { -1 / 2, -1 / 2, 0.8, 1 / 2, 1 / 2, 0.85 }
+	}
+
+	normal_def.after_place_node = function(pos)
+		local behind_pos = { x = pos.x, y = pos.y, z = pos.z }
+		local node = minetest.get_node(pos)
+		local param2 = node.param2
+		if param2 == 0 then
+			behind_pos.z = behind_pos.z + 1
+		elseif param2 == 1 then
+			behind_pos.x = behind_pos.x + 1
+		elseif param2 == 2 then
+			behind_pos.z = behind_pos.z - 1
+		elseif param2 == 3 then
+			behind_pos.x = behind_pos.x - 1
+		end
+		local behind_node = minetest.get_node(behind_pos)
+		local behind_nodes = {}
+		behind_nodes["streets:roadwork_traffic_barrier"] = true
+		behind_nodes["streets:concrete_wall"] = true
+		behind_nodes["technic:concrete_post"] = true
+		local under_pos = { x = pos.x, y = pos.y - 1, z = pos.z }
+		local under_node = minetest.get_node(under_pos)
+		local under_nodes = {}
+		under_nodes["streets:roadwork_traffic_barrier"] = true
+		under_nodes["streets:concrete_wall"] = true
+		under_nodes["technic:concrete_post"] = true
+		local upper_pos = { x = pos.x, y = pos.y + 1, z = pos.z }
+		local upper_node = minetest.get_node(upper_pos)
+		if (minetest.registered_nodes[behind_node.name].groups.bigpole
+				and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
+				or behind_nodes[behind_node.name] == true then
+			node.name = node.name .. "_polemount"
+			minetest.set_node(pos, node)
+		elseif (minetest.registered_nodes[under_node.name].groups.bigpole
+				and minetest.registered_nodes[under_node.name].streets_pole_connection["t"][under_node.param2 + 1] == 1)
+				or under_nodes[under_node.name] then
+			node.name = node.name .. "_center"
+			minetest.set_node(pos, node)
+		elseif minetest.registered_nodes[upper_node.name].groups.bigpole then
+			if minetest.registered_nodes[upper_node.name].streets_pole_connection["b"][upper_node.param2 + 1] == 1 then
 				node.name = node.name .. "_center"
 				minetest.set_node(pos, node)
-			elseif minetest.registered_nodes[upper_node.name].groups.bigpole then
-				if minetest.registered_nodes[upper_node.name].streets_pole_connection["b"][upper_node.param2 + 1] == 1 then
-					node.name = node.name .. "_center"
-					minetest.set_node(pos, node)
-				end
 			end
-		end,
-		node_box = {
-			type = "fixed",
-			fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, 0.5 - thickness }
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = { -1 / 2, -1 / 2, 0.5, 1 / 2, 1 / 2, math.min(0.5 - thickness, 0.45) }
-		}
-	})
-	minetest.register_node(":streets:" .. name .. "_polemount", {
-		tiles = tiles,
-		groups = { cracky = 3, not_in_creative_inventory = 1 },
-		drop = "streets:" .. name,
-		drawtype = "nodebox",
-		paramtype = "light",
-		paramtype2 = "facedir",
-		node_box = {
-			type = "fixed",
-			fixed = { -1 / 2, -1 / 2, 0.85 - thickness, 1 / 2, 1 / 2, 0.85 }
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = { -1 / 2, -1 / 2, math.min(0.875 - thickness, 0.80), 1 / 2, 1 / 2, 0.85 }
-		}
-	})
+		end
+	end
 
-	minetest.register_node(":streets:" .. name .. "_center", {
-		tiles = tiles,
-		groups = { cracky = 3, not_in_creative_inventory = 1 },
-		drop = "streets:" .. name,
-		drawtype = "nodebox",
-		paramtype = "light",
-		paramtype2 = "facedir",
-		node_box = {
-			type = "fixed",
-			fixed = { -1 / 2, -1 / 2, -(thickness / 2), 1 / 2, 1 / 2, (thickness / 2) }
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = { -1 / 2, -1 / 2, -math.min((thickness / 2), 0.05), 1 / 2, 1 / 2, math.min((thickness / 2), 0.05) }
-		}
-	})
+	minetest.register_node(":streets:" .. name, normal_def)
+	minetest.register_node(":streets:" .. name .. "_center", center_def)
+	minetest.register_node(":streets:" .. name .. "_polemount", polemount_def)
+
 end
 
 local register_marking_nodes = function(surface_friendlyname, surface_name, surface_tiles, surface_groups, surface_sounds, register_stairs, friendlyname, name, tex, r, basic)
@@ -324,6 +343,6 @@ end
 
 if streets.signs.signtypes then
 	for _, v in pairs(streets.signs.signtypes) do
-		register_sign_node(v.friendlyname, v.name, v.tiles, v.thickness)
+		register_sign_node(v.friendlyname, v.name, v.tiles, v.type, v.inventory_image, v.light_source)
 	end
 end

@@ -1,5 +1,4 @@
 local euprio = {
-	{ "standrews", "St. Andrews Cross", { white = 2, red = 1 } },
 	{ "yield", "Yield", { white = 2, red = 2 } },
 	{ "stop", "Stop", { white = 1, red = 3 } },
 	{ "givewayoncoming", "Give Way to Oncoming Traffic", { white = 2, red = 2, black = 1 } },
@@ -14,16 +13,34 @@ for k, v in pairs(euprio) do
 	streets.register_road_sign({
 		name = "sign_eu_" .. v[1],
 		friendlyname = v[2] .. " Sign",
+		light_source = 3,
 		tiles = {
-			"streets_transparent.png",
-			"streets_transparent.png",
-			"streets_transparent.png",
-			"streets_transparent.png",
+			"streets_sign_eu_" .. v[1] .. ".png",
 			"streets_sign_back.png",
-			"streets_sign_eu_" .. v[1] .. ".png"
 		},
-		thickness = 0.01,
+		type = "normal",
 		section = "euprio",
 		dye_needed = v[3]
+	})
+end
+
+
+local euprio_big = {
+	{ "standrews", "St. Andrews Cross", { white = 2, red = 1 } },
+}
+
+for k, v in pairs(euprio_big) do
+	streets.register_road_sign({
+		name = "sign_eu_" .. v[1],
+		friendlyname = v[2] .. " Sign",
+		light_source = 3,
+		tiles = {
+			"streets_sign_eu_" .. v[1] .. ".png",
+			"streets_sign_back.png",
+		},
+		type = "big",
+		section = "euprio",
+		dye_needed = v[3],
+		inventory_image = "streets_sign_eu_" .. v[1] .. "_inv.png",
 	})
 end

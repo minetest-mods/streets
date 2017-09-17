@@ -29,15 +29,12 @@ for k, v in pairs(euwarn) do
 	streets.register_road_sign({
 		name = "sign_eu_" .. v[1],
 		friendlyname = v[2] .. " Sign",
+		light_source = 3,
 		tiles = {
-			"streets_transparent.png",
-			"streets_transparent.png",
-			"streets_transparent.png",
-			"streets_transparent.png",
+			"streets_sign_eu_" .. v[1] .. ".png",
 			"streets_sign_back.png",
-			"streets_sign_eu_" .. v[1] .. ".png"
 		},
-		thickness = 0.01,
+		type = "normal",
 		section = "euwarn",
 		dye_needed = v[3]
 	})

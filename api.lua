@@ -41,7 +41,9 @@ function streets.register_road_surface(data)
 end
 
 function streets.register_road_sign(data)
-	streets.signs.signtypes["streets:" .. data.name] = data
+	if data.type == "minetest" or data.type == "normal" or data.type == "big" then
+		streets.signs.signtypes["streets:" .. data.name] = data
+	end
 end
 
 function streets.register_road_marking(data)

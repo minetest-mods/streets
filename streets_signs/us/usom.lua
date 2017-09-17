@@ -12,14 +12,10 @@ for k, v in pairs(usom) do
 		name = "sign_us_" .. v[1],
 		friendlyname = v[2] .. " Sign",
 		tiles = {
-			"streets_transparent.png",
-			"streets_transparent.png",
-			"streets_transparent.png",
-			"streets_transparent.png",
+			"streets_sign_us_" .. v[1] .. ".png",
 			"streets_sign_back.png",
-			"streets_sign_us_" .. v[1] .. ".png"
 		},
-		thickness = 0.01,
+		type = "normal",
 		section = "usom",
 		dye_needed = v[3]
 	})
