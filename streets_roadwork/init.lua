@@ -56,6 +56,116 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_node("streets:roadwork_traffic_barrier_straight", {
+	description = "Traffic Barrier (Straight)",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	drawtype = "nodebox",
+	tiles = {
+		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+	},
+	sunlight_propagates = true,
+	groups = { cracky = 1, level = 2, wall = 1 },
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.5, -0.5, -0.35, 0.5, -0.4, 0.35 },
+			{ -0.5, -0.5, -0.15, 0.5, 0.5, 0.15 },
+		},
+	},
+	connect_sides = { "left", "right" },
+	sound = default.node_sound_stone_defaults()
+})
+
+minetest.register_craft({
+	output = "streets:roadwork_traffic_barrier_straight 2",
+	recipe = {
+		{ "streets:roadwork_traffic_barrier", "streets:roadwork_traffic_barrier"},
+	}
+})
+
+
+minetest.register_node("streets:roadwork_traffic_barrier_top", {
+	description = "Traffic Barrier (Top)",
+	paramtype = "light",
+	drawtype = "nodebox",
+	tiles = {
+		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+	},
+	sunlight_propagates = true,
+	groups = { cracky = 1, level = 2, wall = 1 },
+	node_box = {
+		type = "connected",
+		fixed = {
+			{ -0.15, -0.5, -0.15, 0.15, 0.5, 0.15 }
+		},
+		connect_front = {
+			{ -0.15, -0.5, -0.5, 0.15, 0.5, 0.15 }
+		}, -- z-
+		connect_back = {
+			{ -0.15, -0.5, -0.15, 0.15, 0.5, 0.5 }
+		}, -- z+
+		connect_left = {
+			{ -0.5, -0.5, -0.15, 0.15, 0.5, 0.15 }
+		}, -- x-
+		connect_right = {
+			{ -0.15, -0.5, -0.15, 0.5, 0.5, 0.15 }
+		}, -- x+
+	},
+	connects_to = { "group:wall", "group:stone", "group:wood", "group:tree", "group:concrete" },
+	sound = default.node_sound_stone_defaults()
+})
+
+minetest.register_craft({
+	output = "streets:roadwork_traffic_barrier_top 2",
+	recipe = {
+		{ "streets:roadwork_traffic_barrier" },
+		{ "streets:roadwork_traffic_barrier" },
+	}
+})
+
+minetest.register_node("streets:roadwork_traffic_barrier_top_straight", {
+	description = "Traffic Barrier (Straight Top)",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	drawtype = "nodebox",
+	tiles = {
+		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+	},
+	sunlight_propagates = true,
+	groups = { cracky = 1, level = 2, wall = 1 },
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.5, -0.5, -0.15, 0.5, 0.5, 0.15 },
+		},
+	},
+	connect_sides = { "left", "right" },
+	sound = default.node_sound_stone_defaults()
+})
+
+minetest.register_craft({
+	output = "streets:roadwork_traffic_barrier_top_straight 2",
+	recipe = {
+		{ "streets:roadwork_traffic_barrier_straight" },
+		{ "streets:roadwork_traffic_barrier_straight" },
+	}
+})
 
 -- Barrier Tape
 
