@@ -21,4 +21,7 @@ else
 	streets.concrete_texture = "streets_concrete.png"
 end
 
-streets.only_basic_stairsplus = minetest.settings:get_bool("streets.only_basic_stairsplus") or false
+streets.only_basic_stairsplus = true
+if minetest.settings:get_bool("streets.only_basic_stairsplus") == false then
+	streets.only_basic_stairsplus = false
+end
