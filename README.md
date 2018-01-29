@@ -18,6 +18,12 @@ Forum topic: https://forum.minetest.net/viewtopic.php?t=2984
 * cheapie
 * Thomas-S
 * HybridDog (for `streets_matrix_screen` submod)
+* philipbenr (for some textures taken from Streets 1.x)
+* Ryan-Nolan (for some Minetest-style signs)
+* Ragnarok AKA Vibender, http://vibender.com/ (for the textures of the infrastructure mod)
+  * `streets_rrgate_*.png` (partially modified)
+  * `streets_rrxing_*.png` (partially modified)
+  * `streets_lanuse_*.png` (partially modified)
 
 ## Recommended Mods
 * [ltc4000e](https://github.com/cheapie/ltc4000e) by cheapie
