@@ -12,7 +12,7 @@ minetest.register_node("streets:roadwork_traffic_barrier", {
 	paramtype = "light",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
 		streets.concrete_texture,
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
@@ -62,7 +62,7 @@ minetest.register_node("streets:roadwork_traffic_barrier_straight", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
 		streets.concrete_texture,
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
@@ -95,7 +95,7 @@ minetest.register_node("streets:roadwork_traffic_barrier_top", {
 	paramtype = "light",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
 		streets.concrete_texture,
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
@@ -140,7 +140,7 @@ minetest.register_node("streets:roadwork_traffic_barrier_top_straight", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture .. "^" .. streets.concrete_texture, --Workaround, see minetest/minestest#5582
+		streets.concrete_texture,
 		streets.concrete_texture,
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
 		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
