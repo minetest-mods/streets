@@ -690,3 +690,6 @@ minetest.register_craft({
 		{ "streets:asphalt", "streets:asphalt", "streets:asphalt" },
 	}
 })
+
+minetest.register_alias("streets:asphalt_workshop", "streets:workshop")
+minetest.register_alias("streets:sign_workshop", "air")
