@@ -23,7 +23,10 @@ local register_surface_nodes = function(friendlyname, name, tiles, groups, sound
 	end
 end
 
-local register_sign_node = function(friendlyname, name, tiles, type, inventory_image, light_source)
+local register_sign_node = function(friendlyname, name, tiles, type, inventory_image, light_source, writable)
+	if writable and not minetest.get_modpath("signs_api") then
+		return
+	end
 	if type == "minetest" then
 		tiles[5] = tiles[6] .. "^[colorize:#fff^[mask:(" .. tiles[6] .. "^" .. tiles[5] .. ")"
 	elseif type == "normal" or type == "big" then
@@ -47,6 +50,31 @@ local register_sign_node = function(friendlyname, name, tiles, type, inventory_i
 
 	if inventory_image then
 		def.inventory_image = inventory_image
+	end
+
+	if writable then
+		def.groups.display_lib_node = 1
+		def.display_entities = {
+			["signs:display_text"] = {
+				on_display_update = font_lib.on_display_update,
+				depth = 0.5 - display_lib.entity_spacing,
+				size = writable.size,
+				resolution = writable.resolution,
+				maxlines = writable.lines,
+				color = writable.color,
+				height = writable.height,
+				right = writable.right,
+				halign = writable.halign,
+			}
+		}
+		def.on_construct = function(pos)
+			signs_api.set_formspec(pos)
+			display_lib.on_construct(pos)
+		end
+		def.on_destruct = display_lib.on_destruct
+		def.on_rotate = display_lib.on_rotate
+		def.on_receive_fields =  signs_api.on_receive_fields
+		def.on_punch = function(pos, node, player, pointed_thing) display_lib.update_entities(pos) end
 	end
 
 	local normal_def = table.copy(def)
@@ -74,6 +102,10 @@ local register_sign_node = function(friendlyname, name, tiles, type, inventory_i
 		normal_def.mesh = "sign_big.obj"
 		center_def.mesh = "sign_center_big.obj"
 		polemount_def.mesh = "sign_polemount_big.obj"
+	end
+	if writable then
+		center_def.display_entities["signs:display_text"].depth = - display_lib.entity_spacing
+		polemount_def.display_entities["signs:display_text"].depth = 0.825 - display_lib.entity_spacing
 	end
 
 	normal_def.selection_box = {
@@ -369,6 +401,6 @@ end
 
 if streets.signs.signtypes then
 	for _, v in pairs(streets.signs.signtypes) do
-		register_sign_node(v.friendlyname, v.name, v.tiles, v.type, v.inventory_image, v.light_source)
+		register_sign_node(v.friendlyname, v.name, v.tiles, v.type, v.inventory_image, v.light_source, v.writable)
 	end
 end

@@ -8,3 +8,6 @@ stairsplus?
 moreblocks?
 digilines?
 concrete?
+display_lib?
+font_lib?
+signs_api?
