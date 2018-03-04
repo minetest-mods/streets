@@ -19,7 +19,8 @@ streets.signs.sections = {
 	{ name = "euprohib", friendlyname = "EU Prohibitory" },
 	{ name = "eumandat", friendlyname = "EU Mandatory" },
 	{ name = "euinfo", friendlyname = "EU Info" },
-	{ name = "euother", friendlyname = "EU Other" }
+	{ name = "euother", friendlyname = "EU Other" },
+	{ name = "euwritable", friendlyname = "EU Writable" }
 }
 
 minetest.register_alias("streets:sign_blank", "default:sign_wall_steel")
@@ -198,5 +199,6 @@ dofile(streets.conf.modpath .. "/streets_signs/eu/euprio.lua")
 dofile(streets.conf.modpath .. "/streets_signs/eu/eumandat.lua")
 dofile(streets.conf.modpath .. "/streets_signs/eu/euprohib.lua")
 dofile(streets.conf.modpath .. "/streets_signs/eu/euinfo.lua")
+dofile(streets.conf.modpath .. "/streets_signs/eu/euwritable.lua")
 
 
