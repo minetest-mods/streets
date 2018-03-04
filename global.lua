@@ -16,9 +16,9 @@ streets.nodeboxes.slab = {
 }
 
 if minetest.get_modpath("concrete") then
-	streets.concrete_texture = "technic_concrete_block.png"
+	streets.concrete.texture = "technic_concrete_block.png"
 else
-	streets.concrete_texture = "streets_concrete.png"
+	streets.concrete.texture = "streets_concrete.png"
 end
 
 streets.only_basic_stairsplus = true

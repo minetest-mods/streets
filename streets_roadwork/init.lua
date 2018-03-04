@@ -12,12 +12,12 @@ minetest.register_node("streets:roadwork_traffic_barrier", {
 	paramtype = "light",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture,
-		streets.concrete_texture,
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+		streets.concrete.texture,
+		streets.concrete.texture,
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png"
 	},
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
@@ -62,12 +62,12 @@ minetest.register_node("streets:roadwork_traffic_barrier_straight", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture,
-		streets.concrete_texture,
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+		streets.concrete.texture,
+		streets.concrete.texture,
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png"
 	},
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
@@ -95,12 +95,12 @@ minetest.register_node("streets:roadwork_traffic_barrier_top", {
 	paramtype = "light",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture,
-		streets.concrete_texture,
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+		streets.concrete.texture,
+		streets.concrete.texture,
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png"
 	},
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
@@ -140,12 +140,12 @@ minetest.register_node("streets:roadwork_traffic_barrier_top_straight", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	tiles = {
-		streets.concrete_texture,
-		streets.concrete_texture,
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png",
-		streets.concrete_texture .. "^streets_roadwork_traffic_barrier.png"
+		streets.concrete.texture,
+		streets.concrete.texture,
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png",
+		streets.concrete.texture .. "^streets_roadwork_traffic_barrier.png"
 	},
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },

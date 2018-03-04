@@ -1,17 +1,15 @@
---[[
-	## StreetsMod 2.0 ##
-	Submod: Concrete
-	Optional: true
-]]
+streets.concrete = {}
 
 if minetest.get_modpath("concrete") then
+	streets.concrete.texture = "technic_concrete_block.png"
 	minetest.register_alias("streets:concrete", "technic:concrete")
 else
+	streets.concrete.texture = "streets_concrete.png"
 	minetest.register_alias("technic:concrete", "streets:concrete")
 
 	minetest.register_node("streets:concrete", {
 		description = "Concrete",
-		tiles = { streets.concrete_texture },
+		tiles = { streets.concrete.texture },
 		groups = { cracky = 2, stone = 3 },
 		sounds = default.node_sound_stone_defaults()
 	})
@@ -28,7 +26,7 @@ else
 	if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairsplus") then
 		stairsplus:register_all("streets", "concrete", "streets:concrete", {
 			description = "Concrete",
-			tiles = { streets.concrete_texture },
+			tiles = { streets.concrete.texture },
 			groups = { cracky = 2, stone = 3 },
 			sounds = default.node_sound_stone_defaults()
 		})
@@ -39,7 +37,7 @@ minetest.register_node("streets:concrete_wall", {
 	description = "Concrete Wall",
 	paramtype = "light",
 	drawtype = "nodebox",
-	tiles = { streets.concrete_texture },
+	tiles = { streets.concrete.texture },
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
 	node_box = {
@@ -69,7 +67,7 @@ minetest.register_node("streets:concrete_wall_straight", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
-	tiles = { streets.concrete_texture },
+	tiles = { streets.concrete.texture },
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
 	node_box = {
@@ -96,7 +94,7 @@ minetest.register_node("streets:concrete_wall_top", {
 	description = "Concrete Wall",
 	paramtype = "light",
 	drawtype = "nodebox",
-	tiles = { streets.concrete_texture },
+	tiles = { streets.concrete.texture },
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
 	node_box = {
@@ -124,7 +122,7 @@ minetest.register_node("streets:concrete_wall_top_straight", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
-	tiles = { streets.concrete_texture },
+	tiles = { streets.concrete.texture },
 	sunlight_propagates = true,
 	groups = { cracky = 1, level = 2, wall = 1 },
 	node_box = {

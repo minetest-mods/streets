@@ -1,9 +1,3 @@
---[[
-	## StreetsMod 2.0 ##
-	Submod: steelsupport
-	Optional: true
-]]
-
 minetest.register_node(":streets:steel_support", {
 	description = "Steel support",
 	tiles = { "streets_support.png" },

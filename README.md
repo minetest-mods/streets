@@ -1,4 +1,8 @@
-# Streets mod 2.0
+# Streets 3.0
+### Work in progress! Do not use this mod yet!
+
+
+# ~~Streets mod 2.0~~
 _Released on 21st of February 2017_
 
 _Streets 2.0 is **not** fully backwards-compatible to streets 1.x!_
