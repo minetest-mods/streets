@@ -13,7 +13,6 @@ local modpath = minetest.get_modpath("streets_api")
 
 dofile(modpath .. "/helpers.lua")
 dofile(modpath .. "/light.lua")
-dofile(modpath .. "/roadmarkings.lua")
-dofile(modpath .. "/roadsurface.lua")
+dofile(modpath .. "/roads.lua")
 dofile(modpath .. "/trafficlight.lua")
 dofile(modpath .. "/signs.lua")
