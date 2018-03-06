@@ -48,3 +48,33 @@ streets.signs.get_sign_definition = function(name)
 		return nil
 	end
 end
+
+streets.signs.get_section_definitions_by_collection = function(name)
+	local definitions = {}
+	for k, v in pairs(streets.signs.registered_sections) do
+		if v.belongs_to == name then
+			definitions[k] = table.copy(v)
+		end
+	end
+	return definitions
+end
+
+streets.signs.get_sign_definitions_by_collection = function(name)
+	local definitions = {}
+	for k, v in pairs(streets.signs.registered_signs) do
+		if v.belongs_to:find(name) == 1 then
+			definitions[k] = table.copy(v)
+		end
+	end
+	return definitions
+end
+
+streets.signs.get_sign_definitions_by_section = function(name)
+	local definitions = {}
+	for k, v in pairs(streets.signs.registered_signs) do
+		if v.belongs_to == name then
+			definitions[k] = table.copy(v)
+		end
+	end
+	return definitions
+end

@@ -84,6 +84,9 @@ which returns a copy of the definition or nil.
 `name` is the unique name of the section, whose definition you want to get.
 It must have the format `<collection name>:<section name>`.
 
+You can get a table of sign definitions with 
+`streets.signs.get_section_definitions_by_collection(<collection name>)`.
+
 ### `streets.signs.register_sign()`
 ```lua
 streets.signs.register_sign({
@@ -119,5 +122,9 @@ Use `streets.signs.get_sign_definition(name)` instead,
 which returns a copy of the definition or nil.
 `name` is the unique name of the sign, whose definition you want to get.
 It must have the format `<collection name>:<section name>:<sign name>`.
+
+You can get a table of sign definitions with 
+`streets.signs.get_sign_definitions_by_collection(<collection name>)` and
+`streets.signs.get_sign_definitions_by_section(<collection name>:<section name>)`.
 
 ## Traffic Lights
