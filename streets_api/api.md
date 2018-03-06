@@ -6,7 +6,106 @@
 
 ## Road Markings
 
+### `streets.roads.register_label_collection()`
+```lua
+streets.roads.register_label_collection({
+    name = "sidelines",
+    description = "Sidelines",
+})
+```
+
+* `name` is an unique technical name for the collection.
+  Allowed characters are: `[a-zA-Z0-9-]`
+* `description` is a human-readable description of the collection.
+  If left blank, it will be auto-generated from the `name` field.
+
+Registered collections are stored in `streets.roads.registered_label_collections`.
+`streets.roads.registered_label_collections` is structured as follows:
+
+```lua
+streets.roads.registered_collections = {
+    ["sidelines"] = {
+        name = "sidelines",
+        description = "Sidelines",
+    }
+}
+```
+
+`streets.roads.registered_label_collections` must not be accessed directly.
+Use `streets.roads.get_label_collection_definition(name)` instead,
+which returns a copy of the definition or nil.
+`name` is the unique name of the collection, whose definition you want to get.
+
+### `streets.roads.register_label()`
+```lua
+streets.roads.register_label({
+    name = "solid",
+    description = "Solid Sideline",
+    belongs_to = "sidelines",
+})
+```
+
+* `name` is an unique technical name inside the collection for the label.
+  Allowed characters are: `[a-zA-Z0-9-]`
+* `description` is a human-readable description of the label.
+  If left blank, it will be auto-generated from the `name` field.
+* `belongs_to` is the name of the collection this label belongs to.
+
+To avoid confusions use `<collection name>:<label name>` when referring to labels.
+
+Registered labels are stored in `streets.roads.registered_labels`.
+`streets.roads.registered_labels` is structured as follows:
+
+```lua
+streets.roads.registered_labels = {
+    ["sidelines:solid"] = {
+        name = "solid",
+        description = "Solid Sideline",
+        belongs_to = "sidelines",
+    }
+}
+```
+
+`streets.roads.registered_labels` must not be accessed directly.
+Use `streets.roads.get_label_definition(name)` instead,
+which returns a copy of the definition or nil.
+`name` is the unique name of the label, whose definition you want to get.
+It must have the format `<collection name>:<label name>`.
+
+You can get a table of label definitions with 
+`streets.signs.get_label_definitions_by_collection(<collection name>)`.
+
 ## Road Surface
+
+### `streets.roads.register_surface()`
+```lua
+streets.roads.register_surface({
+    name = "asphalt",
+    description = "Asphalt",
+})
+```
+
+* `name` is an unique technical name for the surface.
+  Allowed characters are: `[a-zA-Z0-9-]`
+* `description` is a human-readable description of the surface.
+  If left blank, it will be auto-generated from the `name` field.
+
+Registered surfaces are stored in `streets.roads.registered_surfaces`.
+`streets.roads.registered_surfaces` is structured as follows:
+
+```lua
+streets.roads.registered_surfaces = {
+    ["asphalt"] = {
+        name = "asphalt",
+        description = "Asphalt",
+    }
+}
+```
+
+`streets.roads.registered_surfaces` must not be accessed directly.
+Use `streets.roads.get_surface_definition(name)` instead,
+which returns a copy of the definition or nil.
+`name` is the unique name of the surface, whose definition you want to get.
 
 ## Signs
 
@@ -22,7 +121,8 @@ streets.signs.register_collection({
 })
 ```
 
-* `name` is an unique technical name for the collection. Allowed characters: `[a-zA-Z0-9-]`
+* `name` is an unique technical name for the collection.
+  Allowed characters are: `[a-zA-Z0-9-]`
 * `description` is a human-readable description of the collection.
   If left blank, it will be auto-generated from the `name` field.
 * `info` is a human-readable info text of the collection.
@@ -58,7 +158,8 @@ streets.signs.register_section({
 })
 ```
 
-* `name` is an unique technical name inside the collection for the section. Allowed characters: `[a-zA-Z0-9-]`
+* `name` is an unique technical name inside the collection for the section.
+  Allowed characters are: `[a-zA-Z0-9-]`
 * `description` is a human-readable description of the section.
   If left blank, it will be auto-generated from the `name` field.
 * `belongs_to` is the name of the collection this section belongs to.
@@ -97,7 +198,8 @@ streets.signs.register_sign({
 })
 ```
 
-* `name` is an unique technical name inside the section for the sign. Allowed characters: `[a-zA-Z0-9-]`
+* `name` is an unique technical name inside the section for the sign.
+  Allowed characters are: `[a-zA-Z0-9-]`
 * `description` is a human-readable description of the sign.
   If left blank, it will be auto-generated from the `name` field.
 * `belongs` is the unique name of the section this sign belongs to.
