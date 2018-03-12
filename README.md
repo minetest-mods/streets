@@ -1,18 +1,17 @@
 # Streets 3.0
 ### Work in progress! Do not use this mod yet!
 
+**Working, but unfinished submods:**
 
-# ~~Streets mod 2.0~~
-_Released on 21st of February 2017_
+* streets_api
 
-_Streets 2.0 is **not** fully backwards-compatible to streets 1.x!_
+**Working and mostly finished submods:**
+
+* streets_signs_minetest
+
+
 
 **NOTE:** This mod depends on the [ts_workshop](https://github.com/minetest-mods/ts_workshop) mod.
-
-To improve loading time and reduce the number of registered nodes,
-this mod only registers stairsplus nodes for very basic roadmarkings.
-If you want to have all possible nodes registered, you can set
-the setting `streets.only_basic_stairsplus` to false in `minetest.conf`.
 
 Forum topic: https://forum.minetest.net/viewtopic.php?t=2984
 

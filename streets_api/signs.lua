@@ -13,12 +13,96 @@ streets.signs.register_section = function(def)
 	streets.signs.registered_sections[def.belongs_to .. ":" .. def.name] = def
 end
 
+local signs_after_place = function(pos)
+	local behind_pos = { x = pos.x, y = pos.y, z = pos.z }
+	local node = minetest.get_node(pos)
+	local param2 = node.param2
+	if param2 == 0 then
+		behind_pos.z = behind_pos.z + 1
+	elseif param2 == 1 then
+		behind_pos.x = behind_pos.x + 1
+	elseif param2 == 2 then
+		behind_pos.z = behind_pos.z - 1
+	elseif param2 == 3 then
+		behind_pos.x = behind_pos.x - 1
+	end
+	local behind_node = minetest.get_node(behind_pos)
+	local behind_nodes = {}
+	behind_nodes["streets:roadwork_traffic_barrier"] = true
+	behind_nodes["streets:roadwork_traffic_barrier_top"] = true
+	behind_nodes["streets:concrete_wall"] = true
+	behind_nodes["streets:concrete_wall_top"] = true
+	behind_nodes["technic:concrete_post"] = true
+	behind_nodes["default:fence_acacia_wood"] = true
+	behind_nodes["default:fence_aspen_wood"] = true
+	behind_nodes["default:fence_junglewood"] = true
+	behind_nodes["default:fence_pine_wood"] = true
+	behind_nodes["default:fence_wood"] = true
+	local behind_nodes_same_parity = {}
+	behind_nodes_same_parity["streets:roadwork_traffic_barrier_straight"] = true
+	behind_nodes_same_parity["streets:roadwork_traffic_barrier_top_straight"] = true
+	behind_nodes_same_parity["streets:concrete_wall_straight"] = true
+	behind_nodes_same_parity["streets:concrete_wall_top_straight"] = true
+	if (minetest.registered_nodes[behind_node.name].groups.bigpole
+			and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
+			or behind_nodes[behind_node.name] == true
+			or (behind_nodes_same_parity[behind_node.name] and (behind_node.param2 + param2) % 2 == 0) then
+		node.name = node.name .. "_polemounted"
+		minetest.set_node(pos, node)
+	end
+end
+
 streets.signs.register_sign = function(def)
 	streets.signs.registered_signs[def.belongs_to .. ":" .. def.name] = def
-	local normal_def = table.copy(def)
-	local polemount_def = table.copy(def)
-	minetest.register_node(":streets:sign_" .. def.collection .. "_" .. def.section .. "_" .. def.name, normal_def)
-	minetest.register_node(":streets:sign_" .. def.collection .. "_" .. def.section .. "_" .. def.name .. "_polemount", polemount_def)
+	local d = table.copy(def)
+	local style = d.style
+	if style == "box" then
+		d.drawtype = "nodebox"
+		d.tiles = d.tiles or {
+			"streets_signs_back.png",
+			"streets_signs_back.png",
+			"streets_signs_back.png",
+			"streets_signs_back.png",
+			"streets_signs_back.png",
+			d.tex or "streets_signs_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name .. ".png"
+		}
+		d.size = d.size or {-0.5, -0.5, 0.5, 0.5}
+	end
+	d.description = d.description or string.gsub(" " .. d.name:gsub("_", " "), "%W%l", string.upper):sub(2)
+	d.inventory_image = d.inventory_image or d.tiles[6] and d.tiles[6] or d.tex and d.tex or "streets_signs_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name .. ".png"
+	d.paramtype = d.paramtype or "light"
+	d.paramtype2 = d.paramtype2 or "facedir"
+	d.light_source = d.light_source or 3
+	d.groups = d.groups or { sign = 1, cracky = 3, oddly_breakable_by_hand = 2, --[[not_in_creative_inventory = 1,]] }
+	d.sounds = d.sounds or default and default.node_sound_metal_defaults()
+	d.drop = "streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name
+	if d.display_entities and font_api and display_api and signs_api then
+		d.groups.display_lib_node = 1
+	end
+	local normal_def = table.copy(d)
+	normal_def.after_place_node = signs_after_place
+	local polemounted_def = table.copy(d)
+	polemounted_def.description = polemounted_def.description .. " (Pole-Mounted)"
+	polemounted_def.groups.not_in_creative_inventory = 1
+	if style == "box" then
+		normal_def.node_box = {
+			type = "fixed",
+			fixed = { d.size[1], d.size[2], 0.5, d.size[3], d.size[4], 0.45 }
+		}
+		polemounted_def.node_box = {
+			type = "fixed",
+			fixed = { d.size[1], d.size[2], 0.8, d.size[3], d.size[4], 0.85 }
+		}
+
+		if d.display_entities and font_api and display_api and signs_api then
+			for k,v in pairs(normal_def.display_entities) do
+				v.depth = 0.45 - display_lib.entity_spacing
+				polemounted_def.display_entities[k].depth = 0.8 - display_lib.entity_spacing
+			end
+		end
+	end
+	minetest.register_node(":streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name, normal_def)
+	minetest.register_node(":streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name .. "_polemounted", polemounted_def)
 end
 
 

@@ -1,12 +1,40 @@
---[[
-	## StreetsMod 2.0 ##
-	Submod: signs
-	Optional: true
-]]
+streets.signs.register_collection({
+	name = "minetest",
+	description = "Minetest-Style Signs"
+})
 
---These register the sections in the workshop that these will be placed into
+streets.signs.register_section({ name = "warning", belongs_to = "minetest" })
+streets.signs.register_section({ name = "prohibitory", belongs_to = "minetest" })
+streets.signs.register_section({ name = "priority", belongs_to = "minetest" })
+streets.signs.register_section({ name = "info", belongs_to = "minetest" })
+streets.signs.register_section({ name = "writeable", belongs_to = "minetest" })
+
+local modpath = minetest.get_modpath("streets_signs_minetest")
+
+dofile(modpath .. "/warning.lua")
+dofile(modpath .. "/prohibitory.lua")
+dofile(modpath .. "/priority.lua")
+dofile(modpath .. "/info.lua")
+
+if display_api and font_api and signs_api then
+	dofile(modpath .. "/writeable.lua")
+end
+
+minetest.register_alias("streets:sign_blank", "default:sign_wall_steel")
+
+minetest.register_alias("streets:sign_curve_chevron_left", "streets:signs_minetest_warning_chevron_left")
+minetest.register_alias("streets:sign_curve_chevron_right", "streets:signs_minetest_warning_chevron_right")
+minetest.register_alias("streets:sign_warning", "streets:signs_minetest_warning_danger")
+minetest.register_alias("streets:sign_lava", "streets:signs_minetest_warning_lava")
+minetest.register_alias("streets:sign_water", "streets:signs_minetest_warning_water")
+minetest.register_alias("streets:sign_construction", "streets:signs_minetest_warning_work")
+
+minetest.register_alias("streets:sign_grass", "streets:signs_minetest_prohibitory_no_pedestrians")
+
+
+
+--[[
 streets.signs.sections = {
-	{ name = "warn", friendlyname = "MT Warning" },
 	{ name = "reg", friendlyname = "MT Regulatory" },
 	{ name = "info", friendlyname = "MT Information" },
 	{ name = "usreg", friendlyname = "US Regulatory" },
@@ -21,120 +49,6 @@ streets.signs.sections = {
 	{ name = "euinfo", friendlyname = "EU Info" },
 	{ name = "euother", friendlyname = "EU Other" }
 }
-
-minetest.register_alias("streets:sign_blank", "default:sign_wall_steel")
-
-streets.register_road_sign({
-	name = "sign_curve_chevron_right",
-	friendlyname = "Curve Chevron Sign (Right)",
-	tiles = {
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_curve_sign.png"
-	},
-	type = "minetest",
-	section = "warn",
-	dye_needed = { yellow = 3, black = 3 }
-})
-
-streets.register_road_sign({
-	name = "sign_curve_chevron_left",
-	friendlyname = "Curve Chevron Sign (Left)",
-	tiles = {
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_sign_back.png",
-		"streets_curve_sign.png^[transformFX"
-	},
-	type = "minetest",
-	section = "warn",
-	dye_needed = { yellow = 3, black = 3 }
-})
-
-streets.register_road_sign({
-	name = "sign_warning",
-	friendlyname = "Warning Sign",
-	tiles = {
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png",
-		"streets_square_sign_empty.png^streets_sign_warning.png"
-	},
-	type = "minetest",
-	section = "warn",
-	dye_needed = { black = 2 }
-})
-
-streets.register_road_sign({
-	name = "sign_water",
-	friendlyname = "Water Warning Sign",
-	tiles = {
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png",
-		"streets_square_sign_empty.png^streets_sign_water.png"
-	},
-	type = "minetest",
-	section = "warn",
-	dye_needed = { green = 1, blue = 3, black = 1 }
-})
-
-streets.register_road_sign({
-	name = "sign_lava",
-	friendlyname = "Lava Warning Sign",
-	tiles = {
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png",
-		"streets_square_sign_empty.png^streets_sign_lava.png"
-	},
-	type = "minetest",
-	section = "warn",
-	dye_needed = { green = 1, red = 3 }
-})
-
-streets.register_road_sign({
-	name = "sign_construction",
-	friendlyname = "Construction Warning Sign",
-	tiles = {
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png",
-		"streets_square_sign_empty.png^streets_sign_construction.png"
-	},
-	type = "minetest",
-	section = "warn",
-	dye_needed = { green = 1, blue = 1, brown = 1 }
-})
-
-streets.register_road_sign({
-	name = "sign_grass",
-	friendlyname = "No Walking on Grass Sign",
-	tiles = {
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png^[colorize:#D20000FF",
-		"streets_sign_back.png",
-		"streets_square_sign_empty.png^streets_sign_grass.png"
-	},
-	type = "minetest",
-	section = "reg",
-	dye_needed = { green = 3, red = 2 }
-})
 
 streets.register_road_sign({
 	name = "sign_mine",
@@ -199,4 +113,4 @@ dofile(streets.conf.modpath .. "/streets_signs/eu/eumandat.lua")
 dofile(streets.conf.modpath .. "/streets_signs/eu/euprohib.lua")
 dofile(streets.conf.modpath .. "/streets_signs/eu/euinfo.lua")
 
-
+]]

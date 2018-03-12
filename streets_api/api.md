@@ -194,6 +194,8 @@ streets.signs.register_sign({
     name = "straightonly",
     description = "Straight Only",
     belongs_to = "minetest:mandatory",
+    style = "box",
+    size = {-0.5, -0.5, 0.5, 0.5},
     -- all other fields used in minetest.register_node()
 })
 ```
@@ -204,6 +206,14 @@ streets.signs.register_sign({
   If left blank, it will be auto-generated from the `name` field.
 * `belongs` is the unique name of the section this sign belongs to.
   Use the form `<collection name>:<section name>`.
+* `style` defines the appearance of the sign.
+  Possible options are:
+  * `box`
+* `size` is an optional field,
+  which describes the size of the sign in the format `{-x, -y, +x, +y}`
+  when `style = "box` is used.
+  Default value is `{-0.5, -0.5, 0.5, 0.5}`.
+
 
 Registered signs are stored in `streets.signs.registered_signs`.
 `streets.signs.registered_signs` is structured as follows:
@@ -214,6 +224,8 @@ streets.signs.registered_signs = {
         name = "straightonly",
         description = "Straight Only",
         belongs_to = "minetest:mandatory",
+        style = "box",
+        size = {-0.5, -0.5, 0.5, 0.5},
         -- all other fields used in minetest.register_node()
     }
 }

@@ -285,7 +285,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			tiles = tiles,
 			paramtype2 = "facedir",
 			drop = "",
-			after_destruct = function(pos, oldnode)
+			after_destruct = function(pos, oldnode) -- TODO after_dig_node might be better
 				local newnode = oldnode
 				newnode.name = oldnode.name:gsub("mark_(.-)_on_", "")
 				minetest.set_node(pos, newnode)
