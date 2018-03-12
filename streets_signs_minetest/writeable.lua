@@ -33,7 +33,7 @@ for k,v in pairs(signs) do
 
 	streets.signs.register_sign({
 		name = v[1] .. "_half",
-		description = "Half" .. v[2],
+		description = "Half " .. v[2],
 		belongs_to = "minetest:writeable",
 		style = "box",
 		size = {-0.5, 0, 0.5, 0.5},

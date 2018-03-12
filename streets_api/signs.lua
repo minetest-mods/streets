@@ -76,6 +76,14 @@ streets.signs.register_sign = function(def)
 	d.groups = d.groups or { sign = 1, cracky = 3, oddly_breakable_by_hand = 2, --[[not_in_creative_inventory = 1,]] }
 	d.sounds = d.sounds or default and default.node_sound_metal_defaults()
 	d.drop = "streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name
+	local old_on_construct = d.on_construct
+	d.on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("infotext", d.description)
+		if old_on_construct then
+			old_on_construct(pos)
+		end
+	end
 	if d.display_entities and font_api and display_api and signs_api then
 		d.groups.display_lib_node = 1
 	end
