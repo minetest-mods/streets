@@ -196,6 +196,7 @@ streets.signs.register_sign({
     belongs_to = "minetest:mandatory",
     style = "box",
     size = {-0.5, -0.5, 0.5, 0.5},
+    tex = "streets_signs_minetest_mandatory_straightonly.png",
     -- all other fields used in minetest.register_node()
 })
 ```
@@ -213,6 +214,11 @@ streets.signs.register_sign({
   which describes the size of the sign in the format `{-x, -y, +x, +y}`
   when `style = "box` is used.
   Default value is `{-0.5, -0.5, 0.5, 0.5}`.
+* `tex` is the front tile of the sign.
+  This field is used, when `tiles` is left blank.
+  When `tex` is left blank, too,
+  the following front tile name will be auto-generated:
+  `streets_signs_<collection name>_<section name>_<sign name>.png`
 
 
 Registered signs are stored in `streets.signs.registered_signs`.
@@ -226,6 +232,7 @@ streets.signs.registered_signs = {
         belongs_to = "minetest:mandatory",
         style = "box",
         size = {-0.5, -0.5, 0.5, 0.5},
+        tex = "streets_signs_minetest_mandatory_straightonly.png",
         -- all other fields used in minetest.register_node()
     }
 }
