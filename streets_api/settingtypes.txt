@@ -1,0 +1,6 @@
+# This file contains settings of streets mod that can be changed in
+# minetest.conf
+
+#    Defines the amount of roadmarking on surface stairs variations available.
+#    Can either be "limited", "normal" or "full".
+streets.roadmarkings_stairs_variations (Amount of roadmarking stairs variations) string normal

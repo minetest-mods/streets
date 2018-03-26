@@ -7,11 +7,20 @@ streets.conf = {
 	version = "3.0",
 	licenseCode = "MIT License",
 	licenseMedia = "CC-BY-SA 3.0",
+	roadmarkings_stairs_variations = "normal",
 }
+
+if minetest.settings:get("streets.roadmarkings_stairs_variations") == "full" then
+	streets.conf.roadmarkings_stairs_variations = "full"
+elseif minetest.settings:get("streets.roadmarkings_stairs_variations") == "limited" then
+	streets.conf.roadmarkings_stairs_variations = "limited"
+end
 
 local modpath = minetest.get_modpath("streets_api")
 
 dofile(modpath .. "/helpers.lua")
+dofile(modpath .. "/stairs_subset.lua")
+dofile(modpath .. "/colors.lua")
 dofile(modpath .. "/light.lua")
 dofile(modpath .. "/roads.lua")
 dofile(modpath .. "/trafficlight.lua")

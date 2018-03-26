@@ -3,7 +3,7 @@
 	Submod: streetsapi
 	Optional: false
 	Category: Init
-]]
+
 
 local register_surface_nodes = function(friendlyname, name, tiles, groups, sounds, craft)
 	minetest.register_node(":streets:" .. name, {
@@ -372,3 +372,4 @@ if streets.signs.signtypes then
 		register_sign_node(v.friendlyname, v.name, v.tiles, v.type, v.inventory_image, v.light_source)
 	end
 end
+]]

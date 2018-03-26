@@ -4,6 +4,22 @@ streets.signs.registered_collections = {}
 streets.signs.registered_sections = {}
 streets.signs.registered_signs = {}
 
+streets.signs.build_node_name = function(belongs_to, name, variation, omit_colon)
+	local node_name = ""
+	if not omit_colon then
+		node_name = node_name .. ":"
+	end
+	node_name = node_name .. "streets:signs_" .. belongs_to:gsub(":", "__") .. "__" .. name
+	if variation then
+		node_name = node_name .. "__" .. variation
+	end
+	return node_name
+end
+
+streets.signs.build_texture_name = function(belongs_to, name)
+	return "streets_signs_" .. belongs_to:gsub(":", "__") .. "__" .. name .. ".png"
+end
+
 streets.signs.register_collection = function(def)
 	streets.signs.registered_collections[def.name] = def
 end
@@ -38,6 +54,7 @@ local signs_after_place = function(pos)
 	behind_nodes["default:fence_junglewood"] = true
 	behind_nodes["default:fence_pine_wood"] = true
 	behind_nodes["default:fence_wood"] = true
+	behind_nodes["default:mese_post_light"] = true
 	local behind_nodes_same_parity = {}
 	behind_nodes_same_parity["streets:roadwork_traffic_barrier_straight"] = true
 	behind_nodes_same_parity["streets:roadwork_traffic_barrier_top_straight"] = true
@@ -47,7 +64,7 @@ local signs_after_place = function(pos)
 			and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
 			or behind_nodes[behind_node.name] == true
 			or (behind_nodes_same_parity[behind_node.name] and (behind_node.param2 + param2) % 2 == 0) then
-		node.name = node.name .. "_polemounted"
+		node.name = node.name .. "__polemounted"
 		minetest.set_node(pos, node)
 	end
 end
@@ -64,18 +81,24 @@ streets.signs.register_sign = function(def)
 			"streets_signs_back.png",
 			"streets_signs_back.png",
 			"streets_signs_back.png",
-			d.tex or "streets_signs_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name .. ".png"
+			d.tex or streets.signs.build_texture_name(def.belongs_to, def.name)
 		}
 		d.size = d.size or {-0.5, -0.5, 0.5, 0.5}
 	end
 	d.description = d.description or string.gsub(" " .. d.name:gsub("_", " "), "%W%l", string.upper):sub(2)
-	d.inventory_image = d.inventory_image or d.tiles[6] and d.tiles[6] or d.tex and d.tex or "streets_signs_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name .. ".png"
+	d.inventory_image = d.inventory_image or d.tiles[6] and d.tiles[6] or d.tex and d.tex or streets.signs.build_texture_name(def.belongs_to, def.name)
 	d.paramtype = d.paramtype or "light"
 	d.paramtype2 = d.paramtype2 or "facedir"
 	d.light_source = d.light_source or 3
 	d.groups = d.groups or { sign = 1, cracky = 3, oddly_breakable_by_hand = 2, --[[not_in_creative_inventory = 1,]] }
+	d.groups.streets_sign = 1
+	d.streets = {
+		category = "sign",
+		belongs_to = def.belongs_to,
+		name = def.belongs_to,
+	}
 	d.sounds = d.sounds or default and default.node_sound_metal_defaults()
-	d.drop = "streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name
+	d.drop = streets.signs.build_node_name(def.belongs_to, def.name, nil, true)
 	local old_on_construct = d.on_construct
 	d.on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -85,13 +108,14 @@ streets.signs.register_sign = function(def)
 		end
 	end
 	if d.display_entities and font_api and display_api and signs_api then
-		d.groups.display_lib_node = 1
+		d.groups.display_modpack_node = 1
 	end
 	local normal_def = table.copy(d)
 	normal_def.after_place_node = signs_after_place
 	local polemounted_def = table.copy(d)
 	polemounted_def.description = polemounted_def.description .. " (Pole-Mounted)"
 	polemounted_def.groups.not_in_creative_inventory = 1
+	polemounted_def.streets.variation = "polemounted"
 	if style == "box" then
 		normal_def.node_box = {
 			type = "fixed",
@@ -109,8 +133,8 @@ streets.signs.register_sign = function(def)
 			end
 		end
 	end
-	minetest.register_node(":streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name, normal_def)
-	minetest.register_node(":streets:sign_" .. def.belongs_to:gsub(":", "_") .. "_" .. def.name .. "_polemounted", polemounted_def)
+	minetest.register_node(streets.signs.build_node_name(def.belongs_to, def.name), normal_def)
+	minetest.register_node(streets.signs.build_node_name(def.belongs_to, def.name, "polemounted"), polemounted_def)
 end
 
 

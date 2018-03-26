@@ -8,6 +8,9 @@
 **Working and mostly finished submods:**
 
 * streets_signs_minetest
+* streets_roadmarkings
+* streets_roadmarkingtool
+* streets_roadsurface
 
 
 

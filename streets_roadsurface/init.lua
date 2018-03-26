@@ -1,9 +1,29 @@
+local all_subset = streets.stairs_subset.basic
+local basic_subset = {}
+if streets.conf.roadmarkings_stairs_variations == "full" then
+	all_subset = streets.stairs_subset.all
+	basic_subset = {}
+elseif streets.conf.roadmarkings_stairs_variations == "limited" then
+	all_subset = streets.stairs_subset.basic_slabs
+	basic_subset = streets.stairs_subset.basic_without_slabs
+end
+
+streets.roads.register_surface({
+	name = "asphalt",
+	description = "Asphalt",
+	tex = "streets_asphalt.png",
+	register_base_node_stairs = streets.stairs_subset.all,
+	register_all_roadmarking_stairs = all_subset,
+	register_basic_roadmarking_stairs = basic_subset,
+	register_variants = true,
+})
+
 --[[
 	## StreetsMod 2.0 ##
 	Submod: roadsurface
 	Optional: true
 	Category: Roads
-]]
+
 
 streets.register_road_surface({
 	name = "asphalt",
@@ -34,7 +54,7 @@ streets.register_road_surface({
 	}
 })
 
---[[streets.register_road_surface({
+streets.register_road_surface({
 	name = "asphalt_yellow",
 	friendlyname = "Yellow Asphalt",
 	tiles = {"streets_asphalt_yellow.png"},
@@ -46,7 +66,6 @@ streets.register_road_surface({
 		recipe = {"streets:asphalt", "dye:yellow"}
 	}
 })
-]]
 
 streets.register_road_surface({
 	name = "asphalt_blue",
@@ -82,4 +101,4 @@ minetest.register_craft({
 	output = "streets:sidewalk 1",
 	type = "shapeless",
 	recipe = { "streets:asphalt", "dye:white" }
-})
+})]]
