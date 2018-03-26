@@ -338,14 +338,12 @@ minetest.register_craftitem(":streets:roadmarkingtool", {
 })
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	minetest.chat_send_all("Received: " .. formname .. " // " .. dump(fields))
 	if not fields then return end
 	if fields.quit then
 		player:set_attribute("streets_roadmarkingtool:csrf_token", "")
 		return
 	end
 	local csrf_token = player:get_attribute("streets_roadmarkingtool:csrf_token")
-	minetest.chat_send_all("Token: " .. csrf_token)
 	if not csrf_token then
 		return
 	elseif formname ~= "streets_roadmarkingtool:" .. csrf_token then
@@ -360,7 +358,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		local collection_data = minetest.explode_textlist_event(fields.collection)
 		if collection_data.index and streets.roadmarkingtool.collections[collection_data.index] then
 			meta:set_int("collection", collection_data.index)
-			minetest.chat_send_all(streets.roadmarkingtool.collections[collection_data.index].description)
 		end
 	elseif fields.prevpage then
 		meta:set_int("page", meta:get_int("page") - 1)
