@@ -44,6 +44,7 @@ local signs_after_place = function(pos)
 	end
 	local behind_node = minetest.get_node(behind_pos)
 	local behind_nodes = {}
+	behind_nodes["streets:pole"] = true
 	behind_nodes["streets:roadwork_traffic_barrier"] = true
 	behind_nodes["streets:roadwork_traffic_barrier_top"] = true
 	behind_nodes["streets:concrete_wall"] = true

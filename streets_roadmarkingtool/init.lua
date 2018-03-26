@@ -267,7 +267,7 @@ local place_roadmarking = function(pointed_thing, player, meta, color_id)
 end
 
 minetest.register_craftitem(":streets:roadmarkingtool", {
-	description = "Roadmarking Tool",
+	description = "Roadmarking Tool\n\nLeft click: Remove roadmarking\nRight click: Place selected roadmarking\nShift-right click: Open selection menu",
 	inventory_image = "streets_asphalt.png^default_stick.png", -- TODO Find a good inventory_image.
 	on_place = function(itemstack, player, pointed_thing)
 		if not player then

@@ -11,6 +11,7 @@
 * streets_roadmarkings
 * streets_roadmarkingtool
 * streets_roadsurface
+* streets_poles
 
 
 
