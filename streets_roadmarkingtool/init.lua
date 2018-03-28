@@ -19,7 +19,7 @@ local show_formspec = function(itemstack, player)
 	local csrf_token = math.random(10000,10000000)
 	local meta = itemstack:get_meta()
 	local fs = "size[12,9]"
-	fs = fs .. default.gui_bg .. default.gui_bg_img .. default.gui_slots
+	fs = fs .. (default and (default.gui_bg .. default.gui_bg_img .. default.gui_slots))
 	fs = fs .. "textlist[0,0;0,0;workaround;;1;true]" -- Workaround, see minetest/minetest#7141
 	fs = fs .. "textlist[0,0;3,4;collection;"
 	local first = true
@@ -111,32 +111,31 @@ local check_and_place = function(pos, node_name, player_name, param2, color_id, 
 		if minetest.is_protected(pos, player_name) and not minetest.check_player_privs(player_name, { protection_bypass = true }) then
 			minetest.record_protection_violation(pos, player_name)
 			return false, "protection"
-		else
-			if not (creative and creative.is_enabled_for(player_name)) then
-				local inventory = minetest.get_inventory({ type = "player", name = player_name })
-				local found = false
-				for i = 1, inventory:get_size("main") do
-					local stack = inventory:get_stack("main", i)
-					if stack and stack:get_name() == "streets:ink_cartridge_" .. streets.roadmarkingtool.palette[color_id].name then
-						stack:set_wear(stack:get_wear() + 256 * ink_needed)
-						inventory:set_stack("main", i, stack)
-						found = true
-						break
-					end
-				end
-				if not found then
-					minetest.chat_send_player(player_name,
-						minetest.colorize("#ff7f00", "Make sure to have a "
-								.. streets.roadmarkingtool.palette[color_id].description
-								.. " Ink Cartridge in your inventory!"
-						)
-					)
-					return false, "ink"
+		end
+		if not (creative and creative.is_enabled_for(player_name)) then
+			local inventory = minetest.get_inventory({ type = "player", name = player_name })
+			local found = false
+			for i = 1, inventory:get_size("main") do
+				local stack = inventory:get_stack("main", i)
+				if stack and stack:get_name() == "streets:ink_cartridge_" .. streets.roadmarkingtool.palette[color_id].name then
+					stack:set_wear(stack:get_wear() + 256 * ink_needed)
+					inventory:set_stack("main", i, stack)
+					found = true
+					break
 				end
 			end
-			minetest.set_node(pos, { name = node_name, param2 = param2 })
-			return true, "success"
+			if not found then
+				minetest.chat_send_player(player_name,
+					minetest.colorize("#ff7f00", "Make sure to have a "
+							.. streets.roadmarkingtool.palette[color_id].description
+							.. " Ink Cartridge in your inventory!"
+					)
+				)
+				return false, "ink"
+			end
 		end
+		minetest.set_node(pos, { name = node_name, param2 = param2 })
+		return true, "success"
 	else
 		return false, "unkown"
 	end

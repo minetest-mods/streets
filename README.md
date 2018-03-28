@@ -7,12 +7,12 @@
 
 **Working and mostly finished submods:**
 
-* streets_signs_minetest
+* streets_poles
 * streets_roadmarkings
 * streets_roadmarkingtool
 * streets_roadsurface
-* streets_poles
-
+* streets_signs_minetest
+* streets_warninglights
 
 
 **NOTE:** This mod depends on the [ts_workshop](https://github.com/minetest-mods/ts_workshop) mod.
