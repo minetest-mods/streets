@@ -19,7 +19,6 @@ local show_formspec = function(itemstack, player)
 	local csrf_token = math.random(10000,10000000)
 	local meta = itemstack:get_meta()
 	local fs = "size[12,9]"
-	fs = fs .. (default and (default.gui_bg .. default.gui_bg_img .. default.gui_slots))
 	fs = fs .. "textlist[0,0;0,0;workaround;;1;true]" -- Workaround, see minetest/minetest#7141
 	fs = fs .. "textlist[0,0;3,4;collection;"
 	local first = true

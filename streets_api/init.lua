@@ -16,6 +16,12 @@ elseif minetest.settings:get("streets.roadmarkings_stairs_variations") == "limit
 	streets.conf.roadmarkings_stairs_variations = "limited"
 end
 
+if minetest.get_modpath("concrete") then
+	streets.conf.concrete_texture = "technic_concrete_block.png"
+else
+	streets.conf.concrete_texture = "streets_concrete.png"
+end
+
 local modpath = minetest.get_modpath("streets_api")
 
 dofile(modpath .. "/helpers.lua")

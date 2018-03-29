@@ -14,6 +14,7 @@
 * streets_signs_minetest
 * streets_warninglights
 
+Minetest 0.5.0-dev is required!
 
 **NOTE:** This mod depends on the [ts_workshop](https://github.com/minetest-mods/ts_workshop) mod.
 

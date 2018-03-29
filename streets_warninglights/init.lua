@@ -3,7 +3,6 @@ local update_formspec = function(meta)
 	local mode = meta:get_string("mode")
 	local selected_id = modes[mode] or 1
 	local fs = "size[5,3]"
-	fs = fs .. (default and (default.gui_bg .. default.gui_bg_img .. default.gui_slots))
 	fs = fs .. "dropdown[0.5,0.5;4,1;mode;Flashing,On,Off;" .. selected_id .. "]"
 	if digilines then
 		fs = fs .. "field[0.5,2.3;3,1;channel;Digilines Channel;${channel}]"
@@ -76,7 +75,6 @@ local register_warninglight = function(name, def)
 		}
 	}
 	def.on_receive_fields = function(pos, formname, fields, sender)
-		minetest.chat_send_all(dump(fields))
 		if not sender then
 			return
 		end
