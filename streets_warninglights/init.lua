@@ -1,6 +1,5 @@
-local update_formspec = function(meta)
+local get_formspec = function(mode)
 	local modes = { flashing = 1, on = 2, off = 3 }
-	local mode = meta:get_string("mode")
 	local selected_id = modes[mode] or 1
 	local fs = "size[5,3]"
 	fs = fs .. "dropdown[0.5,0.5;4,1;mode;Flashing,On,Off;" .. selected_id .. "]"
@@ -8,7 +7,7 @@ local update_formspec = function(meta)
 		fs = fs .. "field[0.5,2.3;3,1;channel;Digilines Channel;${channel}]"
 		fs = fs .. "button[3,2;1.5,1;ok;OK]"
 	end
-	meta:set_string("formspec", fs)
+	return fs
 end
 
 local handle_change = function(pos, mode)
@@ -26,7 +25,7 @@ local handle_change = function(pos, mode)
 			param2 = oldnode.param2,
 		})
 	end
-	update_formspec(meta)
+	meta:set_string("formspec", get_formspec(mode))
 	local newmeta = minetest.get_meta(pos)
 	newmeta:from_table(meta:to_table())
 end
@@ -40,9 +39,10 @@ local register_warninglight = function(name, def)
 	def.on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		local node = minetest.get_node(pos)
-		meta:set_string("mode", node.name:match("_([a-z]*)$"):lower())
-		meta:set_string("channel", "")
-		update_formspec(meta)
+		local mode = node.name:match("_([a-z]*)$"):lower()
+		meta:set_string("mode", mode)
+		meta:set_string("channel", "warninglight")
+		meta:set_string("formspec", get_formspec(mode))
 	end
 	def.digiline = {
 		receptor = {},
@@ -86,8 +86,9 @@ local register_warninglight = function(name, def)
 		if type(fields.channel) == "string" then
 			local meta = minetest:get_meta(pos)
 			meta:set_string("channel", fields.channel)
-		end
-		if fields.mode then
+			local newmeta = minetest.get_meta(pos)
+			newmeta:from_table(meta:to_table())
+		elseif fields.mode then
 			handle_change(pos, fields.mode)
 		end
 	end
