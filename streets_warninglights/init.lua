@@ -1,23 +1,8 @@
-local get_formspec = function(mode)
-	local modes = { flashing = 1, on = 2, off = 3 }
-	local selected_id = modes[mode] or 1
-	local fs = "size[5,3]"
-	fs = fs .. "dropdown[0.5,0.5;4,1;mode;Flashing,On,Off;" .. selected_id .. "]"
-	if digilines then
-		fs = fs .. "field[0.5,2.3;3,1;channel;Digilines Channel;${channel}]"
-		fs = fs .. "button[3,2;1.5,1;ok;OK]"
-	end
-	return fs
-end
-
 local handle_change = function(pos, mode)
 	local modes = { flashing = 1, on = 2, off = 3 }
 	mode = mode:lower()
-	local meta = minetest:get_meta(pos)
 
 	if modes[mode] then
-		meta:set_string("mode", mode)
-
 		local oldnode = minetest.get_node(pos)
 		minetest.swap_node(pos, {
 			name = oldnode.name:gsub("_on$", "_"):gsub("_off$", "_"):gsub("_flashing$", "_") .. mode:lower(),
@@ -25,9 +10,6 @@ local handle_change = function(pos, mode)
 			param2 = oldnode.param2,
 		})
 	end
-	meta:set_string("formspec", get_formspec(mode))
-	local newmeta = minetest.get_meta(pos)
-	newmeta:from_table(meta:to_table())
 end
 
 
@@ -38,11 +20,8 @@ local register_warninglight = function(name, def)
 	def.groups = { dig_immediate = 2, }
 	def.on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		local node = minetest.get_node(pos)
-		local mode = node.name:match("_([a-z]*)$"):lower()
-		meta:set_string("mode", mode)
 		meta:set_string("channel", "warninglight")
-		meta:set_string("formspec", get_formspec(mode))
+		meta:set_string("formspec", "size[5,3]label[0.5,0.5;Shift-click the light to switch mode.]field[0.5,2.3;3,1;channel;Digilines Channel;${channel}]button[3,2;1.5,1;ok;OK]")
 	end
 	def.digiline = {
 		receptor = {},
@@ -86,11 +65,24 @@ local register_warninglight = function(name, def)
 		if type(fields.channel) == "string" then
 			local meta = minetest:get_meta(pos)
 			meta:set_string("channel", fields.channel)
+			meta:set_string("formspec", "size[5,3]label[0.5,0.5;Shift-click the light to switch mode.]field[0.5,2.3;3,1;channel;Digilines Channel;${channel}]button[3,2;1.5,1;ok;OK]")
 			local newmeta = minetest.get_meta(pos)
 			newmeta:from_table(meta:to_table())
-		elseif fields.mode then
-			handle_change(pos, fields.mode)
 		end
+	end
+	def.on_punch = function(pos, node, puncher, pointed_thing)
+		local mode_to_int = { flashing = 1, on = 2, off = 3 }
+		local int_to_mode = { "flashing", "on", "off", "flashing" }
+		if not ( puncher and puncher:get_player_control().sneak ) then
+			return
+		end
+		local player_name = puncher:get_player_name()
+		if minetest.is_protected(pos, player_name) and not minetest.check_player_privs(player_name, { protection_bypass = true }) then
+			minetest.record_protection_violation(pos, player_name)
+			return false
+		end
+		local mode = node.name:match("_([a-z]*)$"):lower()
+		handle_change(pos, int_to_mode[mode_to_int[mode] + 1])
 	end
 	minetest.register_node(name, def)
 end
