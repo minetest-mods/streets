@@ -27,14 +27,8 @@ minetest.register_node(":streets:pole", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{ -0.0625, -0.5, -0.15, 0.0625, 0.5, -0.0250 }
+			{ -0.1, -0.5, -0.5, 0.1, 0.5, -0.4 }
 		},
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.15, -0.5, -0.15, 0.15, 0.5, 0.15 }
-		}
 	},
 	digiline = {
 		wire = {
