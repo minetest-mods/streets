@@ -7,6 +7,7 @@
 
 **Working and mostly finished submods:**
 
+* streets_concrete
 * streets_poles
 * streets_roadmarkings
 * streets_roadmarkingtool
