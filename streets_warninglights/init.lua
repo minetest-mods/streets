@@ -40,7 +40,11 @@ local register_warninglight = function(name, def)
 				{ x = 0, y = 1, z = -1},
 				{ x = 0, y = -1, z = -1},
 				{ x = 0, y = -1, z = 0 },
-				{ x = 0, y = -2, z = 0 }
+				{ x = 0, y = -2, z = 0 },
+				{ x = 0, y = -2, z = -1 },
+				{ x = 0, y = -2, z = 1 },
+				{ x = 1, y = -2, z = 0 },
+				{ x = -1, y = -2, z = 0 },
 			}
 		},
 		effector = {
@@ -120,7 +124,7 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 				selection_box = {
 					type = "fixed",
 					fixed = {
-						{ -0.2, -0.5, -0.1, 0.3, 0.1, 0.1 }
+						{ -0.14, -0.5, -0.07, 0.24, -0.05, 0.07 }
 					}
 				},
 				collision_box = {
@@ -188,13 +192,13 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 		selection_box = {
 			type = "fixed",
 			fixed = {
-				{ -0.15, -0.5, -0.15, 0.15, 0.1, 0.15 }
+				{ -0.07, -0.5, -0.07, 0.07, 0, 0.07 }
 			}
 		},
 		collision_box = {
 			type = "fixed",
 			fixed = {
-				{ -0.15, -0.5, -0.15, 0.15, 0.1, 0.15 }
+				{ -0.07, -0.5, -0.07, 0.07, 0, 0.07 }
 			}
 		}
 	})

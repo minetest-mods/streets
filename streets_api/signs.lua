@@ -29,7 +29,7 @@ streets.signs.register_section = function(def)
 	streets.signs.registered_sections[def.belongs_to .. ":" .. def.name] = def
 end
 
-local signs_after_place = function(pos)
+local signs_after_place = function(pos, placer, itemstack, pointed_thing)
 	local behind_pos = { x = pos.x, y = pos.y, z = pos.z }
 	local node = minetest.get_node(pos)
 	local param2 = node.param2
@@ -43,9 +43,16 @@ local signs_after_place = function(pos)
 		behind_pos.x = behind_pos.x - 1
 	end
 	local behind_node = minetest.get_node(behind_pos)
+	if minetest.registered_nodes[behind_node.name]
+			and minetest.registered_nodes[behind_node.name].buildable_to
+			and pointed_thing.type == "node" then
+		behind_pos = pointed_thing.under
+		behind_node = minetest.get_node(behind_pos)
+	end
+	if not minetest.registered_nodes[behind_node.name] then
+		return
+	end
 	local behind_nodes = {}
-	behind_nodes["streets:roadwork_traffic_barrier"] = true
-	behind_nodes["streets:roadwork_traffic_barrier_top"] = true
 	behind_nodes["streets:concrete_wall"] = true
 	behind_nodes["streets:concrete_wall_top"] = true
 	behind_nodes["technic:concrete_post"] = true
@@ -56,10 +63,16 @@ local signs_after_place = function(pos)
 	behind_nodes["default:fence_wood"] = true
 	behind_nodes["default:mese_post_light"] = true
 	local behind_nodes_same_parity = {}
-	behind_nodes_same_parity["streets:roadwork_traffic_barrier_straight"] = true
-	behind_nodes_same_parity["streets:roadwork_traffic_barrier_top_straight"] = true
 	behind_nodes_same_parity["streets:concrete_wall_straight"] = true
 	behind_nodes_same_parity["streets:concrete_wall_top_straight"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_type_1_left"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_type_1_right"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_type_2_left"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_type_2_right"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_type_3_left"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_type_3_right"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_direction_left"] = true
+	behind_nodes_same_parity["streets:roadwork_us_barricade_direction_right"] = true
 	if (minetest.registered_nodes[behind_node.name].groups.bigpole
 			and minetest.registered_nodes[behind_node.name].streets_pole_connection[param2][behind_node.param2 + 1] ~= 1)
 			or behind_nodes[behind_node.name] == true
@@ -90,7 +103,7 @@ streets.signs.register_sign = function(def)
 	d.paramtype = d.paramtype or "light"
 	d.paramtype2 = d.paramtype2 or "facedir"
 	d.light_source = d.light_source or 3
-	d.groups = d.groups or { sign = 1, cracky = 3, oddly_breakable_by_hand = 2, --[[not_in_creative_inventory = 1,]] }
+	d.groups = d.groups or { sign = 1, snappy = 2, dig_immediate = 2, --[[not_in_creative_inventory = 1,]] }
 	d.groups.streets_sign = 1
 	d.streets = {
 		category = "sign",

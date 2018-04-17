@@ -12,6 +12,7 @@
 * streets_roadmarkings
 * streets_roadmarkingtool
 * streets_roadsurface
+* streets_roadwork_us
 * streets_signs_minetest
 * streets_warninglights
 
