@@ -199,7 +199,7 @@ minetest.register_node(":streets:roadwork_us_tubular_marker", {
 	mesh = "streets_roadwork_us_tubular_marker.obj",
 	tiles = {
 		"streets_roadwork_us_orange.png",
-		"streets_roadwork_us_orange.png^streets_roadwork_us_tubular_marker_stripes.png",
+		"streets_roadwork_us_tubular_marker_stripes.png",
 		"streets_black.png",
 	},
 	paramtype = "light",
@@ -233,7 +233,7 @@ minetest.register_node(":streets:roadwork_us_traffic_cone", {
 			{ -0.15, -0.43, -0.15, 0.15, 0.27, 0.15 },
 		}
 	},
-	selection_box = {
+	collision_box = {
 		type = "fixed",
 		fixed = {
 			{ -0.3, -0.5, -0.3, 0.3, -0.43, 0.3 },

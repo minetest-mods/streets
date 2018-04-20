@@ -1,23 +1,8 @@
-local handle_change = function(pos, mode)
-	local modes = { flashing = 1, on = 2, off = 3 }
-	mode = mode:lower()
-
-	if modes[mode] then
-		local oldnode = minetest.get_node(pos)
-		minetest.swap_node(pos, {
-			name = oldnode.name:gsub("_on$", "_"):gsub("_off$", "_"):gsub("_flashing$", "_") .. mode:lower(),
-			param1 = oldnode.param1,
-			param2 = oldnode.param2,
-		})
-	end
-end
-
-
 local register_warninglight = function(name, def)
 	def.paramtype = "light"
 	def.paramtype2 = "facedir"
 	def.drawtype = "mesh"
-	def.groups = { dig_immediate = 2, }
+	def.groups = { snappy = 2, dig_immediate = 2, }
 	def.on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("channel", "warninglight")
@@ -53,7 +38,7 @@ local register_warninglight = function(name, def)
 				if setchan ~= channel or type(msg) ~= "string" then
 					return
 				end
-				handle_change(pos, msg)
+				streets.helpers.handle_change(pos, msg)
 			end
 		}
 	}
@@ -86,7 +71,7 @@ local register_warninglight = function(name, def)
 			return false
 		end
 		local mode = node.name:match("_([a-z]*)$"):lower()
-		handle_change(pos, int_to_mode[mode_to_int[mode] + 1])
+		streets.helpers.handle_change(pos, int_to_mode[mode_to_int[mode] + 1])
 	end
 	minetest.register_node(name, def)
 end
@@ -113,26 +98,22 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 			table.insert(tiles, lense_tex)
 			table.insert(tiles, "streets_warninglight_body_yellow.png")
 			register_warninglight(":streets:warninglight_" .. side_name .. "_" .. color_name .. "_" .. mode_name, {
-				paramtype = "light",
-				paramtype2 = "facedir",
 				description = side_description .. " Warning Light " .. color_description .. " (" .. mode_description .. ")",
-				drawtype = "mesh",
 				mesh = "streets_warninglight_" .. side_name .. ".obj",
 				tiles = tiles,
-				groups = { dig_immediate = 2, },
 				light_source = (mode_name ~= "off" and 5),
 				selection_box = {
 					type = "fixed",
 					fixed = {
-						{ -0.14, -0.5, -0.07, 0.24, -0.05, 0.07 }
+						{ -0.1, -0.5, -0.05, 0.2, -0.15, 0.05 }
 					}
 				},
 				collision_box = {
 					type = "fixed",
 					fixed = {
-						{ -0.2, -0.5, -0.1, 0.3, 0.1, 0.1 }
+						{ -0.1, -0.5, -0.05, 0.2, -0.15, 0.05 }
 					}
-				}
+				},
 			})
 		end
 	end
@@ -188,7 +169,7 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 		description = "Omnidirectional Warning Light (" .. mode_description .. ")",
 		mesh = "streets_warninglight_omnidirectional.obj",
 		tiles = tiles,
-		light_source = (mode_name ~= "off" and 4),
+		light_source = (mode_name ~= "off" and 5),
 		selection_box = {
 			type = "fixed",
 			fixed = {

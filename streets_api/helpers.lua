@@ -216,3 +216,17 @@ streets.helpers.split_subset = function(subset)
 	end
 	return rotation_needed_subset, no_rotation_subset
 end
+
+streets.helpers.handle_change = function(pos, mode)
+	local modes = { flashing = 1, on = 2, off = 3 }
+	mode = mode:lower()
+
+	if modes[mode] then
+		local oldnode = minetest.get_node(pos)
+		minetest.swap_node(pos, {
+			name = oldnode.name:gsub("_on$", "_"):gsub("_off$", "_"):gsub("_flashing$", "_") .. mode:lower(),
+			param1 = oldnode.param1,
+			param2 = oldnode.param2,
+		})
+	end
+end
