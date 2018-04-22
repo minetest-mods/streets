@@ -12,8 +12,11 @@
 * streets_roadmarkings
 * streets_roadmarkingtool
 * streets_roadsurface
+* streets_roadwork_de
 * streets_roadwork_us
 * streets_signs_minetest
+* streets_trafficlights
+* streets_trafficlights_plus
 * streets_warninglights
 
 Minetest 0.5.0-dev is required!

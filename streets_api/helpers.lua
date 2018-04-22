@@ -217,7 +217,7 @@ streets.helpers.split_subset = function(subset)
 	return rotation_needed_subset, no_rotation_subset
 end
 
-streets.helpers.handle_change = function(pos, mode)
+streets.helpers.handle_wl_change = function(pos, mode)
 	local modes = { flashing = 1, on = 2, off = 3 }
 	mode = mode:lower()
 
@@ -229,4 +229,16 @@ streets.helpers.handle_change = function(pos, mode)
 			param2 = oldnode.param2,
 		})
 	end
+end
+
+streets.helpers.animation = function(tex)
+	return {
+		name = tex,
+		animation = {
+			type = "vertical_frames",
+			aspect_w = 16,
+			aspect_h = 16,
+			length = 2.0,
+		}
+	}
 end

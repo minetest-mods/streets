@@ -532,3 +532,31 @@ minetest.register_craft({
 		{ "streets:bigpole_short", "streets:bigpole_cross", "streets:bigpole_short" }
 	}
 })
+
+if minetest.get_modpath("digilines") then
+	minetest.register_node(":streets:digiline_distributor", {
+		description = "Digiline distributor",
+		tiles = { "streets_distributor_top.png", "streets_distributor_bottom.png", "streets_distributor_sides.png" },
+		groups = { cracky = 1 },
+		drawtype = "nodebox",
+		paramtype = "light",
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{ -0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
+				{ -0.05, 0.5, -0.05, 0.05, 1.6, 0.05 }
+			}
+		},
+		digiline = {
+			wire = {
+				rules = {
+					{ x = 0, y = 0, z = -1 },
+					{ x = 0, y = 0, z = 1 },
+					{ x = 1, y = 0, z = 0 },
+					{ x = -1, y = 0, z = 0 },
+					{ x = 0, y = 2, z = 0 }
+				}
+			}
+		}
+	})
+end

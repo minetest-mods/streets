@@ -2,7 +2,6 @@ local register_warninglight = function(name, def)
 	def.paramtype = "light"
 	def.paramtype2 = "facedir"
 	def.drawtype = "mesh"
-	def.groups = { snappy = 2, dig_immediate = 2, }
 	def.on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("channel", "warninglight")
@@ -38,7 +37,7 @@ local register_warninglight = function(name, def)
 				if setchan ~= channel or type(msg) ~= "string" then
 					return
 				end
-				streets.helpers.handle_change(pos, msg)
+				streets.helpers.handle_wl_change(pos, msg)
 			end
 		}
 	}
@@ -71,7 +70,7 @@ local register_warninglight = function(name, def)
 			return false
 		end
 		local mode = node.name:match("_([a-z]*)$"):lower()
-		streets.helpers.handle_change(pos, int_to_mode[mode_to_int[mode] + 1])
+		streets.helpers.handle_wl_change(pos, int_to_mode[mode_to_int[mode] + 1])
 	end
 	minetest.register_node(name, def)
 end
@@ -114,6 +113,7 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 						{ -0.1, -0.5, -0.05, 0.2, -0.15, 0.05 }
 					}
 				},
+				groups = { snappy = 2, dig_immediate = 2, not_in_creative_inventory = (mode_name ~= "off") and 1 or 0 }
 			})
 		end
 	end
@@ -148,7 +148,8 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 			fixed = {
 				{ -0.3, -0.3, 0.4, 0.3, 0.3, 0.85 }
 			}
-		}
+		},
+		groups = { snappy = 2, dig_immediate = 2, not_in_creative_inventory = (mode_name ~= "off") and 1 or 0 }
 	})
 	local tiles = {}
 	local lense_tex = "streets_warninglight_lense_omnidirectional_" .. mode_name .. ".png"
@@ -181,6 +182,7 @@ for mode_name, mode_description in pairs({ on = "On", off = "Off", flashing = "F
 			fixed = {
 				{ -0.07, -0.5, -0.07, 0.07, 0, 0.07 }
 			}
-		}
+		},
+		groups = { snappy = 2, dig_immediate = 2, not_in_creative_inventory = (mode_name ~= "off") and 1 or 0 }
 	})
 end

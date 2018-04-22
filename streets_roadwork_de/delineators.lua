@@ -28,6 +28,7 @@ local register_delineator = function(name, def)
 		local d = table.copy(def)
 		d.description = d.description .. mode_description
 		if mode_name ~= "" then
+			d.groups.not_in_creative_inventory = (mode_name ~= "_off") and 1 or 0
 			d.light_source = (mode_name ~= "_off" and 5)
 			d.mesh = d.mesh_light
 			d.on_construct = function(pos)
@@ -61,7 +62,7 @@ local register_delineator = function(name, def)
 						if setchan ~= channel or type(msg) ~= "string" then
 							return
 						end
-						streets.helpers.handle_change(pos, msg)
+						streets.helpers.handle_wl_change(pos, msg)
 					end
 				}
 			}
@@ -94,7 +95,7 @@ local register_delineator = function(name, def)
 					return false
 				end
 				local mode = node.name:match("_([a-z]*)$"):lower()
-				streets.helpers.handle_change(pos, int_to_mode[mode_to_int[mode] + 1])
+				streets.helpers.handle_wl_change(pos, int_to_mode[mode_to_int[mode] + 1])
 			end
 			d.lense_tex = d.lense_tex .. mode_name .. ".png"
 			if mode_name == "_flashing" then
@@ -145,8 +146,8 @@ register_delineator(":streets:roadwork_de_delineator_rr", {
 })
 
 register_delineator(":streets:roadwork_de_delineator_lr", {
-	description = "LR",
-	mesh = "Left/Right-Pointing (Two-Sided)",
+	description = "Left/Right-Pointing (Two-Sided)",
+	mesh = "streets_roadwork_de_delineator.obj",
 	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
 	tiles = {
 		"streets_roadwork_de_delineator_lr.png",

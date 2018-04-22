@@ -28,6 +28,7 @@ local register_barrier = function(name, def)
 		local d = table.copy(def)
 		d.description = d.description .. mode_description
 		d.light_source = (mode_name ~= "_off" and 5)
+		d.groups.not_in_creative_inventory = (mode_name ~= "_off") and 1 or 0
 		d.on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("channel", "warninglight")
@@ -69,7 +70,7 @@ local register_barrier = function(name, def)
 					if setchan ~= channel or type(msg) ~= "string" then
 						return
 					end
-					streets.helpers.handle_change(pos, msg)
+					streets.helpers.handle_wl_change(pos, msg)
 				end
 			}
 		}
@@ -102,7 +103,7 @@ local register_barrier = function(name, def)
 				return false
 			end
 			local mode = node.name:match("_([a-z]*)$"):lower()
-			streets.helpers.handle_change(pos, int_to_mode[mode_to_int[mode] + 1])
+			streets.helpers.handle_wl_change(pos, int_to_mode[mode_to_int[mode] + 1])
 		end
 		d.lense_tex = d.lense_tex .. mode_name .. ".png"
 		if mode_name == "_flashing" then

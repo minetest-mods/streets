@@ -77,7 +77,7 @@
   * Value: The definition table of the roadmarking collection
     as used in `streets.roads.register_roadmarking_collection()`.
   * Whenever possible, don't access this directly, but use one of the getter functions below instead.
-* `streets.registered_roadmarkings`:
+* `streets.roads.registered_roadmarkings`:
   A table containing all registered roadmarkings.
   * Key: `<collection name>:<roadmarking name>`
   * Value: The definition table of the roadmarking as used in `streets.roads.register_roadmarking()`.
@@ -221,9 +221,9 @@
   Registers a sign and adds the definition to `streets.signs.registered_signs`.
   * Arguments:
     * `def`: A table containing the following fields:
-      * `name`: A unique technical inside the collection name for the section.
+      * `name`: A unique technical inside the section name for the sign.
         Allowed characters are: `[a-zA-Z0-9_]`, two consecutive underscores (`__`) are not allowed.
-      * `description`: Human-readable description of the section.
+      * `description`: Human-readable description of the sign.
         If left blank, it will be auto-generated from the name field.
       * `belongs_to`: `<collection name>:<section name>`.
       * `style` defines the appearance of the sign.
@@ -260,3 +260,46 @@
     or an empty table.
 
 ## Traffic Lights
+
+* `streets.trafficlights.registered_trafficlights`:
+  A table containing all registered trafficlights.
+  * Key: `<trafficlight name>`
+  * Value: The definition table of the trafficlight as used in `streets.trafficlights.register_trafficlight()`.
+  * Whenever possible, don't access this direclty, but use the getter function below instead.
+* `streets.trafficlights.get_trafficlight_definition(name)`
+  * `name` has the following format: `<trafficlight name>`.
+  * Returns a copy of the trafficlight definition or nil.
+* `streets.trafficlights.register_trafficlight(def)`:
+  Registers a trafficlight and adds the definition to `streets.trafficlights.registered_trafficlights`.
+  * Arguments:
+    * `def`: A table containing the following fields:
+      * `name`: A unique technical name for the trafficlight.
+        Allowed characters are: `[a-zA-Z0-9_]`, two consecutive underscores (`__`) are not allowed.
+      * `description`: Human-readable description of the trafficlight.
+      * `aspects`: Number of the aspects of the trafficlight. Can be between 1 and 5.
+      * `horizontal`: If true, the trafficlight will be horizontal.
+      * `hybrid`: If true, the trafficlight will have the shape of a hybrid beacon;
+        `aspects` is automatically set to 3 then.
+      * `default`: A table in the following form:
+         ```lua
+         default = {
+         		aspect_1 = "streets_trafficlight_red_off.png",
+         		aspect_2 = "streets_trafficlight_yellow_off.png",
+         		aspect_3 = "streets_trafficlight_green_off.png",
+         }
+         ```
+      * `phases`: A table in the following form:
+         ```lua
+         phases = {
+         	red = {
+         		aspect_1 = "streets_trafficlight_red_on.png",
+         	},
+         	yellow = {
+         		aspect_2 = "streets_trafficlight_yellow_on.png",
+         	},
+         	green = {
+         		aspect_3 = "streets_trafficlight_green_on.png",
+         	},
+         	-- Further phases can be defined, an "off" phase will be inserted automatically.
+         }
+         ```
