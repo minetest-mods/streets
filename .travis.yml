@@ -4,6 +4,6 @@ before_install:
 install:
   - sudo luarocks install busted
   - sudo luarocks install say
-  - sudo luarocks install bustest
+  - sudo luarocks install --server=http://luarocks.org/dev bustest
 script:
 - busted test
