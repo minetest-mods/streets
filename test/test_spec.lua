@@ -1,0 +1,1 @@
+assert.truthy(true)
