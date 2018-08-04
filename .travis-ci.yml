@@ -1,9 +1,0 @@
-language: lua
-before_install:
-  - sudo apt install luajit luarocks
-install:
-  - sudo luarocks install busted
-  - sudo luarocks install say
-  - sudo luarocks install bustest
-script:
-- busted test
