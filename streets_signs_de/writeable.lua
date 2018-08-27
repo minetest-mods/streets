@@ -15,7 +15,7 @@ for k,v in pairs(signs) do
 			["signs:display_text"] = {
 				on_display_update = font_api.on_display_update,
 				size = { x = 13/16, y = 13/16 },
-				aspect_ratio = 0.75,
+				resolution = { x = 9, y = 5 },
 				maxlines = 4,
 				color = v[1] == "green" and "#fff" or "#000",
 				halign = "center",
@@ -41,10 +41,10 @@ for k,v in pairs(signs) do
 			["signs:display_text"] = {
 				on_display_update = font_api.on_display_update,
 				size = { x = 13/16, y = 6/16 },
-				aspect_ratio = 0.75,
+				resolution = { x = 9, y = 5.5 },
 				maxlines = 2,
 				color = v[1] == "green" and "#fff" or "#000",
-				top = -0.25,
+				height = 0.25,
 				halign = "center",
 			}
 		},

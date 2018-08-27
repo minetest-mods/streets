@@ -96,7 +96,23 @@ streets.signs.register_sign = function(def)
 			"streets_signs_back.png",
 			d.tex or streets.signs.build_texture_name(def.belongs_to, def.name)
 		}
-		d.size = d.size or {-0.5, -0.5, 0.5, 0.5}
+		d.size = d.size or {-0.5, -0.5, 0.5, 0.5 }
+	elseif style == "flat" then
+		d.drawtype = "mesh"
+		d.tiles = d.tiles or {
+			{
+				name = d.tex or streets.signs.build_texture_name(def.belongs_to, def.name),
+				backface_culling = true
+			},
+			{
+				name = (d.tex or streets.signs.build_texture_name(def.belongs_to, def.name))
+						.. "^[colorize:#fff^[mask:("
+						.. (d.tex or streets.signs.build_texture_name(def.belongs_to, def.name))
+						.. "^streets_signs_back.png)^[transformFX",
+				backface_culling = true,
+			},
+		}
+		d.size = d.size or 1
 	end
 	d.description = d.description or string.gsub(" " .. d.name:gsub("_", " "), "%W%l", string.upper):sub(2)
 	d.inventory_image = d.inventory_image or d.tiles[6] and d.tiles[6] or d.tex and d.tex or streets.signs.build_texture_name(def.belongs_to, def.name)
@@ -145,6 +161,39 @@ streets.signs.register_sign = function(def)
 				polemounted_def.display_entities[k].depth = 0.8 - display_lib.entity_spacing
 			end
 		end
+	elseif style == "flat" then
+		normal_def.mesh = "streets_signs_flat_" .. normal_def.size .. ".obj"
+		polemounted_def.mesh = "streets_signs_flat_" .. polemounted_def.size .. "_polemounted.obj"
+
+		if d.display_entities and font_api and display_api and signs_api then
+			for k,v in pairs(normal_def.display_entities) do
+				v.depth = 0.5 - display_lib.entity_spacing
+				polemounted_def.display_entities[k].depth = 0.85 - display_lib.entity_spacing
+			end
+		end
+
+		d.box = d.box or {-d.size / 2, -d.size / 2, d.size / 2, d.size / 2}
+		
+		local normal_box = { d.box[1], d.box[2], 0.5, d.box[3], d.box[4], 0.45 }
+		local polemounted_box = { d.box[1], d.box[2], 0.8, d.box[3], d.box[4], 0.85 }
+
+		normal_def.selection_box = {
+			type = "fixed",
+			fixed = normal_box
+		}
+		normal_def.collision_box = {
+			type = "fixed",
+			fixed = normal_box
+		}
+		polemounted_def.selection_box = {
+			type = "fixed",
+			fixed = polemounted_box
+		}
+
+		polemounted_def.collision_box = {
+			type = "fixed",
+			fixed = polemounted_box
+		}
 	end
 	minetest.register_node(streets.signs.build_node_name(def.belongs_to, def.name), normal_def)
 	minetest.register_node(streets.signs.build_node_name(def.belongs_to, def.name, "polemounted"), polemounted_def)

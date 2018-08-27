@@ -1,4 +1,24 @@
+local translate_boxes = function(boxes, x_offset)
+	if not x_offset then
+		return boxes
+	end
+	if type(boxes) == "table" then
+		for _, box in pairs(boxes) do
+			box[1] = box[1] + x_offset
+			box[4] = box[4] + x_offset
+		end
+	else
+		boxes[1] = boxes[1] + x_offset
+		boxes[4] = boxes[4] + x_offset
+	end
+	return boxes
+end
+
 local register_delineator = function(name, def)
+	local boxes = {
+		{ -0.2, -0.5, -0.4, 0.2, -0.375, 0.4 },
+		{ -5/32, -0.375, -1/32, 5/32, 0.8125, 1/32 },
+	}
 	def.drawtype = "mesh"
 	def.paramtype = "light"
 	def.paramtype2 = "facedir"
@@ -6,17 +26,11 @@ local register_delineator = function(name, def)
 	def.groups = { snappy = 2, dig_immediate = 2, }
 	def.selection_box = {
 		type = "fixed",
-		fixed = {
-			{ -0.2, -0.5, -0.4, 0.2, -0.375, 0.4 },
-			{ -5/32, -0.375, -1/32, 5/32, 0.8125, 1/32 },
-		}
+		fixed = translate_boxes(boxes, def.offset)
 	}
 	def.collision_box = {
 		type = "fixed",
-		fixed = {
-			{ -0.2, -0.5, -0.4, 0.2, -0.375, 0.4 },
-			{ -5/32, -0.375, -1/32, 5/32, 0.8125, 1/32 },
-		}
+		fixed = translate_boxes(boxes, def.offset)
 	}
 	local modes = {
 		_on = " with Warning Light (On)",
@@ -30,7 +44,11 @@ local register_delineator = function(name, def)
 		if mode_name ~= "" then
 			d.groups.not_in_creative_inventory = (mode_name ~= "_off") and 1 or 0
 			d.light_source = (mode_name ~= "_off" and 5)
-			d.mesh = d.mesh_light
+			if d.light_type == "omnidirectional" then
+				d.mesh = d.mesh:sub(1, -5) .. "_with_warninglight_omnidirectional.obj"
+			else
+				d.mesh = d.mesh:sub(1, -5) .. "_with_warninglight_two_sided.obj"
+			end
 			d.on_construct = function(pos)
 				local meta = minetest.get_meta(pos)
 				meta:set_string("channel", "warninglight")
@@ -110,8 +128,10 @@ local register_delineator = function(name, def)
 				}
 			end
 			table.insert(d.tiles, "streets_warninglight_body_yellow.png")
-			if d.two_lenses then
+			if d.light_type == "two_sided" then
 				table.insert(d.tiles, d.lense_tex)
+			elseif d.light_type == "one_sided" then
+				table.insert(d.tiles, "streets_transparent.png")
 			end
 			table.insert(d.tiles, d.lense_tex)
 		end
@@ -122,46 +142,45 @@ end
 register_delineator(":streets:roadwork_de_delineator_ll", {
 	description = "Left-Pointing (Two-Sided)",
 	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
+	light_type = "two_sided",
 	tiles = {
 		"streets_roadwork_de_delineator_ll.png",
 		"streets_pole.png",
 		"streets_black.png",
 	},
 	lense_tex = "streets_warninglight_lense_yellow",
-	two_lenses = true,
 })
 
 register_delineator(":streets:roadwork_de_delineator_rr", {
 	description = "Right-Pointing (Two-Sided)",
 	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
+	light_type = "two_sided",
 	tiles = {
 		"streets_roadwork_de_delineator_rr.png",
 		"streets_pole.png",
 		"streets_black.png",
 	},
 	lense_tex = "streets_warninglight_lense_yellow",
-	two_lenses = true,
 })
 
 register_delineator(":streets:roadwork_de_delineator_lr", {
 	description = "Left/Right-Pointing (Two-Sided)",
-	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
+	mesh = "streets_roadwork_de_delineator_right.obj",
+	light_type = "two_sided",
+	offset = 0.15,
 	tiles = {
 		"streets_roadwork_de_delineator_lr.png",
 		"streets_pole.png",
 		"streets_black.png",
 	},
 	lense_tex = "streets_warninglight_lense_yellow",
-	two_lenses = true,
 })
 
 register_delineator(":streets:roadwork_de_delineator_l", {
 	description = "Left-Pointing (One-Sided)",
-	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_one_sided.obj",
+	mesh = "streets_roadwork_de_delineator_right.obj",
+	light_type = "one_sided",
+	offset = 0.15,
 	tiles = {
 		"streets_pole.png^streets_roadwork_de_delineator_l.png",
 		"streets_pole.png",
@@ -172,8 +191,9 @@ register_delineator(":streets:roadwork_de_delineator_l", {
 
 register_delineator(":streets:roadwork_de_delineator_r", {
 	description = "Right-Pointing (One-Sided)",
-	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_one_sided.obj",
+	mesh = "streets_roadwork_de_delineator_left.obj",
+	light_type = "one_sided",
+	offset = -0.15,
 	tiles = {
 		"streets_pole.png^streets_roadwork_de_delineator_r.png",
 		"streets_pole.png",
@@ -185,7 +205,7 @@ register_delineator(":streets:roadwork_de_delineator_r", {
 register_delineator(":streets:roadwork_de_delineator_p", {
 	description = " for Pedestrians",
 	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_omnidirectional.obj",
+	light_type = "omnidirectional",
 	tiles = {
 		"streets_roadwork_de_delineator_p.png",
 		"streets_pole.png",
@@ -197,46 +217,45 @@ register_delineator(":streets:roadwork_de_delineator_p", {
 register_delineator(":streets:roadwork_de_delineator_all", {
 	description = "Arrow Left-Pointing (Two-Sided)",
 	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
+	light_type = "two_sided",
 	tiles = {
 		"streets_roadwork_de_delineator_all.png",
 		"streets_pole.png",
 		"streets_black.png",
 	},
 	lense_tex = "streets_warninglight_lense_yellow",
-	two_lenses = true,
 })
 
 register_delineator(":streets:roadwork_de_delineator_arr", {
 	description = "Arrow Right-Pointing (Two-Sided)",
 	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
+	light_type = "two_sided",
 	tiles = {
 		"streets_roadwork_de_delineator_arr.png",
 		"streets_pole.png",
 		"streets_black.png",
 	},
 	lense_tex = "streets_warninglight_lense_yellow",
-	two_lenses = true,
 })
 
 register_delineator(":streets:roadwork_de_delineator_alr", {
 	description = "Arrow Left/Right-Pointing (Two-Sided)",
-	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_two_sided.obj",
+	mesh = "streets_roadwork_de_delineator_right.obj",
+	light_type = "two_sided",
+	offset = 0.15,
 	tiles = {
 		"streets_roadwork_de_delineator_alr.png",
 		"streets_pole.png",
 		"streets_black.png",
 	},
 	lense_tex = "streets_warninglight_lense_yellow",
-	two_lenses = true,
 })
 
 register_delineator(":streets:roadwork_de_delineator_al", {
 	description = "Arrow Left-Pointing (One-Sided)",
-	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_one_sided.obj",
+	mesh = "streets_roadwork_de_delineator_right.obj",
+	light_type = "one_sided",
+	offset = 0.15,
 	tiles = {
 		"streets_pole.png^streets_roadwork_de_delineator_al.png",
 		"streets_pole.png",
@@ -247,8 +266,9 @@ register_delineator(":streets:roadwork_de_delineator_al", {
 
 register_delineator(":streets:roadwork_de_delineator_ar", {
 	description = "Arrow Right-Pointing (One-Sided)",
-	mesh = "streets_roadwork_de_delineator.obj",
-	mesh_light = "streets_roadwork_de_delineator_with_warninglight_one_sided.obj",
+	mesh = "streets_roadwork_de_delineator_left.obj",
+	light_type = "one_sided",
+	offset = -0.15,
 	tiles = {
 		"streets_pole.png^streets_roadwork_de_delineator_ar.png",
 		"streets_pole.png",
