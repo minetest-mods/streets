@@ -4,3 +4,4 @@
 #    When enabled, stairsplus nodes will only be registered for very basic roadmarkings.
 #    This will improve loading time.
 streets.only_basic_stairsplus (Only basic stairplus support for faster loading) bool true
+streets.subset_stairsplus (Table subset for asphal node. Example : streets.subset_stairsplus = return {{"slab", ""}, { "slope", ""}}) string nil
