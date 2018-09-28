@@ -25,3 +25,7 @@ streets.only_basic_stairsplus = true
 if minetest.settings:get_bool("streets.only_basic_stairsplus") == false then
 	streets.only_basic_stairsplus = false
 end
+
+if minetest.settings:get("streets.subset_stairsplus") then
+	streets.subset_stairsplus = minetest.deserialize(minetest.settings:get("streets.subset_stairsplus"))
+end

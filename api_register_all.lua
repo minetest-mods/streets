@@ -4,6 +4,58 @@
 	Optional: false
 	Category: Init
 ]]
+	local subset = streets.subset_stairsplus or {
+		{ "micro", "" },
+		{ "micro", "_1" },
+		{ "micro", "_2" },
+		{ "micro", "_4" },
+		{ "micro", "_12" },
+		{ "micro", "_14" },
+		{ "micro", "_15" },
+		{ "panel", "" },
+		{ "panel", "_1" },
+		{ "panel", "_2" },
+		{ "panel", "_4" },
+		{ "panel", "_12" },
+		{ "panel", "_14" },
+		{ "panel", "_15" },
+		{ "slab",  "" },
+		{ "slab",  "_quarter" },
+		{ "slab",  "_three_quarter" },
+		{ "slab",  "_1" },
+		{ "slab",  "_2" },
+		{ "slab",  "_14" },
+		{ "slab",  "_15" },
+		{ "slab",  "_two_sides" },
+		{ "slab",  "_three_sides" },
+		{ "slab",  "_three_sides_u" },
+		{ "slope", "" },
+		{ "slope", "_half" },
+		{ "slope", "_half_raised" },
+		{ "slope", "_inner" },
+		{ "slope", "_inner_half" },
+		{ "slope", "_inner_half_raised" },
+		{ "slope", "_inner_cut" },
+		{ "slope", "_inner_cut_half" },
+		{ "slope", "_inner_cut_half_raised" },
+		{ "slope", "_outer" },
+		{ "slope", "_outer_half" },
+		{ "slope", "_outer_half_raised" },
+		{ "slope", "_outer_cut" },
+		{ "slope", "_outer_cut_half" },
+		{ "slope", "_outer_cut_half_raised" },
+		{ "slope", "_cut" },
+		{ "stair", "" },
+		{ "stair", "_half" },
+		{ "stair", "_right_half" },
+		{ "stair", "_inner" },
+		{ "stair", "_outer" },
+		{ "stair", "_alt" },
+		{ "stair", "_alt_1" },
+		{ "stair", "_alt_2" },
+		{ "stair", "_alt_4" },
+	}
+
 
 local register_surface_nodes = function(friendlyname, name, tiles, groups, sounds, craft)
 	minetest.register_node(":streets:" .. name, {
@@ -14,7 +66,7 @@ local register_surface_nodes = function(friendlyname, name, tiles, groups, sound
 	})
 	minetest.register_craft(craft)
 	if minetest.get_modpath("moreblocks") then
-		stairsplus:register_all("streets", name, "streets:" .. name, {
+		stairsplus:register_custom_subset(subset,"streets", name, "streets:" .. name, {
 			description = friendlyname,
 			tiles = tiles,
 			groups = groups,
@@ -319,15 +371,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 				end,
 			}
 
-			stairsplus:register_stair("streets",
-				"mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-				"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-				stairs_def)
-			stairsplus:register_slab("streets",
-				"mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-				"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
-				stairs_def)
-			stairsplus:register_slope("streets",
+			stairsplus:register_custom_subset(subset,"streets",
 				"mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
 				"streets:mark_" .. name:gsub("{color}", colorname:lower()) .. r .. "_on_" .. surface_name,
 				stairs_def)
