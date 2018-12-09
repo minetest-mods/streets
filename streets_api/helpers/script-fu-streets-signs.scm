@@ -12,7 +12,7 @@
 			( drawable ( car ( gimp-image-get-active-layer image ) ) )
 			( numberOfFixedColors 0)
 			( fixedColors 0 )
-			( sizeFactor 1)
+			( sizeFactor 1 )
 			( colorId 0 )
 			( colormapCounter 0 )
 			( colormap '(0 0) )
@@ -31,8 +31,19 @@
 				(
 					cond
 					(
-						( char-ci>=? ( string-ref inputColors stringindex ) #\a )
-						( and char-ci<=? ( string-ref inputColors stringindex ) #\f )
+						(
+							or
+							(
+								and
+								( char-ci>=? ( string-ref inputColors stringindex ) #\a )
+								( char-ci<=? ( string-ref inputColors stringindex ) #\f )
+							)
+							(
+								and
+								( char-ci>=? ( string-ref inputColors stringindex ) #\0 )
+								( char-ci<=? ( string-ref inputColors stringindex ) #\9 )
+							)
+						)
 						( set! numberOfFixedColors ( + numberOfFixedColors 1 ) )
 						( set! stringindex ( + stringindex 5 ) )
 					)
@@ -41,7 +52,7 @@
 			)
 		)
 
-		( set! fixedColors ( make-vector ( + numberOfFixedColors 1 ) ) )
+		( set! fixedColors ( make-vector numberOfFixedColors ) )
 		( set! stringindex 0 )
 		( set! numberOfFixedColors 0 )
 

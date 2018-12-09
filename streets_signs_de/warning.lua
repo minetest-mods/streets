@@ -9,6 +9,7 @@ local signs = {
 	{ "narrow_left", "Narrowed Road (Left-hand side)" },
 	{ "narrow_right", "Narrowed Road (Right-hand side)" },
 	{ "pedestrians" },
+	{ "trafficlight", "Traffic Light Ahead" },
 	{ "trains" },
 	{ "work" },
 }

@@ -5,6 +5,7 @@ streets.signs.register_collection({
 
 streets.signs.register_section({ name = "warning", belongs_to = "de" })
 streets.signs.register_section({ name = "prohibitory", belongs_to = "de" })
+streets.signs.register_section({ name = "mandatory", belongs_to = "de" })
 streets.signs.register_section({ name = "priority", belongs_to = "de" })
 streets.signs.register_section({ name = "info", belongs_to = "de" })
 streets.signs.register_section({ name = "writeable", belongs_to = "de" })
@@ -13,6 +14,7 @@ local modpath = minetest.get_modpath("streets_signs_de")
 
 dofile(modpath .. "/warning.lua")
 dofile(modpath .. "/prohibitory.lua")
+dofile(modpath .. "/mandatory.lua")
 dofile(modpath .. "/priority.lua")
 dofile(modpath .. "/info.lua")
 
