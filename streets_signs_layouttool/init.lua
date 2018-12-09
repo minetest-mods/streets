@@ -141,7 +141,6 @@ local render_image = function(def, grid)
 	for k, v in ipairs(def.content) do
 		if v.type == "image" then
 			local sign_def = streets.signs_layouttool.get_sign_definition(v.name)
-			minetest.log(dump(v.x))
 			local x1 = (64 * def.size) - (0.5 * v.w) + v.x
 			local y1 = (64 * def.size) - (0.5 * v.h) + v.y
 			local x2 = x1 + sign_def.border_left
@@ -466,9 +465,15 @@ minetest.register_craftitem(":streets:signs_layouttool", {
 	description = "Signs Layouttool",
 	inventory_image = "default_sign_steel.png^default_stick.png",
 	on_use = function(itemstack, player, pointed_thing)
+		if itemstack:get_name() ~= "streets:signs_layouttool" then
+			return itemstack
+		end
 		show_formspec(itemstack, player)
 	end,
 	on_place = function(itemstack, placer, pointed_thing)
+		if itemstack:get_name() ~= "streets:signs_layouttool" then
+			return itemstack
+		end
 		if pointed_thing and pointed_thing.type == "node" then
 			local pos = pointed_thing.under
 			local node = minetest.get_node(pos)
