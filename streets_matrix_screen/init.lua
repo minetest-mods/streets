@@ -196,7 +196,7 @@ minetest.register_entity("streets:matrix_screen_lights", {
 	visual = "cube",
 	visual_size = { x = 0.99, y = 0.99 },
 	on_activate = function(self, staticdata)
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
 		if not vector.equals(pos, vector.round(pos)) then
 			self.object:remove()
 			return
