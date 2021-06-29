@@ -11,7 +11,7 @@ minetest.register_node(":streets:bigpole", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -58,7 +58,7 @@ minetest.register_node(":streets:bigpole_short", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -103,7 +103,7 @@ minetest.register_node(":streets:bigpole_edge", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -158,7 +158,7 @@ minetest.register_node(":streets:bigpole_tjunction", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -204,7 +204,7 @@ minetest.register_node(":streets:bigpole_corner", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -252,7 +252,7 @@ minetest.register_node(":streets:bigpole_four_side_junction", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -300,7 +300,7 @@ minetest.register_node(":streets:bigpole_cross", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -348,7 +348,7 @@ minetest.register_node(":streets:bigpole_five_side_junction", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -395,7 +395,7 @@ minetest.register_node(":streets:bigpole_all_sides", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
