@@ -88,6 +88,14 @@ local function apply_changes(toggleds, t)
 					toggleds[y][x] = nil
 				end
 			end
+		elseif type(xs) == "number" then
+			for x = 1, 16 do
+				if math.floor(xs/2^(16-x))%2 == 1 then
+					toggleds[y][x] = true
+				else
+					toggleds[y][x] = nil
+				end
+			end
 		end
 	end
 	return true
