@@ -215,8 +215,8 @@ minetest.register_entity("streets:matrix_screen_lights", {
 			self.object:remove()
 			return
 		end
-		minetest.after(0, function(pos)
-			update_screen(pos, get_data(minetest.get_meta(pos)))
+		minetest.after(0, function(position)
+			update_screen(position, get_data(minetest.get_meta(position)))
 		end, pos)
 	end,
 })
