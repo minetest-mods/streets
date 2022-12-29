@@ -93,6 +93,7 @@ minetest.register_node("streets:rrxing_top", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { cracky = 3, not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -123,6 +124,7 @@ minetest.register_node("streets:rrxing_middle_right_on", {
 	paramtype2 = "facedir",
 	groups = { not_in_creative_inventory = 1 },
 	light_source = 12,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -151,6 +153,7 @@ minetest.register_node("streets:rrxing_middle_right_off", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -180,6 +183,7 @@ minetest.register_node("streets:rrxing_middle_left_on", {
 	paramtype2 = "facedir",
 	light_source = 12,
 	groups = { not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -208,6 +212,7 @@ minetest.register_node("streets:rrxing_middle_left_off", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -237,6 +242,7 @@ minetest.register_node("streets:rrxing_middle_center_on", {
 	paramtype2 = "facedir",
 	light_source = 12,
 	groups = { not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -271,6 +277,7 @@ minetest.register_node("streets:rrxing_middle_center_off", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -304,6 +311,7 @@ minetest.register_node("streets:rrxing_middle", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { cracky = 3, not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -334,6 +342,7 @@ minetest.register_node("streets:rrxing_bottom", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { cracky = 3 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -616,6 +625,7 @@ minetest.register_node("streets:rrgate_mech_down", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { cracky = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -696,6 +706,7 @@ minetest.register_node("streets:rrgate_mech_up", {
 	paramtype2 = "facedir",
 	groups = { cracky = 1, not_in_creative_inventory = 1 },
 	drop = "streets:rrgate_mech_down",
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -769,6 +780,7 @@ minetest.register_node("streets:rrgate_mech_bottom", {
 	paramtype2 = "facedir",
 	groups = { cracky = 1, not_in_creative_inventory = 1 },
 	drop = "streets:rrgate_mech_down",
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -833,6 +845,7 @@ minetest.register_node("streets:rrgate_lightfirst", {
 	paramtype2 = "facedir",
 	groups = { cracky = 1 },
 	light_source = 12,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -865,6 +878,7 @@ minetest.register_node("streets:rrgate_darkfirst", {
 	paramtype2 = "facedir",
 	groups = { cracky = 1, not_in_creative_inventory = 1 },
 	drop = "streets:rrgate_lightfirst",
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -897,6 +911,7 @@ minetest.register_node("streets:rrgate_end", {
 	paramtype2 = "facedir",
 	groups = { cracky = 1, not_in_creative_inventory = 1 },
 	drop = "streets:rrgate_lightfirst",
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -929,6 +944,7 @@ minetest.register_node("streets:rrgate_up", {
 	paramtype2 = "facedir",
 	groups = { cracky = 1, not_in_creative_inventory = 1 },
 	drop = "streets:rrgate_lightfirst",
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
