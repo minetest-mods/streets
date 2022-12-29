@@ -230,6 +230,7 @@ minetest.register_node(":streets:light_vertical_off", {
 	groups = { cracky = 1, streets_light = 1 },
 	light_source = 0,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -251,6 +252,7 @@ minetest.register_node(":streets:light_vertical_on", {
 	groups = { cracky = 1, streets_light = 1, not_in_creative_inventory = 1 },
 	light_source = 14,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -275,6 +277,7 @@ minetest.register_node(":streets:light_horizontal_off", {
 	groups = { cracky = 1, streets_light = 1 },
 	light_source = 0,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -296,6 +299,7 @@ minetest.register_node(":streets:light_horizontal_on", {
 	groups = { cracky = 1, streets_light = 1, not_in_creative_inventory = 1 },
 	light_source = 14,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -320,6 +324,7 @@ minetest.register_node(":streets:light_hanging_off", {
 	groups = { cracky = 1, streets_light = 1 },
 	light_source = 0,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -341,6 +346,7 @@ minetest.register_node(":streets:light_hanging_on", {
 	groups = { cracky = 1, streets_light = 1, not_in_creative_inventory = 1 },
 	light_source = 14,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {

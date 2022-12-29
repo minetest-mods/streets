@@ -73,6 +73,7 @@ minetest.register_node("streets:bollard_steel_automatic_up", {
 	paramtype = "light",
 	drawtype = "nodebox",
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -93,6 +94,7 @@ minetest.register_node("streets:bollard_steel_automatic_down", {
 	drawtype = "nodebox",
 	walkable = false,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -123,6 +125,7 @@ minetest.register_node("streets:bollard_steel_manual_up", {
 	drawtype = "nodebox",
 	sunlight_propagates = true,
 	on_rightclick = toggle_bollard,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {

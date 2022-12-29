@@ -37,6 +37,7 @@ local register_sign_node = function(friendlyname, name, tiles, type, inventory_i
 	def.light_source = light_source
 	def.groups = { cracky = 3, not_in_creative_inventory = 1, sign = 1 }
 	def.drop = "streets:" .. name
+	def.use_texture_alpha = "clip"
 	if type == "minetest" then
 		def.drawtype = "nodebox"
 		def.inventory_image = tiles[6]
@@ -255,6 +256,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			walkable = false,
 			inventory_image = tex,
 			wield_image = tex,
+			use_texture_alpha = "clip",
 			node_box = {
 				type = "fixed",
 				fixed = { -0.5, -0.5, -0.5, 0.5, -0.499, 0.5 }
@@ -285,6 +287,7 @@ local register_marking_nodes = function(surface_friendlyname, surface_name, surf
 			tiles = tiles,
 			paramtype2 = "facedir",
 			drop = "",
+			use_texture_alpha = "clip",
 			after_destruct = function(pos, oldnode)
 				local newnode = oldnode
 				newnode.name = oldnode.name:gsub("mark_(.-)_on_", "")

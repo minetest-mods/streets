@@ -13,6 +13,7 @@ minetest.register_node(":streets:delineator", {
 	groups = { snappy = 2 },
 	light_source = 2,
 	sunlight_propagates = true,
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -43,6 +44,7 @@ minetest.register_node("streets:fence_chainlink", {
 	tiles = { "streets_fence_chainlink.png" },
 	sunlight_propagates = true,
 	groups = { snappy = 1, wall = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "connected",
 		fixed = { { -1 / 32, -0.5, -1 / 32, 1 / 32, 0.5, 1 / 32 } },
@@ -100,6 +102,7 @@ minetest.register_node("streets:fence_chainlink_door_open", {
 	tiles = { "streets_fence_chainlink_door.png" },
 	sunlight_propagates = true,
 	groups = { snappy = 1, wall = 1, not_in_creative_inventory = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -124,6 +127,7 @@ minetest.register_node("streets:fence_chainlink_door_closed", {
 	tiles = { "streets_fence_chainlink_door.png" },
 	sunlight_propagates = true,
 	groups = { snappy = 1, wall = 1 },
+	use_texture_alpha = "clip",
 	node_box = {
 		type = "fixed",
 		fixed = {
