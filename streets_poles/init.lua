@@ -11,7 +11,7 @@ minetest.register_node(":streets:bigpole", {
 	drawtype = "nodebox",
 	tiles = { "streets_pole.png" },
 	sunlight_propagates = true,
-	groups = { cracky = 1, level = 2, bigpole = 1 },
+	groups = { cracky = 1, level = 2, bigpole = 1, not_blocking_trains = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
