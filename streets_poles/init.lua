@@ -40,7 +40,7 @@ minetest.register_node(":streets:bigpole", {
 		["t"] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
 		["b"] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 }
 	},
-	check_for_pole = true
+	check_for_pole = true -- allows street_signs to use this as a pole to attach signs
 
 })
 
